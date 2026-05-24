@@ -1,0 +1,63 @@
+# Public repo allowlist: only the curated, non-sensitive project content should be tracked.
+
+# Keep the ignore file itself.
+!/.gitignore
+
+# Safe top-level docs/config.
+!/SOUL.md
+!/config.yaml
+
+# Public skill library content.
+!/skills/
+!/skills/**
+
+# Exclude skill bookkeeping and generated metadata.
+/skills/.curator_state
+/skills/.bundled_manifest
+/skills/.usage.json
+/skills/.usage.json.lock
+/skills/.hub/
+
+# Ignore runtime state, secrets, caches, logs, and local environments.
+/.env
+/.hermes_history
+/.skills_prompt_snapshot.json
+/.install_method
+/.update_check
+/auth.json
+/auth.lock
+/config.yaml.bak*
+/context_length_cache.yaml
+/models_dev_cache.json
+/state.db
+/state.db-shm
+/state.db-wal
+/audio_cache/
+/image_cache/
+/cache/
+/cron/
+/kanban/
+/logs/
+/memories/
+/profiles/
+/sessions/
+/node_modules/
+/venv/
+/.venv/
+/hermes-agent/
+/bin/
+
+# Editor / OS clutter.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Bytecode / compiled artifacts (also covers anything under skills/).
+**/__pycache__/
+**/*.py[cod]
+**/*.so
+**/*.dylib
+**/*.dll
+**/*.pyd
