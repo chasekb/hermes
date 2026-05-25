@@ -271,7 +271,7 @@ Before marking work complete:
 
 Can't check all boxes? You skipped TDD. Start over.
 
-## When Stuck
+### When Stuck
 
 | Problem | Solution |
 |---------|----------|
@@ -279,10 +279,13 @@ Can't check all boxes? You skipped TDD. Start over.
 | Test too complicated | Design too complicated. Simplify the interface. |
 | Must mock everything | Code too coupled. Use dependency injection. |
 | Test setup huge | Extract helpers. Still complex? Simplify the design. |
+| Adding a sibling target duplicates table names or loops | Extract a target-builder helper and test the returned target list before wiring the loop. |
 
 ## Hermes Agent Integration
 
 ### Running Tests
+
+When a feature expands an existing pipeline with sibling targets or repeated table pairs, factor the target list into a helper first and test that helper explicitly. See `references/pairing-targets.md` for the pattern.
 
 Use the `terminal` tool to run tests at each step:
 

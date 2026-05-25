@@ -411,8 +411,59 @@ approvals:
   destructive_slash_confirm: true
 command_allowlist: []
 quick_commands: {}
-hooks: {}
-hooks_auto_accept: false
+hooks:
+  pre_tool_call:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  post_tool_call:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  transform_terminal_output:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  transform_tool_result:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  transform_llm_output:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  pre_llm_call:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  post_llm_call:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  pre_api_request:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  post_api_request:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  on_session_start:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  on_session_end:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  on_session_finalize:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  on_session_reset:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  subagent_stop:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  pre_gateway_dispatch:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  pre_approval_request:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+  post_approval_response:
+  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+    timeout: 30
+hooks_auto_accept: true
 personalities: {}
 security:
   allow_private_urls: false
@@ -542,3 +593,103 @@ platform_toolsets:
 known_plugin_toolsets:
   cli:
   - spotify
+mcp_servers:
+  codex:
+    command: codex
+    args:
+    - mcp-server
+    timeout: 120
+  filesystem:
+    command: npx
+    args:
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /Users/bernardchase/.hermes/hermes-agent
+    timeout: 120
+  github:
+    command: npx
+    args:
+    - -y
+    - '@modelcontextprotocol/server-github'
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+    timeout: 120
+  chrome-devtools:
+    command: npx
+    args:
+    - -y
+    - chrome-devtools-mcp@latest
+    - --autoConnect
+    - --no-usage-statistics
+    timeout: 120
+  postgres-db:
+    command: bash
+    args:
+    - -lc
+    - |
+      set -a
+      source /Users/bernardchase/Documents/unordered_map/priority_queue/sum/square/y_i/db/.env
+      export DB_HOST=localhost
+      export DB_PORT=5433
+      export DB_NAME=postgres
+      export DB_USER="$POSTGRES_USER"
+      export DB_PASSWORD="$POSTGRES_PASSWORD"
+      export DB_SSL_MODE=disable
+      export DB_READ_ONLY=true
+      exec npx -y mcp-postgres@latest
+    timeout: 120
+  postgres-metabase:
+    command: bash
+    args:
+    - -lc
+    - |
+      set -a
+      source /Users/bernardchase/Documents/unordered_map/priority_queue/sum/square/y_i/db/.env
+      export DB_HOST=localhost
+      export DB_PORT=5433
+      export DB_NAME=metabase
+      export DB_USER="$POSTGRES_USER"
+      export DB_PASSWORD="$POSTGRES_PASSWORD"
+      export DB_SSL_MODE=disable
+      export DB_READ_ONLY=true
+      exec npx -y mcp-postgres@latest
+    timeout: 120
+  postgres-trade:
+    command: bash
+    args:
+    - -lc
+    - |
+      set -a
+      source /Users/bernardchase/Documents/unordered_map/priority_queue/sum/square/y_i/trade/.env
+      export DB_HOST=localhost
+      export DB_PORT=5432
+      export DB_NAME="$POSTGRES_DB"
+      export DB_USER="$POSTGRES_USER"
+      export DB_PASSWORD="$POSTGRES_PASSWORD"
+      export DB_SSL_MODE=disable
+      export DB_READ_ONLY=true
+      exec npx -y mcp-postgres@latest
+    timeout: 120
+  postgres-cohida:
+    command: bash
+    args:
+    - -lc
+    - |
+      set -a
+      source /Users/bernardchase/Documents/unordered_map/priority_queue/sum/square/y_i/cohida/.env
+      export DB_HOST=localhost
+      export DB_PORT=5435
+      export DB_NAME="${POSTGRES_DB_NAME:-unordered_map}"
+      export DB_USER="${POSTGRES_DB_USER:-postgres}"
+      export DB_PASSWORD="${POSTGRES_DB_PASSWORD:-postgres}"
+      export DB_SSL_MODE=disable
+      export DB_READ_ONLY=true
+      exec npx -y mcp-postgres@latest
+    timeout: 120
+  sqlite:
+    command: npx
+    args:
+    - -y
+    - mcp-sqlite
+    - /Users/bernardchase/.hermes/state.db
+    timeout: 120

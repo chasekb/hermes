@@ -1,0 +1,106 @@
+{
+  "approvals": [
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "pre_tool_call",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "post_tool_call",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "transform_terminal_output",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "transform_tool_result",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "transform_llm_output",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "pre_llm_call",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "post_llm_call",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "pre_api_request",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "post_api_request",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "on_session_start",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "on_session_end",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "on_session_finalize",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "on_session_reset",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "subagent_stop",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "pre_gateway_dispatch",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "pre_approval_request",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-05-25T01:04:19.148333Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "post_approval_response",
+      "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    }
+  ]
+}

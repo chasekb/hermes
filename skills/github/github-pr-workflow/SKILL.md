@@ -163,6 +163,22 @@ gh pr checks
 gh pr checks --watch
 ```
 
+### Verify a long-running GitHub Actions build
+
+For long remote builds, prefer querying the workflow run directly. This is more robust than waiting on a live watch when the GitHub API is slow or times out.
+
+```bash
+# Find the latest run for the commit
+gh run list --limit 10 --json databaseId,status,conclusion,workflowName,headSha,displayTitle,url
+
+# Inspect run + job/step progress
+gh run view <RUN_ID> --json status,conclusion,jobs,url
+```
+
+If the workflow is still in progress, poll the same `gh run view` command again instead of switching tools. The nested `jobs[].steps[]` output is the most useful source of truth for whether the build is advancing.
+
+See `references/github-actions-verification.md` for a compact runbook.
+
 **With git + curl:**
 
 ```bash
@@ -273,6 +289,8 @@ When asked to auto-fix CI, follow this loop:
 4. `git add . && git commit -m "fix: ..." && git push`
 5. Wait for CI → re-check status
 6. Repeat if still failing (up to 3 attempts, then ask the user)
+
+See `references/push-and-ci-rebase.md` for the push/rebase/host-key pattern and the CI verification flow.
 
 ## 6. Merging
 

@@ -84,6 +84,12 @@ gh repo clone owner/repo-name -- --depth 1
 
 ## 2. Creating Repositories
 
+When publishing an existing local workspace, screen the tree first and create a `.gitignore` before the initial commit. See `references/public-repo-screening.md` for the safe allowlist workflow.
+
+For the full publish-from-workspace sequence, see `references/publish-existing-workspace.md`.
+
+When a repo already tracks a `data/` tree, do not ignore the whole directory by reflex. Prefer narrow runtime-only ignore rules for generated subpaths instead of hiding committed artifacts. See `references/repo-hygiene-data-ignore.md`.
+
 **With gh:**
 
 ```bash

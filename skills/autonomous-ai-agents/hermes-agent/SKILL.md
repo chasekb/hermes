@@ -138,6 +138,8 @@ hermes mcp test NAME        Test connection
 hermes mcp configure NAME   Toggle tool selection
 ```
 
+See `references/postgres-mcp-podman.md` for a safe pattern for wiring multiple running Podman Postgres databases into Hermes MCP without hardcoding secrets in `config.yaml`.
+
 ### Gateway (Messaging Platforms)
 
 ```
