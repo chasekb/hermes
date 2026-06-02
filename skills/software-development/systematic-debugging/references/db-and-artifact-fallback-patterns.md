@@ -38,3 +38,37 @@ tmux capture-pane -p -t 0:10.0 -S -5000
 ```
 
 Then search backward/forward for the last known-good command or marker string.
+
+If the capture is too sparse to explain the failure, widen the window and confirm you are looking at the correct pane/process before drawing conclusions.
+
+## Container runtime storage vs host disk
+
+A build that fails with `no space left on device` inside Podman may be hitting Podman machine/image storage even when the host filesystem still has free space.
+
+Check both views:
+
+```bash
+podman system df
+du -sh ~/.local/share/containers
+```
+
+If the host has space but Podman does not, prune builder/cache layers or remove stale machine storage before assuming the code/build is at fault.
+
+## Rootless Podman compose startup triage
+
+When `podman-compose up --no-build` fails in a rootless environment, separate runtime compatibility issues from registry access issues:
+
+- Unsupported sysctls in compose (for example `vm.overcommit_memory`) can fail the container before the app starts; remove them for rootless Podman.
+- A `403 Forbidden` while fetching a GHCR bearer token usually means the image pull is blocked by auth/registry policy, not that the image tag is invalid.
+- If pulls are blocked, switch to the local build fallback (`TAG=dev podman-compose build`) and then retry the same `up --no-build` command using locally available images.
+- Compose paths like `./data/databases/postgres` and `./data/cache/...` are often host bind mounts, not managed Docker volumes; deleting them erases local persisted state.
+
+## Schema-guarded startup DDL
+
+When startup DDL depends on a table that may be created lazily, preflight the table with `to_regclass()` (or equivalent) and only install dependent triggers/functions after the table exists.
+
+This avoids noisy startup failures where the real issue is missing initialization, not a broken query.
+
+## Writable artifact copy fallback
+
+For packaging paths that may reject temp-file promotion, keep a fallback that copies directly into a writable destination, then normalize permissions and verify the final artifact size.

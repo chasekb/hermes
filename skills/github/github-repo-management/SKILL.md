@@ -30,7 +30,7 @@ else
     if [ -f ~/.hermes/.env ] && grep -q "^GITHUB_TOKEN=" ~/.hermes/.env; then
       GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" ~/.hermes/.env | head -1 | cut -d= -f2 | tr -d '\n\r')
     elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
-      GITHUB_TOKEN=$(grep "github.com" ~/.git-credentials 2>/dev/null | head -1 | sed 's|https://[^:]*:\([^@]*\)@.*|\1|')
+      GITHUB_TOKEN=$(grep "github.com" ~/.git-credentials 2>/dev/null | head -1 | sed -E 's|https://[^:]+:([^@]+)@.*|\1|')
     fi
   fi
 fi
@@ -87,6 +87,9 @@ gh repo clone owner/repo-name -- --depth 1
 When publishing an existing local workspace, screen the tree first and create a `.gitignore` before the initial commit. See `references/public-repo-screening.md` for the safe allowlist workflow.
 
 For the full publish-from-workspace sequence, see `references/publish-existing-workspace.md`.
+For the minimal one-shot flow, see `references/publish-existing-workspace-quickstart.md`.
+
+After commit/push, verify success with `git status --short --branch` so the final state is visibly clean and tracking `origin/<branch>`.
 
 When a repo already tracks a `data/` tree, do not ignore the whole directory by reflex. Prefer narrow runtime-only ignore rules for generated subpaths instead of hiding committed artifacts. See `references/repo-hygiene-data-ignore.md`.
 

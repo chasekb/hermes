@@ -1,35 +1,31 @@
-# GitHub Actions verification for long-running builds
+# GitHub Actions verification runbook
 
-Use this when you need to confirm a pushed commit is still building or has finished successfully.
+Use this when the user wants a remote build/CI check instead of local verification.
+
+## Goal
+Verify a workflow run on GitHub Actions is fully successful before claiming success.
 
 ## Recommended sequence
+1. Identify the most recent run for the branch or commit.
+2. Inspect run-level status and jobs.
+3. If the run is still in progress, re-check the same run later.
+4. Only report success when the run is `completed` and `conclusion=success`.
 
-1. Identify the latest run for the exact commit:
-
+## Commands
 ```bash
-gh run list --limit 10 --json databaseId,status,conclusion,workflowName,headSha,displayTitle,url
+# List recent runs for a branch
+gh run list --branch <branch> --limit 10 --json databaseId,status,conclusion,workflowName,headSha,displayTitle,url,createdAt
+
+# Inspect the selected run
+gh run view <run_id> --json status,conclusion,jobs,url,workflowName,headSha,displayTitle
+
+# Optional live log stream when you want the full tail
+# Prefer short use; for long builds, re-query gh run view instead of waiting on a long watch session.
+gh run watch <run_id> --exit-status
 ```
 
-2. Inspect the run with jobs included so you can see step-level progress:
-
-```bash
-gh run view <RUN_ID> --json status,conclusion,jobs,url
-```
-
-3. If the run is still in progress, poll by re-running the same JSON view. The `jobs[].steps[]` array will show whether the workflow is actually moving forward even when the top-level status is unchanged.
-
-4. Prefer `gh run view --json ...` over `gh run watch` when GitHub API latency/timeouts interfere with interactive watching.
-
-## What to record
-
-- run id
-- workflow name
-- head SHA
-- status / conclusion
-- current job and step names
-
-## Useful fields
-
-- `status`: `queued`, `in_progress`, `completed`
-- `conclusion`: `success`, `failure`, `cancelled`, or empty while still running
-- `jobs[].steps[]`: the best place to see which stage is active
+## Practical notes
+- `gh run view` is the authoritative check for completion state.
+- `gh run watch` is useful for live logs, but for long-running builds it is better to poll `gh run view` again.
+- If one job is still running, do not call the workflow successful yet even if other jobs have passed.
+- When a build emits deprecation warnings or annotations, note them separately from the pass/fail result.

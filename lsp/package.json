@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dockerfile-language-server-nodejs": "^0.15.0",
     "pyright": "^1.1.409",
     "yaml-language-server": "^1.23.0"
   }

@@ -26,6 +26,8 @@ Use this skill when:
 - Tasks are mostly independent
 - Quality and spec compliance are important
 - You want automated review between tasks
+- You need to run an environment/capability audit with multiple independent surfaces (for example: hooks, MCP servers, skills, profile overrides)
+- You need a ranked "what's missing" report that distinguishes installed vs enabled vs verified-working state across project/profile boundaries
 
 **vs. manual execution:**
 - Fresh context per task (no confusion from accumulated state)
@@ -344,9 +346,10 @@ Catch issues early
 
 ## Further reading (load when relevant)
 
-When the orchestration involves significant context usage, long review loops, or complex validation checkpoints, load these references for the specific discipline:
+When the orchestration involves significant context usage, long review loops, complex validation checkpoints, or capability inventory work, load these references for the specific discipline:
 
 - **`references/context-budget-discipline.md`** — Four-tier context degradation model (PEAK / GOOD / DEGRADING / POOR), read-depth rules that scale with context window size, and early warning signs of silent degradation. Load when a run will clearly consume significant context (multi-phase plans, many subagents, large artifacts).
 - **`references/gates-taxonomy.md`** — The four canonical gate types (Pre-flight, Revision, Escalation, Abort) with behavior, recovery, and examples. Load when designing or reviewing any workflow that has validation checkpoints — use the vocabulary explicitly so each gate has defined entry, failure behavior, and resumption rules.
+- **`references/capability-audits.md`** — Pattern for auditing hooks, MCP servers, skills, and project/profile overrides with parallel subagents and direct verification.
 
 Both references adapted from gsd-build/get-shit-done (MIT © 2025 Lex Christopherson).

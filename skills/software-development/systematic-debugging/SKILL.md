@@ -1,7 +1,7 @@
 ---
 name: systematic-debugging
 description: "4-phase root cause debugging: understand bugs before fixing."
-version: 1.1.0
+version: 1.1.1
 author: Hermes Agent (adapted from obra/superpowers)
 license: MIT
 platforms: [linux, macos, windows]
@@ -61,14 +61,33 @@ You MUST complete each phase before proceeding to the next.
 
 **BEFORE attempting ANY fix:**
 
-### Reconstruct the failing window first
+If the issue is a macOS CPU spike and the top process is `com.apple.Virtualization.VirtualMachine` (or similar Apple Virtualization framework binary), treat that as a VM-level symptom: inspect `podman machine list`, `podman stats --no-stream`, and container logs to find the underlying workload before blaming the host process itself.
+
+### 1. Read Error Messages Carefully
 
 For long-running panes, logs, or streamed service output, isolate the relevant interval before you analyze:
 - capture pane/log output starting from the last known-good marker or command
+- if the user names a sentinel string or launch command, anchor the capture to the last occurrence of that string and read forward from there
 - keep the exact failure window small enough to read end-to-end
 - avoid reasoning from stale output that predates the current failure
+- if a build is already running in a tmux pane or background session, prefer the live failure window over restarting it; overlapping runs often interleave cleanup noise and make the wrong failure look current
 
 If a database-backed service is failing during startup, verify whether the failing table/view actually exists before treating the query error as the root cause. Optional/late-created tables should be checked explicitly so you can distinguish "missing initialization" from a true query bug.
+
+If the user asks for logs or pane output "since" a marker in tmux (or any long-lived log stream), anchor the capture at the last occurrence of that marker or launch command, then read forward from there. Keep the failure window small and avoid analyzing earlier boot noise as if it were the current fault.
+
+If container startup fails under rootless Podman, check for runtime-specific compose incompatibilities before touching the app code:
+- unsupported sysctls (for example `vm.overcommit_memory`) may need to be removed from compose
+- a registry `403 Forbidden` during bearer-token fetch usually means image pull auth is unavailable or insufficient, not that the image itself is broken
+- when pull is blocked, use the local build fallback path and then re-run the same `up --no-build` command against locally available images
+- run `podman-compose config` to confirm the rendered image names; `TAG=dev` alone does not guarantee the dev stack is using local tags
+- if image unpack fails with `no space left on device`, check `podman system df` / `podman images` before changing app code and prune stale builder/image layers if needed
+- if the Podman VM disk was resized but free space inside the guest barely changed, grow the guest partition/filesystem too (for example `growpart` followed by `xfs_growfs`) before assuming the resize failed
+- before chasing app bugs from a failed `up`, capture the failure window from the last launch marker in tmux and ignore earlier boot noise
+- if the dev stack is pulling unexpectedly, verify the rendered image names and any exported `CPP_BACKEND_IMAGE` / `FRONTEND_IMAGE` environment overrides before editing compose
+- if `podman-compose up --no-build` still tries to resolve registry images, check whether the compose defaults are naming the images in a way that forces a pull (for example `localhost/...`), and prefer explicit local dev tags such as `trade-cpp-backend:dev` / `trade-frontend:dev`
+- if a rootless Podman build gets deep into vcpkg and then fails on protobuf with `BUILD_FAILED`, treat it as a resource/concurrency problem first; try lowering `VCPKG_MAX_CONCURRENCY` before changing application code
+- remember that `./data/...` paths in compose are often host bind mounts, not managed Docker volumes, so deleting them destroys local state
 
 If a path-based artifact copy fails with permissions, probe the destination you actually intend to write to and use a writable fallback path before blaming the copy step.
 
@@ -338,6 +357,19 @@ Use these Hermes tools during Phase 1:
 - **`read_file`** — Read source code with line numbers for precise analysis
 - **`terminal`** — Run tests, check git history, reproduce bugs
 - **`web_search`/`web_extract`** — Research error messages, library docs
+
+### Field references
+
+- **`references/db-and-artifact-fallback-patterns.md`** — practical notes on schema-optional startup, tmux capture windows, rootless Podman compose triage, Podman storage vs host disk, host bind-mounted artifact/data paths, and writable artifact fallback paths.
+- **`references/rootless-podman-compose-triage.md`** — tmux-window capture and compose-startup triage for rootless Podman, including sysctl rejection, GHCR pull fallback, local-tag verification, and storage exhaustion.
+- **`references/tmux-pane-capture-window.md`** — exact recipe for capturing a tmux pane from the last named marker or launch command, preserving the failure window without stale boot noise.
+- **`references/cpu-hotspot-triage.md`** — macOS + Podman CPU-spike workflow: identify host hotspots, recognize Virtualization.framework VM load, and correlate with `podman stats` / `podman logs`.
+- **`references/rootless-podman-vcpkg-protobuf.md`** — protobuf/vcpkg build failures under rootless Podman and the concurrency-cap workaround.
+- **`references/rootless-podman-vcpkg-host-triplet.md`** — when vcpkg failures land in host/debug packages, align host+target triplets and force release-only overlay triplets.
+- **`references/vcpkg-bootstrap-download-workarounds.md`** — deterministic CMake/bootstrap and GitHub archive download fallback pattern for vcpkg-heavy builds under rootless Podman.
+- **`references/trade-podman-vcpkg-build-pressure.md`** — session-specific trade repo notes: tmux failure-window capture, local-tag verification, and storage-pressure triage for vcpkg-heavy builds.
+- **`references/podman-remote-image-compose.md`** — remote GHCR image triage for compose: verify rendered refs with `podman-compose config`, remove stray `build:` blocks, and size the Podman machine for image unpack/runtime pressure.
+- **`references/live-build-overlap-notes.md`** — tmux-captured build sessions with overlapping `podman-compose` runs, stale logs, and storage-pressure cleanup.
 
 ### With delegate_task
 

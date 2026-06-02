@@ -33,7 +33,7 @@ else
     if [ -f ~/.hermes/.env ] && grep -q "^GITHUB_TOKEN=" ~/.hermes/.env; then
       GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" ~/.hermes/.env | head -1 | cut -d= -f2 | tr -d '\n\r')
     elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
-      GITHUB_TOKEN=$(grep "github.com" ~/.git-credentials 2>/dev/null | head -1 | sed 's|https://[^:]*:\([^@]*\)@.*|\1|')
+      GITHUB_TOKEN=$(grep "github.com" ~/.git-credentials 2>/dev/null | head -1 | sed -E 's|https://[^:]+:([^@]+)@.*|\1|')
     fi
   fi
 fi
@@ -165,19 +165,28 @@ gh pr checks --watch
 
 ### Verify a long-running GitHub Actions build
 
-For long remote builds, prefer querying the workflow run directly. This is more robust than waiting on a live watch when the GitHub API is slow or times out.
+For long remote builds, prefer querying the workflow run directly instead of depending on a long live watch. This gives you a clean success/failure signal and a stable place to re-check progress.
 
 ```bash
-# Find the latest run for the commit
-gh run list --limit 10 --json databaseId,status,conclusion,workflowName,headSha,displayTitle,url
+# Find the latest run for the branch or commit
+gh run list --branch <branch> --limit 10 --json databaseId,status,conclusion,workflowName,headSha,displayTitle,url,createdAt
 
 # Inspect run + job/step progress
-gh run view <RUN_ID> --json status,conclusion,jobs,url
+gh run view <RUN_ID> --json status,conclusion,jobs,url,workflowName,headSha,displayTitle
+
+# Optional live log stream when you want it
+gh run watch <RUN_ID> --exit-status
 ```
 
-If the workflow is still in progress, poll the same `gh run view` command again instead of switching tools. The nested `jobs[].steps[]` output is the most useful source of truth for whether the build is advancing.
+Rules of thumb:
+- Use `gh run view` as the authoritative source for final verification.
+- If a run is still in progress, re-run the same `gh run view` command later rather than assuming failure.
+- `gh run watch` is good for live logs, but for long builds it is better to poll `gh run view` again than to wait on a single watch session.
+- If one job is still running, do not report the workflow as successful yet even if other jobs have finished.
+- When the user explicitly asks for a remote build only, do not perform local build/test verification first. Commit and push the change, then verify the workflow run on GitHub Actions.
+- Do not claim success until the run is `completed` with `conclusion=success`.
 
-See `references/github-actions-verification.md` for a compact runbook.
+See `references/github-actions-verification.md` for a compact runbook and `references/remote-build-only.md` for the no-local-build workflow.
 
 **With git + curl:**
 

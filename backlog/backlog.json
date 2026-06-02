@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "project": "hermes",
+  "scope": "~/.hermes",
+  "generated_at": "2026-06-02T02:38:13Z",
+  "review_cadence": "weekly",
+  "status_order": [
+    "proposed",
+    "triaged",
+    "accepted",
+    "ready",
+    "in_progress",
+    "blocked",
+    "done",
+    "closed",
+    "archived"
+  ],
+  "items": [],
+  "history": []
+}

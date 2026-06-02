@@ -45,6 +45,30 @@ Pointer: see `references/project-board-bootstrap.md` for a concise bootstrap rec
 
 Related umbrella: `hermes-orchestrator-layout` covers the broader global-vs-project profile layout.
 
+## Project backlog handoff
+
+If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The concrete backlog store lives at `~/.hermes/backlog/backlog.json`.
+
+Bridge docs:
+- `references/project-backlog-model.md`
+- `references/project-backlog-bridge.md`
+- `references/backlog-intake-template.md`
+- `references/backlog-to-kanban.md`
+- `references/weekly-backlog-review.md`
+- `references/stale-item-review.md`
+
+Bridge helpers:
+- `scripts/backlog_to_kanban.py`
+- `scripts/review_backlog.py`
+- `scripts/kanban_closeout_sync.py`
+
+Order of operations:
+1. Read `execution_criteria` from the backlog item.
+2. Turn those criteria into tests that can drive development and verify `closeout_criteria`.
+3. Derive concrete worker tasks from those tests.
+4. Turn `closeout_criteria` into reviewer/verifier tasks or a final acceptance checklist.
+5. Keep the backlog item's stable id in Kanban metadata or a backlink comment.
+
 ## When to use the board (vs. just doing the work)
 
 Use the board as the execution layer for work that should survive restarts, needs fan-out, or benefits from durable handoff. If the project also has a project backlog, treat that backlog as the source of truth for intake/spec state and Kanban as the execution surface.
@@ -75,6 +99,17 @@ Your job description says "route, don't execute." The rules that enforce that:
 - **Decompose, route, and summarize — that's the whole job.**
 
 ## Decomposition playbook
+
+### Project backlog handoff
+
+If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`; bridge helpers live under `scripts/` and the reference docs listed above.
+
+Order of operations:
+1. Read `execution_criteria` from the backlog item.
+2. Turn those criteria into tests that can drive development and verify `closeout_criteria`.
+3. Derive concrete worker tasks from the tests.
+4. Turn `closeout_criteria` into reviewer/verifier tasks or a final acceptance checklist.
+5. Keep the backlog item's stable id in Kanban metadata or a backlink comment.
 
 ### Step 1 — Understand the goal
 
