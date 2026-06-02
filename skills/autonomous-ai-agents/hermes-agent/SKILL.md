@@ -139,6 +139,7 @@ hermes mcp configure NAME   Toggle tool selection
 ```
 
 See `references/postgres-mcp-podman.md` for a safe pattern for wiring multiple running Podman Postgres databases into Hermes MCP without hardcoding secrets in `config.yaml`.
+See `skills/mcp/native-mcp/SKILL.md` for workflow-class routing, wrapper guidance, and the no-hidden-fallback rule.
 
 ### Gateway (Messaging Platforms)
 
@@ -680,6 +681,22 @@ so nothing is lost.
 Config: `curator.*` (`enabled`, `interval_hours`, `min_idle_hours`,
 `stale_after_days`, `archive_after_days`, `backup.*`).
 User docs: https://hermes-agent.nousresearch.com/docs/user-guide/features/curator
+
+Lifecycle rule of thumb:
+- Discover a skill only when it owns a distinct workflow surface.
+- Promote it only after repeatable use or repeated inspection shows it is reusable.
+- Maintain it when `last_activity_at` and the counters still show real use.
+- Retire it when it is stale and a canonical skill already covers the same action surface.
+- Keep pinned or non-agent skills out of curator transitions.
+
+Overlap rule:
+- Keep `kanban-orchestrator` for board routing, decomposition, and dependency management.
+- Keep `subagent-driven-development` for per-task implementation loops and two-stage review.
+- If a new skill only restates one of those halves, merge the unique notes into the keeper and archive the duplicate.
+
+Telemetry rule:
+- Use curator status plus skill telemetry plus backlog review cadence together; do not rely on raw use counts alone.
+- Prefer `last_activity_at` over age or `use_count` when deciding whether to keep, stale, or archive.
 
 ### Kanban (multi-agent work queue)
 

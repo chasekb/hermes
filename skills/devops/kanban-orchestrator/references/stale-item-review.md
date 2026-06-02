@@ -2,6 +2,8 @@
 
 Use this when backlog items stop moving or remain blocked long enough that they might no longer be worth doing.
 
+Registry entry: `references/workflow-registry.md` → `stale-item-review`
+
 ## Heuristics
 
 Consider an item stale when one or more of the following are true:
@@ -27,9 +29,17 @@ Consider an item stale when one or more of the following are true:
 5. If deferred, record the reason and revisit date.
 6. If dropped, mark it closed/archived with a short explanation.
 
+## Next action after review
+
+- keep: update the backlog with the next concrete step
+- defer: record the revisit date and blocker summary
+- drop: archive or close the item after the closeout note is written
+- risky or repeatedly failing changes: capture the evaluation failure and route the work through `references/risky-change-gates.md` before trying again
+
 ## Evidence to record
 
 - reason for the stale classification
 - proposed action
 - any dependency or replacement item
 - reviewer identity or source
+- whether the decision-memory store supports the recommendation

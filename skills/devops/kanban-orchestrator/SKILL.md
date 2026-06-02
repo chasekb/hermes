@@ -57,12 +57,20 @@ Bridge docs:
 - `references/weekly-backlog-review.md`
 - `references/stale-item-review.md`
 - `references/workflow-registry.md`
+- `references/risky-change-gates.md`
 - `references/capability-bridge-implementation-notes.md`
 
 Bridge helpers:
 - `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
 - `scripts/review_backlog.py`
 - `scripts/kanban_closeout_sync.py`
+
+Operational notes:
+- See `references/backlog-kanban-smoke-tests.md` for the live apply / archive smoke-test pattern and the main pitfalls observed in practice.
+- When you are validating the bridge, prefer a one-item smoke test first, then bulk-apply only after the single-item path succeeds.
+- If a verification card was created only to prove the flow, archive it immediately so it does not linger on the live board.
+- When closing out backlog items, prefer one task at a time or very small batches unless you have confirmed the CLI accepts the exact same summary/metadata shape for every id. If a bulk closeout rejects shared metadata, fall back to per-task completion instead of fighting the command.
+- After a closeout batch, re-check `stats` or `list --status triage` before assuming the board is empty.
 
 Order of operations:
 1. Read `execution_criteria` from the backlog item.

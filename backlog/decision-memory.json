@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "description": "Durable decision-memory store for Hermes backlog, workflow, skill, and hook reviews. Keep only redacted execution metadata here so review helpers can turn observations into recommendations.",
+  "updated_at": "2026-06-02T04:51:47Z",
+  "records": [
+    {
+      "ts": "2026-06-02T04:51:47Z",
+      "subject_type": "workflow",
+      "subject_id": "weekly-backlog-review",
+      "expected": "Weekly and stale-item review should reuse durable telemetry instead of reconstructing a session from scratch.",
+      "observed": "The decision-memory store is now durable, redacted, and referenced by the weekly/stale review playbooks and backlog README.",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "backlog/decision-memory.json",
+        "skills/devops/kanban-orchestrator/references/weekly-backlog-review.md",
+        "skills/devops/kanban-orchestrator/references/stale-item-review.md",
+        "backlog/README.md"
+      ],
+      "risk_flags": ["secret_redacted"],
+      "redacted": true
+    }
+  ],
+  "field_notes": {
+    "subject_type": "backlog_item|skill|workflow|hook",
+    "subject_id": "Stable identifier for the thing being reviewed",
+    "expected": "Short description of what was supposed to happen",
+    "observed": "Short description of what actually happened",
+    "outcome": "pass|partial|fail|regression|unknown",
+    "recommendation": "keep|promote|defer|drop|rollback|retest|archive",
+    "evidence": ["File paths, commands, or durable references only"],
+    "risk_flags": ["secret_redacted", "coverage_gap", "rollback_needed", "behavior_change"],
+    "redacted": true
+  },
+  "consumer_notes": [
+    "Read by backlog and review helpers during weekly and stale-item cadence runs.",
+    "Use it to influence prioritization, skill selection, and keep/defer/drop decisions.",
+    "Never store tokens, passwords, raw prompts, or other sensitive material here."
+  ]
+}

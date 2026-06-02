@@ -36,9 +36,12 @@ Operational notes:
 - `skills/devops/kanban-orchestrator/references/workflow-registry.md` is the registry of the project workflows that move items from intake to review and closeout.
 - `skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md` captures the live bridge pattern and smoke-test recipe.
 - The bridge preserves the backlog item id in the created Kanban task title/body so closeout evidence can be synced back unambiguously.
+- `backlog/decision-memory.json` is the durable decision-memory store for execution summaries, recommendations, and review evidence; keep secrets out of it.
 
 Review cadence:
-- weekly backlog review
-- stale-item review when items stop moving or remain blocked without updates
+- Start with `skills/devops/kanban-orchestrator/references/workflow-registry.md`; it is the canonical index and shows the next action for each review path.
+- weekly backlog review (`skills/devops/kanban-orchestrator/references/weekly-backlog-review.md`)
+- stale-item review when items stop moving or remain blocked without updates (`skills/devops/kanban-orchestrator/references/stale-item-review.md`)
+- use the decision-memory store to feed the next weekly or stale review recommendation instead of rebuilding the session from scratch
 
 The backlog is the source of truth. Kanban is the execution surface.

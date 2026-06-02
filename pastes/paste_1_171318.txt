@@ -1,0 +1,9 @@
+[main x] {} cohida for g in 3600 21600 86400; do
+    podman-compose -f podman-compose.prod.yml run --rm cohida-app sh -c "./bin/cohida symbols --list | xargs -I {} ./bin/cohida retrieve-all -s {} -g $g"
+done
+Trying to pull ghcr.io/chasekb/cohida:main...
+Error: unable to copy from source docker://ghcr.io/chasekb/cohida:main: initializing source docker://ghcr.io/chasekb/cohida:main: Requesting bearer token: received unexpected HTTP status: 403 Forbidden
+Trying to pull ghcr.io/chasekb/cohida:main...
+Error: unable to copy from source docker://ghcr.io/chasekb/cohida:main: initializing source docker://ghcr.io/chasekb/cohida:main: Requesting bearer token: received unexpected HTTP status: 403 Forbidden
+Trying to pull ghcr.io/chasekb/cohida:main...
+Error: unable to copy from source docker://ghcr.io/chasekb/cohida:main: initializing source docker://ghcr.io/chasekb/cohida:main: Requesting bearer token: received unexpected HTTP status: 403 Forbidden

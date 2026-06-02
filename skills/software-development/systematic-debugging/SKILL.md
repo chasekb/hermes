@@ -149,6 +149,8 @@ For EACH component boundary:
 - Log what data exits the component
 - Verify environment/config propagation
 - Check state at each layer
+- If an external API returns the same-looking data in multiple pipelines, verify the exact outbound request shape and the returned granularity before assuming the database is wrong
+- Some APIs silently normalize unsupported parameter combinations instead of failing; compare the requested URL/params to the actual response contract
 
 Run once to gather evidence showing WHERE it breaks.
 THEN analyze evidence to identify the failing component.
@@ -369,7 +371,9 @@ Use these Hermes tools during Phase 1:
 - **`references/vcpkg-bootstrap-download-workarounds.md`** — deterministic CMake/bootstrap and GitHub archive download fallback pattern for vcpkg-heavy builds under rootless Podman.
 - **`references/trade-podman-vcpkg-build-pressure.md`** — session-specific trade repo notes: tmux failure-window capture, local-tag verification, and storage-pressure triage for vcpkg-heavy builds.
 - **`references/podman-remote-image-compose.md`** — remote GHCR image triage for compose: verify rendered refs with `podman-compose config`, remove stray `build:` blocks, and size the Podman machine for image unpack/runtime pressure.
+- **`references/trade-podman-compose-runtime-debugging.md`** — session note for tmux-window capture, GHCR tag selection, Podman disk expansion, and post-start runtime failures in the trade stack.
 - **`references/live-build-overlap-notes.md`** — tmux-captured build sessions with overlapping `podman-compose` runs, stale logs, and storage-pressure cleanup.
+- **`references/yahoo-chart-silent-coercion.md`** — Yahoo Finance chart request note: unsupported `range`/`interval` pairs can silently coerce to coarse data; normalize intraday requests to a valid window and treat 1m promotion as interval-aware upsert territory.
 
 ### With delegate_task
 

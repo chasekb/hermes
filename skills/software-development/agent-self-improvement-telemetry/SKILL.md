@@ -36,6 +36,8 @@ This skill is intentionally broad. It is not about one session or one error stri
    - whether an external provider is configured
 
 See `references/self-improvement-metrics.md` for a compact field guide and a current-session snapshot pattern.
+See `references/decision-memory-loop.md` for the durable record format that backlog and review workflows consume.
+See `references/skill-lifecycle-and-curation.md` for the keep / merge / archive rule and the overlap example used by the curator.
 
 ## Core metrics and how they are used
 
@@ -67,6 +69,29 @@ Decision rules:
    - the curator configuration
    - the telemetry interpretation rules
 4. If you discover a reusable pattern, patch the umbrella skill and add a short reference note.
+
+## Decision-memory loop
+
+The durable decision-memory store lives at `~/.hermes/backlog/decision-memory.json`.
+Write compact, redacted records there when a workflow, skill, or hook change finishes so the next weekly or stale review can turn the observed outcome into a recommendation.
+
+Use the store for decision support, not raw logging:
+- capture the expected outcome and the observed outcome
+- record the recommendation for the next review pass
+- keep secrets, tokens, and raw transcripts out of the durable record
+- prefer one short evidence pointer over a long transcript dump
+
+## Lifecycle rule of thumb
+
+Use the curator the same way you would review backlog items: durable criteria first, telemetry second, age last.
+
+- Discover a skill only when it owns a distinct workflow surface.
+- Promote it only after repeatable use or repeated inspection shows it is reusable.
+- Maintain it when `last_activity_at` and the counters still show real use.
+- Retire it when it is stale and a canonical skill already covers the same action surface.
+- Keep pinned or non-agent skills out of curator transitions.
+
+If two skills overlap, keep the one that owns the action surface and archive the one that only restates it.
 
 ## Pitfalls
 

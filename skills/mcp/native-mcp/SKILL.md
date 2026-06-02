@@ -59,6 +59,30 @@ Restart Hermes Agent. On startup it will:
 
 You can then use the tools naturally -- just ask the agent to get the current time.
 
+## Preferred routing by workflow class
+
+Prefer the narrowest tool family that already owns the task:
+
+- Local files, worktrees, and repository inspection → built-in `read_file` / `search_files` / `terminal` first; use a filesystem MCP server when the target lives outside the current Hermes workspace.
+- GitHub issues, pull requests, commits, and repo metadata → `mcp_github_*` tools from a GitHub MCP server.
+- Databases and structured records → a database MCP server such as Postgres; keep credentials in an external wrapper instead of `config.yaml` when possible.
+- External SaaS integrations with stable CLI wrappers → prefer the domain skill's wrapper path, then expose the wrapper through MCP only when that is the documented integration point.
+
+Representative external integration path: Podman-backed Postgres
+
+1. Define the server in `~/.hermes/config.yaml` with a `bash -lc` wrapper.
+2. Source secrets at runtime from the project `.env` or another local secret file.
+3. Export the runtime DB variables (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SSL_MODE`).
+4. `exec` the MCP server process, for example `npx -y mcp-postgres@latest`.
+5. Verify the configured server with `hermes mcp test <name>` before relying on the generated `mcp_<name>_*` tools.
+
+See `skills/autonomous-ai-agents/hermes-agent/references/postgres-mcp-podman.md` for the exact Podman/Postgres wrapper pattern.
+
+Fallback behavior:
+- If the preferred MCP server is unavailable or fails `hermes mcp test`, do not silently switch to a different MCP server.
+- Report the failure, fix the wrapper/config, or use the already-documented direct non-MCP path in the owning domain skill.
+- Do not invent a hidden fallback route that is not explicitly documented.
+
 ## Configuration Reference
 
 Each entry under `mcp_servers` is a server name mapped to its config. There are two transport types: **stdio** (command-based) and **HTTP** (url-based).

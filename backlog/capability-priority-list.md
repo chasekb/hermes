@@ -8,13 +8,12 @@ This is an implementation-ready ordering of the highest-value capability work su
 
 ## P0 — Activate and verify the core orchestration path
 
-### 1) Hook router / hook coverage remains the top leverage point
-- Status: already wired in `config.yaml` to `/Users/bernardchase/.hermes/agent-hooks/hook_router.py` across the major hook surfaces.
+### 1) Hook router / hook coverage is verified and should stay single-sourced
+- Status: wired in `config.yaml` to `/Users/bernardchase/.hermes/agent-hooks/hook_router.py` across the major hook surfaces and runtime-verified.
 - Category: mostly activation / verification, not new implementation.
 - Why now: this is the control plane for making all other capabilities reliable.
 - Next action:
-  - verify every intended event is actually routed at runtime
-  - confirm `hooks_auto_accept: true` is behaving as intended
+  - keep `hooks_auto_accept: true` as the runtime policy and re-run the hook-router checks whenever the config changes
   - keep the router single-sourced instead of adding ad hoc hook logic elsewhere
 - If it fails: fix hook routing or router dispatch first before adding new capabilities.
 
@@ -34,15 +33,13 @@ This is an implementation-ready ordering of the highest-value capability work su
   - make sure the doc references are linked from the main skill entry
 
 ### 3) Kanban backlog bridge should be the execution backbone for Hermes-native work
-- Status: already exists untracked under `skills/devops/kanban-orchestrator/` with scripts and reference docs, plus `backlog/README.md` and `backlog/backlog.json`.
+- Status: already exists under `skills/devops/kanban-orchestrator/` with scripts and reference docs, plus `backlog/README.md` and `backlog/backlog.json`; the cadence is now canonicalized in `references/workflow-registry.md`.
 - Category: already exists untracked; needs activation/wiring, not new implementation.
 - Why now: it gives durable intake → triage → execution → closeout for project work.
 - Next action:
-  - wire the backlog bridge into the orchestrator skill as the default path for project work
+  - follow the workflow registry for the next review action instead of inventing a new cadence
   - keep backlog items as the source of truth and Kanban as the execution surface
-  - standardize the review cadence (`weekly-backlog-review`, `stale-item-review`)
-- Likely follow-up:
-  - decide whether the backlog JSON should stay empty until real items are added or whether the current audit should seed an initial item set
+  - keep the bridge helpers as the implementation path, not prose-only instructions
 
 ### 4) GitHub PR workflow needs the remote-build-only verification path made canonical
 - Status: the core skill already exists and is bundled; new reference docs are untracked (`remote-build-only.md`, `github-actions-verification.md` updates).
@@ -71,6 +68,7 @@ This is an implementation-ready ordering of the highest-value capability work su
 - Next action:
   - keep telemetry readouts tied to curator decisions
   - use it to detect low-value overlap before creating more skills
+  - feed durable decision-memory records back into weekly and stale review so the same maintenance rule can be reused
 - Do not prioritize new implementation here unless the curator workflow itself is broken.
 
 ### 7) Repo publishing / hygiene helpers are useful, but secondary to the core workflow stack

@@ -8,6 +8,8 @@ Scope: /Users/bernardchase/.hermes
 - Hooks are wired in config.yaml to a single router script: /Users/bernardchase/.hermes/agent-hooks/hook_router.py.
 - 17 hook events are configured: pre/post tool, pre/post LLM, pre/post API, session start/end/finalize/reset, subagent_stop, pre_gateway_dispatch, pre_approval_request, post_approval_response, and three transform hooks.
 - Hook routing is verified working: agent-hooks/hook-events.jsonl shows live pre_tool_call, post_tool_call, pre_llm_call, post_llm_call, pre_api_request, post_api_request, on_session_start, on_session_end, on_session_finalize, on_session_reset, subagent_stop, pre_gateway_dispatch, pre_approval_request, and post_approval_response events.
+- Direct runtime checks against /Users/bernardchase/.hermes/agent-hooks/hook_router.py confirmed that representative events reach the centralized router, pre_llm_call emits the current local/git context, pre_approval_request stays on the auto-accept path, and destructive terminal commands are blocked before execution.
+- `hooks_auto_accept: true` remains the runtime policy in config.yaml; the router is responsible for the policy gate, not separate per-hook dispatch logic.
 - MCP servers are configured in root config (13 total): codex, filesystem, github, chrome-devtools, postgres-db, postgres-metabase, postgres-trade, postgres-cohida, sqlite, fetch, sequential-thinking, brave-search, and git.
 - LSP is enabled in root config; lsp/package.json and lsp/package-lock.json pin dockerfile-language-server-nodejs, pyright, and yaml-language-server, and lsp/bin/docker-langserver exists.
 - Skills are installed globally in the root tree: 100 active skill trees on disk, plus 1 archived tree under .archive/.

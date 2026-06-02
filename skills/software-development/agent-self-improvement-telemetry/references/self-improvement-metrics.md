@@ -41,6 +41,8 @@ Usage analytics commonly consulted alongside curator state:
 
 Memory status is also relevant when deciding whether the agent is learning from durable user facts versus transient session context.
 
+Durable decision memory lives separately in `~/.hermes/backlog/decision-memory.json` so the weekly and stale review workflows can consume concrete execution outcomes without reconstructing a session from scratch.
+
 ## How the metrics are used
 
 - `last_activity_at` is the best signal for skill freshness.
@@ -74,3 +76,5 @@ Then summarize:
 ## Session-specific note
 
 In the reviewed session, the curator was enabled but had not yet completed a real review pass; no agent-created skills were present for maintenance; built-in memory was active; and the observable usage telemetry showed a single tracked local skill entry (`hermes-orchestrator-layout`) with both use and view activity present.
+
+When a workflow finishes, record the compact expected-vs-observed summary in the decision-memory store, then let the backlog/review cadence surface the next recommendation.

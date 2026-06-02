@@ -105,3 +105,4 @@ Use this skill when a task involves:
 - See references/rootless-podman-vcpkg-concurrency.md for the protobuf/vcpkg concurrency workaround on resource-limited rootless Podman builders.
 - See references/tmux-capture-and-local-tags.md for the failure-window capture recipe, local-tag verification, and Podman storage-exhaustion triage.
 - See references/cleanup-boundaries.md for the protected-path and live-data cleanup policy that keeps runtime state out of routine artifact removal.
+- See references/risky-change-gates.md for the practical budget, eval, and rollback gate used when a container/debug fix changes behavior.

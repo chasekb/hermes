@@ -35,6 +35,12 @@ Use this skill when:
 - Consistent quality checks across all tasks
 - Subagents can ask questions before starting work
 
+**Capability inventory audits:**
+- For broad "what is installed/enabled/missing" requests, split by surface (for example: hooks, MCP servers, skills, profiles) instead of letting one subagent scan everything.
+- Add a synthesis subagent that merges the lane reports into a single gap list and explicitly labels installed vs enabled vs verified-working.
+- If "popularity" is ambiguous, make the ranking rule explicit in the final report rather than implying one.
+- See `references/capability-inventory-audit.md` for the compact audit playbook and reporting template.
+
 ## The Process
 
 ### 1. Read and Parse Plan
