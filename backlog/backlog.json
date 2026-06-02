@@ -1,9 +1,280 @@
 {
-  "version": 1,
+  "generated_at": "2026-06-02T03:44:51Z",
+  "history": [
+    {
+      "at": "2026-06-02T03:44:51Z",
+      "count": 6,
+      "event": "seeded_remaining_implementation_recommendations",
+      "note": "Added open backlog recommendations for the remaining implementation plan items with scoped criteria and priority."
+    },
+    {
+      "at": "2026-06-02T04:04:15Z",
+      "board": "transform",
+      "count": 6,
+      "event": "materialized_backlog_items_to_kanban",
+      "note": "Created triage tasks on the transform board from the open backlog recommendations and recorded kanban backlinks on each item.",
+      "task_ids": {
+        "HERMES-BL-0001": "t_b76f1198",
+        "HERMES-BL-0002": "t_b431bd4d",
+        "HERMES-BL-0003": "t_99246997",
+        "HERMES-BL-0004": "t_d86e5ca5",
+        "HERMES-BL-0005": "t_04d130d7",
+        "HERMES-BL-0006": "t_52451d3e"
+      }
+    }
+  ],
+  "items": [
+    {
+      "closeout_criteria": [
+        "Runtime evidence shows every intended hook event reached the router during verification.",
+        "Any coverage gaps or policy mismatches are documented with a fix or explicit follow-up recommendation.",
+        "The hook routing notes or references are updated so the verified behavior is easy to re-check later.",
+        "Hermes config checks still pass after the verification work."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Enumerate the intended hook surfaces in config.yaml and confirm each one is routed through /Users/bernardchase/.hermes/agent-hooks/hook_router.py.",
+        "Exercise a representative sample of hook events and observe them reaching the centralized router instead of ad hoc logic.",
+        "Confirm hooks_auto_accept behaves as intended for the sampled event set and document any exceptions.",
+        "Keep hook dispatch logic single-sourced; do not introduce parallel hook handling paths while verifying coverage."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0001",
+      "links": [
+        "/Users/bernardchase/.hermes/capability-audit-summary.md",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "kanban://transform/t_b76f1198"
+      ],
+      "notes": [
+        "Derived from the capability audit priority list.",
+        "Keep the router as the only hook dispatch surface; do not duplicate routing in individual hook entries."
+      ],
+      "priority": "P0",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Prove the centralized hook router handles every intended Hermes hook surface and that the current auto-accept behavior matches the desired runtime policy.",
+      "tenant": "default",
+      "title": "Verify hook router coverage at runtime",
+      "updated_at": "2026-06-02T03:44:51Z"
+    },
+    {
+      "closeout_criteria": [
+        "A declarative registry exists and is referenced from the backlog/orchestrator documentation.",
+        "The weekly review cadence can be followed without guessing which script or doc to use.",
+        "A stale-item review path exists and clearly explains what evidence is needed to keep, defer, or drop an item.",
+        "At least one registry entry can be traced from backlog item to workflow reference and back."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Define the canonical workflow registry entries for core Hermes maintenance and operating routines.",
+        "Wire the weekly backlog review and stale-item review entry points into the documented workflow path.",
+        "Ensure the workflow registry points to the backlog bridge helpers rather than duplicating logic in prose-only docs.",
+        "Make it possible to identify the next review action for a workflow item from the registry alone."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0002",
+      "links": [
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/weekly-backlog-review.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/stale-item-review.md",
+        "kanban://transform/t_b431bd4d"
+      ],
+      "notes": [
+        "This item is about making operational routines explicit and durable, not adding new execution logic."
+      ],
+      "priority": "P1",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Create a durable registry for Hermes workflows and make weekly and stale-item reviews a first-class, repeatable operating path.",
+      "tenant": "default",
+      "title": "Canonicalize the workflow registry and review cadence",
+      "updated_at": "2026-06-02T03:44:51Z"
+    },
+    {
+      "closeout_criteria": [
+        "A sample execution produces telemetry that can be inspected later.",
+        "A backlog or review workflow can consume that telemetry to guide a concrete recommendation.",
+        "The telemetry docs explain what gets stored, what stays out, and how the data feeds improvement.",
+        "No sensitive data is captured in the durable telemetry path."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Capture the key execution metadata needed to compare actual outcomes against expected outcomes for backlog or workflow work.",
+        "Write or surface telemetry in a durable location that can be read during backlog review without manual reconstruction.",
+        "Use at least one telemetry signal to influence a triage or prioritization decision.",
+        "Keep the telemetry output free of secrets, tokens, or other sensitive material."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0003",
+      "links": [
+        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/references/self-improvement-metrics.md",
+        "kanban://transform/t_99246997"
+      ],
+      "notes": [
+        "This is the operational follow-through for the agent-self-improvement telemetry work already started.",
+        "Focus on durable decision support, not raw logging volume."
+      ],
+      "priority": "P1",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Turn execution telemetry into a durable review signal so Hermes can use observed behavior to improve prioritization and skill selection.",
+      "tenant": "default",
+      "title": "Complete the telemetry and decision-memory loop",
+      "updated_at": "2026-06-02T03:44:51Z"
+    },
+    {
+      "closeout_criteria": [
+        "A clear lifecycle path exists for skill discovery, maintenance, and archival decisions.",
+        "At least one overlap/prune decision is recorded with rationale and evidence.",
+        "Curator guidance points to the same lifecycle rules used in backlog review.",
+        "The workflow can be repeated without relying on tribal knowledge."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Define how a skill is discovered, promoted, maintained, or retired within the Hermes workflow.",
+        "Identify at least one overlapping or duplicated skill area and document the rule used to keep, merge, or archive it.",
+        "Align curator guidance with the backlog and telemetry signals so maintenance decisions are repeatable.",
+        "Make the skill lifecycle easy to inspect from the project docs without chasing hidden conventions."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0004",
+      "links": [
+        "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "kanban://transform/t_d86e5ca5"
+      ],
+      "notes": [
+        "Use telemetry and backlog review output to justify promotion or retirement decisions.",
+        "Prefer cleanup and consolidation over new skill proliferation."
+      ],
+      "priority": "P1",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Make skill promotion, overlap resolution, and archival decisions explicit so the Hermes skill set stays lean and discoverable.",
+      "tenant": "default",
+      "title": "Finalize skills lifecycle and curator alignment",
+      "updated_at": "2026-06-02T03:44:51Z"
+    },
+    {
+      "closeout_criteria": [
+        "The MCP guidance is discoverable from the main Hermes workflow documentation.",
+        "A representative workflow can be executed or reasoned through using the documented MCP path.",
+        "The guidance includes both the preferred route and the fallback route when the preferred MCP path is unavailable.",
+        "The references are stable enough to reuse in future capability reviews."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Document which MCP servers and tool families Hermes should prefer for common workflow classes.",
+        "Provide at least one explicit wrapper or guidance path for a representative external integration use case.",
+        "Verify that the chosen MCP route can be followed end-to-end without inventing an unlisted fallback.",
+        "Document fallback behavior for unavailable or failing MCP tools."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0005",
+      "links": [
+        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md",
+        "kanban://transform/t_04d130d7"
+      ],
+      "notes": [
+        "Keep this item about routing and integration guidance, not about building new MCP infrastructure from scratch.",
+        "Use it to reduce guesswork when choosing between local, web, browser, or MCP-backed paths."
+      ],
+      "priority": "P1",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Document and, where useful, wrap the MCP paths Hermes should prefer for external system access so workflows do not depend on ad hoc tool choice.",
+      "tenant": "default",
+      "title": "Add MCP workflow guidance and wrappers for external integration",
+      "updated_at": "2026-06-02T03:44:51Z"
+    },
+    {
+      "closeout_criteria": [
+        "A budget/eval/rollback policy exists in durable Hermes docs or automation.",
+        "At least one sample change path demonstrates how the gates are applied.",
+        "The rollback conditions are specific enough that a reviewer can decide without guessing.",
+        "The policy integrates with the weekly review or stale-item review cadence."
+      ],
+      "created_at": "2026-06-02T03:44:51Z",
+      "dependencies": [],
+      "evidence": [],
+      "execution_criteria": [
+        "Define practical budget thresholds or gating rules for risky workflow, skill, or hook changes.",
+        "Specify the evaluation checks that must pass before a change can be promoted.",
+        "Document rollback or abort criteria that can be triggered when a change regresses behavior.",
+        "Make the criteria usable from the same backlog and review loop that governs the rest of Hermes."
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T03:44:51Z",
+          "note": "Seeded from the remaining implementation plan.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0006",
+      "links": [
+        "/Users/bernardchase/.hermes/backlog/capability-priority-list.md",
+        "/Users/bernardchase/.hermes/skills/devops/containerized-build-verification/SKILL.md",
+        "kanban://transform/t_52451d3e"
+      ],
+      "notes": [
+        "Lower priority than the core orchestration path, but important for keeping changes safe as Hermes grows.",
+        "Favor simple, observable gates over elaborate policy machinery."
+      ],
+      "priority": "P2",
+      "scope": "~/.hermes",
+      "status": "proposed",
+      "summary": "Define the change-control criteria Hermes should use before promoting risky capability updates, and make rollback conditions explicit.",
+      "tenant": "default",
+      "title": "Add budgets, evals, and rollback gates for risky changes",
+      "updated_at": "2026-06-02T03:44:51Z"
+    }
+  ],
   "project": "hermes",
-  "scope": "~/.hermes",
-  "generated_at": "2026-06-02T02:38:13Z",
   "review_cadence": "weekly",
+  "scope": "~/.hermes",
   "status_order": [
     "proposed",
     "triaged",
@@ -15,6 +286,5 @@
     "closed",
     "archived"
   ],
-  "items": [],
-  "history": []
+  "version": 1
 }

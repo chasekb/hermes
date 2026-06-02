@@ -19,7 +19,7 @@ Operational flow:
 6. If evidence is missing, keep the backlog item open and mark the closeout review as incomplete.
 
 Use the helper scripts in `scripts/` for the common bridge operations:
-- `backlog_to_kanban.py`
+- `backlog_to_kanban.py` (render the backlog as a bridge payload or apply it directly to a Kanban board)
 - `review_backlog.py`
 - `kanban_closeout_sync.py`
 

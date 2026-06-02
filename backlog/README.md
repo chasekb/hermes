@@ -28,8 +28,14 @@ Status flow:
 
 Tooling:
 - `skills/devops/kanban-orchestrator/scripts/backlog_to_kanban.py`
+  - render backlog items as a bridge payload, or apply them directly to a Kanban board with `--apply --board <slug>`
 - `skills/devops/kanban-orchestrator/scripts/review_backlog.py`
 - `skills/devops/kanban-orchestrator/scripts/kanban_closeout_sync.py`
+
+Operational notes:
+- `skills/devops/kanban-orchestrator/references/workflow-registry.md` is the registry of the project workflows that move items from intake to review and closeout.
+- `skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md` captures the live bridge pattern and smoke-test recipe.
+- The bridge preserves the backlog item id in the created Kanban task title/body so closeout evidence can be synced back unambiguously.
 
 Review cadence:
 - weekly backlog review

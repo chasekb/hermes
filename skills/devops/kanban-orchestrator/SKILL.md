@@ -56,9 +56,11 @@ Bridge docs:
 - `references/backlog-to-kanban.md`
 - `references/weekly-backlog-review.md`
 - `references/stale-item-review.md`
+- `references/workflow-registry.md`
+- `references/capability-bridge-implementation-notes.md`
 
 Bridge helpers:
-- `scripts/backlog_to_kanban.py`
+- `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
 - `scripts/review_backlog.py`
 - `scripts/kanban_closeout_sync.py`
 
