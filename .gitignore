@@ -41,6 +41,7 @@
 /memories/
 /profiles/
 /sessions/
+/state-snapshots/
 /node_modules/
 /venv/
 /.venv/

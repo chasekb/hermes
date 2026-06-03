@@ -41,7 +41,8 @@ Use this skill when a task involves:
 ## CI verification rules
 
 - When GitHub Actions is the source of truth, treat the request as remote-only verification: do not spend time on a local build/test if the user explicitly wants the CI run as proof.
-- Verify the exact workflow run created by the latest push by matching both branch and `headSha`; do not confuse it with an older run on the same branch.
+- Verify the exact workflow run created by the latest push by matching both the branch and the commit SHA (`headSha`); do not confuse it with an older run on the same branch.
+- If `gh run list` is empty for the branch or commit, first confirm that workflow files exist and that their event filters include the push; absence of runs is inconclusive.
 - If a workflow is still in progress, keep polling the same run id; do not infer failure from an intermediate state.
 - Do not report success until every required job in the run is completed with `conclusion=success`.
 - When you report success, include the run URL and the verified `headSha` so the result is unambiguous.

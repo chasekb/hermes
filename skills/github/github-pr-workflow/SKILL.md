@@ -181,6 +181,7 @@ Practical lessons:
 
 See `references/remote-build-verification-runbook.md` for the compact checklist and command set.
 See `references/remote-build-verification-with-github-actions.md` for a worked example of remote-only build verification after a push.
+See `references/no-workflow-no-run-verification.md` for the case where `gh run list` is empty and workflow inventory is zero.
 
 ### Verify a long-running GitHub Actions build
 
