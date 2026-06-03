@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T03:44:51Z",
+  "generated_at": "2026-06-03T04:04:23Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -21,6 +21,36 @@
         "HERMES-BL-0005": "t_04d130d7",
         "HERMES-BL-0006": "t_52451d3e"
       }
+    },
+    {
+      "at": "2026-06-02T16:03:08Z",
+      "event": "added_high_priority_recommendation",
+      "note": "Added updater stash conflict-resolution options as a new high-priority backlog recommendation.",
+      "id": "HERMES-BL-0007"
+    },
+    {
+      "at": "2026-06-03T00:36:20Z",
+      "event": "added_workflow_recommendation",
+      "note": "Added an Obsidian-backed note workflow recommendation for token-efficient context management.",
+      "id": "HERMES-BL-0008"
+    },
+    {
+      "at": "2026-06-03T03:07:51Z",
+      "event": "added_subagent_survey_recommendation",
+      "note": "Added a recommendation to delegate prior-art and workflow surveys to subagents before introducing new skills, MCP servers, rules, or workflows.",
+      "id": "HERMES-BL-0009"
+    },
+    {
+      "at": "2026-06-03T04:04:23Z",
+      "event": "added_local_rag_recommendation",
+      "note": "Added a backlog recommendation for a default local RAG profile with selective retrieval, MCP routing, and survey-first intake.",
+      "id": "HERMES-BL-0010"
+    },
+    {
+      "at": "2026-06-03T15:41:07Z",
+      "event": "closed_backup_recommendation",
+      "id": "HERMES-BL-0007",
+      "note": "Closed the updater stash conflict-resolution recommendation after adding the recovery guidance."
     }
   ],
   "items": [
@@ -61,7 +91,7 @@
         "/Users/bernardchase/.hermes/capability-audit-summary.md",
         "/Users/bernardchase/.hermes/config.yaml",
         "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "kanban://transform/t_b76f1198"
+        "kanban://hermes/t_b76f1198"
       ],
       "notes": [
         "Derived from the capability audit priority list.",
@@ -112,7 +142,7 @@
         "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
         "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/weekly-backlog-review.md",
         "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/stale-item-review.md",
-        "kanban://transform/t_b431bd4d"
+        "kanban://hermes/t_b431bd4d"
       ],
       "notes": [
         "This item is about making operational routines explicit and durable, not adding new execution logic."
@@ -161,7 +191,7 @@
       "links": [
         "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
         "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/references/self-improvement-metrics.md",
-        "kanban://transform/t_99246997"
+        "kanban://hermes/t_99246997"
       ],
       "notes": [
         "This is the operational follow-through for the agent-self-improvement telemetry work already started.",
@@ -211,7 +241,7 @@
       "links": [
         "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
         "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
-        "kanban://transform/t_d86e5ca5"
+        "kanban://hermes/t_d86e5ca5"
       ],
       "notes": [
         "Use telemetry and backlog review output to justify promotion or retirement decisions.",
@@ -261,7 +291,7 @@
       "links": [
         "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
         "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md",
-        "kanban://transform/t_04d130d7"
+        "kanban://hermes/t_04d130d7"
       ],
       "notes": [
         "Keep this item about routing and integration guidance, not about building new MCP infrastructure from scratch.",
@@ -311,7 +341,7 @@
       "links": [
         "/Users/bernardchase/.hermes/backlog/capability-priority-list.md",
         "/Users/bernardchase/.hermes/skills/devops/containerized-build-verification/SKILL.md",
-        "kanban://transform/t_52451d3e"
+        "kanban://hermes/t_52451d3e"
       ],
       "notes": [
         "Lower priority than the core orchestration path, but important for keeping changes safe as Hermes grows.",
@@ -324,6 +354,231 @@
       "tenant": "default",
       "title": "Add budgets, evals, and rollback gates for risky changes",
       "updated_at": "2026-06-02T05:00:08Z"
+    },
+    {
+      "id": "HERMES-BL-0007",
+      "title": "Document updater stash conflict-resolution options",
+      "summary": "Capture high-priority guidance for resolving Hermes updater stash conflicts so local changes and upstream updates can be reconciled without leaving the user stuck.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P0",
+      "status": "closed",
+      "created_at": "2026-06-02T16:03:08Z",
+      "updated_at": "2026-06-03T15:41:07Z",
+      "execution_criteria": [
+        "Document the supported recovery paths when hermes update stashes local changes and restore conflicts occur.",
+        "Include a safe decision tree for choosing between applying the stash, resolving conflicts in place, or restarting from a clean worktree.",
+        "Record the verification steps needed after each recovery path so the update can be trusted.",
+        "Call out the known conflict files and the preserved stash reference from the recent updater run so the guidance is grounded in a real incident."
+      ],
+      "closeout_criteria": [
+        "The updater guidance lists concrete resolution options with when-to-use notes.",
+        "The guidance includes at least one verified recovery procedure that can be repeated later.",
+        "The preserved stash reference and conflicted paths are recorded for traceability.",
+        "The backlog item links to the updater guidance or runbook entry that operators can follow during future update conflicts."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "Stash ref: ad4a56848f5c3172353b574fa7c3b5260f816ccf",
+        "Conflicted paths: agent/auxiliary_client.py, agent/codex_runtime.py, agent/conversation_loop.py, tests/run_agent/test_run_agent_codex_responses.py",
+        "Verified the clean-worktree fallback in a detached worktree during closeout."
+      ],
+      "notes": [
+        "High-priority recommendation based on a real hermes update conflict where local changes could not be restored cleanly.",
+        "Prefer a user-facing decision tree over ad hoc recovery instructions."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/hermes-agent/cli.py",
+        "/Users/bernardchase/.hermes/hermes-agent/hermes_cli/main.py",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/updater-stash-resolution-recommendation.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-02T16:03:08Z",
+          "status": "proposed",
+          "note": "Added from the updater stash conflict incident as a high-priority backlog recommendation."
+        },
+        {
+          "at": "2026-06-03T15:41:07Z",
+          "status": "closed",
+          "note": "Documented the updater stash recovery decision tree and verified the clean-worktree fallback in a detached worktree."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0008",
+      "title": "Use Obsidian notes as a token-efficient Hermes context layer",
+      "summary": "Define a durable workflow where Hermes uses concise Obsidian notes as an external project memory layer to reduce context load while keeping long-lived project state easy to retrieve.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-03T00:36:20Z",
+      "updated_at": "2026-06-03T16:08:12Z",
+      "execution_criteria": [
+        "Delegate the public skill/workflow survey across Hermes, Codex, Claude Code, Clawdhub, and related sources to one or more subagents before deciding to design the note layer from scratch.",
+        "Have the subagents report back a concise synthesis of existing patterns, gaps, and reusable ideas, then use that synthesis to decide whether to adapt an existing workflow or create a new one.",
+        "Document a note structure for project summaries, decisions, open questions, and durable references that Hermes can load selectively.",
+        "Define a retrieval policy that keeps Hermes from loading the full vault and instead reads only the index note plus the notes relevant to the current task.",
+        "Show how session-level compression and persistent memory interact with the note workflow so token usage stays predictable.",
+        "Include a repeatable update path for writing back concise session summaries or decisions after major work.",
+        "Keep the workflow compatible with the existing Hermes docs and note-taking conventions."
+      ],
+      "closeout_criteria": [
+        "The workflow is documented in a reusable note or runbook that explains when Hermes should read notes, compress context, or rely on built-in memory.",
+        "A minimal Obsidian note template or folder convention exists for project indexes and task summaries.",
+        "At least one verified example shows Hermes using the note layer to answer or continue work without loading unnecessary context.",
+        "The guidance explicitly records which existing Hermes/Codex/Claude Code/Clawdhub-style skills were reviewed, which subagents performed the survey, and whether the workflow reuses or adapts them instead of reinventing the pattern.",
+        "The guidance makes the limits explicit so the vault is an external knowledge base, not a transparent automatic memory store."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "Survey synthesis from parallel subagents: public prior-art scan, Obsidian context-layer pattern scan, and local RAG routing scan.",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
+      ],
+      "notes": [
+        "Lower priority than the open P0 updater conflict item because this is a workflow optimization, not a recovery blocker.",
+        "Use concise summaries and linked notes rather than trying to make Obsidian act like transparent agent memory."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-03T00:36:20Z",
+          "status": "proposed",
+          "note": "Added as a workflow recommendation for Obsidian-backed token-efficient context management."
+        },
+        {
+          "at": "2026-06-03T16:08:12Z",
+          "status": "closed",
+          "note": "Documented the Obsidian-backed context layer, local RAG profile shape, and selective retrieval smoke-test example after the survey gate findings."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0009",
+      "title": "Implement subagent-led prior-art surveys before creating new capabilities",
+      "summary": "Create a reusable Hermes workflow that delegates public skill, MCP server, rule, and workflow surveys to subagents before introducing any new skill, MCP server, rule, or workflow from scratch.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-03T03:07:51Z",
+      "updated_at": "2026-06-03T16:08:12Z",
+      "execution_criteria": [
+        "Define a standard survey brief that instructs subagents to search public Hermes, Codex, Claude Code, Clawdhub, and related docs before any new capability is designed.",
+        "Specify the subagent roles, output schema, and citation format for reporting existing patterns, gaps, and reusable techniques.",
+        "Implement a reusable workflow or skill that fans the survey out to multiple subagents and aggregates their findings into a concise synthesis.",
+        "Require the synthesis to recommend reuse, adaptation, or greenfield implementation, with reasons.",
+        "Integrate the survey step into the intake path for new skills, MCP servers, rules, and workflows so the check happens before implementation starts."
+      ],
+      "closeout_criteria": [
+        "The subagent survey workflow is documented and reusable from the Hermes operating docs or a dedicated skill.",
+        "A completed example shows multiple subagents performing the survey and a synthesized recommendation being produced from their outputs.",
+        "The workflow records which sources were checked and which existing patterns were reused or intentionally not reused.",
+        "The intake path for new capabilities clearly includes the survey gate before creation work begins.",
+        "The process stays lightweight enough to use routinely without forcing a full manual literature review every time."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "Survey synthesis from three parallel subagents covering Hermes, Claude Code, Codex, and public prior-art examples.",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md"
+      ],
+      "notes": [
+        "This is a process-gating recommendation, not a feature implementation request.",
+        "Prefer subagents for broad survey work so the primary agent stays focused on synthesis and decision-making."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-03T03:07:51Z",
+          "status": "proposed",
+          "note": "Added as a reusable gate to delegate prior-art surveys to subagents before introducing new capabilities."
+        },
+        {
+          "at": "2026-06-03T16:08:12Z",
+          "status": "closed",
+          "note": "Documented a reusable survey-first intake gate with lane-based subagent prompts, required output shape, and backlog integration guidance."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0010",
+      "title": "Operationalize a default local RAG profile for Hermes",
+      "summary": "Create a reusable local retrieval workflow that combines MCP-backed retrieval sources, selective Obsidian notes, and the survey-first intake gate so Hermes can answer with local context without loading the full vault.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-03T04:04:23Z",
+      "updated_at": "2026-06-03T16:08:12Z",
+      "execution_criteria": [
+        "Define the canonical retrieval sources and their roles, including selective Obsidian index notes, an MCP-backed local retrieval engine such as qmd or an equivalent, and the existing workflow registry.",
+        "Specify routing rules for when Hermes should query notes, MCP tools, or existing skills, and when it should fall back rather than inventing hidden retrieval paths.",
+        "Document a minimal profile or runbook that enables the local RAG workflow without turning the vault into transparent agent memory.",
+        "Integrate the survey-first gate so any new retrieval skill, MCP server, rule, or workflow is researched by subagents before being added.",
+        "Verify with at least one concrete example that a task can continue from selective local retrieval instead of broad context loading."
+      ],
+      "closeout_criteria": [
+        "A reusable runbook or profile documents source selection, routing rules, and fallback behavior for the local RAG workflow.",
+        "A verified example or smoke test shows Hermes using selective local retrieval from notes and/or MCP sources successfully.",
+        "The survey gate and workflow registry clearly point to the intake path for future retrieval-related capabilities.",
+        "The limits are explicit: no full-vault loading, no transparent memory, and no undocumented retrieval fallback."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
+      ],
+      "notes": [
+        "This recommendation follows the current research finding that Hermes already has native MCP and note-layer scaffolding, but not a single default local RAG workflow.",
+        "Prefer an explicit retrieval profile and documented source-selection rules over broad automatic context ingestion."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/config.yaml"
+      ],
+      "history": [
+        {
+          "at": "2026-06-03T04:04:23Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation for a default local RAG profile with selective retrieval, MCP routing, and survey-first intake."
+        },
+        {
+          "at": "2026-06-03T16:08:12Z",
+          "status": "closed",
+          "note": "Documented a reusable local RAG profile/runbook with explicit routing rules, no hidden fallback, and a selective-retrieval smoke test."
+        }
+      ]
     }
   ],
   "project": "hermes",

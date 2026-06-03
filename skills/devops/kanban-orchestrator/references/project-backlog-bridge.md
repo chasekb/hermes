@@ -29,6 +29,7 @@ What should stay in the backlog:
 - closeout criteria
 - ownership / tenant
 - notes and links
+- incident-derived recovery guidance when a live run exposes a reusable failure mode (stash refs, conflicted paths, decision tree, verification)
 
 What should move into Kanban:
 - the runnable slice for today

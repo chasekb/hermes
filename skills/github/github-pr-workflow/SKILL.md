@@ -163,9 +163,37 @@ gh pr checks
 gh pr checks --watch
 ```
 
+### Remote-only verification pattern
+
+When the user wants GitHub Actions to be the source of truth, treat the request as remote-only verification: do not perform local build/test checks first unless the user explicitly asks for them. Commit, push, then verify the workflow run on GitHub Actions.
+
+Verify the exact workflow run created by the latest push by matching both the branch and the commit SHA (`headSha`). If you only see a partially completed run, keep polling that same run until every required job is completed. Never report success while any required job is still running.
+
+For long-running builds, prefer repeated `gh run view <RUN_ID> --json ...` checks over a single watch command; the JSON view is the source of truth because it includes the run `status`, `conclusion`, and job states in one place.
+
+Practical lessons:
+- The authoritative signal is `gh run view <run_id> --json status,conclusion,jobs,headSha,url`.
+- A run is only done when `status=completed` and `conclusion=success`.
+- If some jobs are green but another required job is still running, the workflow is unresolved.
+- `gh run watch` is optional convenience; polling `gh run view` on the same run id is the more reliable fallback when watch times out or the API blips.
+- If GitHub returns a transient network/API error, retry the same run id rather than assuming failure.
+- When reporting the result, include the run URL and the exact headSha you verified so there is no ambiguity about which build passed.
+
+See `references/remote-build-verification-runbook.md` for the compact checklist and command set.
+See `references/remote-build-verification-with-github-actions.md` for a worked example of remote-only build verification after a push.
+
 ### Verify a long-running GitHub Actions build
 
 For long remote builds, prefer querying the workflow run directly instead of depending on a long live watch. This gives you a clean success/failure signal and a stable place to re-check progress.
+
+Extra reliability rules learned in the field:
+- Match the exact workflow run created by the push: verify both branch and `headSha` before treating a run as authoritative.
+- If a workflow is still in progress, keep polling the same run id; do not infer failure from an intermediate state.
+- Do not report success until every job in the run is completed with `conclusion=success`.
+- If one or more jobs are still running while others are green, treat the workflow as unresolved, not successful.
+- `gh run watch` is optional convenience, not the source of truth; a polling loop around `gh run view` is the fallback when watch times out or is inconvenient.
+- When the user explicitly asks for remote-only verification, skip local build/test verification and move straight to commit/push + Actions monitoring.
+- If `gh`/GitHub API calls time out briefly, retry the same run id rather than assuming the build failed.
 
 ```bash
 # Find the latest run for the branch or commit
@@ -181,12 +209,14 @@ gh run watch <RUN_ID> --exit-status
 Rules of thumb:
 - Use `gh run view` as the authoritative source for final verification.
 - If a run is still in progress, re-run the same `gh run view` command later rather than assuming failure.
-- `gh run watch` is good for live logs, but for long builds it is better to poll `gh run view` again than to wait on a single watch session.
+- `gh run watch` is useful for live logs, but for long builds a polling loop around `gh run view` is often more reliable than a single long watch session.
+- Treat temporary `gh`/GitHub API timeouts as transient noise: retry the same run id later instead of concluding the workflow failed.
 - If one job is still running, do not report the workflow as successful yet even if other jobs have finished.
 - When the user explicitly asks for a remote build only, do not perform local build/test verification first. Commit and push the change, then verify the workflow run on GitHub Actions.
+- Verify the exact run created by that push by matching both branch and `headSha` before declaring success; this avoids confusing the intended run with an older or unrelated run on the same branch.
 - Do not claim success until the run is `completed` with `conclusion=success`.
 
-See `references/github-actions-verification.md` for a compact runbook and `references/remote-build-only.md` for the no-local-build workflow.
+See `references/remote-build-verification-runbook.md` for the compact runbook and `references/long-running-build-polling.md` for a resilient polling pattern.
 
 **With git + curl:**
 

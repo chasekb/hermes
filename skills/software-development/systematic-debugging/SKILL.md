@@ -74,6 +74,18 @@ For long-running panes, logs, or streamed service output, isolate the relevant i
 
 If a database-backed service is failing during startup, verify whether the failing table/view actually exists before treating the query error as the root cause. Optional/late-created tables should be checked explicitly so you can distinguish "missing initialization" from a true query bug.
 
+If a UI action appears to do nothing, compare the exact frontend request target against the live backend route exposed by the running service before assuming the frontend is at fault. Verify the live endpoint with a direct request, then decide whether the fix belongs in the frontend, the backend, or both.
+
+For Next.js dev dashboards, always verify the browser origin plus the resolved proxy target before changing code. If `/api/*` works via the browser origin but an absolute backend URL hits a different port, align `BACKEND_URL`, `NEXT_PUBLIC_API_URL`, and any websocket fallback ports with the live backend and restart the dev server.
+
+For live dashboards and trading UIs, treat the rendered browser options as authoritative over stale docs or assumptions:
+- inspect the actual select values/options in the running UI before patching code
+- confirm the active request path/payload from the browser/network layer before changing backend routes
+- if signal/trade tables grow without bound, look for append-only history where active rows should be deduped or replaced at the source
+- prefer server- or data-layer ordering/pagination over client-only sorting when the dataset is large or continuously updating
+- make trading/simulation failures loud: if the API fails, surface the error instead of letting the button appear to succeed
+- if simulated trading is “running” but no trades occur, verify the status endpoint, persisted trade list, and active-session state together; a signal-only loop can look healthy while execution is broken
+
 If the user asks for logs or pane output "since" a marker in tmux (or any long-lived log stream), anchor the capture at the last occurrence of that marker or launch command, then read forward from there. Keep the failure window small and avoid analyzing earlier boot noise as if it were the current fault.
 
 If container startup fails under rootless Podman, check for runtime-specific compose incompatibilities before touching the app code:
@@ -151,10 +163,21 @@ For EACH component boundary:
 - Check state at each layer
 - If an external API returns the same-looking data in multiple pipelines, verify the exact outbound request shape and the returned granularity before assuming the database is wrong
 - Some APIs silently normalize unsupported parameter combinations instead of failing; compare the requested URL/params to the actual response contract
+- If local build/test validation is blocked by the current machine's toolchain or dependency state, commit/push the narrow fix and use GitHub Actions (or the project’s remote CI) as the source of truth for final verification; watch the exact workflow run and only call it done when the run completes successfully
 
 Run once to gather evidence showing WHERE it breaks.
 THEN analyze evidence to identify the failing component.
 THEN investigate that specific component.
+
+### 6. When a filesystem path disappears
+
+If a directory or file is missing and the cause is unclear:
+- capture the tmux pane or log window around the last known-good marker
+- determine whether the path was already empty before it vanished
+- search the relevant shell history file(s) for exact path matches first
+- then search broad removal/move patterns (`rm -rf`, `rmdir`, `mv`, `find ... -empty -delete`, `git rm`)
+- check the parent directory's mtime/ctime to distinguish navigation from actual deletion
+- if there is no matching command, assume another shell/process/cleanup job may have performed the change and keep looking before concluding
 
 ### 5. Trace Data Flow
 
@@ -355,14 +378,16 @@ If you catch yourself thinking:
 
 Use these Hermes tools during Phase 1:
 
-- **`search_files`** — Find error strings, trace function calls, locate patterns
+- **`search_files`** — Find error strings, trace function calls, locate patterns, and search shell history for exact path/removal commands
 - **`read_file`** — Read source code with line numbers for precise analysis
-- **`terminal`** — Run tests, check git history, reproduce bugs
+- **`terminal`** — Run tests, check git history, reproduce bugs, capture tmux panes, and inspect live filesystem state
 - **`web_search`/`web_extract`** — Research error messages, library docs
 
 ### Field references
 
+- **`references/frontend-backend-endpoint-diagnostics.md`** — endpoint mismatch triage for Next.js dashboards: verify the live browser origin, probe backend endpoints directly, and align rewrite/env fallbacks with the actual backend port before chasing 500s.
 - **`references/db-and-artifact-fallback-patterns.md`** — practical notes on schema-optional startup, tmux capture windows, rootless Podman compose triage, Podman storage vs host disk, host bind-mounted artifact/data paths, and writable artifact fallback paths.
+
 - **`references/rootless-podman-compose-triage.md`** — tmux-window capture and compose-startup triage for rootless Podman, including sysctl rejection, GHCR pull fallback, local-tag verification, and storage exhaustion.
 - **`references/tmux-pane-capture-window.md`** — exact recipe for capturing a tmux pane from the last named marker or launch command, preserving the failure window without stale boot noise.
 - **`references/cpu-hotspot-triage.md`** — macOS + Podman CPU-spike workflow: identify host hotspots, recognize Virtualization.framework VM load, and correlate with `podman stats` / `podman logs`.
@@ -372,8 +397,12 @@ Use these Hermes tools during Phase 1:
 - **`references/trade-podman-vcpkg-build-pressure.md`** — session-specific trade repo notes: tmux failure-window capture, local-tag verification, and storage-pressure triage for vcpkg-heavy builds.
 - **`references/podman-remote-image-compose.md`** — remote GHCR image triage for compose: verify rendered refs with `podman-compose config`, remove stray `build:` blocks, and size the Podman machine for image unpack/runtime pressure.
 - **`references/trade-podman-compose-runtime-debugging.md`** — session note for tmux-window capture, GHCR tag selection, Podman disk expansion, and post-start runtime failures in the trade stack.
+- **`references/trade-simulated-trading-orderbook.md`** — trade-specific notes on Simulated Trading route mismatches, loud UI errors, live-UI option inspection, deduped signal tables, and starter configs for generating order-book training signals.
 - **`references/live-build-overlap-notes.md`** — tmux-captured build sessions with overlapping `podman-compose` runs, stale logs, and storage-pressure cleanup.
 - **`references/yahoo-chart-silent-coercion.md`** — Yahoo Finance chart request note: unsupported `range`/`interval` pairs can silently coerce to coarse data; normalize intraday requests to a valid window and treat 1m promotion as interval-aware upsert territory.
+- **`references/remote-ci-verification.md`** — commit/push + GitHub Actions verification loop for when local validation is blocked or incomplete.
+- **`references/all-by-default-pagination-refactor.md`** — checklist for converting capped pagination defaults to fetch-all-by-default behavior, including downstream callers and regression-test shape.
+- **`references/filesystem-disappearance-history-triage.md`** — tmux + shell-history workflow for investigating when a directory seems to vanish, including empty-directory evidence and missing delete commands.
 
 ### With delegate_task
 

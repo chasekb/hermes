@@ -40,15 +40,12 @@ Use this skill when a task involves:
 
 ## CI verification rules
 
-- Treat a workflow as incomplete until every required job is done.
-- Do not call a build successful because one or two jobs passed.
-- Use the workflow/run view as the source of truth for status and conclusion.
-- If a watch command exits with a transport/annotation/API problem, re-check the run directly before inferring failure.
-- Distinguish:
-  - job success
-  - workflow in progress
-  - workflow success
-  - workflow failure
+- When GitHub Actions is the source of truth, treat the request as remote-only verification: do not spend time on a local build/test if the user explicitly wants the CI run as proof.
+- Verify the exact workflow run created by the latest push by matching both branch and `headSha`; do not confuse it with an older run on the same branch.
+- If a workflow is still in progress, keep polling the same run id; do not infer failure from an intermediate state.
+- Do not report success until every required job in the run is completed with `conclusion=success`.
+- When you report success, include the run URL and the verified `headSha` so the result is unambiguous.
+- If the user explicitly asks to use GitHub Actions to verify build completion, follow the remote-only proof pattern instead of doing a local build first.
 
 ## Local container-debugging rules
 
@@ -93,9 +90,10 @@ Use this skill when a task involves:
 
 ## References
 
-- See references/ci-playbook.md for a concise playbook covering tmux log capture, CI run checks, and cleanup/verification patterns.
-- See references/db-auth-tmux-debugging.md for a compact example of resolving a container DB auth mismatch discovered through tmux log capture.
-- See references/tmux-sentinel-and-db-storage-migration.md for a compact playbook on slicing tmux logs from the last sentinel and safely migrating Postgres from a named volume to a bind mount.
+- See `references/ci-playbook.md` for a concise playbook covering tmux log capture, CI run checks, and cleanup/verification patterns.
+- See `references/github-actions-remote-build-proof.md` for the shortest checklist when the user only wants GitHub Actions as proof of build completion.
+- See `references/db-auth-tmux-debugging.md` for a compact example of resolving a container DB auth mismatch discovered through tmux log capture.
+
 - See references/podman-compose-build-fallbacks.md for a focused checklist on local-tag verification, upstream fetch fallbacks, and disabling nonessential build cache submission in container builds.
 - See references/podman-local-image-aliasing.md for a concise note on Podman image aliasing, rendered compose verification, and avoiding accidental registry pulls from local dev stacks.
 - See references/podman-ghcr-dev-tag-triage.md for the tag-mismatch pattern where `TAG=dev` was present but compose still resolved to `:main`, causing `manifest unknown` pulls.
@@ -104,5 +102,6 @@ Use this skill when a task involves:
 - See references/vcpkg-release-host-triplet.md for the host-triplet/release-only triplet pattern that removes debug host packages from the install plan.
 - See references/rootless-podman-vcpkg-concurrency.md for the protobuf/vcpkg concurrency workaround on resource-limited rootless Podman builders.
 - See references/tmux-capture-and-local-tags.md for the failure-window capture recipe, local-tag verification, and Podman storage-exhaustion triage.
-- See references/cleanup-boundaries.md for the protected-path and live-data cleanup policy that keeps runtime state out of routine artifact removal.
-- See references/risky-change-gates.md for the practical budget, eval, and rollback gate used when a container/debug fix changes behavior.
+- See `references/cleanup-boundaries.md` for the protected-path and live-data cleanup policy that keeps runtime state out of routine artifact removal.
+- See `references/risky-change-gates.md` for the practical budget, eval, and rollback gate used when a container/debug fix changes behavior.
+- See `references/transformer-onnx-artifact-validation.md` for the trade-repo lesson on validating generated ML artifacts after containerized training and before trusting activation logs.

@@ -14,3 +14,11 @@
 14:45:46 interrupt fired: msg='add the data cache directory to the list of directories that', children=0, parent._interrupt=True
 15:09:50 interrupt fired: msg='also check the status of the latest build', children=0, parent._interrupt=True
 15:09:50 ENTER: queued interrupt msg='also check the status of the latest build', agent_running=True
+15:41:17 ENTER: queued interrupt msg='hermes --resume 20260603_153421_d87eb7', agent_running=True
+15:41:17 interrupt fired: msg='hermes --resume 20260603_153421_d87eb7', children=0, parent._interrupt=True
+15:44:36 ENTER: queued interrupt msg='echo __READY__', agent_running=True
+15:44:36 interrupt fired: msg='echo __READY__', children=0, parent._interrupt=True
+15:45:47 ENTER: queued interrupt msg='hermes --resume 20260603_153421_d87eb7', agent_running=True
+15:45:47 interrupt fired: msg='hermes --resume 20260603_153421_d87eb7', children=0, parent._interrupt=True
+15:46:09 ENTER: queued interrupt msg='hermes --resume 20260603_153421_d87eb7', agent_running=True
+15:46:09 interrupt fired: msg='hermes --resume 20260603_153421_d87eb7', children=0, parent._interrupt=True

@@ -59,3 +59,10 @@ Use `patch` for focused note changes when the current content gives you stable c
 ## Wikilinks
 
 Obsidian links notes with `[[Note Name]]` syntax. When creating notes, use these to link related content.
+
+For Hermes-specific selective-retrieval workflows, see:
+- `skills/devops/kanban-orchestrator/references/obsidian-context-layer.md`
+- `skills/devops/kanban-orchestrator/references/local-rag-profile.md`
+- `skills/devops/kanban-orchestrator/references/examples/local-rag/`
+
+Prefer project indexes, decision logs, and session summaries over a full-vault scan when those artifacts already exist.

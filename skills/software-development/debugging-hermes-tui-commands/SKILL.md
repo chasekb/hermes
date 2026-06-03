@@ -118,6 +118,7 @@ When surface-level inspection doesn't reveal the bug:
 - **Python side hangs or misbehaves:** use the `python-debugpy` skill to break inside `_SlashWorker.exec` or the command handler. `remote-pdb` set at the handler entry is the fastest path.
 - **Ink side not reacting:** use the `node-inspect-debugger` skill to break in `app.tsx`'s slash dispatch or the local command branch. `sb('dist/app.js', <line>)` after `npm run build`.
 - **Registry mismatch / unclear which side is wrong:** compare the canonical `COMMAND_REGISTRY` entry against the TUI's local command list side-by-side.
+- See `references/tmux-resume-cwd-recovery.md` when a Hermes pane fails before startup because the shell's cwd is stale or missing.
 
 ## Pitfalls
 
@@ -126,6 +127,8 @@ When surface-level inspection doesn't reveal the bug:
 - For commands with subcommands, ensure the `subcommands` tuple in `CommandDef` matches what's in the TUI code
 - `cli_only=True` commands won't work in gateway/messaging platforms — unless you add a `gateway_config_gate` and the gate is truthy
 - After adding live UI state, search every consumer of the old prop/helper and thread the new state through all render paths, not just the active streaming path. TUI detail rendering has at least two important paths: live `StreamingAssistant`/`ToolTrail` and transcript/pending `MessageLine` rows. A `/clean` pass should explicitly check both.
+- After adding live UI state, search every consumer of the old prop/helper and thread the new state through all render paths, not just the active streaming path. TUI detail rendering has at least two important paths: live `StreamingAssistant`/`ToolTrail` and transcript/pending `MessageLine` rows. A `/clean` pass should explicitly check both.
+- When resuming an existing Hermes pane, check whether the shell prompt itself is healthy before blaming Hermes. A missing cwd can break startup before command dispatch even begins.
 - Rebuild the TUI (`npm --prefix ui-tui run build`) before testing — tsx watch mode may lag on first launch
 
 ## Verification

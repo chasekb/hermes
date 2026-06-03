@@ -228,6 +228,8 @@ If an MCP tool call fails, any credential-like patterns in the error message are
 
 ## Troubleshooting
 
+See `references/mcp-health-checks.md` for a concise server-by-server diagnosis flow.
+
 ### "MCP SDK not available -- skipping MCP tool discovery"
 
 The `mcp` Python package is not installed. Install it:

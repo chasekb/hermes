@@ -42,12 +42,20 @@ When the user asks you to "initiate" kanban for a project, treat it as a board/p
 5. If the project later needs worker specializations, add them as separate profiles rather than overloading the orchestrator profile.
 
 Pointer: see `references/project-board-bootstrap.md` for a concise bootstrap recipe and verification checklist.
+Pointer: see `references/board-slug-current-board-reconciliation.md` for the slug/display-name/current-board distinction and the verify-after-delete migration pitfall.
 
 Related umbrella: `hermes-orchestrator-layout` covers the broader global-vs-project profile layout.
 
 ## Project backlog handoff
 
 If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The concrete backlog store lives at `~/.hermes/backlog/backlog.json`.
+
+When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
+
+If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
+
+Pointer: `references/open-backlog-display.md` — for live backlog checks, re-read `backlog/backlog.json` and filter `status != "closed"`; do not rely on a stale chat summary.
+Pointer: `references/project-status-snapshot.md` — when the user asks for the Hermes project backlog or project status, show both the live backlog and the current kanban board snapshot together.
 
 Bridge docs:
 - `references/project-backlog-model.md`
@@ -59,6 +67,12 @@ Bridge docs:
 - `references/workflow-registry.md`
 - `references/risky-change-gates.md`
 - `references/capability-bridge-implementation-notes.md`
+- `references/updater-stash-resolution-recommendation.md`
+- `references/update-stash-gap-analysis.md`
+- `references/obsidian-context-layer.md`
+- `references/local-rag-profile.md`
+- `references/public-skill-survey-gate.md`
+- `references/project-status-snapshot.md`
 
 Bridge helpers:
 - `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
@@ -70,14 +84,17 @@ Operational notes:
 - When you are validating the bridge, prefer a one-item smoke test first, then bulk-apply only after the single-item path succeeds.
 - If a verification card was created only to prove the flow, archive it immediately so it does not linger on the live board.
 - When closing out backlog items, prefer one task at a time or very small batches unless you have confirmed the CLI accepts the exact same summary/metadata shape for every id. If a bulk closeout rejects shared metadata, fall back to per-task completion instead of fighting the command.
+- For backup / recovery / stash-resolution recommendations, do not mark the item closed on theory alone: verify one repeatable operator path in a detached clean worktree (or equivalent clean-room rerun) and record that route in the recommendation/reference as evidence.
+- Treat git-stash recovery and pre-update home snapshots as separate safety layers; analyze both before deciding whether any rewiring is actually needed.
+- If an update leaves the stash ref untraceable later, capture the recovery metadata in a reference file while the log and working-tree evidence are still available.
 - After a closeout batch, re-check `stats` or `list --status triage` before assuming the board is empty.
 
 Order of operations:
-1. Read `execution_criteria` from the backlog item.
-2. Turn those criteria into tests that can drive development and verify `closeout_criteria`.
-3. Derive concrete worker tasks from those tests.
+1. Re-read the live backlog JSON and keep the stable backlog id.
+2. Turn `execution_criteria` into tests that can drive development and verify `closeout_criteria`.
+3. Derive concrete worker tasks from the tests.
 4. Turn `closeout_criteria` into reviewer/verifier tasks or a final acceptance checklist.
-5. Keep the backlog item's stable id in Kanban metadata or a backlink comment.
+5. Record closeout evidence in the backlog item before marking it closed.
 
 ## When to use the board (vs. just doing the work)
 
@@ -113,6 +130,10 @@ Your job description says "route, don't execute." The rules that enforce that:
 ### Project backlog handoff
 
 If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`; bridge helpers live under `scripts/` and the reference docs listed above.
+
+If the backlog item is about a note-backed context workflow, route it as a P2/P3 optimization unless it unblocks a current workflow or fixes a concrete failure mode. Keep the recommendation crisp: index note, selective retrieval, compression, and write-back summary.
+
+Order of operations:
 
 Order of operations:
 1. Read `execution_criteria` from the backlog item.
