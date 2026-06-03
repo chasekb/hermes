@@ -42,11 +42,12 @@ Use this skill when a task involves:
 
 - When GitHub Actions is the source of truth, treat the request as remote-only verification: do not spend time on a local build/test if the user explicitly wants the CI run as proof.
 - Verify the exact workflow run created by the latest push by matching both the branch and the commit SHA (`headSha`); do not confuse it with an older run on the same branch.
-- If `gh run list` is empty for the branch or commit, first confirm that workflow files exist and that their event filters include the push; absence of runs is inconclusive.
+- If `gh run list` is empty for the branch or commit, do not call that success or failure yet: first confirm that workflow files exist and that their event filters include the push. If workflow inventory is zero, report that GitHub Actions verification is unavailable until a workflow is added.
 - If a workflow is still in progress, keep polling the same run id; do not infer failure from an intermediate state.
 - Do not report success until every required job in the run is completed with `conclusion=success`.
 - When you report success, include the run URL and the verified `headSha` so the result is unambiguous.
 - If the user explicitly asks to use GitHub Actions to verify build completion, follow the remote-only proof pattern instead of doing a local build first.
+- See `references/no-workflow-no-run-verification.md` for the short checklist when workflow inventory is zero or `gh run list` comes back empty.
 
 ## Local container-debugging rules
 
