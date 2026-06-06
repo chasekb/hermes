@@ -77,6 +77,7 @@ Use this skill when a task involves:
 ## Practical triage checklist
 
 - What changed since the last known-good run?
+- Did the consumer runtime reject the artifact because of a contract mismatch (shape, dtype, axis order), not just a parse/load error?
 - What is the first explicit error in the log stream?
 - Is the failure reproducible with the same command?
 - Is the fix local to compose/config, build flags, or source code?
@@ -106,4 +107,4 @@ Use this skill when a task involves:
 - See references/tmux-capture-and-local-tags.md for the failure-window capture recipe, local-tag verification, and Podman storage-exhaustion triage.
 - See `references/cleanup-boundaries.md` for the protected-path and live-data cleanup policy that keeps runtime state out of routine artifact removal.
 - See `references/risky-change-gates.md` for the practical budget, eval, and rollback gate used when a container/debug fix changes behavior.
-- See `references/transformer-onnx-artifact-validation.md` for the trade-repo lesson on validating generated ML artifacts after containerized training and before trusting activation logs.
+- See `references/transformer-onnx-artifact-validation.md` for the trade-repo lesson on validating generated ML artifacts after containerized training, including a real ONNX smoke-test shape mismatch where the exported model expected `[1, 60, 10]` but the test fed `[1, 10, 60]`.

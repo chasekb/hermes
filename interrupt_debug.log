@@ -22,3 +22,7 @@
 15:45:47 interrupt fired: msg='hermes --resume 20260603_153421_d87eb7', children=0, parent._interrupt=True
 15:46:09 ENTER: queued interrupt msg='hermes --resume 20260603_153421_d87eb7', agent_running=True
 15:46:09 interrupt fired: msg='hermes --resume 20260603_153421_d87eb7', children=0, parent._interrupt=True
+18:48:23 ENTER: queued interrupt msg='capture tmux pane 0:10.0 since last "TAG=dev podman-compose ', agent_running=True
+18:48:23 interrupt fired: msg='capture tmux pane 0:10.0 since last "TAG=dev podman-compose ', children=0, parent._interrupt=True
+18:48:34 ENTER: queued interrupt msg='capture tmux pane 0:10.0 since last "TAG=dev podman-compose ', agent_running=True
+18:48:34 interrupt fired: msg='capture tmux pane 0:10.0 since last "TAG=dev podman-compose ', children=0, parent._interrupt=True

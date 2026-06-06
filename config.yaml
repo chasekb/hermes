@@ -1,7 +1,7 @@
 model:
   default: gpt-5.4-mini
   provider: openai-codex
-  base_url: https://chatgpt.com/backend-api/codex
+  base_url: ''
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
@@ -66,7 +66,7 @@ agent:
       \ is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! \U0001F4AA\U0001F624\
       \U0001F680"
 terminal:
-  backend: local
+  backend: docker
   modal_mode: auto
   cwd: .
   timeout: 180
@@ -296,6 +296,12 @@ dashboard:
   oauth:
     client_id: ''
     portal_url: ''
+  basic_auth:
+    username: ''
+    password_hash: ''
+    password: ''
+    secret: ''
+    session_ttl_seconds: 0
   public_url: ''
 privacy:
   redact_pii: false
@@ -416,6 +422,20 @@ discord:
   server_actions: ''
   allow_any_attachment: false
   max_attachment_bytes: 33554432
+  voice_fx:
+    enabled: false
+    ambient_enabled: true
+    ambient_path: ''
+    ambient_gain: 0.18
+    duck_gain: 0.06
+    speech_gain: 1.0
+    ack_enabled: true
+    ack_phrases:
+    - Let me look into that.
+    - One moment.
+    - Checking on that now.
+    - Give me a sec.
+    - On it.
 whatsapp: {}
 telegram:
   reactions: false
@@ -570,6 +590,7 @@ onboarding:
 updates:
   pre_update_backup: false
   backup_keep: 5
+  non_interactive_local_changes: stash
 lsp:
   enabled: true
   wait_mode: document
@@ -592,7 +613,7 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 26
+_config_version: 27
 session_reset:
   mode: both
   idle_minutes: 1440
@@ -604,6 +625,7 @@ platform_toolsets:
   - clarify
   - code_execution
   - computer_use
+  - context_engine
   - cronjob
   - delegation
   - file
@@ -670,6 +692,19 @@ mcp_servers:
     - chrome-devtools-mcp@latest
     - --autoConnect
     - --no-usage-statistics
+    timeout: 120
+  context7:
+    command: npx
+    args:
+    - -y
+    - '@upstash/context7-mcp@latest'
+    supports_parallel_tool_calls: true
+    timeout: 120
+  playwright:
+    command: npx
+    args:
+    - -y
+    - '@playwright/mcp@latest'
     timeout: 120
   postgres-db:
     command: bash
@@ -787,6 +822,7 @@ mcp_servers:
     args:
     - -y
     - mcp-fetch-server
+    supports_parallel_tool_calls: true
     timeout: 120
   sequential-thinking:
     command: npx
@@ -803,6 +839,7 @@ mcp_servers:
     - stdio
     env:
       BRAVE_API_KEY: ${BRAVE_API_KEY}
+    supports_parallel_tool_calls: true
     timeout: 120
   git:
     command: npx

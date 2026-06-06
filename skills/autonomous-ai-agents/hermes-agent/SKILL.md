@@ -231,13 +231,15 @@ hermes uninstall            Uninstall Hermes
 
 ---
 
-## Slash Commands (In-Session)
+### Slash Commands (In-Session)
 
 Type these during an interactive chat session. New commands land fairly
 often; if something below looks stale, run `/help` in-session for the
 authoritative list or see the [live slash commands reference](https://hermes-agent.nousresearch.com/docs/reference/slash-commands).
 The registry of record is `hermes_cli/commands.py` — every consumer
 (autocomplete, Telegram menu, Slack mapping, `/help`) derives from it.
+
+Footer note: `/footer [on|off]` controls the gateway runtime-metadata footer on final replies. Do not assume a user asking for a "footer" means the same renderer as the CLI/TUI status line; if the request mentions timestamp, query runtime, or token usage, confirm whether they mean the gateway footer or the TUI chrome before editing. See `references/footer-surfaces.md` for the split.
 
 ### Session Control
 ```
@@ -375,7 +377,7 @@ Full config reference: https://hermes-agent.nousresearch.com/docs/user-guide/con
 20+ providers supported. Set via `hermes model` or `hermes setup`.
 
 | Provider | Auth | Key env var |
-|----------|------|-------------|
+|----------|------|-------|
 | OpenRouter | API key | `OPENROUTER_API_KEY` |
 | Anthropic | API key | `ANTHROPIC_API_KEY` |
 | Nous Portal | OAuth | `hermes auth` |
@@ -400,6 +402,8 @@ Full config reference: https://hermes-agent.nousresearch.com/docs/user-guide/con
 | GitHub Copilot ACP | External | `COPILOT_CLI_PATH` or Copilot CLI |
 
 Full provider docs: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+**OpenRouter free-tier selection:** do not assume a fixed free model. Check the live `https://openrouter.ai/api/v1/models` catalog, filter for zero-priced models, and choose a direct free model ID rather than `openrouter/free` when the user asked for the “best” free model. For general chat, `openrouter/owl-alpha` is a strong default when present and free; for coding-heavy sessions, prefer `qwen/qwen3-coder:free`; and treat `nvidia/nemotron-3-super-120b-a12b:free` as a broader reasoning model rather than the top coding pick. See `references/openrouter-free-model-selection.md` for the current shortlist and selection guidance.
 
 ### Toolsets
 

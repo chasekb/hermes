@@ -28,11 +28,12 @@ Before trusting a “training completed” status in a containerized pipeline, v
 
 ## Trade-repo lesson
 
-The fix was to replace a hand-written transformer ONNX writer with a real libtorch ONNX export path and to guard overlapping training requests with a `409 Conflict` response when a job is already running.
+The trade-repo lesson is more specific: the artifact can exist, parse, and still be unusable if the consumer feeds a different tensor contract. In the successful verification pass, the ONNX smoke test failed because the exported model expected `[1, 60, 10]` while the test supplied `[1, 10, 60]`.
 
 That combination matters because:
-- the exporter fix ensures the artifact is valid
-- the conflict guard reduces concurrent background-training overlap that can muddy the logs and confuse diagnosis
+- artifact existence is not enough; the runtime input contract must match
+- axis order / shape mismatches can hide behind a successful file write and only surface when onnxruntime loads or executes the model
+- a loadable artifact should still be validated with a real consumer input before declaring success
 
 ## Related verification pattern
 

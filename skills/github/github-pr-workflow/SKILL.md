@@ -22,6 +22,20 @@ Complete guide for managing the PR lifecycle. Each section shows the `gh` way fi
 
 ### Quick Auth Detection
 
+When the user explicitly asks to verify that a build completed successfully via GitHub Actions, treat Actions as the source of truth. Do not summarize from local test output alone. The report must include the workflow run URL and the verified `headSha` from the run JSON, plus the terminal `status` and `conclusion`.
+
+### Evidence standard for remote build verification
+
+When Actions is the proof source, the final answer should be anchored to one exact run:
+- workflow run URL
+- verified `headSha`
+- terminal `status`
+- terminal `conclusion`
+- a short note on the required jobs that mattered (especially for matrix builds)
+
+Never call the build successful if any required job is still running, even if another job has already turned green. If the run is incomplete, say so plainly and keep polling the same run id.
+
+
 ```bash
 # Determine which method to use throughout this workflow
 if command -v gh &>/dev/null && gh auth status &>/dev/null; then
@@ -178,10 +192,18 @@ Practical lessons:
 - `gh run watch` is optional convenience; polling `gh run view` on the same run id is the more reliable fallback when watch times out or the API blips.
 - If GitHub returns a transient network/API error, retry the same run id rather than assuming failure.
 - When reporting the result, include the run URL and the exact headSha you verified so there is no ambiguity about which build passed.
+- If a workflow is a matrix build, require every required job to reach a terminal success state before declaring the run successful; do not equate a single passing lane with overall success.
+- When the user asks to "use GitHub Actions to verify build completed successfully," answer with the final run URL, the verified `headSha`, and the terminal `status`/`conclusion` from the run JSON.
 
 See `references/remote-build-verification-runbook.md` for the compact checklist and command set.
 See `references/remote-build-verification-with-github-actions.md` for a worked example of remote-only build verification after a push.
+See `references/remote-build-verification-session-notes.md` for a real-world note on matching the exact run, polling matrix jobs, and reporting the verified `headSha`.
+See `references/github-actions-matrix-remote-proof.md` for the exact matrix-build proof pattern: match branch + `headSha`, require every required job to finish, and do not treat early frontend success as overall success.
+See `references/remote-build-proof-bundle.md` for the minimal evidence bundle to include in a final success report.
+See `references/docker-build-validation-matrix-debugging.md` for a concrete matrix-debugging session where the backend failure moved from linker errors to ONNX export smoke-test failures.
+See `references/ci-linkage-drift.md` for a concrete linker-failure pattern where a shared source file needed additional target link libraries.
 See `references/no-workflow-no-run-verification.md` for the case where `gh run list` is empty and workflow inventory is zero.
+See `references/github-actions-verification-evidence.md` for the minimal proof bundle to capture when a user explicitly wants CI verification as evidence.
 
 ### Verify a long-running GitHub Actions build
 
@@ -210,14 +232,16 @@ gh run watch <RUN_ID> --exit-status
 Rules of thumb:
 - Use `gh run view` as the authoritative source for final verification.
 - If a run is still in progress, re-run the same `gh run view` command later rather than assuming failure.
-- `gh run watch` is useful for live logs, but for long builds a polling loop around `gh run view` is often more reliable than a single long watch session.
+- `gh run watch` is useful for interactive log viewing, but for long or matrix-heavy builds a polling loop around `gh run view` is more reliable and easier to reason about.
 - Treat temporary `gh`/GitHub API timeouts as transient noise: retry the same run id later instead of concluding the workflow failed.
 - If one job is still running, do not report the workflow as successful yet even if other jobs have finished.
 - When the user explicitly asks for a remote build only, do not perform local build/test verification first. Commit and push the change, then verify the workflow run on GitHub Actions.
 - Verify the exact run created by that push by matching both branch and `headSha` before declaring success; this avoids confusing the intended run with an older or unrelated run on the same branch.
 - Do not claim success until the run is `completed` with `conclusion=success`.
+- For matrix workflows, capture the job list from `gh run view --json ... ,jobs` and require every required job to reach a terminal success state before reporting completion.
+- When a newer push lands on the same branch, keep verifying the intended `headSha`; the latest branch run is not automatically the right run for the question being asked.
 
-See `references/remote-build-verification-runbook.md` for the compact runbook and `references/long-running-build-polling.md` for a resilient polling pattern.
+See `references/remote-build-verification-runbook.md` for the compact runbook, `references/long-running-build-polling.md` for a resilient polling pattern, and `references/remote-build-verification-session-notes.md` for a concise field note from a real matrix-build verification session.
 
 **With git + curl:**
 
