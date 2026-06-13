@@ -1,0 +1,43 @@
+name: verification
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  hermes-agent-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hermes-agent
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: hermes-agent/pyproject.toml
+
+      - name: Install package and test deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e . pytest
+
+      - name: Run telemetry tests
+        run: |
+          pytest -o addopts='' tests/agent/test_learning_telemetry.py -q
+
+      - name: Run hook-router smoke test
+        run: |
+          python - <<'PY'
+          import importlib.util
+          spec = importlib.util.spec_from_file_location('hook_router', '../agent-hooks/hook_router.py')
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          print('hook-router-smoke-ok')
+          PY
