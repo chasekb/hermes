@@ -18,6 +18,14 @@ File tools do not expand shell variables. Do not pass paths containing `$OBSIDIA
 
 If the vault path is unknown, `terminal` is acceptable for resolving `OBSIDIAN_VAULT_PATH` or checking whether the fallback path exists. Once the path is known, switch back to file tools.
 
+## When the vault is not yet operational
+
+If the conversation has the Obsidian workflow documented but no concrete vault path has been confirmed yet, treat the workflow docs as the spec and the local-rag examples as shape references only.
+
+Before claiming live note management is available, resolve a concrete vault path and create or verify the minimal note set (index, decision log, session summary, optional open questions note).
+
+If a backlog item, workflow doc, or profile names a vault root but the directory is absent on disk, treat that as a bootstrap step: verify the path, create the minimal note set, and only then claim the vault is operational.
+
 ## Read a note
 
 Use `read_file` with the resolved absolute path to the note. Prefer this over `cat` because it provides line numbers and pagination.
@@ -64,5 +72,9 @@ For Hermes-specific selective-retrieval workflows, see:
 - `skills/devops/kanban-orchestrator/references/obsidian-context-layer.md`
 - `skills/devops/kanban-orchestrator/references/local-rag-profile.md`
 - `skills/devops/kanban-orchestrator/references/examples/local-rag/`
+- `references/vault-activation-checklist.md`
+- `references/research-directory-workflow.md`
 
 Prefer project indexes, decision logs, and session summaries over a full-vault scan when those artifacts already exist.
+
+When the user asks for a durable research notebook, split it into a general `Research/` directory with a landing page, a workflow note, topic pages, and a source registry. Keep the topic pages append-only and move the automation instructions into the workflow note.

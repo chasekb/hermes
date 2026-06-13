@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Durable decision-memory store for Hermes backlog, workflow, skill, and hook reviews. Keep only redacted execution metadata here so review helpers can turn observations into recommendations.",
-  "updated_at": "2026-06-02T04:51:47Z",
+  "updated_at": "2026-06-13T04:18:31.139224+00:00",
   "records": [
     {
       "ts": "2026-06-02T04:51:47Z",
@@ -17,8 +17,3753 @@
         "skills/devops/kanban-orchestrator/references/stale-item-review.md",
         "backlog/README.md"
       ],
-      "risk_flags": ["secret_redacted"],
+      "risk_flags": [
+        "secret_redacted"
+      ],
       "redacted": true
+    },
+    {
+      "ts": "2026-06-06T06:46:00.003129+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "write_back",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260606_014344_5a8c45",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:46:08.114629+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "write_back",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260606_014344_5a8c45",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:46:15.322423+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "write_back",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260606_014344_5a8c45",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:46:21.940665+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Open Questions.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Open Questions.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Open Questions.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "open-questions",
+      "operation": "write_back",
+      "path": "Projects/hermes/Open Questions.md",
+      "session_id": "20260606_014344_5a8c45",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:49:55.207759+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "smoke-note",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:49:55.228468+00:00",
+      "subject_type": "workflow",
+      "subject_id": "mixture_of_agents_tool",
+      "expected": "emit redacted MoA telemetry and review metrics",
+      "observed": "event=moa_end | refs=2/2 | duration_s=1.50 | chars=77",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "tools/mixture_of_agents_tool.py",
+        "backlog/decision-memory.json",
+        "agent-hooks/hook-events.jsonl"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "run_id": "smoke-run",
+      "prompt_hash": "deadbeefcafe",
+      "prompt_chars": 42,
+      "reference_models": [
+        "m1",
+        "m2"
+      ],
+      "aggregator_model": "agg",
+      "duration_seconds": 1.5,
+      "success": true,
+      "reference_success_count": 2,
+      "reference_failure_count": 0,
+      "retry_count": 1,
+      "final_response_chars": 77,
+      "failed_models": [],
+      "error": ""
+    },
+    {
+      "ts": "2026-06-06T06:54:33.178436+00:00",
+      "subject_type": "cache",
+      "subject_id": "openrouter_response_cache",
+      "expected": "capture cache hit/miss outcomes for prompt-caching tuning",
+      "observed": "status=HIT | hits_total=1 | provider= | model= | ttl=5m",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "run_agent.py",
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "cache_status": "HIT",
+      "hits_total": 1,
+      "provider": "",
+      "model": "",
+      "cache_ttl": "5m",
+      "session_id": "",
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:54:33.179226+00:00",
+      "subject_type": "cache",
+      "subject_id": "openrouter_response_cache",
+      "expected": "capture cache hit/miss outcomes for prompt-caching tuning",
+      "observed": "status=HIT | hits_total=2 | provider= | model= | ttl=5m",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "run_agent.py",
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "cache_status": "HIT",
+      "hits_total": 2,
+      "provider": "",
+      "model": "",
+      "cache_ttl": "5m",
+      "session_id": "",
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T06:54:33.184047+00:00",
+      "subject_type": "cache",
+      "subject_id": "openrouter_response_cache",
+      "expected": "capture cache hit/miss outcomes for prompt-caching tuning",
+      "observed": "status=MISS | hits_total=0 | provider= | model= | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review prompt shape / ttl / provider routing",
+      "evidence": [
+        "run_agent.py",
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "cache_status": "MISS",
+      "hits_total": 0,
+      "provider": "",
+      "model": "",
+      "cache_ttl": "5m",
+      "session_id": "",
+      "success": false
+    },
+    {
+      "ts": "2026-06-06T06:54:33.201729+00:00",
+      "subject_type": "cache",
+      "subject_id": "openrouter_response_cache",
+      "expected": "capture cache hit/miss outcomes for prompt-caching tuning",
+      "observed": "status=HIT | hits_total=1 | provider= | model= | ttl=5m",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "run_agent.py",
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "cache_status": "HIT",
+      "hits_total": 1,
+      "provider": "",
+      "model": "",
+      "cache_ttl": "5m",
+      "session_id": "",
+      "success": true
+    },
+    {
+      "ts": "2026-06-06T07:02:47.323488+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260606_014055_762662"
+    },
+    {
+      "ts": "2026-06-06T07:12:09.088243+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-06T08:25:57.029991+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-08T17:14:28.709898+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260605_205852_8cf4ad"
+    },
+    {
+      "ts": "2026-06-08T17:19:14.630363+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260605_205844_d9e004"
+    },
+    {
+      "ts": "2026-06-08T17:21:40.586427+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-08T17:43:56.554475+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-08T17:46:54.168276+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-08T17:46:54.194246+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-08T17:46:54.219281+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-09T16:56:42.240959+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260605_205910_fd61a8"
+    },
+    {
+      "ts": "2026-06-10T16:55:43.031788+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-11T15:27:37.928277+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260611_102726_703700"
+    },
+    {
+      "ts": "2026-06-12T16:23:57.760211+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260612_112250_b17889"
+    },
+    {
+      "ts": "2026-06-12T20:58:05.445784+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260612_111956_6ac555"
+    },
+    {
+      "ts": "2026-06-12T20:58:21.883871+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T20:58:27.386581+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T20:58:27.391597+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Open Questions.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Open Questions.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Open Questions.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "open-questions",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Open Questions.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T20:58:27.394409+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T20:58:46.537779+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:02:41.721494+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:07:32.634136+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:12:03.914541+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:12:11.798766+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "update",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:12:16.603952+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:12:16.607630+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:21:06.247874+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:21:12.194363+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:21:31.269928+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:21:53.206069+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:21:53.341633+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:21:53.377247+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:21:59.478993+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:00.957184+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_162153_9ae43a",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:01.041820+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_162153_9ae43a",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:06.402493+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:12.940480+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:19.026776+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:21.842996+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.121279+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Open Questions.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Open Questions.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Open Questions.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "open-questions",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Open Questions.md",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.128605+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.131158+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.138194+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.140004+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_162153_e3ea1f",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:27.626826+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:52.817586+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:52.866435+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Open Questions.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Open Questions.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Open Questions.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "open-questions",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Open Questions.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:52.873156+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:52.880186+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:22:52.883007+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_162153_766e0b",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:26:34.693342+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:26:34.719545+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:26:34.740032+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:26:34.743288+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:26:34.751758+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:27:57.418648+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:27:57.450092+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "update",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:28:19.351312+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:28:49.355075+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness and Loop Engineering Research Notebook.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:28:49.366898+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:28:49.384478+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:28:49.392592+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_111956_6ac555",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:29:14.692602+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:38:50.497183+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:39:10.750069+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:39:10.755185+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Open Questions.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Open Questions.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Open Questions.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "open-questions",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Open Questions.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:17.488786+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:30.009476+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "update",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:30.012410+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "update",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:30.023424+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "update",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:54.924457+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:56.237865+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Harness Loop Gap Analysis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Harness Loop Gap Analysis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Harness Loop Gap Analysis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Harness Loop Gap Analysis.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:57.565701+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:40:58.870775+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:41:00.306909+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:41:18.137706+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "update",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:41:18.139437+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "update",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_163800_535216",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-12T21:41:45.194294+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-12T21:50:52.791711+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260612_163832_7f8d66"
+    },
+    {
+      "ts": "2026-06-12T21:54:03.897855+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T02:47:04.630563+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T02:47:04.654527+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T02:55:18.137982+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260612_112250_b17889"
+    },
+    {
+      "ts": "2026-06-13T02:55:59.079883+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260612_112250_b17889",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T02:58:40.739971+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:04:42.288378+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:10:35.037866+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:10:35.071997+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:10:35.109403+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:10:48.612393+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_221035_9aaf55",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:10:48.630530+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_221035_9aaf55",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:10:48.640860+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_221035_9aaf55",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:10:48.650476+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_221035_9aaf55",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:10:57.807583+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_221035_6638fb",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:10:57.813122+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_221035_6638fb",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:11:02.631401+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_221035_6638fb",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:11:02.641000+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_221035_6638fb",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:25:04.691608+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:25:04.698296+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Decision Log.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Decision Log.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Decision Log.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "decision",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Decision Log.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:25:04.730511+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "link_follow",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:26:50.323599+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:32:13.310365+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Activity Tracking Checklist.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Activity Tracking Checklist.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "project-playbook",
+      "operation": "update",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:32:13.310465+00:00",
+      "subject_type": "workflow",
+      "subject_id": "activity_tracking_checklist",
+      "expected": "capture activity-tracking checklist state and promote durable signals",
+      "observed": "action=Update Hermes research pages | scope=/Users/bernardchase/.hermes/notes/Research | status=closed | evidence=/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Activity Tracking Checklist.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "project-playbook",
+      "operation": "checklist_capture",
+      "path": "Projects/hermes/Activity Tracking Checklist.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true,
+      "checklist_fields": {
+        "action": "Update Hermes research pages",
+        "scope": "/Users/bernardchase/.hermes/notes/Research",
+        "evidence": "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+        "status": "closed"
+      },
+      "promoted_from": "update:patch"
+    },
+    {
+      "ts": "2026-06-13T03:32:13.316574+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Session Summary.md",
+      "expected": "update note event",
+      "observed": "patch -> Projects/hermes/Session Summary.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Session Summary.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "session-summary",
+      "operation": "update",
+      "path": "Projects/hermes/Session Summary.md",
+      "session_id": "20260612_222446_e25e15",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T03:34:13.378564+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:38:37.954805+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:57:29.683607+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:57:29.717240+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:57:29.758634+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:57:37.951613+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:57:38.766039+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:59:30.102179+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:59:59.573251+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T03:59:59.606348+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:00:14.619513+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:00:39.197675+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:00:47.052833+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:00:47.087622+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:00:47.122465+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:02:41.657825+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "read note event",
+      "observed": "mcp_filesystem_list_directory -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:mcp_filesystem_list_directory"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "read",
+      "path": ".",
+      "session_id": "20260612_230014_4a04d1",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:04:27.835023+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:04:47.279986+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T04:07:39.924382+00:00",
+      "subject_type": "note",
+      "subject_id": "Research",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Research",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:39.935960+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Projects/hermes",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Projects/hermes",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.805128+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.808580+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.818023+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.822539+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.827183+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.836375+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:07:47.840675+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:11:11.255959+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Skill Curation.md",
+      "expected": "write_back note event",
+      "observed": "write_file -> Research/Agents/Skill Curation.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Skill Curation.md",
+        "tool:write_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "write_back",
+      "path": "Research/Agents/Skill Curation.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:11:18.515592+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:11:18.528896+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Research Workflow.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:11:26.889387+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Skill Curation.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Skill Curation.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Skill Curation.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Skill Curation.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:11:26.893953+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "20260612_225706_5a6cbc",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-13T04:18:31.138472+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
     }
   ],
   "field_notes": {
@@ -28,8 +3773,15 @@
     "observed": "Short description of what actually happened",
     "outcome": "pass|partial|fail|regression|unknown",
     "recommendation": "keep|promote|defer|drop|rollback|retest|archive",
-    "evidence": ["File paths, commands, or durable references only"],
-    "risk_flags": ["secret_redacted", "coverage_gap", "rollback_needed", "behavior_change"],
+    "evidence": [
+      "File paths, commands, or durable references only"
+    ],
+    "risk_flags": [
+      "secret_redacted",
+      "coverage_gap",
+      "rollback_needed",
+      "behavior_change"
+    ],
     "redacted": true
   },
   "consumer_notes": [

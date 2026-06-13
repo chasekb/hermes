@@ -29,6 +29,14 @@ People use Hermes for software development, research, system administration, dat
 
 **This skill helps you work with Hermes Agent effectively** — setting it up, configuring features, spawning additional agent instances, troubleshooting issues, finding the right commands and settings, and understanding how the system works when you need to extend or contribute to it.
 
+## Maintenance umbrella
+
+This skill also now absorbs the narrower Hermes-maintenance workflows that were previously split apart:
+- skill authoring and validator structure
+- telemetry-driven curation and memory loops
+
+Use the linked references below when you need the durable details for those subtopics.
+
 **Docs:** https://hermes-agent.nousresearch.com/docs/
 
 ## Quick Start

@@ -82,7 +82,20 @@ Every plan MUST start with:
 ---
 ```
 
-### Task Structure
+### Backlog Recommendation Shape
+
+When the user asks you to create a backlog recommendation, write it as a durable project artifact, not a throwaway note. Capture:
+- Problem statement tied to user-visible behavior
+- Summary with the desired outcome
+- Execution checklist with concrete discovery, implementation, and verification steps
+- Parallel workstreams when backend/frontend/QA can proceed independently
+- Closeout criteria that prove the issue is fixed from the user's point of view
+
+If the work touches a request/response boundary, specify the contract change and any pagination/batching/streaming decision explicitly. If the failure is silent, require visible loading/error states in the closeout criteria.
+
+See `references/backlog-recommendation-pattern.md` for a compact template.
+
+## Task Structure
 
 Each task follows this format:
 
@@ -138,6 +151,7 @@ Read and understand:
 - Design documents or user description
 - Acceptance criteria
 - Constraints
+- Existing sibling modes, repeated target pairs, and timing-sensitive side effects that must stay in sync
 
 ### Step 2: Explore the Codebase
 
@@ -173,6 +187,8 @@ Create tasks in order:
 3. Edge cases
 4. Integration
 5. Cleanup/documentation
+
+If the change introduces a sibling execution mode, repeated table pair, or end-of-run metric emission, split out a helper-first task and a dedicated test task that pins the new ordering or timing before wiring the main loop.
 
 ### Step 5: Add Complete Details
 

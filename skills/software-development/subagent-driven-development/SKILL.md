@@ -41,6 +41,11 @@ Use this skill when:
 - If "popularity" is ambiguous, make the ranking rule explicit in the final report rather than implying one.
 - See `references/capability-inventory-audit.md` for the compact audit playbook and reporting template.
 
+**Learning the workflow itself:**
+- When the goal is to improve subagent delegation over time, do not rely on the plan/review process alone as evidence.
+- Pair the process with hook-based telemetry from `agent-self-improvement-telemetry` so you can measure lane coverage, retries, review outcomes, and whether the delegated work produced reusable results.
+- Use durable redacted records for review; do not try to reconstruct the workflow entirely from session transcripts.
+
 ## The Process
 
 ### 1. Read and Parse Plan

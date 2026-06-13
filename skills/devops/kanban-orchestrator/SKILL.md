@@ -15,6 +15,17 @@ metadata:
 
 ## Profiles are user-configured — not a fixed roster
 
+## Worker companion
+
+This umbrella now also carries the worker-side edge cases that were previously split into a sibling skill: stale workspace handling, retry diagnostics, heartbeat hygiene, blocked vs completed handoffs, and the shape of a good `kanban_complete` payload.
+
+Key worker reminders:
+- always read the task state first
+- treat `scratch`, `dir:`, and `worktree` differently
+- block instead of completing when human input is still needed
+- claim only cards you actually created
+- preserve tenant isolation in shared ledgers
+
 Hermes setups vary widely. Some users run a single profile that does everything; some run a small fleet (`docker-worker`, `cron-worker`); some run a curated specialist team they've named themselves. There is **no default specialist roster** — the orchestrator skill does not know what profiles exist on this machine.
 
 For a durable setup, keep one canonical orchestrator profile and clone it per project. See `references/global-vs-project-profile-layout.md` for the recommended directory/profile layout.
@@ -48,14 +59,23 @@ Related umbrella: `hermes-orchestrator-layout` covers the broader global-vs-proj
 
 ## Project backlog handoff
 
-If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The concrete backlog store lives at `~/.hermes/backlog/backlog.json`.
+If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`.
+
+When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
+
+For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
 When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
 
 If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
 
 Pointer: `references/open-backlog-display.md` — for live backlog checks, re-read `backlog/backlog.json` and filter `status != "closed"`; do not rely on a stale chat summary.
+Pointer: `references/project-backlog-recommendation-template.md` — concise checklist/template for durable backlog recommendations with execution and closeout criteria.
+Pointer: `references/research-gap-analysis-and-activity-tracking.md` — concrete patterns for best-practice gap analyses, checklist-based activity tracking, and closure via durable note artifacts.
+Pointer: `references/constituent-vs-proxy-universes.md` — use when a backlog item asks for a stock universe or index universe; it records the anti-proxy rule and acceptance checks.
 Pointer: `references/project-status-snapshot.md` — when the user asks for the Hermes project backlog or project status, show both the live backlog and the current kanban board snapshot together.
+
+When a backlog item spans telemetry, prompt caching, local RAG, or note-layer workflows, inspect the live runtime/config surfaces first (`config.yaml`, `agent-hooks/hook_router.py`, `backlog/backlog.json`) and then update the supporting references. Do not treat the backlog entry as implemented until the runtime surface has been verified.
 
 Bridge docs:
 - `references/project-backlog-model.md`
@@ -73,6 +93,7 @@ Bridge docs:
 - `references/local-rag-profile.md`
 - `references/public-skill-survey-gate.md`
 - `references/project-status-snapshot.md`
+- `references/transform-project-backlog-intake.md` — transform repo wrapper and intake payload shape (`title` is required).
 
 Bridge helpers:
 - `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
@@ -87,14 +108,12 @@ Operational notes:
 - For backup / recovery / stash-resolution recommendations, do not mark the item closed on theory alone: verify one repeatable operator path in a detached clean worktree (or equivalent clean-room rerun) and record that route in the recommendation/reference as evidence.
 - Treat git-stash recovery and pre-update home snapshots as separate safety layers; analyze both before deciding whether any rewiring is actually needed.
 - If an update leaves the stash ref untraceable later, capture the recovery metadata in a reference file while the log and working-tree evidence are still available.
-- After a closeout batch, re-check `stats` or `list --status triage` before assuming the board is empty.
-
 Order of operations:
-1. Re-read the live backlog JSON and keep the stable backlog id.
-2. Turn `execution_criteria` into tests that can drive development and verify `closeout_criteria`.
+1. Read `execution_criteria` from the backlog item.
+2. Turn those criteria into tests that can drive development and verify `closeout_criteria`.
 3. Derive concrete worker tasks from the tests.
 4. Turn `closeout_criteria` into reviewer/verifier tasks or a final acceptance checklist.
-5. Record closeout evidence in the backlog item before marking it closed.
+5. Keep the backlog item's stable id in Kanban metadata or a backlink comment.
 
 ## When to use the board (vs. just doing the work)
 
@@ -129,12 +148,15 @@ Your job description says "route, don't execute." The rules that enforce that:
 
 ### Project backlog handoff
 
-If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`; bridge helpers live under `scripts/` and the reference docs listed above.
+If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`.
 
-If the backlog item is about a note-backed context workflow, route it as a P2/P3 optimization unless it unblocks a current workflow or fixes a concrete failure mode. Keep the recommendation crisp: index note, selective retrieval, compression, and write-back summary.
+When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
 
-Order of operations:
+For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
+When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
+
+If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
 Order of operations:
 1. Read `execution_criteria` from the backlog item.
 2. Turn those criteria into tests that can drive development and verify `closeout_criteria`.

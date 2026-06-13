@@ -1,0 +1,43 @@
+{
+  "jobs": [
+    {
+      "id": "b9863713815b",
+      "name": "cohida-gh-actions-watch",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "#!/usr/bin/env bash\nset -euo pipefail\nmarker=\"$HOME/.cache/cohida-run-26422926896-notified\"\nstatus=$(gh run view 26422926896 --json status --jq .status)\nconclusion=$(gh run view 26422926896 --json conclusion --jq .conclusion)\nif [ \"$status\" != \"completed\" ]; then\n  exit 0\nfi\nif [ -f \"$marker\" ]; then\n  exit 0\nfi\nmkdir -p \"$(dirname \"$marker\")\"\nprintf 'GitHub Actions run 26422926896 completed: %s\\n' \"$conclusion\"\ntouch \"$marker\"",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 5,
+        "display": "every 5m"
+      },
+      "schedule_display": "every 5m",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-25T18:46:19.769475-05:00",
+      "next_run_at": "2026-05-25T18:51:19.769514-05:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    }
+  ],
+  "updated_at": "2026-05-25T18:46:19.770374-05:00"
+}

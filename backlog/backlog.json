@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T04:04:23Z",
+  "generated_at": "2026-06-12T00:00:00Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -51,6 +51,38 @@
       "event": "closed_backup_recommendation",
       "id": "HERMES-BL-0007",
       "note": "Closed the updater stash conflict-resolution recommendation after adding the recovery guidance."
+    },
+    {
+      "at": "2026-06-06T06:16:44Z",
+      "event": "added_note_taking_hooks_recommendation",
+      "id": "HERMES-BL-0013",
+      "note": "Added a backlog recommendation to develop note-taking hooks for the Hermes notes vault."
+    },
+    {
+      "at": "2026-06-08T17:20:52Z",
+      "event": "added_market_russell_3000_symbols_recommendation",
+      "id": "HERMES-BL-0014",
+      "note": "Added a market project backlog recommendation to ingest and normalize Russell 3000 stock symbols."
+    },
+    {
+      "at": "2026-06-12T00:00:00Z",
+      "event": "added_activity_tracking_and_gap_analysis_recommendations",
+      "id": "HERMES-BL-0015-HERMES-BL-0016",
+      "note": "Added backlog recommendations for checklist-based activity tracking and a Hermes gap analysis against harness/loop best practices."
+    },
+    {
+      "at": "2026-06-12T00:00:00Z",
+      "event": "closed_hermes_recommendations",
+      "ids": [
+        "HERMES-BL-0015",
+        "HERMES-BL-0016"
+      ],
+      "note": "Closed the two open Hermes project backlog recommendations by creating the corresponding project notes and linking them from the Hermes index."
+    },
+    {
+      "at": "2026-06-12T00:00:00Z",
+      "event": "added_activity_tracking_memory_promotion_recommendation",
+      "note": "Added a Hermes backlog recommendation for automatic checklist capture and selective memory promotion."
     }
   ],
   "items": [
@@ -577,6 +609,418 @@
           "at": "2026-06-03T16:08:12Z",
           "status": "closed",
           "note": "Documented a reusable local RAG profile/runbook with explicit routing rules, no hidden fallback, and a selective-retrieval smoke test."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0011",
+      "title": "Instrument hooks for subagent delegation and MoA self-learning telemetry",
+      "summary": "Add hook-based metrics collection and analysis for delegate_task and MoA runs so Hermes can learn from observed outcomes, review quality, and model selection.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-06T05:51:23Z",
+      "updated_at": "2026-06-06T06:54:13Z",
+      "execution_criteria": [
+        "Define hook points for subagent delegation and MoA lifecycle events (start, completion, error, review, retry).",
+        "Capture redacted run metadata including task goal/category, number of subagents, model identifiers or labels, latency, tokens, retries, outcome, review verdict, and synthesis result.",
+        "Persist metrics in a durable, reviewable store or hook-fed ledger that backlog and review workflows can read without reconstructing the session.",
+        "Add analysis that aggregates results into recommendations for reuse, adapt, or drop decisions, model selection, and review-loop improvement.",
+        "Document hook coverage and wire it through the centralized router, with tests or smoke checks that prove the events are reaching the collector."
+      ],
+      "closeout_criteria": [
+        "A sample subagent delegation and a sample MoA run emit durable telemetry end-to-end.",
+        "Backlog or review workflows can consume the telemetry and produce a concrete recommendation.",
+        "The docs clearly separate captured metrics, redacted fields, and omitted secrets.",
+        "The telemetry yields at least one actionable learning signal such as reuse rate, synthesis quality, retry rate, or cost/latency trend that informs a follow-up decision."
+      ],
+      "dependencies": [
+        "HERMES-BL-0003",
+        "HERMES-BL-0009"
+      ],
+      "notes": [
+        "Builds on the closed telemetry loop and survey-first intake work; focus on hook-derived execution metadata and analysis, not raw logs or prompt content.",
+        "Prioritize the learning signal over raw volume so the output feeds actual backlog and review decisions."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "history": [
+        {
+          "at": "2026-06-06T05:51:23Z",
+          "status": "proposed",
+          "note": "Added as a backlog recommendation to instrument hooks for subagent delegation and mixture-of-agents learning telemetry."
+        },
+        {
+          "at": "2026-06-06T06:54:13Z",
+          "status": "closed",
+          "note": "Implemented redacted MoA lifecycle hooks, routed them through the centralized hook router, and added review-store telemetry plus tests."
+        }
+      ],
+      "evidence": [
+        "/Users/bernardchase/.hermes/hermes-agent/agent/learning_telemetry.py",
+        "/Users/bernardchase/.hermes/hermes-agent/tools/mixture_of_agents_tool.py",
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/hermes-agent/hermes_cli/plugins.py",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/hermes-agent/tests/tools/test_mixture_of_agents_tool.py"
+      ]
+    },
+    {
+      "id": "HERMES-BL-0012",
+      "title": "Instrument long-term prompt caching and RAG learning loops",
+      "summary": "Improve Hermes prompt caching and local RAG over time by capturing redacted cache/retrieval metrics, feeding them into a durable review loop, and turning those signals into concrete adjustments for cache TTL, source selection, and fallback behavior.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-06T05:56:22Z",
+      "updated_at": "2026-06-06T06:54:13Z",
+      "execution_criteria": [
+        "Define the prompt-caching and RAG hook surfaces to capture cache hits/misses, prefix reuse, retrieval source, retrieval depth, fallback usage, latency, token savings, and answer-quality or review verdict signals.",
+        "Persist redacted metrics in a durable, reviewable store or ledger that backlog, review, or analytics workflows can consume without reconstructing the session transcript.",
+        "Add analysis that turns the captured signals into learning recommendations such as cache_ttl tuning, prompt-shape changes, source-priority changes, index freshness checks, or retrieval-policy revisions.",
+        "Keep the local RAG workflow explicit: selective sources only, no full-vault loading, and no hidden retrieval fallback paths.",
+        "Document the hook coverage, metric schema, and review loop, and prove the path with a smoke test or sample run that emits the expected telemetry end-to-end."
+      ],
+      "closeout_criteria": [
+        "A sample prompt-cached run and a sample local RAG run both emit durable telemetry with redacted fields only.",
+        "Backlog or review workflows can consume the telemetry and surface at least one concrete recommendation for future runs.",
+        "The docs clearly separate captured metrics, redacted fields, omitted secrets, and the source-selection rules for RAG.",
+        "The telemetry yields at least one actionable learning signal such as cache hit rate, retrieval precision, latency reduction, token savings, or fallback-rate trend that informs a follow-up decision."
+      ],
+      "dependencies": [
+        "HERMES-BL-0010",
+        "HERMES-BL-0011"
+      ],
+      "notes": [
+        "Current state: prompt caching is configured in ~/.hermes/config.yaml with cache_ttl=5m and OpenRouter response_cache enabled, while local RAG has a closed reusable profile/runbook but no durable learning loop yet.",
+        "Build on the existing selective local RAG profile and the hook-based telemetry direction instead of introducing a separate hidden cache or retrieval path."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "history": [
+        {
+          "at": "2026-06-06T05:56:22Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation to instrument long-term prompt caching and local RAG learning loops with durable metrics and review-driven tuning."
+        },
+        {
+          "at": "2026-06-06T06:54:13Z",
+          "status": "closed",
+          "note": "Implemented prompt-cache policy telemetry, OpenRouter cache-hit telemetry, and durable review records that can drive cache TTL / routing adjustments."
+        }
+      ],
+      "evidence": [
+        "/Users/bernardchase/.hermes/hermes-agent/agent/learning_telemetry.py",
+        "/Users/bernardchase/.hermes/hermes-agent/agent/agent_init.py",
+        "/Users/bernardchase/.hermes/hermes-agent/agent/chat_completion_helpers.py",
+        "/Users/bernardchase/.hermes/hermes-agent/run_agent.py",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
+      ]
+    },
+    {
+      "id": "HERMES-BL-0013",
+      "title": "Develop note-taking hooks for the Obsidian vault workflow",
+      "summary": "Add hook-based telemetry and lifecycle events for note creation, read, update, link, and write-back operations so the Hermes notes vault can support selective Obsidian-style context work without becoming opaque memory.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-06T06:16:44Z",
+      "updated_at": "2026-06-06T06:54:13Z",
+      "execution_criteria": [
+        "Resolve the notes vault path to /Users/bernardchase/.hermes/notes and verify the vault can host the minimal note set (project index, decision log, session summary, optional open-questions note).",
+        "Define hook surfaces for note lifecycle events including create, read, update, link-follow, and write-back, and route them through the centralized hook router rather than ad hoc file logic.",
+        "Capture redacted metadata for each note event, including project id, note type, relative path or path hash, operation, timestamp, hop count, source session id, and success/failure outcome.",
+        "Keep the note workflow aligned with the selective retrieval policy: index first, then directly relevant linked notes, with no full-vault loading and no hidden fallback paths.",
+        "Document a smoke test that proves a sample project note can be created, read, linked, and updated while emitting durable telemetry end-to-end."
+      ],
+      "closeout_criteria": [
+        "A sample project run against the notes vault emits durable telemetry for note create/read/update/link/write-back events.",
+        "The documentation clearly separates redacted metadata from omitted content and states the no-full-vault / no-hidden-fallback policy.",
+        "The workflow registry and/or backlog references point to the note-taking hook path as the canonical way to operationalize the notes vault.",
+        "The minimal note set can be recreated or verified from the documented vault path using the recorded workflow without manual reconstruction."
+      ],
+      "dependencies": [
+        "HERMES-BL-0008",
+        "HERMES-BL-0010",
+        "HERMES-BL-0012"
+      ],
+      "evidence": [
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/notes"
+      ],
+      "notes": [
+        "Use the notes subdirectory as the vault root for this recommendation.",
+        "Prefer redacted event metadata and preserve the selective retrieval boundary."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-06T06:16:44Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation to develop note-taking hooks for the Hermes notes vault using /Users/bernardchase/.hermes/notes as the vault root."
+        },
+        {
+          "at": "2026-06-06T06:54:13Z",
+          "status": "closed",
+          "note": "Implemented note-vault lifecycle telemetry, centralized note classification in the hook router, and the minimal Hermes project note set under ~/.hermes/notes."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0014",
+      "title": "Add Russell 3000 stock symbols to the market universe",
+      "summary": "Ingest and normalize Russell 3000 constituents so the market project can query, refresh, and test against the broader U.S. equity symbol universe instead of relying only on S&P 500 plus ETF sources.",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market",
+      "tenant": "default",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-08T17:20:52Z",
+      "updated_at": "2026-06-08T17:20:52Z",
+      "execution_criteria": [
+        "Identify a canonical Russell 3000 constituent source and define a repeatable refresh path for the market project.",
+        "Add parsing and normalization so Russell 3000 tickers merge into SymbolManager without duplicates, invalid tickers, or ordering instability.",
+        "Add tests or fixtures that prove the refresh path loads Russell 3000 symbols and preserves the existing default and ETF coverage.",
+        "Ensure downstream collectors or callers can consume the expanded symbol universe without regressions.",
+        "Document the refresh cadence, source limitations, and fallback behavior for future maintenance."
+      ],
+      "closeout_criteria": [
+        "Symbol refresh includes Russell 3000 constituents and tests verify expected coverage from the recorded source or fixture snapshot.",
+        "Existing symbol-manager and build tests still pass, with no regressions in S&P 500 or ETF loading.",
+        "Documentation records the canonical source, refresh cadence, and fallback behavior.",
+        "A reviewer can reproduce the load from the documented source or fixture and confirm the expected counts and deduplication behavior."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
+      ],
+      "notes": [
+        "Scope this recommendation to the market project working tree.",
+        "Prefer a repeatable source or fixture path so the Russell 3000 universe can be refreshed without manual curation."
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
+      ],
+      "history": [
+        {
+          "at": "2026-06-08T17:20:52Z",
+          "status": "proposed",
+          "note": "Added a market project backlog recommendation to ingest and normalize Russell 3000 stock symbols into the market universe."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0015",
+      "title": "Add checklist-based activity tracking for Hermes actions and closeouts",
+      "summary": "Standardize action-level checklists so Hermes work captures execution, verification, and closeout evidence without losing activity state.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-12T00:00:00Z",
+      "updated_at": "2026-06-12T00:00:00Z",
+      "execution_criteria": [
+        "Define a canonical checklist structure for Hermes actions covering intake, inspection, action, verification, and closeout.",
+        "Decide where checklist state lives and keep it aligned with existing Hermes surfaces such as backlog items, session notes, decision memory, and Obsidian notes.",
+        "Record the step name, status, actor or session id, ordering or timestamp, and evidence link for each checklist item.",
+        "Keep the checklist compatible with current Hermes backlog and Kanban workflows rather than replacing them.",
+        "Document one smoke path that proves a sample Hermes action can be tracked from start through closeout using the checklist format."
+      ],
+      "closeout_criteria": [
+        "A reviewer can follow one real Hermes activity from checklist start through closeout with evidence links.",
+        "The checklist is integrated with existing Hermes surfaces instead of living as an isolated note.",
+        "The process makes started, in-progress, blocked, verified, and closed states unambiguous.",
+        "At least one verified example exists and can be reproduced without tribal knowledge.",
+        "The recommendation clearly states whether checklist entries are operational, review-only, or both."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-model.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-recommendation-template.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Index.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md"
+      ],
+      "notes": [
+        "Use this recommendation to make Hermes activity tracking explicit and repeatable across daily work.",
+        "Prefer lightweight checklists that fit existing Hermes notes/backlog/kanban flows.",
+        "Closed after creating the canonical activity checklist note and linking it through Hermes project notes."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation to standardize checklist-based activity tracking across Hermes actions and closeouts."
+        },
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "closed",
+          "note": "Implemented a canonical Hermes activity checklist note and linked it from the project index, session summary, and decision log."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0016",
+      "title": "Compare harness and loop best practices against Hermes runtime surfaces",
+      "summary": "Perform a gap analysis between the researched harness and loop engineering best practices and the existing Hermes runtime, note, and backlog surfaces.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-12T00:00:00Z",
+      "updated_at": "2026-06-12T00:00:00Z",
+      "execution_criteria": [
+        "Inventory the Hermes runtime and note surfaces relevant to harness and loop behavior.",
+        "Compare each research best-practice area to Hermes and mark it covered, partial, or missing.",
+        "Tie every identified gap to a concrete Hermes file, note, or workflow surface.",
+        "Produce a keep, improve, or defer decision for every gap with rationale.",
+        "Document any follow-up recommendations with testable acceptance conditions."
+      ],
+      "closeout_criteria": [
+        "A gap matrix maps each best-practice area to specific Hermes surfaces and a status.",
+        "Every missing or partial area has an explicit follow-up recommendation or a documented defer/drop rationale.",
+        "The analysis distinguishes actual runtime behavior, documentation, and aspirational best practice.",
+        "A reviewer can reproduce the analysis from the written evidence alone.",
+        "Any proposed follow-up work has clear next actions and acceptance checks."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Index.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Engineering.md",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Loop Engineering.md",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
+      ],
+      "notes": [
+        "Use this item to decide where Hermes already matches the research and where implementation work is still missing.",
+        "Treat the research notebook as a source, not as proof of implementation.",
+        "Closed after creating the harness/loop gap-analysis note and linking it through Hermes project notes."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Engineering.md",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Loop Engineering.md",
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation to compare harness and loop best practices against existing Hermes runtime surfaces."
+        },
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "closed",
+          "note": "Implemented a source-backed harness/loop gap analysis note and linked it from the project index, session summary, and decision log."
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0017",
+      "title": "Automate activity-tracking checklist capture and selective memory promotion",
+      "summary": "Automatically capture Hermes activity-tracking checklist state from hooks, notes, backlog, and closeout workflows, and promote only durable, redacted signals into decision memory when appropriate.",
+      "scope": "~/.hermes",
+      "tenant": "default",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-12T00:00:00Z",
+      "updated_at": "2026-06-12T00:00:00Z",
+      "execution_criteria": [
+        "Inventory the live Hermes hook, note, backlog, decision-memory, and workflow surfaces that can emit or consume checklist state.",
+        "Define a structured checklist event schema that captures step name, status, actor/session id, timestamp or order, evidence link, and short result note.",
+        "Implement capture so checklist transitions from session notes, backlog handoffs, and Kanban closeouts are written into the durable Hermes surfaces instead of a parallel tracker.",
+        "Add selective memory-promotion rules that only promote verified or closed outcomes, repeated workflow patterns, or explicit decisions into decision memory or the decision log.",
+        "Redact secrets and transient operational noise before any memory write, and deduplicate repeated promotions by subject or stable key.",
+        "Add a smoke test or fixture that exercises one full checklist path from intake through verification, closeout, and selective memory surfacing."
+      ],
+      "closeout_criteria": [
+        "A reviewer can trace one real Hermes activity from checklist start through closeout using written evidence and linked files.",
+        "At least one verified or closed checklist outcome is automatically or semi-automatically surfaced into decision memory or the decision log.",
+        "Transient or non-durable checklist entries are demonstrably excluded from promotion.",
+        "The selected memory path is reproducible from the documented source files without manual reconstruction.",
+        "Existing backlog, session-summary, and Kanban closeout behavior continues to work and remains the source of execution truth.",
+        "The recommendation clearly documents promotion rules, redaction behavior, and deduplication behavior."
+      ],
+      "dependencies": [],
+      "evidence": [
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/research-gap-analysis-and-activity-tracking.md",
+        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/Users/bernardchase/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
+      ],
+      "notes": [
+        "Derived from the harness-and-loop gap analysis: the runtime has broad hook coverage and a durable decision-memory store, but checklist-aware routing and proactive memory surfacing remain missing.",
+        "Keep the implementation lightweight; the checklist should stay aligned with backlog, notes, and Kanban closeout flows.",
+        "Promote only durable signals into memory; do not copy transient task progress or raw status chatter."
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md"
+      ],
+      "history": [
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "proposed",
+          "note": "Added a backlog recommendation to automate activity-tracking checklist capture and selective memory promotion from Hermes workflow surfaces."
+        },
+        {
+          "at": "2026-06-12T00:00:00Z",
+          "status": "closed",
+          "note": "Implemented checklist capture and selective memory promotion in hook_router and learning_telemetry, with smoke tests covering durable promotion and template suppression."
         }
       ]
     }

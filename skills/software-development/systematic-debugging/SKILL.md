@@ -65,6 +65,8 @@ If the issue is a macOS CPU spike and the top process is `com.apple.Virtualizati
 
 ### 1. Read Error Messages Carefully
 
+For Hermes capability requests, confirm whether the user is asking for a toolset, a skill, or a model/provider change before acting. For example, if they ask to "install debugging toolset," check whether the active build actually exposes a `debugging` toolset; if not, treat it as a skill discovery/install question instead of repeatedly retrying the same command.
+
 For long-running panes, logs, or streamed service output, isolate the relevant interval before you analyze:
 - capture pane/log output starting from the last known-good marker or command
 - if the user names a sentinel string or launch command, anchor the capture to the last occurrence of that string and read forward from there
@@ -83,6 +85,8 @@ For live dashboards and trading UIs, treat the rendered browser options as autho
 - confirm the active request path/payload from the browser/network layer before changing backend routes
 - if signal/trade tables grow without bound, look for append-only history where active rows should be deduped or replaced at the source
 - prefer server- or data-layer ordering/pagination over client-only sorting when the dataset is large or continuously updating
+- if a panel becomes stale after Start Trading / Stop Trading / strategy updates, verify the exact React Query keys used by the hooks and invalidate those exact keys; similarly named keys are a common no-op
+- for large symbol universes, prefer chunked parallel requests plus merge/sort/re-paginate over silent truncation of the symbol filter
 - make trading/simulation failures loud: if the API fails, surface the error instead of letting the button appear to succeed
 - if simulated trading is “running” but no trades occur, verify the status endpoint, persisted trade list, and active-session state together; a signal-only loop can look healthy while execution is broken
 
@@ -102,6 +106,14 @@ If container startup fails under rootless Podman, check for runtime-specific com
 - remember that `./data/...` paths in compose are often host bind mounts, not managed Docker volumes, so deleting them destroys local state
 
 If a path-based artifact copy fails with permissions, probe the destination you actually intend to write to and use a writable fallback path before blaming the copy step.
+
+For packaged ML/model artifacts, validate the copied runtime package, not just the source export:
+- ONNX checker passing on the checked-in artifact does not guarantee the packaged copy will activate successfully
+- compare the packaged `transformer.onnx` and its config/metadata against the source artifact when reload fails after training
+- if the load error mentions `cannot create std::vector larger than max_size()`, suspect a shape/layout/metadata mismatch in the load path before assuming file corruption
+- when packaging succeeds but activation fails, inspect the runtime reload path and package metadata before changing the training/export code
+- keep exporter, loader, and packaged config in one contract; add a regression check for the canonical runtime `input_layout` (or equivalent) written by the exporter
+- if a CI smoke test only exercises a lower-level export helper, switch it to the same higher-level packaging helper used in production so the generated config/metadata sidecars are present; otherwise you can get a false failure on a missing sidecar rather than the real runtime contract
 
 **BEFORE attempting ANY fix:**
 
@@ -383,13 +395,29 @@ Use these Hermes tools during Phase 1:
 - **`terminal`** — Run tests, check git history, reproduce bugs, capture tmux panes, and inspect live filesystem state
 - **`web_search`/`web_extract`** — Research error messages, library docs
 
-### Field references
+### Specialized debugging lenses consolidated into this umbrella
+
+This umbrella now carries the class-level approach for several previously narrow debugging skills: live API contract checks, stateful runtime bugs, Hermes TUI command dispatch, and attach-based language debugging.
+
+- **API contract checks** — verify the live route, payload, and transport before changing frontend or backend code.
+- **Stateful service failures** — reproduce the exact user flow, identify the smallest shared resource, and prefer per-request lifetimes over global reuse.
+- **Hermes TUI command debugging** — compare Python registry, gateway bridge, and Ink handlers side by side when a slash command works in one layer but not another.
+- **Node / Python attach debugging** — use `node inspect`, CDP, pdb, or debugpy only when print/logging isn't enough.
+
+## Field references
 
 - **`references/frontend-backend-endpoint-diagnostics.md`** — endpoint mismatch triage for Next.js dashboards: verify the live browser origin, probe backend endpoints directly, and align rewrite/env fallbacks with the actual backend port before chasing 500s.
 - **`references/db-and-artifact-fallback-patterns.md`** — practical notes on schema-optional startup, tmux capture windows, rootless Podman compose triage, Podman storage vs host disk, host bind-mounted artifact/data paths, and writable artifact fallback paths.
+- **`references/onnx-model-activation-load-triage.md`** — session note for ONNX model packaging/activation failures where the exported file is valid but the copied runtime package still fails to load.
+- **`references/onnx-package-contract-consistency.md`** — session note on keeping exporter, loader, and packaged config metadata aligned; includes the canonical-layout regression check.
 
 - **`references/rootless-podman-compose-triage.md`** — tmux-window capture and compose-startup triage for rootless Podman, including sysctl rejection, GHCR pull fallback, local-tag verification, and storage exhaustion.
 - **`references/tmux-pane-capture-window.md`** — exact recipe for capturing a tmux pane from the last named marker or launch command, preserving the failure window without stale boot noise.
+- **`references/tmux-launch-marker-and-db-transaction-boundaries.md`** — note on anchoring tmux captures at the last launch marker and avoiding shared long-lived pqxx connections that can trigger "transaction still active" failures.
+- **`references/tmux-and-venv-triage.md`** — tmux capture suffix anchoring plus project-venv targeting when shell activation leaves `python` on a shim instead of the repo interpreter.
+- **`references/local-runtime-tmux-port-conflicts.md`** — tmux-captured local-stack troubleshooting notes: quote zsh extras, use `.venv/bin/python` explicitly, and confirm port ownership with `podman ps`/`lsof` before changing code.
+
+When a managed host service is bound to the wrong port or collides with another local stack, move it to a free port and update every derived artifact together (`.ai-dev/config.json`, generated configs, entrypoints, Dockerfiles, tests, and docs) before re-verifying the live endpoint.
 - **`references/cpu-hotspot-triage.md`** — macOS + Podman CPU-spike workflow: identify host hotspots, recognize Virtualization.framework VM load, and correlate with `podman stats` / `podman logs`.
 - **`references/rootless-podman-vcpkg-protobuf.md`** — protobuf/vcpkg build failures under rootless Podman and the concurrency-cap workaround.
 - **`references/rootless-podman-vcpkg-host-triplet.md`** — when vcpkg failures land in host/debug packages, align host+target triplets and force release-only overlay triplets.
@@ -398,11 +426,14 @@ Use these Hermes tools during Phase 1:
 - **`references/podman-remote-image-compose.md`** — remote GHCR image triage for compose: verify rendered refs with `podman-compose config`, remove stray `build:` blocks, and size the Podman machine for image unpack/runtime pressure.
 - **`references/trade-podman-compose-runtime-debugging.md`** — session note for tmux-window capture, GHCR tag selection, Podman disk expansion, and post-start runtime failures in the trade stack.
 - **`references/trade-simulated-trading-orderbook.md`** — trade-specific notes on Simulated Trading route mismatches, loud UI errors, live-UI option inspection, deduped signal tables, and starter configs for generating order-book training signals.
+- **`references/orderbook-client-cap-triage.md`** — the client-side order-book symbol-cap pattern for large universes; keep the hook and API helper capped and log trims visibly.
 - **`references/live-build-overlap-notes.md`** — tmux-captured build sessions with overlapping `podman-compose` runs, stale logs, and storage-pressure cleanup.
 - **`references/yahoo-chart-silent-coercion.md`** — Yahoo Finance chart request note: unsupported `range`/`interval` pairs can silently coerce to coarse data; normalize intraday requests to a valid window and treat 1m promotion as interval-aware upsert territory.
 - **`references/remote-ci-verification.md`** — commit/push + GitHub Actions verification loop for when local validation is blocked or incomplete.
-- **`references/all-by-default-pagination-refactor.md`** — checklist for converting capped pagination defaults to fetch-all-by-default behavior, including downstream callers and regression-test shape.
-- **`references/filesystem-disappearance-history-triage.md`** — tmux + shell-history workflow for investigating when a directory seems to vanish, including empty-directory evidence and missing delete commands.
+- `references/hermes-debugging-capability-selection.md` — note on the Hermes-specific pitfall where users ask to install a "debugging toolset" but the build actually exposes debugging skills instead.
+- `references/all-by-default-pagination-refactor.md` — checklist for converting capped pagination defaults to fetch-all-by-default behavior, including downstream callers and regression-test shape.
+- `references/filesystem-disappearance-history-triage.md` — tmux + shell-history workflow for investigating when a directory seems to vanish, including empty-directory evidence and missing delete commands.
+- `references/mlx-stack-rerun-and-tmux-triage.md` — repo-specific notes on stale tmux shell context, explicit repo interpreter verification, and making `ai-dev pull-models` rerunnable against existing local model directories.
 
 ### With delegate_task
 

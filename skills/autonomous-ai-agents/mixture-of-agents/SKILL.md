@@ -93,6 +93,20 @@ When validating a model-set change, prefer a two-step check:
 1. run the MoA test file with dev deps
 2. run a mocked invocation to confirm the exact reference list and aggregator wiring before trying live calls
 
+## Learning from MoA runs
+
+If the question is not just "did MoA answer this once?" but "is MoA improving outcomes over time?", pair MoA usage with hook-based telemetry and durable review memory.
+
+Record compact run metadata such as:
+- model set used
+- synthesis success or failure
+- retry count
+- latency bucket
+- outcome / verdict
+- short evidence pointer
+
+Avoid using raw transcripts as the durable record; keep them as transient debugging context only.
+
 ## Support files
 
 - `references/model-selection.md` — how to choose current-good OpenRouter models for MoA

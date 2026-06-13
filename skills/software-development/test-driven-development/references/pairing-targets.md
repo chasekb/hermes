@@ -1,14 +1,18 @@
-# Pairing-target expansion pattern
+# Pairing targets and sibling pipeline modes
 
-Use this when a pipeline grows a sibling target that should behave like an existing one (for example: `main_1d -> metrics_1d` and `main_1m -> metrics_1m`).
+Use this pattern when a feature adds a new sibling target, repeated table pair, or an execution mode that should stay in lockstep with an existing loop.
 
 ## Pattern
-1. Extract target construction into a helper that returns an explicit list of source/derived table pairs.
-2. Add a focused test for the helper that asserts all expected pairs are present.
-3. Wire the production loop to iterate over the helper output instead of hard-coding a single table pair.
-4. Keep any downstream side effects that are specific to one lane gated to the lane that owns them.
+1. Extract the target list or mode selection into a small helper.
+2. Write a test that asserts the helper returns the exact ordered set you expect.
+3. Add a second test for the new sibling path, especially if it changes ordering, timing, or persistence.
+4. Wire the helper into the production loop only after the helper test is green.
+5. Keep the helper the single source of truth so future modes don't drift apart.
 
-## Verification
-- Run the smallest focused test for the helper first.
-- Then run a syntax check or build of the affected translation unit(s) to catch integration errors early.
-- Prefer verifying the exact edited code path before running the whole suite.
+## Good fit examples
+- Adding `--run=all-snapshot` next to `--run=both`
+- Adding a new metrics sink alongside an existing per-symbol write path
+- Adding a new table pair that should be processed together
+
+## Common pitfall
+If you patch the main loop first, it becomes easy to miss the sibling mode in tests. Test the helper before the loop, then reuse it from every execution branch.

@@ -62,3 +62,14 @@ Use a small, liquid symbol basket and the order book strategy first so the sessi
 - A backend warning about transformer model loading does not by itself explain a silent Start Trading action.
 - When the job is remote-build oriented, commit/push first and verify the build in GitHub Actions rather than relying only on local rebuilds.
 - For the trade dashboard, local simulated trading can be forced into a deterministic client-side fallback when needed so the UI still exercises the trading loop.
+
+## React Query refresh lessons
+- If a panel refreshes stale after Start Trading / Stop Trading / strategy update, verify the exact query keys used by the hooks and invalidate those keys explicitly.
+- A similarly named key is not enough; for example, `live-portfolio` and `live-portfolio-status` are different caches.
+- If the UI remains empty while the backend is healthy, inspect the hook’s `enabled`, `refetchInterval`, and `refetchOnMount` settings before changing backend code.
+- Make errors loud in the UI so a failed refresh doesn’t masquerade as a successful empty state.
+
+## Large symbol universe handling
+- Do not silently truncate symbol filters just to avoid long URLs.
+- Prefer chunked parallel requests for symbol universes that exceed the request-budget threshold, then merge/sort the returned signals and re-paginate on the client.
+- Keep the request-boundary helper and the query-key logic in the same hook/module so cache invalidation and transport limits stay aligned.

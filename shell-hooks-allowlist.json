@@ -101,6 +101,48 @@
       "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
       "event": "post_approval_response",
       "script_mtime_at_approval": "2026-05-25T01:02:02.789074Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.733938Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_start",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.734891Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_retry",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.735706Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_reference_complete",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.736208Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_reference_error",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.736712Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_review",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.737252Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_synthesis",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
+    },
+    {
+      "approved_at": "2026-06-06T06:55:11.737685Z",
+      "command": "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+      "event": "moa_end",
+      "script_mtime_at_approval": "2026-06-06T06:44:52.299621Z"
     }
   ]
 }
