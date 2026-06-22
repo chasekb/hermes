@@ -108,6 +108,7 @@ When a repository has no workflow yet, bootstrap one before trying to verify the
 - Treating a PR title as proof of the underlying run.
 - Missing the distinction between repo setup, PR workflow, and review workflow.
 - Forgetting that issue search can return PRs unless you filter them out.
+- Using `git add -u` when the user asked to commit "all changes": it stages tracked modifications and deletions only, so new skill files/directories remain untracked. Use `git add -A` (or explicitly add new paths) when the request includes new files.
 
 ## Verification
 

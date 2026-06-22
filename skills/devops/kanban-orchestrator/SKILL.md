@@ -69,9 +69,12 @@ For implementation-oriented intake, structure the recommendation body with an ex
 
 When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
 
+If the requested project has no live `project_id` matches in `~/.hermes/backlog/backlog.json`, say so explicitly and then fall back to repo-local backlog documents for that project when they exist (for example `docs/TODO.md`, `docs/cpp_todo.md`). Keep the live Hermes backlog and the repo-local backlog separate so the user can tell whether the work exists as durable Hermes intake or only as documentation.
+
 If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
 
 Pointer: `references/open-backlog-display.md` — for live backlog checks, re-read `backlog/backlog.json` and filter `status != "closed"`; do not rely on a stale chat summary.
+Pointer: `references/repo-local-backlog-fallback.md` — use when the live Hermes backlog has no matching project rows and you need to summarize repo-local backlog docs separately.
 Pointer: `references/project-backlog-recommendation-template.md` — concise checklist/template for durable backlog recommendations with execution and closeout criteria.
 Pointer: `references/research-gap-analysis-and-activity-tracking.md` — concrete patterns for best-practice gap analyses, checklist-based activity tracking, and closure via durable note artifacts.
 Pointer: `references/constituent-vs-proxy-universes.md` — use when a backlog item asks for a stock universe or index universe; it records the anti-proxy rule and acceptance checks.
@@ -160,6 +163,8 @@ When the user asks to turn a feature request into a new backlog recommendation, 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
 When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
+
+If the requested project has no live `project_id` matches in `~/.hermes/backlog/backlog.json`, say so explicitly and then fall back to repo-local backlog documents for that project when they exist (for example `docs/TODO.md`, `docs/cpp_todo.md`). Keep the live Hermes backlog and the repo-local backlog separate so the user can tell whether the work exists as durable Hermes intake or only as documentation.
 
 If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
 Order of operations:
