@@ -43,6 +43,7 @@
 /sessions/
 /state-snapshots/
 /node_modules/
+/ui-tui/node_modules/
 /venv/
 /.venv
 /hermes-agent/
