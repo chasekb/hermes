@@ -11,3 +11,6 @@ When older prompts, docs, or backlog items mention the narrower standalone skill
 
 ## Practical rule
 If a lookup says a narrow skill is missing but the umbrella exists, prefer the umbrella and search its references before restoring the old file from git history.
+
+## Compatibility note
+A thin `skills/software-development/subagent-driven-development` wrapper exists in this workspace so older lookups continue to resolve while the canonical guidance stays in `software-development-workflows`.

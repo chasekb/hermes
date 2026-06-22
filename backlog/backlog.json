@@ -1589,6 +1589,11 @@
           "at": "2026-06-16T05:01:27Z",
           "note": "Added a Hermes backlog recommendation for default hermes backlog intake in this workspace to project_id=hermes.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:28:58Z",
+          "note": "Documented the Hermes workspace backlog intake default in the backlog README and intake template.",
+          "status": "closed"
         }
       ],
       "id": "HERMES-BL-0028",
@@ -1606,11 +1611,11 @@
       "priority": "P1",
       "project_id": "hermes",
       "scope": "~/.hermes",
-      "status": "proposed",
+      "status": "closed",
       "summary": "Ensure backlog items created from this working directory are stamped with project_id=hermes so Hermes-scoped intake stays isolated and reviewable.",
       "tenant": "default",
       "title": "Default Hermes backlog intake in this workspace to project_id=hermes",
-      "updated_at": "2026-06-16T05:01:27Z"
+      "updated_at": "2026-06-22T03:28:58Z"
     },
     {
       "closeout_criteria": [
@@ -1633,6 +1638,11 @@
           "at": "2026-06-16T05:01:27Z",
           "note": "Added a Hermes backlog recommendation for create a local obsidian vault in ~/.hermes and export obsidian_vault_path.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:28:58Z",
+          "note": "Added the Hermes Obsidian vault skill wrapper and activation checklist anchored at ~/.hermes/notes.",
+          "status": "closed"
         }
       ],
       "id": "HERMES-BL-0029",
@@ -1651,11 +1661,11 @@
       "priority": "P1",
       "project_id": "hermes",
       "scope": "~/.hermes",
-      "status": "proposed",
+      "status": "closed",
       "summary": "Bootstrap a real Obsidian vault under the Hermes workspace and expose its path to shells and note tooling so note persistence becomes operational.",
       "tenant": "default",
       "title": "Create a local Obsidian vault in ~/.hermes and export OBSIDIAN_VAULT_PATH",
-      "updated_at": "2026-06-16T05:01:27Z"
+      "updated_at": "2026-06-22T03:28:58Z"
     },
     {
       "closeout_criteria": [
@@ -1681,6 +1691,11 @@
           "at": "2026-06-16T05:01:27Z",
           "note": "Added a Hermes backlog recommendation for complete the obsidian-backed hermes context workflow.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:28:58Z",
+          "note": "Updated the Hermes index, decision log, session summary, and hook router notes for selective note retrieval and write-back.",
+          "status": "closed"
         }
       ],
       "id": "HERMES-BL-0030",
@@ -1700,11 +1715,11 @@
       "priority": "P1",
       "project_id": "hermes",
       "scope": "~/.hermes",
-      "status": "proposed",
+      "status": "closed",
       "summary": "Finish the note-layer workflow so Hermes can start from a project index, selectively read linked notes, and write back session summaries and decisions without loading the whole vault.",
       "tenant": "default",
       "title": "Complete the Obsidian-backed Hermes context workflow",
-      "updated_at": "2026-06-16T05:01:27Z"
+      "updated_at": "2026-06-22T03:28:58Z"
     },
     {
       "closeout_criteria": [
@@ -1901,6 +1916,11 @@
           "at": "2026-06-18T02:51:22Z",
           "note": "Added a Hermes backlog recommendation to trace the subagent-driven-development deletion through consolidation and resolve stale alias side effects.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:28:58Z",
+          "note": "Added a compatibility alias skill and updated the legacy-alias notes to resolve the stale lookup surface.",
+          "status": "closed"
         }
       ],
       "id": "HERMES-BL-0035",
@@ -1921,11 +1941,11 @@
       "priority": "P1",
       "project_id": "hermes",
       "scope": "~/.hermes",
-      "status": "proposed",
+      "status": "closed",
       "summary": "Trace why the subagent-driven-development skill was deleted, determine whether it was intentionally consolidated into software-development-workflows, and resolve the unresolved side effect where stale references still trigger a missing-skill lookup.",
       "tenant": "default",
       "title": "Trace subagent-driven-development deletion through consolidation and resolve stale alias side effects",
-      "updated_at": "2026-06-18T02:51:22Z"
+      "updated_at": "2026-06-22T03:28:58Z"
     },
     {
       "closeout_criteria": [

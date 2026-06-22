@@ -36,6 +36,7 @@ Operational notes:
 - `skills/devops/kanban-orchestrator/references/workflow-registry.md` is the registry of the project workflows that move items from intake to review and closeout.
 - `skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md` captures the live bridge pattern and smoke-test recipe.
 - The bridge preserves the backlog item id in the created Kanban task title/body so closeout evidence can be synced back unambiguously.
+- Hermes workspace backlog intake should default new `~/.hermes` items to `project_id=hermes` so the project scope stays isolated and reviewable.
 - `backlog/decision-memory.json` is the durable decision-memory store for execution summaries, recommendations, and review evidence; keep secrets out of it.
 
 Review cadence:

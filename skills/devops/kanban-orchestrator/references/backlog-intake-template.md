@@ -28,3 +28,4 @@ Guidelines:
 - Keep closeout criteria unambiguous and observable.
 - Use stable ids so Kanban and reviews can backlink to the backlog item.
 - Prefer small items that can be promoted into a single runnable slice.
+- When working in the Hermes workspace (`~/.hermes`), default new backlog recommendations to `project_id: hermes`.
