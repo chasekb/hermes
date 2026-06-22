@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T16:06:53Z",
+  "generated_at": "2026-06-22T03:40:43Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -3099,7 +3099,7 @@
         "Assert the quantity column matches the normalized payload and the visible formatting shown in the dashboard.",
         "Verify the column still renders correctly after refresh, pagination changes, and row-order changes where applicable.",
         "Fail the test if the displayed value regresses to a stale, truncated, or incorrectly formatted value.",
-        "Assert the cell renders the held quantity with the dashboard\u2019s decimal precision."
+        "Assert the cell renders the held quantity with the dashboard’s decimal precision."
       ],
       "closeout_criteria": [
         "The Open Positions table has a dedicated spec for the quantity column.",
@@ -3267,7 +3267,7 @@
         "Assert the opened timestamp column matches the normalized payload and the visible formatting shown in the dashboard.",
         "Verify the column still renders correctly after refresh, pagination changes, and row-order changes where applicable.",
         "Fail the test if the displayed value regresses to a stale, truncated, or incorrectly formatted value.",
-        "Assert the cell renders the open time in the dashboard\u2019s human-readable local timestamp format."
+        "Assert the cell renders the open time in the dashboard’s human-readable local timestamp format."
       ],
       "closeout_criteria": [
         "The Open Positions table has a dedicated spec for the opened timestamp column.",
@@ -3993,6 +3993,884 @@
         {
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals details column using the live session evidence.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0084",
+      "title": "Implement TrendPredictor class",
+      "summary": "Load trained models, compute live features, and emit trend labels with confidence scores.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 3: Prediction Pipeline."
+      ],
+      "execution_criteria": [
+        "Use docs/TODO.md as the canonical source for load trained models, compute real-time features, classify trend direction, and emit confidence scores.",
+        "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
+        "Add a fixture-based regression test that fails before the implementation.",
+        "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
+      ],
+      "closeout_criteria": [
+        "The focused regression test passes and fails on the current main branch before the change.",
+        "The delivered behavior matches the documented requirement for implement trendpredictor class.",
+        "Related tests and CLI paths remain green with no output-format regressions.",
+        "Documentation or notes capture the source and any fallback behavior."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0085",
+      "title": "Implement PriceForecaster class",
+      "summary": "Forecast short-term price paths with explicit horizons and uncertainty handling.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 3: Prediction Pipeline."
+      ],
+      "execution_criteria": [
+        "Use docs/TODO.md as the canonical source for forecast 1h/6h/24h prices with uncertainty and multi-step output.",
+        "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
+        "Add a fixture-based regression test that fails before the implementation.",
+        "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
+      ],
+      "closeout_criteria": [
+        "The focused regression test passes and fails on the current main branch before the change.",
+        "The delivered behavior matches the documented requirement for implement priceforecaster class.",
+        "Related tests and CLI paths remain green with no output-format regressions.",
+        "Documentation or notes capture the source and any fallback behavior."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0086",
+      "title": "Create prediction CLI commands",
+      "summary": "Expose the prediction pipeline through `ml-predict` and `ml-predict-batch` command entry points.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        84,
+        85
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 3: Prediction Pipeline.",
+        "Keep console, CSV, and JSON outputs aligned with the repo docs."
+      ],
+      "execution_criteria": [
+        "Use docs/TODO.md as the canonical source for wire prediction commands to the trained-model and forecasting classes.",
+        "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
+        "Add a fixture-based regression test that fails before the implementation.",
+        "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
+      ],
+      "closeout_criteria": [
+        "The focused regression test passes and fails on the current main branch before the change.",
+        "The delivered behavior matches the documented requirement for create prediction cli commands.",
+        "Related tests and CLI paths remain green with no output-format regressions.",
+        "Documentation or notes capture the source and any fallback behavior."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0087",
+      "title": "Implement prediction storage",
+      "summary": "Persist predictions, timestamps, and model metadata for historical tracking and replay.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        84,
+        85
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 3: Prediction Pipeline.",
+        "Maintain compatibility with historical prediction tracking and replay."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for write predictions to the ml_predictions table with model and timestamp metadata.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for implement prediction storage.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0088",
+      "title": "Implement EvaluationMetrics class",
+      "summary": "Compute classification, regression, and trading metrics for model assessment.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 4: Evaluation & Monitoring."
+      ],
+      "execution_criteria": [
+        "Use predictions plus ground truth as the canonical inputs for compute accuracy, precision, recall, F1, MAE, RMSE, MAPE, R², Sharpe ratio, and directional accuracy.",
+        "Add a regression test or fixture that proves the metric/backtest/report behavior is needed.",
+        "Keep the model output format stable while adding evaluation coverage.",
+        "Make the computation reproducible from the documented source data or fixture."
+      ],
+      "closeout_criteria": [
+        "The dedicated evaluation test passes and would fail before implementation.",
+        "The implemented behavior matches the documented requirement for implement evaluationmetrics class.",
+        "Existing ML, CLI, and reporting tests remain green.",
+        "A reviewer can reproduce the result from the documented source or fixture without manual reconstruction."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0089",
+      "title": "Create backtesting framework",
+      "summary": "Run walk-forward and out-of-sample validation against simple baselines.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        88
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 4: Evaluation & Monitoring."
+      ],
+      "execution_criteria": [
+        "Use predictions plus ground truth as the canonical inputs for perform walk-forward validation and compare against buy-and-hold and naive baselines.",
+        "Add a regression test or fixture that proves the metric/backtest/report behavior is needed.",
+        "Keep the model output format stable while adding evaluation coverage.",
+        "Make the computation reproducible from the documented source data or fixture."
+      ],
+      "closeout_criteria": [
+        "The dedicated evaluation test passes and would fail before implementation.",
+        "The implemented behavior matches the documented requirement for create backtesting framework.",
+        "Existing ML, CLI, and reporting tests remain green.",
+        "A reviewer can reproduce the result from the documented source or fixture without manual reconstruction."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0090",
+      "title": "Generate evaluation reports",
+      "summary": "Produce confusion matrices, feature importance views, prediction-vs-actual charts, and summary tables.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        88,
+        89
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 4: Evaluation & Monitoring."
+      ],
+      "execution_criteria": [
+        "Use predictions plus ground truth as the canonical inputs for render evaluation reports from the metrics and backtest outputs.",
+        "Add a regression test or fixture that proves the metric/backtest/report behavior is needed.",
+        "Keep the model output format stable while adding evaluation coverage.",
+        "Make the computation reproducible from the documented source data or fixture."
+      ],
+      "closeout_criteria": [
+        "The dedicated evaluation test passes and would fail before implementation.",
+        "The implemented behavior matches the documented requirement for generate evaluation reports.",
+        "Existing ML, CLI, and reporting tests remain green.",
+        "A reviewer can reproduce the result from the documented source or fixture without manual reconstruction."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0091",
+      "title": "Add model performance CLI commands",
+      "summary": "Expose model evaluation, listing, and feature-importance commands for operators.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        88,
+        90
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 4: Evaluation & Monitoring."
+      ],
+      "execution_criteria": [
+        "Use predictions plus ground truth as the canonical inputs for wire `ml-evaluate`, `ml-models`, and `ml-features` to the evaluation pipeline.",
+        "Add a regression test or fixture that proves the metric/backtest/report behavior is needed.",
+        "Keep the model output format stable while adding evaluation coverage.",
+        "Make the computation reproducible from the documented source data or fixture."
+      ],
+      "closeout_criteria": [
+        "The dedicated evaluation test passes and would fail before implementation.",
+        "The implemented behavior matches the documented requirement for add model performance cli commands.",
+        "Existing ML, CLI, and reporting tests remain green.",
+        "A reviewer can reproduce the result from the documented source or fixture without manual reconstruction."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0092",
+      "title": "Implement LSTM models for trend prediction",
+      "summary": "Add a sequential model option for trend prediction and multi-step forecasting.",
+      "priority": "P3",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 5: Advanced Models (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the repo's model artifacts and feature pipeline as the canonical input for train and evaluate LSTM trend models alongside the existing baseline.",
+        "Add a regression test that proves the new model path or combination logic is needed.",
+        "Keep the baseline training and inference flow working while extending it.",
+        "Document any new model assumptions or limits in the item notes."
+      ],
+      "closeout_criteria": [
+        "A focused test or fixture covers the new model behavior and fails before the change.",
+        "The delivered behavior matches the documented requirement for implement lstm models for trend prediction.",
+        "Training and inference tests for the existing baseline remain green.",
+        "The model limitations and inputs are documented for future reviewers."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0093",
+      "title": "Implement ensemble strategies",
+      "summary": "Combine multiple model outputs with stacking, voting, or weighted averaging.",
+      "priority": "P3",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        92
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 5: Advanced Models (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the repo's model artifacts and feature pipeline as the canonical input for blend multiple model predictions into a single ensemble decision.",
+        "Add a regression test that proves the new model path or combination logic is needed.",
+        "Keep the baseline training and inference flow working while extending it.",
+        "Document any new model assumptions or limits in the item notes."
+      ],
+      "closeout_criteria": [
+        "A focused test or fixture covers the new model behavior and fails before the change.",
+        "The delivered behavior matches the documented requirement for implement ensemble strategies.",
+        "Training and inference tests for the existing baseline remain green.",
+        "The model limitations and inputs are documented for future reviewers."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0094",
+      "title": "Add VolatilityAnalyzer class",
+      "summary": "Estimate ATR-based volatility and risk levels from market data.",
+      "priority": "P3",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 5: Advanced Models (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the repo's model artifacts and feature pipeline as the canonical input for compute volatility features and risk-level classifications.",
+        "Add a regression test that proves the new model path or combination logic is needed.",
+        "Keep the baseline training and inference flow working while extending it.",
+        "Document any new model assumptions or limits in the item notes."
+      ],
+      "closeout_criteria": [
+        "A focused test or fixture covers the new model behavior and fails before the change.",
+        "The delivered behavior matches the documented requirement for add volatilityanalyzer class.",
+        "Training and inference tests for the existing baseline remain green.",
+        "The model limitations and inputs are documented for future reviewers."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0095",
+      "title": "Implement trading signal generation",
+      "summary": "Convert model and volatility outputs into BUY/SELL/HOLD recommendations with confidence.",
+      "priority": "P3",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        84,
+        85,
+        94
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 5: Advanced Models (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for generate trading signals from prediction and volatility inputs.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for implement trading signal generation.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0096",
+      "title": "Model retraining automation",
+      "summary": "Schedule retraining, detect drift, and refresh deployed models automatically.",
+      "priority": "P4",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        88,
+        90
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 6: Production Features (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for automate retraining from stored predictions, metrics, and model registry state.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for model retraining automation.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0097",
+      "title": "Feature caching optimization",
+      "summary": "Cache or incrementally compute features to reduce repeated work and latency.",
+      "priority": "P4",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        84,
+        85,
+        87
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 6: Production Features (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for cache or incrementally refresh feature computations.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for feature caching optimization.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0098",
+      "title": "API endpoint for predictions",
+      "summary": "Serve prediction results over a REST endpoint with predictable request and response shapes.",
+      "priority": "P4",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        84,
+        85,
+        87
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 6: Production Features (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for serve predictions over a REST API with authenticated access and rate limiting.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for api endpoint for predictions.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0099",
+      "title": "Real-time streaming predictions",
+      "summary": "Support live market-data ingestion and streaming prediction updates.",
+      "priority": "P4",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        98,
+        97
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+      ],
+      "notes": [
+        "Imported from docs/TODO.md.",
+        "Phase 6: Production Features (Optional)."
+      ],
+      "execution_criteria": [
+        "Use the live model outputs and storage path as the canonical source for stream predictions from live market data over a websocket or similar live channel.",
+        "Add a regression test or fixture that covers the persisted, cached, or API-facing behavior.",
+        "Keep downstream consumers working while adding the production path.",
+        "Record any rate-limit, freshness, or fallback constraints in the notes."
+      ],
+      "closeout_criteria": [
+        "The new production path has a dedicated test or fixture and fails before implementation.",
+        "The delivered behavior matches the documented requirement for real-time streaming predictions.",
+        "Downstream consumers and related tests remain green.",
+        "Fallback behavior and operational constraints are documented."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/TODO.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0100",
+      "title": "Test package installation",
+      "summary": "Prove the vcpkg/package-management path installs cleanly for the C++ build.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+      ],
+      "notes": [
+        "Imported from docs/cpp_todo.md.",
+        "Phase 1: Project Setup & Build System."
+      ],
+      "execution_criteria": [
+        "Use docs/cpp_todo.md as the canonical source for the build and deployment workflow.",
+        "Add a workflow or validation step that fails before the stage exists.",
+        "Keep the documented local build commands aligned with the CI path.",
+        "Preserve any existing container or test behavior while adding the workflow stage."
+      ],
+      "closeout_criteria": [
+        "The CI/build workflow exists and runs the documented build/test/deploy stages.",
+        "A successful workflow run or smoke check is recorded with the exact run URL and verified head SHA if remote CI is used.",
+        "Local and CI build/test commands match the documented path.",
+        "Existing container or test checks remain green."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/cpp_todo.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0101",
+      "title": "Add build, test, and deployment stages",
+      "summary": "Turn the documented C++ workflow into runnable CI build, test, and deployment stages.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        100
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+      ],
+      "notes": [
+        "Imported from docs/cpp_todo.md.",
+        "Phase 7: Deployment & Documentation.",
+        "The guide already documents the intended workflow, so the backlog item should verify the live CI path."
+      ],
+      "execution_criteria": [
+        "Use docs/cpp_todo.md as the canonical source for the build and deployment workflow.",
+        "Add a workflow or validation step that fails before the stage exists.",
+        "Keep the documented local build commands aligned with the CI path.",
+        "Preserve any existing container or test behavior while adding the workflow stage."
+      ],
+      "closeout_criteria": [
+        "The CI/build workflow exists and runs the documented build/test/deploy stages.",
+        "A successful workflow run or smoke check is recorded with the exact run URL and verified head SHA if remote CI is used.",
+        "Local and CI build/test commands match the documented path.",
+        "Existing container or test checks remain green."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/cpp_todo.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0102",
+      "title": "Configure container publishing",
+      "summary": "Publish the C++ container image through the documented CI path.",
+      "priority": "P2",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        101
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+      ],
+      "notes": [
+        "Imported from docs/cpp_todo.md.",
+        "Phase 7: Deployment & Documentation."
+      ],
+      "execution_criteria": [
+        "Use docs/cpp_todo.md as the canonical source for the build and deployment workflow.",
+        "Add a workflow or validation step that fails before the stage exists.",
+        "Keep the documented local build commands aligned with the CI path.",
+        "Preserve any existing container or test behavior while adding the workflow stage."
+      ],
+      "closeout_criteria": [
+        "The CI/build workflow exists and runs the documented build/test/deploy stages.",
+        "A successful workflow run or smoke check is recorded with the exact run URL and verified head SHA if remote CI is used.",
+        "Local and CI build/test commands match the documented path.",
+        "Existing container or test checks remain green."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/cpp_todo.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0103",
+      "title": "Update API documentation",
+      "summary": "Bring the user-facing API and CLI docs in line with the live implementation.",
+      "priority": "P3",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        86,
+        91,
+        98
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+      ],
+      "notes": [
+        "Imported from docs/cpp_todo.md.",
+        "Phase 7: Deployment & Documentation."
+      ],
+      "execution_criteria": [
+        "Use docs/cpp_todo.md as the canonical source for user-facing commands, examples, and workflow wording.",
+        "Update the docs so the examples match the live repo behavior and command names.",
+        "Add a review path that would catch stale commands or broken links.",
+        "Preserve valid existing examples unless the implementation changed."
+      ],
+      "closeout_criteria": [
+        "The docs match the current implementation and reference the live command or workflow names.",
+        "A reviewer can reproduce the documented commands or workflow from the files alone.",
+        "No broken links or stale examples remain in the updated sections.",
+        "Any doc checks or linters that exist still pass."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/cpp_todo.md.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-0104",
+      "title": "Perform final validation",
+      "summary": "Run the documented end-to-end validation path and capture the proof needed to close the project.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:40:43Z",
+      "project_id": "cohida",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "dependencies": [
+        101,
+        102,
+        103
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+      ],
+      "notes": [
+        "Imported from docs/cpp_todo.md.",
+        "Phase 7: Deployment & Documentation.",
+        "Capture exact GitHub Actions run URL and verified head SHA if remote CI is used as closeout proof."
+      ],
+      "execution_criteria": [
+        "Use docs/cpp_todo.md as the canonical source of truth for the final validation path.",
+        "Run the documented container and/or CI smoke path against the current repo state.",
+        "Capture the validation evidence needed to close the backlog item.",
+        "Fail the validation if any documented command, test, or container step does not work."
+      ],
+      "closeout_criteria": [
+        "Validation evidence is captured in the backlog item or linked docs.",
+        "The documented build/test/deploy path runs successfully end to end.",
+        "If a remote CI run is used as proof, the exact workflow run URL and verified head SHA are captured.",
+        "The live repo state matches the documented CLI and workflow behavior."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T03:40:43Z",
+          "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
         }
       ]
