@@ -75,8 +75,12 @@ Use when the work needs parallelism or isolated context.
 - Keep review separate from implementation.
 - Use dependency links when tasks truly depend on each other.
 - Prefer this umbrella skill over the legacy standalone `subagent-driven-development` file name; if older docs or prompts mention the narrow skill, treat them as referring to this section.
+- For compare/contrast questions, split the analysis by option first and add one synthesis worker last; this keeps the final recommendation grounded in parallel evidence rather than a single blended pass.
+- For repo branch strategy questions, split the branch-local analysis by option and keep a synthesis worker last; see `references/repo-branch-workflow.md` for the Hermes repo pattern.
 
 See `references/legacy-skill-aliases.md` for the absorbtion map and the `subagent-driven-development` history.
+See `references/subagent-comparison-pattern.md` for the option-vs-synthesis delegation pattern.
+See `references/repo-branch-workflow.md` for the Hermes branch topology and handoff pattern.
 
 ### Simplification and spikes
 Use when the change is sprawling or uncertain.
