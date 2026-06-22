@@ -63,7 +63,7 @@ If the work starts from a Hermes project backlog item, preserve the backlog item
 
 When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
 
-For project-specific backlog items, include an explicit `project_id` and keep it consistent with the board / repo scope. When the user asks for an open project backlog, read the live JSON and filter on both `project_id` and `status != "closed"` rather than relying on the thread summary.
+For project-specific backlog items, include an explicit `project_id` and keep it consistent with the board / repo scope. When the user asks for an open project backlog, read the live JSON and filter on both `project_id` and `status != "closed"` rather than relying on the thread summary. When importing a repo backlog into live Hermes, write each recommendation as a discrete item with stable sequential ids, source-doc links, and criteria derived from the repo backlog rows.
 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
@@ -99,6 +99,7 @@ Bridge docs:
 - `references/local-rag-profile.md`
 - `references/public-skill-survey-gate.md`
 - `references/project-status-snapshot.md`
+- `references/cohida-backlog-import.md` — repo-backlog-to-live-Hermes import pattern, including project-scoped criteria and sequential ids.
 - `references/transform-project-backlog-intake.md` — transform repo wrapper and intake payload shape (`title` is required).
 - `references/transform-backlog-splitting-patterns.md` — session-derived guidance for splitting transform runtime, parallelism, and caching work into separate recommendations.
 

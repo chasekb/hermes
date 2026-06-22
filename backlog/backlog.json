@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T03:40:43Z",
+  "generated_at": "2026-06-22T03:41:37Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -4017,7 +4017,7 @@
         "Phase 3: Prediction Pipeline."
       ],
       "execution_criteria": [
-        "Use docs/TODO.md as the canonical source for load trained models, compute real-time features, classify trend direction, and emit confidence scores.",
+        "Use docs/TODO.md as the canonical source for this item's requirement: load trained models, compute real-time features, classify trend direction, and emit confidence scores.",
         "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
         "Add a fixture-based regression test that fails before the implementation.",
         "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
@@ -4056,7 +4056,7 @@
         "Phase 3: Prediction Pipeline."
       ],
       "execution_criteria": [
-        "Use docs/TODO.md as the canonical source for forecast 1h/6h/24h prices with uncertainty and multi-step output.",
+        "Use docs/TODO.md as the canonical source for this item's requirement: forecast 1h/6h/24h prices with uncertainty and multi-step output.",
         "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
         "Add a fixture-based regression test that fails before the implementation.",
         "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
@@ -4100,7 +4100,7 @@
         "Keep console, CSV, and JSON outputs aligned with the repo docs."
       ],
       "execution_criteria": [
-        "Use docs/TODO.md as the canonical source for wire prediction commands to the trained-model and forecasting classes.",
+        "Use docs/TODO.md as the canonical source for this item's requirement: wire prediction commands to the trained-model and forecasting classes.",
         "Reuse the repo's existing model/feature pipeline contract so the new behavior reads the same inputs as training.",
         "Add a fixture-based regression test that fails before the implementation.",
         "Keep adjacent prediction, registry, and CLI behavior stable while making the change."
@@ -4856,7 +4856,7 @@
         "Capture exact GitHub Actions run URL and verified head SHA if remote CI is used as closeout proof."
       ],
       "execution_criteria": [
-        "Use docs/cpp_todo.md as the canonical source of truth for the final validation path.",
+        "Use docs/cpp_todo.md as the canonical source of truth for this item's requirement: the final validation path.",
         "Run the documented container and/or CI smoke path against the current repo state.",
         "Capture the validation evidence needed to close the backlog item.",
         "Fail the validation if any documented command, test, or container step does not work."

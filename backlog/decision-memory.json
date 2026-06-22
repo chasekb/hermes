@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Durable decision-memory store for Hermes backlog, workflow, skill, and hook reviews. Keep only redacted execution metadata here so review helpers can turn observations into recommendations.",
-  "updated_at": "2026-06-22T03:31:05.582142+00:00",
+  "updated_at": "2026-06-22T03:42:00.897303+00:00",
   "records": [
     {
       "ts": "2026-06-02T04:51:47Z",
@@ -9007,6 +9007,58 @@
     },
     {
       "ts": "2026-06-22T03:31:05.581009+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T03:41:23.921492+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T03:42:00.896041+00:00",
       "subject_type": "workflow",
       "subject_id": "prompt_caching",
       "expected": "capture prompt caching policy and tune it from durable metrics",

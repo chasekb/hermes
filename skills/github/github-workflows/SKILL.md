@@ -109,6 +109,7 @@ When a repository has no workflow yet, bootstrap one before trying to verify the
 - Missing the distinction between repo setup, PR workflow, and review workflow.
 - Forgetting that issue search can return PRs unless you filter them out.
 - Using `git add -u` when the user asked to commit "all changes": it stages tracked modifications and deletions only, so new skill files/directories remain untracked. Use `git add -A` (or explicitly add new paths) when the request includes new files.
+- When the workspace has generated caches or local state files, inspect `git status` before staging and commit only the files that are meant to be tracked; do not let incidental cache churn ride along with a docs/code change.
 
 ## Verification
 

@@ -76,3 +76,5 @@ Thumbs.db
 /processes.json
 /--help
 /lsp/node_modules/
+/ollama_cloud_models_cache.json
+/provider_models_cache.json
