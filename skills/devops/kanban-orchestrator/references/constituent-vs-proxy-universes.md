@@ -8,6 +8,7 @@ Require the actual constituent symbols, not the ETF or wrapper ticker that track
 
 Examples:
 - Good: Russell 3000 constituent tickers from a constituent CSV / holdings export
+- Good: a live holdings download for IWV, filtered to equity rows, when that is the best public machine-readable route to current Russell 3000 constituents
 - Bad: IWV / VTI / SPY / other ETF wrappers used as a proxy for the universe
 
 ## Acceptance checks

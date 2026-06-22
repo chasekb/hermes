@@ -35,6 +35,12 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
   - https://www.swebench.com/SWE-bench/reference/harness
 - OpenTelemetry, Semantic conventions for generative AI systems
   - https://opentelemetry.io/docs/specs/semconv/gen-ai/
+- OpenTelemetry Semantic Conventions for GenAI repo, metrics and attributes
+  - https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-metrics.md
+  - https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/registry/attributes/gen-ai.md
+- Google ADK docs, Evaluation overview and criteria
+  - https://raw.githubusercontent.com/google/adk-docs/main/docs/evaluate/index.md
+  - https://raw.githubusercontent.com/google/adk-docs/main/docs/evaluate/criteria.md
 - Braintrust, AI agent evaluation framework
   - https://www.braintrust.dev/articles/ai-agent-evaluation-framework
 - Fiddler AI, OpenTelemetry AI observability guide
@@ -50,12 +56,17 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - LangChain harness capabilities
 - SWE-bench harness docs
 - OpenTelemetry GenAI semantic conventions
+- OpenTelemetry Semantic Conventions for GenAI repo
+- Google ADK evaluation overview and criteria
 
 ## Knowledge developed
 - Trace-first evaluation is now more useful than output-only evaluation for agent systems.
 - Reproducibility depends on pinned environments, isolated runs, and stable fixtures.
 - Harnesses are increasingly modular: model, tools, context, approvals, observability, and graders.
 - Evals are best treated as CI gates, not one-off research artifacts.
+- Telemetry is becoming boundary-aware: OpenTelemetry's GenAI conventions now define separate agent-invocation and tool-execution duration histograms plus a requested reasoning-level attribute.
+- ADK's evaluation docs now separate trajectory/tool-use scoring from final-response quality and expose both reference-based and rubric-based criteria for predefined datasets.
+- OpenAI's results guide now treats result surfaces as part of the harness contract: final output, replay history, continuation IDs, and resumable approval state each serve a different operational need.
 
 ## Best practices
 - Start with traces, not a giant prompt blob.
@@ -70,6 +81,7 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - Do not evaluate in drifting or unpinned environments.
 - Do not trust model judges without calibration.
 - Do not ignore latency and cost regressions.
+- Do not collapse the run result to a single final answer when continuation or review state matters.
 
 ## Emerging trends
 - Trajectory-first evaluation is replacing single-turn scoring.
@@ -84,3 +96,9 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 
 ## Maintenance log
 - 2026-06-12: split from the combined research notebook.
+- 2026-06-16: LangChain's Deep Agents harness now spells out four built-in capability groups—execution environment, context management, delegation, and steering—and makes HITL approval via `interrupt_on` explicit.
+- 2026-06-16: Anthropic's Claude Fable 5 launch post again treats harness design as part of the evaluation surface, noting that a minimal harness materially changed a difficult benchmark outcome.
+- 2026-06-18: OpenAI's agent-eval guidance keeps trace grading first for workflow debugging, then datasets and eval runs for repeatability; the trace surface is the right place to catch tool-choice, handoff, and policy regressions before scaling benchmarks.
+- 2026-06-19: OpenAI's orchestration guide now makes the ownership split explicit: use handoffs when a specialist should own the next turn, use `agent.asTool()` when a manager should keep control, and avoid splitting too early because it adds prompts, traces, and approval surfaces.
+- 2026-06-20: OpenTelemetry's GenAI semantic-conventions repo added `gen_ai.invoke_agent.duration`, `gen_ai.execute_tool.duration`, and `gen_ai.request.reasoning.level`; Google ADK's conformance evaluation docs now formalize trajectory/tool-use scoring alongside final-response review.
+- 2026-06-21: OpenAI's results guide now separates final output, replay history, continuation IDs, and resumable approval state; the guardrails guide also notes that approval interruptions can surface after handoffs or inside nested `agent.asTool()` calls, so harnesses need to preserve resumable state across multi-agent workflows.

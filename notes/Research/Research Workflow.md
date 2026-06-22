@@ -32,3 +32,8 @@ Keep Hermes research current without overwriting prior findings.
 ## Daily log
 - 2026-06-12: workflow established; future daily entries append below.
 - 2026-06-12: added the Skill Curation research note and the reusable workflow skill-ification rubric.
+- 2026-06-16: reviewed refreshed LangChain, Google ADK, and OpenTelemetry sources; appended notes on harness capability grouping, per-node fault tolerance, checkpointed interrupts, and deterministic loop/event-loop models.
+- 2026-06-18: reviewed current OpenAI eval guidance, LangChain fault-tolerance/interrupt docs, and Temporal's Agents SDK integration; appended source-backed notes on trace-first evaluation sequencing, retry-vs-error-handler precedence, durable execution, and workflow/activity separation.
+- 2026-06-19: reviewed current OpenAI orchestration and LangGraph fault-tolerance updates; appended source-backed notes on handoffs vs agents-as-tools, over-splitting costs, checkpointed failure provenance, interrupt bypass behavior, and cooperative drain/shutdown.
+- 2026-06-20: reviewed OpenTelemetry GenAI semantic-conventions updates and Google ADK conformance evaluation docs; appended source-backed notes on agent/tool duration metrics, requested reasoning level telemetry, and trajectory-vs-final-response evaluation criteria.
+- 2026-06-21: reviewed refreshed OpenAI results/guardrails docs and LangGraph fault-tolerance updates; appended source-backed notes on result-surface selection, nested approval interruptions, and heartbeat-based idle timeouts.

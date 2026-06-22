@@ -47,6 +47,12 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
   - https://github.com/google/adk-docs/blob/main/docs/agents/workflow-agents/loop-agents.md
 - Google ADK, SequentialAgent
   - https://github.com/google/adk-docs/blob/main/docs/agents/workflow-agents/sequential-agents.md
+- Google ADK docs, Evaluation overview and criteria
+  - https://raw.githubusercontent.com/google/adk-docs/main/docs/evaluate/index.md
+  - https://raw.githubusercontent.com/google/adk-docs/main/docs/evaluate/criteria.md
+- OpenTelemetry Semantic Conventions for GenAI repo, metrics and attributes
+  - https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-metrics.md
+  - https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/registry/attributes/gen-ai.md
 - Temporal blog, OpenAI Agents SDK integration
   - https://temporal.io/blog/announcing-openai-agents-sdk-integration
 
@@ -60,6 +66,8 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
 - LangGraph persistence / interrupts / fault tolerance
 - AutoGen reflection / termination
 - Google ADK loop/sequential agents
+- Google ADK evaluation overview and criteria
+- OpenTelemetry Semantic Conventions for GenAI repo
 - Temporal + OpenAI Agents SDK integration
 
 ## Knowledge developed
@@ -67,6 +75,11 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
 - Tool-use loops should be schema-first and strongly typed.
 - Termination must be semantic plus budget-based, not just a max-turn cap.
 - Durable execution, checkpoints, interrupts, and human-in-the-loop steps are increasingly native primitives.
+- External workflow engines can own the durability layer for long-running agent loops: Temporal's Agents SDK integration frames Workflows as the control plane for loops, branching, and parallelism, while Activities hold the unpredictable calls.
+- Loop telemetry is becoming more granular: OpenTelemetry now exposes separate agent-invocation and tool-execution duration metrics, plus a reasoning-level request attribute.
+- Evaluation guidance is increasingly trajectory-aware: ADK's evaluation docs score tool-use trajectories separately from final responses, which makes loop shape itself an explicit benchmark target.
+- OpenAI's results guide now makes result surfaces first-class loop inputs: continuation history, server-managed IDs, handoff ownership, and resumable approval state are distinct choices.
+- LangGraph now documents progress-resetting idle timeouts and manual `runtime.heartbeat()` calls, which makes liveness signaling part of loop design for long-running async work.
 
 ## Best practices
 - Make termination explicit and bounded.
@@ -74,12 +87,14 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
 - Keep tool schemas strict and typed.
 - Use checkpoints for loops that can pause, resume, or last more than one request.
 - Treat approvals and interrupts as first-class control-flow primitives.
+- Use an external workflow engine when the loop must survive crashes, rate limits, or long pauses without losing orchestration state.
 
 ## Do not dos
 - Do not let loops run without explicit termination criteria.
 - Do not treat iteration caps as success.
 - Do not retry control-flow signals or logic bugs as if they were transient errors.
 - Do not pass untrusted text into privileged developer/system contexts.
+- Do not rely on wall-clock time alone when the node can emit progress signals.
 
 ## Emerging trends
 - Loops are shifting from linear chains to graphs/workflows.
@@ -94,3 +109,8 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
 
 ## Maintenance log
 - 2026-06-12: split from the combined research notebook.
+- 2026-06-16: LangGraph now documents per-node retries, timeouts, and error handlers alongside resume-safe failures and checkpointed interrupts; Google ADK's LoopAgent and runtime event loop reinforce deterministic workflows with explicit termination and event-driven resumption.
+- 2026-06-18: Temporal's Agents SDK integration is in Public Preview and makes Durable Execution the headline loop primitive; LangGraph's fault-tolerance docs also make retry-policy precedence over error handlers explicit and keep clean stop/resume at superstep boundaries.
+- 2026-06-19: LangGraph's fault-tolerance docs now spell out that retry policy runs before node-level error handlers, failure provenance is checkpointed, interrupts bypass both retries and error handlers, and cooperative shutdown via `RunControl.request_drain()` stops after the current superstep and resumes from a checkpoint; these controls require `langgraph>=1.2`.
+- 2026-06-20: OpenTelemetry's GenAI semantic-conventions repo added dedicated agent/tool duration histograms and a requested reasoning-level attribute; Google ADK's conformance docs now make trajectory/tool-use quality a first-class loop-evaluation target.
+- 2026-06-21: OpenAI's results guide now makes continuation surfaces explicit (`finalOutput`/`final_output`, history, `lastAgent`/`last_agent`, `lastResponseId`/`last_response_id`, and `interruptions` + `state`), and LangGraph's fault-tolerance docs add heartbeat-based idle timeouts for long-running async nodes.

@@ -1,24 +1,16 @@
-# GitHub Actions verification checklist
+# CI verification notes for trade repo
 
-Use this when the task is "commit, push, and verify via GitHub Actions".
+Use this when the user wants a push-and-verify flow backed by GitHub Actions.
 
-1. Check auth:
-   - `gh auth status`
-2. Commit the work locally.
-3. Push to the target branch.
-4. Identify the exact workflow run created by the push:
-   - `gh run list --branch main --limit 5`
-5. Verify the run is the pushed commit:
-   - `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt`
-6. If desired, watch until completion:
-   - `gh run watch <run_id> --exit-status`
-   - If the watch command is too chatty or times out, poll with:
-     - `gh run view <run_id> --json status --jq '.status'`
-7. Report the final result with:
-   - workflow run URL
-   - head SHA
-   - conclusion
+Checklist:
+1. Commit and push the branch.
+2. Find the exact run created by that push with `gh run list --branch <branch> --limit <n>`.
+3. Verify the run by exact SHA and URL, not just branch name.
+4. Inspect job-level status when the overall run stays `in_progress` longer than expected.
+5. Prefer `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt` for the authoritative run record.
+6. If `gh run watch` times out or is too noisy, poll with `gh run view` plus short sleeps instead of assuming failure.
 
-Important:
-- A successful run on the same branch is not enough; always confirm the head SHA matches the pushed commit.
-- If `git push` is rejected because the remote moved, rebase onto the remote branch, then push again.
+Observed trade-repo notes:
+- The repo’s Docker Build Validation workflow can keep one backend job in progress long after frontend jobs finish.
+- A successful verification should cite the run URL and the pushed head SHA.
+- Action deprecation warnings in the run log are informational unless they become job failures.

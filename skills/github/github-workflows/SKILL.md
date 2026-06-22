@@ -68,12 +68,18 @@ When the user asks to "push and verify" or "use GitHub Actions to verify":
 
 Preferred commands:
 - `gh run list --branch <branch> --limit <n>` to find the candidate run.
+- Prefer the newest run on the branch and verify its `headSha` matches the commit you just pushed.
 - `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt` to verify the exact run.
-- `gh run watch <run_id> --exit-status` is useful, but if it times out, fall back to polling `gh run view --json status --jq '.status'` until the run completes.
+- `gh run watch <run_id> --exit-status` is useful, but if it times out, fall back to polling `gh run view --json status,conclusion,headSha,url,name,updatedAt` (optionally with short sleeps) until the run completes.
+- If a newer push starts a new run while you are watching an older one, switch to the newest run and verify that SHA instead.
+
+If the repository has no existing GitHub Actions workflows, add a minimal verification workflow first, push it, and then verify the run it creates. In that case, the workflow file itself becomes part of the proof chain.
+
+For large Docker/build matrices, verify both the overall run and the individual jobs; one job can still be running after other jobs and publish steps complete. Report the run URL and pushed head SHA together as the source-of-truth proof.
 
 If a push is rejected because the remote moved, rebase onto the remote branch first and push again. Do not treat the first push as the source of truth when GitHub shows a newer remote head.
 
-Reference: `references/ci-verification.md` for a compact checklist and command sequence.
+Reference: `references/ci-verification.md` for a compact checklist and command sequence. See also `references/ci-verification-no-workflow.md` for the "bootstrap a workflow, then verify it" case. For long-running push verifications, see `references/remote-build-monitoring.md` (stop local builds first, then verify the exact run for the pushed SHA). If the workflow list is empty, inspect `.github/workflows/` in the repo before assuming GitHub auth or Actions is broken.
 
 ## 4. Reviews and issues
 
@@ -87,6 +93,8 @@ Use this lane for:
 Separate "pre-commit review of my changes" from "PR review of someone else's changes" even though both are review workflows.
 
 ## 5. Practical verification pattern
+
+When a repository has no workflow yet, bootstrap one before trying to verify the push. The proof chain is: workflow file in the push, run created by that push, run URL, head SHA, final success.
 
 1. Auth is valid.
 2. Remote and branch state are known.

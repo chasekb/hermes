@@ -85,6 +85,9 @@ See `references/github-actions-remote-build-proof.md` for the shortest checklist
 - If the launch fails with `manifest unknown`, treat it as a tag mismatch first: confirm the exact image tag exists with `podman manifest inspect <image:tag>` before touching compose, and remember that a shell variable like `TAG=dev` only matters if the compose template actually references it.
 - For in-repo Python services, prefer mounting the repository root and launching with `python -m package.module` so imports resolve consistently inside containers.
 - When a host-bound service answers on the expected port but returns the wrong API, verify the port owner before changing code; a port conflict can look like an application regression.
+- For VPN-gateway + downstream-DNS compose stacks, check whether the gateway is publishing host port 53 while a child DNS service also needs it. If so, remove the gateway's host 53 bindings first, then re-run the stack and only add explicit internal DNS routing (for example `DNS_ADDRESS=127.0.0.1`) if the gateway's own healthcheck still needs a local resolver.
+- If a compose stack is nested under another stack or launched from a different working directory, inspect the live container labels (`com.docker.compose.project`, `com.docker.compose.project.working_dir`, and `com.docker.compose.project.config_files`) to locate and edit the owning compose file before restarting; don't assume the current shell directory is the source of truth.
+- After removing a port-binding conflict, re-check both the port map and the service logs: a stack may stop fighting for the host port yet still be unhealthy because a secondary healthcheck or DNS loop is now exposed.
 - When the build log shows `identifier is not a container` or a missing backend dependency after an unpack failure, treat it as fallout from the earlier image/volume failure and fix the first explicit error instead of chasing the cleanup noise.
 - When pruning local artifacts, remove only transient build layers/images/cache unless the user explicitly approves data-directory removal.
 - If Podman fails while unpacking images or building layers with `no space left on device`, check rootless storage pressure first; prune dangling images and builder cache before changing compose or code.
@@ -136,9 +139,11 @@ See `references/github-actions-remote-build-proof.md` for the shortest checklist
 - See references/podman-vcpkg-download-fallbacks.md for vcpkg archive-download fallbacks, codeload usage, and exact-artifact cache seeding.
 - See references/vcpkg-release-host-triplet.md for the host-triplet/release-only triplet pattern that removes debug host packages from the install plan.
 - See references/rootless-podman-vcpkg-concurrency.md for the protobuf/vcpkg concurrency workaround on resource-limited rootless Podman builders.
+- See `references/tmux-capture-and-local-tags.md` for the failure-window capture recipe, local-tag verification, and Podman storage-exhaustion triage.
 - See references/tmux-capture-and-local-tags.md for the failure-window capture recipe, local-tag verification, and Podman storage-exhaustion triage.
+- See `references/tmux-port-conflict-and-stack-restart.md` for the tmux-captured port-53 conflict pattern, DNS reroute, and restart verification sequence.
 - See `references/cleanup-boundaries.md` for the protected-path and live-data cleanup policy that keeps runtime state out of routine artifact removal.
-- See `references/podman-postgres-compose-hardware-tuning.md` for the verified Postgres/Metabase compose tuning used on a 16 GiB Apple Silicon host running rootless Podman.
+
 - See `references/risky-change-gates.md` for the practical budget, eval, and rollback gate used when a container/debug fix changes behavior.
 - See `references/transformer-onnx-artifact-validation.md` for the trade-repo lesson on validating generated ML artifacts after containerized training, including a real packaged-transformer reload failure where the export was valid but the runtime package still failed activation until the layout/config contract was aligned and stale package dirs were removed.
 - See `references/transformer-runtime-package-activation-failure.md` for the concise session note covering tmux failure-window capture, production-helper smoke-test wiring, test-target linkage, and merge-to-dev CI verification for the same incident.

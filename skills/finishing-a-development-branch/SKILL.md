@@ -15,6 +15,14 @@ Guide completion of development work by presenting clear options and handling ch
 
 ## The Process
 
+### Step 0: If the work is backlog-driven
+
+When the user says to "complete" or "close" open backlog items, treat that as a branch-finish workflow, not just a code-change request:
+- Identify the live backlog items first.
+- Convert them into concrete implementation targets before editing.
+- Keep the feature branch alive until local verification and remote build proof are both complete.
+- Close the backlog entry only after the implementation and verification evidence exist.
+
 ### Step 1: Verify Tests
 
 **Before presenting options, verify tests pass:**
@@ -40,6 +48,12 @@ Stop. Don't proceed to Step 2.
 ### Step 2: Detect Environment
 
 **Determine workspace state before presenting options:**
+
+If the user explicitly wants a development branch workflow, keep the branch alive until the remote build is verified and the user confirms the next integration step.
+
+If a GitHub Actions build is required, use the verification pattern in `references/github-actions-verification.md`.
+- Prefer `gh run list` and `gh run view` for final proof; `gh run watch` is only for live status.
+- If `gh run watch` exits early or can't fetch annotations, do not infer failure from that alone.
 
 ```bash
 GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
@@ -192,6 +206,8 @@ git worktree prune  # Self-healing: clean up any stale registrations
 **Otherwise:** The host environment (harness) owns this workspace. Do NOT remove it. If your platform provides a workspace-exit tool, use it. Otherwise, leave the workspace in place.
 
 ## Quick Reference
+
+- Backlog-driven work should not be marked complete until the corresponding feature branch is verified locally and remotely.
 
 | Option | Merge | Push | Keep Worktree | Cleanup Branch |
 |--------|-------|------|---------------|----------------|

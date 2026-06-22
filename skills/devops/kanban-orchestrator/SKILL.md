@@ -63,6 +63,8 @@ If the work starts from a Hermes project backlog item, preserve the backlog item
 
 When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
 
+For project-specific backlog items, include an explicit `project_id` and keep it consistent with the board / repo scope. When the user asks for an open project backlog, read the live JSON and filter on both `project_id` and `status != "closed"` rather than relying on the thread summary.
+
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
 When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
@@ -73,6 +75,7 @@ Pointer: `references/open-backlog-display.md` — for live backlog checks, re-re
 Pointer: `references/project-backlog-recommendation-template.md` — concise checklist/template for durable backlog recommendations with execution and closeout criteria.
 Pointer: `references/research-gap-analysis-and-activity-tracking.md` — concrete patterns for best-practice gap analyses, checklist-based activity tracking, and closure via durable note artifacts.
 Pointer: `references/constituent-vs-proxy-universes.md` — use when a backlog item asks for a stock universe or index universe; it records the anti-proxy rule and acceptance checks.
+Pointer: `references/russell-3000-source-notes.md` — worked example for current Russell 3000 constituent retrieval, fixture parsing, and proxy-free validation.
 Pointer: `references/project-status-snapshot.md` — when the user asks for the Hermes project backlog or project status, show both the live backlog and the current kanban board snapshot together.
 
 When a backlog item spans telemetry, prompt caching, local RAG, or note-layer workflows, inspect the live runtime/config surfaces first (`config.yaml`, `agent-hooks/hook_router.py`, `backlog/backlog.json`) and then update the supporting references. Do not treat the backlog entry as implemented until the runtime surface has been verified.
@@ -94,6 +97,7 @@ Bridge docs:
 - `references/public-skill-survey-gate.md`
 - `references/project-status-snapshot.md`
 - `references/transform-project-backlog-intake.md` — transform repo wrapper and intake payload shape (`title` is required).
+- `references/transform-backlog-splitting-patterns.md` — session-derived guidance for splitting transform runtime, parallelism, and caching work into separate recommendations.
 
 Bridge helpers:
 - `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
@@ -118,8 +122,9 @@ Order of operations:
 ## When to use the board (vs. just doing the work)
 
 Use the board as the execution layer for work that should survive restarts, needs fan-out, or benefits from durable handoff. If the project also has a project backlog, treat that backlog as the source of truth for intake/spec state and Kanban as the execution surface.
-
-See `references/project-backlog-model.md` for the project-backlog pattern (criteria live in the backlog item; Kanban carries the runnable slice and completion evidence).
+Pointer: `references/project-backlog-recommendation-template.md` — concise checklist/template for durable backlog recommendations with execution and closeout criteria.
+Pointer: `references/live-database-review-pattern.md` — how to verify the exact live database/schema, capture counts and freshness, and fold the evidence back into backlog intake.
+Pointer: `references/project-backlog-model.md` — project-backlog pattern (criteria live in the backlog item; Kanban carries the runnable slice and completion evidence).
 
 Create Kanban tasks when any of these are true:
 

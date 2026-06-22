@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Durable decision-memory store for Hermes backlog, workflow, skill, and hook reviews. Keep only redacted execution metadata here so review helpers can turn observations into recommendations.",
-  "updated_at": "2026-06-13T04:18:31.139224+00:00",
+  "updated_at": "2026-06-22T03:03:42.293735+00:00",
   "records": [
     {
       "ts": "2026-06-02T04:51:47Z",
@@ -3741,6 +3741,4814 @@
     },
     {
       "ts": "2026-06-13T04:18:31.138472+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-13T05:01:04.816327+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:12:13.225568+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260612_235335_951f9b"
+    },
+    {
+      "ts": "2026-06-14T22:16:48.349087+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260608_124619_d1cc87"
+    },
+    {
+      "ts": "2026-06-14T22:24:28.575002+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:24:28.605582+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:24:28.635187+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:24:49.959249+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:24:49.990818+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:26:35.461326+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260614_172625_570ef4"
+    },
+    {
+      "ts": "2026-06-14T22:30:15.737808+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:35:40.679604+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260614_173516_cbb780"
+    },
+    {
+      "ts": "2026-06-14T22:39:34.231544+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T22:42:58.310468+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T23:33:22.261745+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-14T23:53:43.948696+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T00:12:56.325753+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T01:48:45.257134+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T04:09:19.942663+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T04:19:25.688238+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260614_231856_1c822a"
+    },
+    {
+      "ts": "2026-06-15T07:09:30.238294+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260615_020917_82b2e1"
+    },
+    {
+      "ts": "2026-06-15T13:19:23.901530+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260615_020829_66128d"
+    },
+    {
+      "ts": "2026-06-15T17:57:03.945831+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260615_125359_aa9f4e"
+    },
+    {
+      "ts": "2026-06-15T21:16:39.004201+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T21:16:39.041023+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T21:25:16.744285+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T21:31:15.611630+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-15T21:33:12.549939+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260615_163108_e454af",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-15T21:33:12.575061+00:00",
+      "subject_type": "note",
+      "subject_id": ".",
+      "expected": "link_follow note event",
+      "observed": "search_files -> .",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:.",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": ".",
+      "session_id": "20260615_163108_e454af",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-15T21:44:27.019215+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T04:40:03.129586+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260615_020938_995aff"
+    },
+    {
+      "ts": "2026-06-16T04:47:17.615283+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T04:55:59.506545+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T05:03:38.519156+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T05:35:52.086507+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T05:38:53.664375+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T05:53:14.807299+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T05:58:26.467360+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T06:12:25.918094+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T06:22:27.072771+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T06:31:29.491685+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T13:01:21.355097+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260616_080054"
+    },
+    {
+      "ts": "2026-06-16T13:01:29.009420+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:01:29.025736+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:01:29.028452+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:01:29.043583+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:01:29.045510+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:01:29.097942+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:04:35.004600+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:04:35.009090+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:04:35.031412+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:04:35.070339+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:04:35.095647+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:05:20.723606+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:05:20.727094+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:05:20.772820+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:05:20.813519+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:05:27.923052+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:06:17.788216+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:06:39.856141+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:09:20.305839+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T13:09:20.343488+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260616_080054",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-16T17:49:53.659276+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T18:22:01.901893+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T18:36:45.143498+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T19:06:04.824651+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T19:20:46.278180+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_141756_b19e29"
+    },
+    {
+      "ts": "2026-06-16T19:30:43.262987+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-16T19:53:54.760245+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_135143_706e79"
+    },
+    {
+      "ts": "2026-06-16T20:51:38.746483+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-17T13:13:15.719538+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260617_081121"
+    },
+    {
+      "ts": "2026-06-17T17:50:41.279603+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-17T20:26:12.588975+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-17T20:27:50.953251+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_000025_48cc53"
+    },
+    {
+      "ts": "2026-06-17T20:35:27.255946+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-17T20:51:27.476485+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T02:50:38.653234+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260617_171149_4196b7"
+    },
+    {
+      "ts": "2026-06-18T02:51:19.938837+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260617_215048_10ba2c"
+    },
+    {
+      "ts": "2026-06-18T03:00:58.797900+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T03:18:31.336787+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T13:00:37.275722+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260618_080036"
+    },
+    {
+      "ts": "2026-06-18T13:00:46.386472+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:00:46.395747+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:00:46.404083+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:00:46.417741+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:00:46.426543+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:02:48.458915+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:02:48.485254+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:02:48.506438+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:02:48.521896+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:03:40.641823+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:03:40.649025+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:03:40.660955+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:03:40.671854+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:20.798795+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:26.681516+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:26.690248+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:26.694158+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:26.718182+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:26.724413+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T13:04:31.074706+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260618_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-18T15:53:19.845604+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T15:59:35.262154+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260618_105922_7fe6c7"
+    },
+    {
+      "ts": "2026-06-18T15:59:51.033588+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260617_221913_e0b92b"
+    },
+    {
+      "ts": "2026-06-18T16:00:05.940273+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_125050_ec7e8b"
+    },
+    {
+      "ts": "2026-06-18T16:00:37.632794+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_152441_2d88ab"
+    },
+    {
+      "ts": "2026-06-18T16:01:18.741429+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260618_110108_6a7bc4"
+    },
+    {
+      "ts": "2026-06-18T16:04:16.061181+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260616_125050_ec7e8b"
+    },
+    {
+      "ts": "2026-06-18T16:07:06.146041+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "20260618_110654_e3f3c7"
+    },
+    {
+      "ts": "2026-06-18T16:08:07.421197+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T17:59:31.668344+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T18:01:53.510661+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T18:04:19.517797+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-18T18:47:32.481725+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-19T13:00:54.432379+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260619_080028"
+    },
+    {
+      "ts": "2026-06-19T13:01:02.257890+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-19T13:01:02.267797+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-19T13:01:02.273474+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-19T13:01:02.283978+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-19T13:01:02.292948+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-19T13:01:02.318348+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "cron_21e481612226_20260619_080028",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T01:55:55.746513+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-20T02:33:43.187265+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-20T02:43:31.732218+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-20T03:38:46.545941+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-20T13:00:05.704011+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260620_080004"
+    },
+    {
+      "ts": "2026-06-20T13:00:12.839731+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:00:12.857083+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:00:12.865294+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:00:12.873303+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:00:12.879445+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:00:12.889929+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:21.850945+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:21.873965+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:21.903915+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:21.910409+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:35.535621+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:35.668554+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:41.062991+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:03:41.101837+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:19.641336+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:25.709246+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:34.380890+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:38.457895+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:44.830580+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:50.086425+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:54.836413+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:04:59.728434+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:04.075040+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:07.418585+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:12.939288+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:18.629615+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:22.545465+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:27.493233+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:35.265480+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:39.547071+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:54.526379+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:55.925802+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:57.317046+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:58.533814+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:05:59.931562+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:06:14.208040+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:06:15.576543+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:06:16.909372+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:06:23.244366+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-20T13:06:26.885616+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260620_080004",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:37.181646+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": "cron_21e481612226_20260621_080036"
+    },
+    {
+      "ts": "2026-06-21T13:00:45.233443+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.239685+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.272492+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.278696+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.303993+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.317025+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:00:45.361789+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:02.750171+00:00",
+      "subject_type": "note",
+      "subject_id": "Research",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Research",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:50.061989+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:50.104270+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:50.119160+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:50.151105+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:03:57.248892+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:04:02.418755+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "update note event",
+      "observed": "patch -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:patch"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "update",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:04:09.474645+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:04:09.530754+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:04:09.534117+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-21T13:04:09.549006+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260621_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-06-22T02:03:59.629002+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T02:36:50.889283+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T02:36:50.927025+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T02:36:50.959928+00:00",
+      "subject_type": "workflow",
+      "subject_id": "prompt_caching",
+      "expected": "capture prompt caching policy and tune it from durable metrics",
+      "observed": "source=agent_init | provider=openai-codex | model=gpt-5.4-mini | cache=False | native_layout=False | ttl=5m",
+      "outcome": "monitor",
+      "recommendation": "review cache layout / ttl",
+      "evidence": [
+        "agent/agent_init.py",
+        "agent/agent_runtime_helpers.py",
+        "run_agent.py"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "source": "agent_init",
+      "provider": "openai-codex",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://chatgpt.com/backend-api/codex",
+      "use_prompt_caching": false,
+      "use_native_cache_layout": false,
+      "cache_ttl": "5m",
+      "session_id": ""
+    },
+    {
+      "ts": "2026-06-22T03:03:42.291766+00:00",
       "subject_type": "workflow",
       "subject_id": "prompt_caching",
       "expected": "capture prompt caching policy and tune it from durable metrics",

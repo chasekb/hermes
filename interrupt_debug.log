@@ -34,3 +34,11 @@
 10:27:55 interrupt fired: msg='stop', children=0, parent._interrupt=True
 23:52:24 ENTER: queued interrupt msg='commit and push all changes to initiate remote build. use gi', agent_running=True
 23:52:24 interrupt fired: msg='commit and push all changes to initiate remote build. use gi', children=0, parent._interrupt=True
+20:02:04 ENTER: queued interrupt msg='clean up the remaining untracked docs from the earlier subag', agent_running=True
+20:02:04 interrupt fired: msg='clean up the remaining untracked docs from the earlier subag', children=0, parent._interrupt=True
+12:19:05 ENTER: queued interrupt msg='stop building locally. remove all build artifacts. commit an', agent_running=True
+12:19:05 interrupt fired: msg='stop building locally. remove all build artifacts. commit an', children=0, parent._interrupt=True
+14:23:55 interrupt fired: msg='connect to the database or use the mcp server to review the ', children=0, parent._interrupt=True
+14:23:55 ENTER: queued interrupt msg='connect to the database or use the mcp server to review the ', agent_running=True
+14:25:37 ENTER: queued interrupt msg='focus on the db-postgres database and not the cohida-db', agent_running=True
+14:25:37 interrupt fired: msg='focus on the db-postgres database and not the cohida-db', children=0, parent._interrupt=True
