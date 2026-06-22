@@ -44,9 +44,17 @@
 /state-snapshots/
 /node_modules/
 /venv/
-/.venv/
+/.venv
 /hermes-agent/
 /bin/
+
+# Local generated state from Hermes tooling.
+/channel_directory.json
+/gateway.lock
+/gateway.pid
+/gateway_state.json
+/kanban.db.dispatch.lock
+/skills/.curator_backups/
 
 # Editor / OS clutter.
 .DS_Store
