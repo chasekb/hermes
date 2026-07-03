@@ -67,19 +67,30 @@ For project-specific backlog items, include an explicit `project_id` and keep it
 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
-When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
+For capability-surface research items (for example knowledge-graph integration, memory backends, or hook/rule/workflow coordination), use a survey-first gate before proposing new surfaces. Compare installed skills, workflow registry entries, hooks/config, memory/retrieval layers, and existing notes/backlog artifacts, then write the gap analysis as present / partial / missing rather than as a vague brainstorm. See `references/capability-surface-survey-gate.md`.
+
+For DB / compose / Postgres performance items, require an explicit hardware inventory, a baseline measurement on the current compose file, and a mixed read/write benchmark against the candidate config. Treat a “2x write throughput” claim as a target to validate, not a promise; the recommendation must say how read throughput and p95 latency will be protected. See `references/db-throughput-tuning-intake.md` for the reusable checklist.
+
+When the user asks to show the open Hermes backlog or a project-scoped backlog, read the live JSON first, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Re-read the file instead of relying on a stale chat summary if it may have changed.
+
+For a project-scoped request like `project_id=trade`, explicitly state the item count and status mix, and if there are no live Kanban tasks for that project say so separately instead of implying the board is empty or fabricating a board snapshot.
 
 If the requested project has no live `project_id` matches in `~/.hermes/backlog/backlog.json`, say so explicitly and then fall back to repo-local backlog documents for that project when they exist (for example `docs/TODO.md`, `docs/cpp_todo.md`). Keep the live Hermes backlog and the repo-local backlog separate so the user can tell whether the work exists as durable Hermes intake or only as documentation.
 
 If the proposal introduces a new Hermes skill, MCP server, rule, or workflow, route a subagent-led survey first and capture the reusable findings in `references/public-skill-survey-gate.md` before creating implementation cards.
 
 Pointer: `references/open-backlog-display.md` — for live backlog checks, re-read `backlog/backlog.json` and filter `status != "closed"`; do not rely on a stale chat summary.
+Pointer: `references/project-backlog-display-and-fallback.md` — clarifies the live Hermes project backlog display pattern: filter by `project_id`, treat `archived` as still-open for display unless the user explicitly wants only actionable items, and fall back to repo-local docs when a project has no live matches.
 Pointer: `references/repo-local-backlog-fallback.md` — use when the live Hermes backlog has no matching project rows and you need to summarize repo-local backlog docs separately.
 Pointer: `references/project-backlog-recommendation-template.md` — concise checklist/template for durable backlog recommendations with execution and closeout criteria.
+Pointer: `references/time-series-analysis-backlog-intake.md` — use for backlog items about time-series, spectral, or Fourier analysis; it captures lineage, preprocessing, and negative-control requirements.
 Pointer: `references/research-gap-analysis-and-activity-tracking.md` — concrete patterns for best-practice gap analyses, checklist-based activity tracking, and closure via durable note artifacts.
 Pointer: `references/constituent-vs-proxy-universes.md` — use when a backlog item asks for a stock universe or index universe; it records the anti-proxy rule and acceptance checks.
 Pointer: `references/russell-3000-source-notes.md` — worked example for current Russell 3000 constituent retrieval, fixture parsing, and proxy-free validation.
 Pointer: `references/project-status-snapshot.md` — when the user asks for the Hermes project backlog or project status, show both the live backlog and the current kanban board snapshot together.
+Pointer: `references/research-note-closeout.md` — use when a research-oriented backlog item resolves into a durable note or matrix; close only after the note is indexed from the project MOC and the decision log is updated.
+
+When a backlog item is about data analysis rather than code changes, require the recommendation to name the canonical tables, the derived-table lineage, the preprocessing / normalization pipeline, and at least one negative-control or counterexample. That keeps the item falsifiable before implementation starts.
 
 When a backlog item spans telemetry, prompt caching, local RAG, or note-layer workflows, inspect the live runtime/config surfaces first (`config.yaml`, `agent-hooks/hook_router.py`, `backlog/backlog.json`) and then update the supporting references. Do not treat the backlog entry as implemented until the runtime surface has been verified.
 
@@ -101,7 +112,9 @@ Bridge docs:
 - `references/project-status-snapshot.md`
 - `references/cohida-backlog-import.md` — repo-backlog-to-live-Hermes import pattern, including project-scoped criteria and sequential ids.
 - `references/transform-project-backlog-intake.md` — transform repo wrapper and intake payload shape (`title` is required).
+- `references/transform-backlog-closeout.md` — transform repo backlog completion and verification sequence.
 - `references/transform-backlog-splitting-patterns.md` — session-derived guidance for splitting transform runtime, parallelism, and caching work into separate recommendations.
+- `references/transform-pipeline-metrics-hardware-utilization.md` — pipeline-metrics backlog intake pattern for CPU / I/O saturation work, including multi-agent lane shape and closeout checks.
 
 Bridge helpers:
 - `scripts/backlog_to_kanban.py` (render payloads or apply them to a Kanban board with `--apply --board <slug>`)
@@ -163,7 +176,13 @@ When the user asks to turn a feature request into a new backlog recommendation, 
 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
 
-When the user asks to show the open Hermes backlog, read the live JSON, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Do not rely on a stale chat summary if the file has been edited or restored recently; re-read the file first.
+For capability-surface research items (for example knowledge-graph integration, memory backends, or hook/rule/workflow coordination), use a survey-first gate before proposing new surfaces. Compare installed skills, workflow registry entries, hooks/config, memory/retrieval layers, and existing notes/backlog artifacts, then write the gap analysis as present / partial / missing rather than as a vague brainstorm. See `references/capability-surface-survey-gate.md`.
+
+For DB / compose / Postgres performance items, require an explicit hardware inventory, a baseline measurement on the current compose file, and a mixed read/write benchmark against the candidate config. Treat a “2x write throughput” claim as a target to validate, not a promise; the recommendation must say how read throughput and p95 latency will be protected. See `references/db-throughput-tuning-intake.md` for the reusable checklist.
+
+When the user asks to show the open Hermes backlog or a project-scoped backlog, read the live JSON first, filter for items whose status is not `closed`, and report a concise id / priority / status / title list. Re-read the file instead of relying on a stale chat summary if it may have changed.
+
+For a project-scoped request like `project_id=trade`, explicitly state the item count and status mix, and if there are no live Kanban tasks for that project say so separately instead of implying the board is empty or fabricating a board snapshot.
 
 If the requested project has no live `project_id` matches in `~/.hermes/backlog/backlog.json`, say so explicitly and then fall back to repo-local backlog documents for that project when they exist (for example `docs/TODO.md`, `docs/cpp_todo.md`). Keep the live Hermes backlog and the repo-local backlog separate so the user can tell whether the work exists as durable Hermes intake or only as documentation.
 

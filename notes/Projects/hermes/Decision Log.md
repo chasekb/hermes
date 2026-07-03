@@ -15,6 +15,8 @@ updated_at: 2026-06-12T00:00:00Z
 - Use `[[Harness Loop Gap Analysis]]` as the durable gap-analysis record for harness and loop engineering research.
 - Keep `subagent-driven-development` as a compatibility alias only; the canonical guidance lives in `software-development-workflows`.
 - Keep the Obsidian vault anchored at `~/.hermes/notes` and use the vault-activation checklist when verifying fresh shells or bootstrap state.
+- Use `[[Capability Surface Survey]]` as the durable comparison record for memory, hook, workflow, and retrieval-surface questions.
+- Use `[[Prompt Structuring and Free-Model Delegation Strategy]]` as the durable routing record for frontier-vs-free-model decisions.
 
 ## Follow-up
 - Add or update linked notes only when they are directly relevant to a task or decision.

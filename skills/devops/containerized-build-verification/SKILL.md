@@ -12,6 +12,8 @@ Use this skill when a task involves:
 - pushing a fix and confirming success in CI
 - stopping a local build and cleaning up only transient artifacts
 
+This umbrella now also absorbs the narrower container-image-release and tmux-remote-container-triage workflows.
+
 ## Core workflow
 
 1. Identify the current execution mode.
@@ -51,8 +53,18 @@ Use this skill when a task involves:
 - If the user explicitly asks to use GitHub Actions to verify build completion, follow the remote-only proof pattern instead of doing a local build first.
 - When merging a fix to `dev`, verify the workflow run created by the merge commit on `dev` itself; if `gh pr merge` fails because the branches have diverged or fast-forwarding is impossible, merge through the GitHub API and then re-anchor CI verification to the merge commit SHA.
 - When a CI failure is a link-time failure after changing a smoke test to call a production helper, inspect the test target’s source list and linked libraries before touching the app code. A common cause is the test compiling the new call site without linking the implementation file or transitive dependency library.
+- If the runtime error is a compile failure in a call site that still constructs a now-singleton service, update the caller to use the service accessor rather than forcing a private constructor.
 - If a smoke test only exported the raw artifact but the production flow writes a config/metadata sidecar too, switch the test to the same higher-level packaging helper used in production so the runtime package is exercised end-to-end.
 - See `references/no-workflow-no-run-verification.md` for the short checklist when workflow inventory is zero or `gh run list` comes back empty.
+
+## Release-image alignment
+Use this lane when local compose defaults have to match published container images.
+- Inspect the workflow file first so the published registry path and tags are authoritative.
+- Confirm the resolved compose `image:` values before changing code or build flags.
+- Treat `manifest unknown` and unexpected pull attempts as tag mismatches until proven otherwise.
+- Keep local build tags and remote publish tags in sync so `up --no-build` reuses the intended artifact.
+- See `references/long-running-compose-build-capture.md` and the local image-tag references for the concrete Podman examples.
+
 
 ### Polling discipline for long builds
 
@@ -70,6 +82,13 @@ Use this skill when a task involves:
 
 See `references/github-actions-remote-build-proof.md` for the shortest checklist when the user only wants GitHub Actions as proof of build completion.
 
+## Remote tmux / SSH triage
+Use this lane when the failure is visible in tmux, an SSH shell, or a remote container host.
+- Capture from the live pane and anchor on the last clear launch marker, not on old scrollback.
+- Identify the owning process, container, or port binding before editing compose or app code.
+- Separate host-port conflicts from container-internal failures before making a fix.
+- Re-capture the same pane after the change to prove the live error is gone.
+
 ## Local container-debugging rules
 
 - Separate environment wiring problems from application bugs.
@@ -79,6 +98,8 @@ See `references/github-actions-remote-build-proof.md` for the shortest checklist
 - For background builds, stop the process cleanly when the user asks; do not keep iterating in the background.
 - When a compose stack is intended to use local images with `up --no-build`, make the image names explicit local tags (for example `trade-cpp-backend:dev` / `trade-frontend:dev`) and verify the rendered config with `podman-compose config` before launching. Otherwise Compose may try to pull registry tags again and fail during unpacking or dependency resolution.
 - When the user asks for a tmux capture "since" a launch command or marker, anchor the capture at the last exact occurrence of that command (for example `TAG=dev podman-compose up --no-build`) and read forward from there; do not summarize from older boot noise.
+- If a compose build stays alive but stops printing, check the parent `podman-compose`/`podman build` process state and local image tags before calling it hung. Long native dependency builds can be quiet for a long time while still progressing.
+- Multi-service builds can finish asymmetrically: one image may tag successfully while another service is still compiling dependencies. Verify the specific target image exists locally before concluding the stack failed.
 - If a model-load warning is emitted after training but the service still has enough context to answer with degraded defaults, prefer an explicit fallback response over turning the warning into a request-level hard error; surface `models_ready=false` plus a warning field so the UI can continue.
 - For simulated-trading dashboards, treat a "trained but empty widgets" report as a backend-liveness and request-shape problem first: verify `/api/simulated-trading/status`, inspect the live order-book request payload, and check the worker loop for per-tick exceptions before changing frontend polling code.
 - If `podman-compose config` looks correct but a launch still tries to pull from a registry, inspect the exported image override variables (`CPP_BACKEND_IMAGE`, `FRONTEND_IMAGE`, etc.) and compare them against `podman images` / `podman image exists` results before changing code.
@@ -131,6 +152,7 @@ See `references/github-actions-remote-build-proof.md` for the shortest checklist
 - See `references/ci-playbook.md` for a concise playbook covering tmux log capture, CI run checks, and cleanup/verification patterns.
 - See `references/github-actions-remote-build-proof.md` for the shortest checklist when the user only wants GitHub Actions as proof of build completion.
 - See `references/db-auth-tmux-debugging.md` for a compact example of resolving a container DB auth mismatch discovered through tmux log capture.
+- See `references/long-running-compose-build-capture.md` for the tmux anchor + long-running Podman/compose build verification pattern from a live trade-stack session.
 
 - See references/podman-compose-build-fallbacks.md for a focused checklist on local-tag verification, upstream fetch fallbacks, and disabling nonessential build cache submission in container builds.
 - See references/podman-local-image-aliasing.md for a concise note on Podman image aliasing, rendered compose verification, and avoiding accidental registry pulls from local dev stacks.

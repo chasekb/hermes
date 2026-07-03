@@ -15,12 +15,15 @@ metadata:
 
 Use this umbrella when the task spans the GitHub lifecycle end to end: authentication, repository setup, pull requests, code review, issue triage, release flows, and GitHub Actions verification.
 
+This umbrella replaces narrower standalone skills for GitHub auth, repository management, pull request workflow, code review, issue triage, and push-triggered build verification.
+
 This skill absorbs the narrower GitHub workflow skills that used to be split apart:
 - GitHub auth setup
 - Repository creation, fork, and remote management
 - Pull request lifecycle and CI monitoring
 - PR / local code review
 - Issue creation and triage
+- Push-triggered build verification for the exact commit SHA
 
 ## Core rule
 
@@ -77,6 +80,20 @@ If the repository has no existing GitHub Actions workflows, add a minimal verifi
 
 For large Docker/build matrices, verify both the overall run and the individual jobs; one job can still be running after other jobs and publish steps complete. Report the run URL and pushed head SHA together as the source-of-truth proof.
 
+When a workflow looks “mostly done” but the run is still `in_progress`, keep polling the exact run instead of assuming success from partial job completion. In Docker matrices, frontend and manifest/publish jobs may complete while backend jobs remain active for several more minutes.
+
+For long-running push builds, avoid a blanket `cancel-in-progress: true` if a later push would routinely kill a still-valid backend build. Prefer canceling pull request runs, but let protected branch push runs finish so GitHub Actions can produce a real source-of-truth result.
+
+Reference: `references/remote-build-monitoring.md` for the matrix-run polling checklist and safe generated-artifact cleanup notes, and `references/ci-workflow-auth.md` for workflow-file push auth scope and SSH fallback notes.
+
+If you need to keep waiting without blocking the turn, use a background `gh run watch <run_id> --exit-status` watcher and then confirm the final state with `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt` before reporting success.
+
+Important nuance from a live run: `gh run watch` is a convenience for monitoring, not proof. The proof is the exact run object for the pushed SHA. If a sibling PR run exists on the same commit, do not use it as evidence for the push run.
+
+If duplicate runs on the same SHA are clogging the queue, it can be appropriate to cancel only the stale duplicates that are blocking the intended verification path, then continue tracking the push run by id until GitHub marks it complete.
+
+Reference: `references/remote-build-monitoring.md` for the matrix-run polling checklist and safe generated-artifact cleanup notes. See also `references/remote-build-monitoring-session-notes.md` for session-derived reminders about exact-SHA verification and duplicate-run triage.
+
 If a push is rejected because the remote moved, rebase onto the remote branch first and push again. Do not treat the first push as the source of truth when GitHub shows a newer remote head.
 
 Reference: `references/ci-verification.md` for a compact checklist and command sequence. See also `references/ci-verification-no-workflow.md` for the "bootstrap a workflow, then verify it" case. For long-running push verifications, see `references/remote-build-monitoring.md` (stop local builds first, then verify the exact run for the pushed SHA). If the workflow list is empty, inspect `.github/workflows/` in the repo before assuming GitHub auth or Actions is broken.
@@ -109,7 +126,15 @@ When a repository has no workflow yet, bootstrap one before trying to verify the
 - Missing the distinction between repo setup, PR workflow, and review workflow.
 - Forgetting that issue search can return PRs unless you filter them out.
 - Using `git add -u` when the user asked to commit "all changes": it stages tracked modifications and deletions only, so new skill files/directories remain untracked. Use `git add -A` (or explicitly add new paths) when the request includes new files.
+- When a workflow edit only changes `.github/workflows/*`, re-check GitHub auth scope and be ready to push over SSH if the HTTPS token lacks workflow-file permissions.
+- For long-running backend Docker matrices, do not blanket-cancel branch pushes; cancel PR reruns only and let push builds finish so the real source-of-truth run can complete.
+- If a frontend Docker build succeeds in the builder stage but fails while copying `.next/standalone` into the runner image with a `BlobNotFound`/missing blob error from `productionresultssa*.blob.core.windows.net`, treat it as a flaky GitHub Actions cache artifact failure. Disable the `gha` cache path or rerun without cache before chasing app-code changes.
 - When the workspace has generated caches or local state files, inspect `git status` before staging and commit only the files that are meant to be tracked; do not let incidental cache churn ride along with a docs/code change.
+
+## Reference files
+
+- `references/ci-workflow-auth-and-long-runs.md` — workflow-file auth scope and safe long-run CI cancellation notes.
+- `references/docker-build-cache-blob-failure.md` — BuildKit cache-blob failure pattern and cache-free workaround for frontend image builds.
 
 ## Verification
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T03:41:37Z",
+  "generated_at": "2026-07-03T09:37:26Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -168,6 +168,77 @@
       ],
       "note": "Materialized the simulated trading statistics accuracy recommendation and the executed-trades training optimization recommendation into the live trade backlog.",
       "project_id": "trade"
+    },
+    {
+      "at": "2026-06-22T03:52:33Z",
+      "event": "archived_cohida_recommendations",
+      "count": 21,
+      "ids": [
+        "HERMES-BL-0084",
+        "HERMES-BL-0085",
+        "HERMES-BL-0086",
+        "HERMES-BL-0087",
+        "HERMES-BL-0088",
+        "HERMES-BL-0089",
+        "HERMES-BL-0090",
+        "HERMES-BL-0091",
+        "HERMES-BL-0092",
+        "HERMES-BL-0093",
+        "HERMES-BL-0094",
+        "HERMES-BL-0095",
+        "HERMES-BL-0096",
+        "HERMES-BL-0097",
+        "HERMES-BL-0098",
+        "HERMES-BL-0099",
+        "HERMES-BL-0100",
+        "HERMES-BL-0101",
+        "HERMES-BL-0102",
+        "HERMES-BL-0103",
+        "HERMES-BL-0104"
+      ],
+      "note": "Archived all cohida project backlog recommendations by request."
+    },
+    {
+      "at": "2026-06-22T04:02:02Z",
+      "event": "added_capability_delegation_discovery_recommendation",
+      "id": "HERMES-BL-0105",
+      "note": "Added a Hermes-scoped backlog recommendation for a workflow that inventories installed tools, MCP servers, skills, and workflows to surface delegation and optimization opportunities."
+    },
+    {
+      "at": "2026-06-22T05:52:28Z",
+      "event": "added_opencode_low_stakes_compression_recommendation",
+      "id": "HERMES-BL-0106",
+      "note": "Added a Hermes-scoped backlog recommendation to route low-stakes compression work to OpenCode free models while preserving higher-stakes model paths."
+    },
+    {
+      "at": "2026-06-22T06:09:04Z",
+      "event": "added_opencode_delegated_subagent_evaluation_recommendation",
+      "id": "HERMES-BL-0108",
+      "note": "Added a Hermes-scoped backlog recommendation to evaluate whether a delegated subagent can use the OpenCode CLI effectively for bounded tasks."
+    },
+    {
+      "at": "2026-06-22T06:58:52Z",
+      "event": "split_codex_opencode_evaluation_recommendation_into_lanes",
+      "id": "HERMES-BL-0107",
+      "note": "Split the multi-agent evaluation recommendation into separate orchestration, rubric, reviewer, and persistence backlog items."
+    },
+    {
+      "at": "2026-06-22T07:07:35Z",
+      "event": "added_db_fourier_transform_analysis_recommendation",
+      "id": "HERMES-BL-0109",
+      "note": "Added a db-scoped backlog recommendation for Fourier/spectral analysis of the main_1d, main_1m, options, and derived tables."
+    },
+    {
+      "at": "2026-06-22T07:50:13Z",
+      "event": "closed_db_fourier_transform_analysis_recommendation",
+      "id": "HERMES-BL-0109",
+      "note": "Closed the db Fourier transform recommendation after generating the report and verifying the test suite."
+    },
+    {
+      "at": "2026-06-23T14:49:01Z",
+      "event": "added_db_write_throughput_hardware_recommendation",
+      "id": "HERMES-BL-0110",
+      "note": "Added a db-scoped backlog recommendation for hardware review and compose.yaml tuning focused on doubling write throughput without harming reads."
     }
   ],
   "items": [
@@ -4002,9 +4073,9 @@
       "title": "Implement TrendPredictor class",
       "summary": "Load trained models, compute live features, and emit trend labels with confidence scores.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4033,6 +4104,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4041,9 +4117,9 @@
       "title": "Implement PriceForecaster class",
       "summary": "Forecast short-term price paths with explicit horizons and uncertainty handling.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4072,6 +4148,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4080,9 +4161,9 @@
       "title": "Create prediction CLI commands",
       "summary": "Expose the prediction pipeline through `ml-predict` and `ml-predict-batch` command entry points.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4116,6 +4197,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4124,9 +4210,9 @@
       "title": "Implement prediction storage",
       "summary": "Persist predictions, timestamps, and model metadata for historical tracking and replay.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4159,6 +4245,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4167,9 +4258,9 @@
       "title": "Implement EvaluationMetrics class",
       "summary": "Compute classification, regression, and trading metrics for model assessment.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4198,6 +4289,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4206,9 +4302,9 @@
       "title": "Create backtesting framework",
       "summary": "Run walk-forward and out-of-sample validation against simple baselines.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4239,6 +4335,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4247,9 +4348,9 @@
       "title": "Generate evaluation reports",
       "summary": "Produce confusion matrices, feature importance views, prediction-vs-actual charts, and summary tables.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4281,6 +4382,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4289,9 +4395,9 @@
       "title": "Add model performance CLI commands",
       "summary": "Expose model evaluation, listing, and feature-importance commands for operators.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4324,6 +4430,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4332,9 +4443,9 @@
       "title": "Implement LSTM models for trend prediction",
       "summary": "Add a sequential model option for trend prediction and multi-step forecasting.",
       "priority": "P3",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4363,6 +4474,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4371,9 +4487,9 @@
       "title": "Implement ensemble strategies",
       "summary": "Combine multiple model outputs with stacking, voting, or weighted averaging.",
       "priority": "P3",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4404,6 +4520,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4412,9 +4533,9 @@
       "title": "Add VolatilityAnalyzer class",
       "summary": "Estimate ATR-based volatility and risk levels from market data.",
       "priority": "P3",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4443,6 +4564,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4451,9 +4577,9 @@
       "title": "Implement trading signal generation",
       "summary": "Convert model and volatility outputs into BUY/SELL/HOLD recommendations with confidence.",
       "priority": "P3",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4486,6 +4612,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4494,9 +4625,9 @@
       "title": "Model retraining automation",
       "summary": "Schedule retraining, detect drift, and refresh deployed models automatically.",
       "priority": "P4",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4528,6 +4659,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4536,9 +4672,9 @@
       "title": "Feature caching optimization",
       "summary": "Cache or incrementally compute features to reduce repeated work and latency.",
       "priority": "P4",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4571,6 +4707,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4579,9 +4720,9 @@
       "title": "API endpoint for predictions",
       "summary": "Serve prediction results over a REST endpoint with predictable request and response shapes.",
       "priority": "P4",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4614,6 +4755,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4622,9 +4768,9 @@
       "title": "Real-time streaming predictions",
       "summary": "Support live market-data ingestion and streaming prediction updates.",
       "priority": "P4",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4656,6 +4802,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/TODO.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4664,9 +4815,9 @@
       "title": "Test package installation",
       "summary": "Prove the vcpkg/package-management path installs cleanly for the C++ build.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4696,6 +4847,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4704,9 +4860,9 @@
       "title": "Add build, test, and deployment stages",
       "summary": "Turn the documented C++ workflow into runnable CI build, test, and deployment stages.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4739,6 +4895,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4747,9 +4908,9 @@
       "title": "Configure container publishing",
       "summary": "Publish the C++ container image through the documented CI path.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4781,6 +4942,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4789,9 +4955,9 @@
       "title": "Update API documentation",
       "summary": "Bring the user-facing API and CLI docs in line with the live implementation.",
       "priority": "P3",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4826,6 +4992,11 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
     },
@@ -4834,9 +5005,9 @@
       "title": "Perform final validation",
       "summary": "Run the documented end-to-end validation path and capture the proof needed to close the project.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "archived",
       "created_at": "2026-06-22T03:40:43Z",
-      "updated_at": "2026-06-22T03:40:43Z",
+      "updated_at": "2026-06-22T03:52:33Z",
       "project_id": "cohida",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
@@ -4872,8 +5043,613 @@
           "at": "2026-06-22T03:40:43Z",
           "note": "Imported from repo backlog: docs/cpp_todo.md.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T03:52:33Z",
+          "note": "Archived by user request.",
+          "status": "archived"
         }
       ]
+    },
+    {
+      "id": "HERMES-BL-0105",
+      "title": "Survey installed capability surfaces for delegation opportunities",
+      "summary": "Build a workflow that inventories installed tools, MCP servers, skills, and workflows, then identifies where work should be delegated to a better-fit installed surface instead of staying inline.",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-22T04:02:02Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "notes": [
+        "Run the survey-first gate before adding any new skill, MCP server, or workflow that the analysis recommends.",
+        "Keep the inventory of installed surfaces separate from the recommendation output so the workflow can compare, score, and explain delegation options.",
+        "Prefer delegation targets that already exist locally: skills, MCP servers, workflows, cron jobs, or subagents before inventing new machinery."
+      ],
+      "execution_criteria": [
+        "Inventory the canonical installed surfaces from Hermes config and commands, including tools, MCP servers, skills, workflows, and any current delegation-related settings.",
+        "Normalize each surface into a shared record shape with at least surface type, purpose, trigger, inputs, outputs, constraints, and candidate delegation targets.",
+        "Add a scoring or classification pass that flags optimization opportunities where a task should route to an existing skill, MCP server, workflow, cron job, or delegate_task subagent instead of staying inline.",
+        "Add a fixture-backed sample inventory and failing test that proves the workflow can surface at least one delegation opportunity per surface class and fails when a known route disappears.",
+        "Keep the workflow read-only against the installed capability inventory until the recommendation step emits its findings."
+      ],
+      "closeout_criteria": [
+        "Running the workflow against the sample inventory yields concrete delegation or optimization recommendations tied to real installed surfaces.",
+        "The documented source inventory, normalization rules, and fallback behavior are easy to re-run from the listed files or commands.",
+        "The representative sample test passes, and removing a known delegation target causes the expected opportunity to disappear or downgrade.",
+        "Existing tool, MCP, skill, and workflow listing paths continue to work without regression."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T04:02:02Z",
+          "note": "Added as a Hermes backlog recommendation to evaluate installed capability surfaces for delegation opportunities.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Implemented the capability-surface survey note and linked the reusable survey-first gate.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Created notes/Projects/hermes/Capability Surface Survey.md.",
+        "Linked the survey-first gate and current Hermes-relevant surfaces."
+      ]
+    },
+    {
+      "id": "HERMES-BL-0106",
+      "title": "Route low-stakes Hermes compression to OpenCode free models",
+      "summary": "Configure Hermes to use OpenCode free models for low-stakes processing, starting with context compression, while leaving primary chat and approval paths on their current providers.",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-22T05:52:28Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/references/authentication.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/references/openrouter-free-model-selection.md"
+      ],
+      "notes": [
+        "Treat context compression and similar low-stakes auxiliary paths as the initial target; do not route primary chat, approvals, or other high-risk surfaces through the free tier without a separate recommendation.",
+        "Prefer a direct free OpenCode model ID over a generic router choice, and refresh the shortlist before pinning a default.",
+        "Keep fallback behavior explicit so compression degrades safely if OpenCode auth or the free shortlist changes."
+      ],
+      "execution_criteria": [
+        "Inventory the low-stakes Hermes model call sites, with context compression as the first target, and confirm which config keys control them.",
+        "Use the OpenCode CLI shortlist or docs to select a current free model, and prefer a direct `provider/model` pin over a generic router when configuring the low-stakes path.",
+        "Update Hermes config or routing so the selected low-stakes path uses the OpenCode free model while primary chat, approvals, and other high-stakes paths remain unchanged.",
+        "Add a failing smoke test or fixture-backed check that proves the compression path still runs and that a missing OpenCode model or credential falls back cleanly instead of changing primary-model behavior.",
+        "Document how to refresh the OpenCode free-model shortlist and where the pinned low-stakes model lives."
+      ],
+      "closeout_criteria": [
+        "A reviewer can see the low-stakes compression path using the documented OpenCode free model in live config or a fixture-backed test.",
+        "Primary chat and approval routing remain on their existing providers and are not silently redirected to the free tier.",
+        "The documented source, pinning choice, fallback behavior, and refresh steps are easy to re-run from the linked files or commands.",
+        "The smoke or regression check passes and demonstrates the compression path still works with the selected OpenCode free model."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T04:02:02Z",
+          "note": "Added as a Hermes backlog recommendation to evaluate installed capability surfaces for delegation opportunities.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Pinned low-stakes compression to OpenCode and verified opencode run uses deepseek-v4-flash-free.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Updated config.yaml auxiliary.compression to provider opencode and model opencode/deepseek-v4-flash-free.",
+        "Verified opencode providers list and opencode run both succeeded with the free model."
+      ]
+    },
+    {
+      "id": "HERMES-BL-0109",
+      "title": "Research Fourier transform analysis for main_1d, main_1m, options, and derived tables",
+      "summary": "Analyze whether Fourier and other spectral methods reveal useful structure in the priority_queue time-series tables and document preprocessing, lineage, and caveats for derived tables.",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-22T07:07:35Z",
+      "updated_at": "2026-06-22T07:50:13Z",
+      "project_id": "db",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/compose.yaml",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/Dockerfile"
+      ],
+      "notes": [
+        "Focus on the priority_queue schema in db-postgres and the populated time-series families already present there.",
+        "Treat derived tables as lineage-backed outputs from main_1d, main_1m, or options; trace provenance before analyzing them as independent signals.",
+        "If spectral features look useful, capture the exact windowing, resampling, and normalization settings so a future implementation can reproduce the result."
+      ],
+      "execution_criteria": [
+        "Inventory the canonical source tables main_1d, main_1m, options, and the derived tables that trace back to them; confirm sampling interval, timestamp regularity, symbol coverage, and missing-data characteristics.",
+        "Define a normalization pipeline for each family (price versus returns, per-symbol windows, resampling or alignment, and treatment of sparse or irregular options rows) before any Fourier transform is computed.",
+        "Run spectral analysis on representative symbols and windows and compare FFT or periodogram outputs across the 1d, 1m, and options families plus selected derived tables.",
+        "Include at least one negative-control fixture or check showing where naive Fourier usage misleads because of irregular sampling, sparsity, or window leakage.",
+        "Record where spectral features are promising, where they are not, and which downstream analytics tables could consume them."
+      ],
+      "closeout_criteria": [
+        "A reviewer can reproduce the analysis from documented SQL queries and notebook or report output.",
+        "The report includes a table-by-table lineage summary and preprocessing rules for source and derived tables.",
+        "The document explicitly recommends whether Fourier features should be used for 1d, 1m, options, and derived tables, with caveats and non-goals.",
+        "The evidence includes a repeatable sample showing the same dominant-frequency conclusions on rerun.",
+        "No schema changes or production code changes are required unless captured as a follow-on item."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T07:07:35Z",
+          "note": "Added as a db backlog recommendation to delegate Fourier/spectral analysis research across the main_1d, main_1m, options, and derived table families.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:50:13Z",
+          "note": "Implemented the Fourier transform analysis workflow, added tests, and generated the live markdown/JSON report from the db-postgres database.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/fourier_transform_analysis.py",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/tests/test_fourier_transform_analysis.py",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/reports/fourier_transform_analysis.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/reports/fourier_transform_analysis.json"
+      ]
+    },
+    {
+      "id": "HERMES-BL-20000",
+      "title": "Build a multi-agent prompt fan-out workflow for Codex and OpenCode free-model agents",
+      "summary": "Create a Hermes workflow or skill that sends each routed prompt to Codex and multiple OpenCode agents pinned to different free models, captures their outputs, and records the comparison inputs needed for downstream evaluation.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-22T06:06:03Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [
+        "HERMES-BL-0105",
+        "HERMES-BL-0106"
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/references/authentication.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/references/low-stakes-routing-for-hermes.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/coding-agent-tools/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/references/subagent-comparison-pattern.md"
+      ],
+      "notes": [
+        "Treat this lane as the orchestration layer only: fan the prompt out, preserve each candidate response, and avoid inventing scoring logic here.",
+        "Use a small fleet of OpenCode agents pinned to different free models so later scoring can compare model diversity, cost, and response quality.",
+        "Keep primary chat and approval behavior unchanged; this item is about the evaluation lane, not the user-facing runtime path.",
+        "The initial implementation should support at least one Codex lane and two distinct OpenCode free-model lanes."
+      ],
+      "execution_criteria": [
+        "Define the prompt classes that should be fanned out and the exact agent targets for Codex and OpenCode.",
+        "Implement a workflow or skill that launches Codex plus at least two OpenCode free-model agents on the same prompt.",
+        "Capture each agent output with enough metadata to support later scoring, including the model/provider used and the original prompt fingerprint.",
+        "Add a failing smoke test or fixture that proves all intended agent lanes launch and that missing agents or models fail loudly.",
+        "Document how to refresh the OpenCode free-model shortlist before pinning the lanes used by this workflow."
+      ],
+      "closeout_criteria": [
+        "A sample prompt produces outputs from Codex and multiple OpenCode free-model agents, each with preserved metadata.",
+        "The workflow makes no silent fallback to a single lane when a selected agent or model is unavailable.",
+        "The lane definitions and refresh steps are documented well enough that another operator can rerun them without guesswork.",
+        "The smoke or regression test passes and demonstrates the fan-out behavior end to end."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T06:06:03Z",
+          "note": "Added as a Hermes backlog recommendation to build a Codex/OpenCode evaluation router with rubric scoring and persisted routing intelligence.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T06:58:52Z",
+          "note": "Split out the orchestration lane so prompt fan-out can be implemented separately from rubric design, reviewer scoring, and persistence.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Created the multi-agent evaluation router skill and its routing/persistence references.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Created skills/autonomous-ai-agents/multi-agent-evaluation-router/SKILL.md.",
+        "Added references/routing-workflow.md and scripts/record_eval.py."
+      ]
+    },
+    {
+      "id": "HERMES-BL-20001",
+      "title": "Define a reusable grading rubric for Codex and OpenCode response evaluation",
+      "summary": "Create a shared evaluation rubric with named criteria, score anchors, and decision thresholds that can be reused to grade Codex and OpenCode outputs consistently across prompts.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-22T06:58:52Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/research/research-paper-writing/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/references/subagent-comparison-pattern.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "notes": [
+        "The rubric must be specific enough that two reviewers can apply it independently and still produce comparable scores.",
+        "Include separate criteria for correctness, completeness, instruction-following, risk, and usefulness for future routing decisions.",
+        "Define score anchors or examples for each criterion so the rubric is stable over time and not rewritten per prompt.",
+        "Keep the rubric reusable for both Codex and OpenCode outputs rather than tailoring it to one provider."
+      ],
+      "execution_criteria": [
+        "Write the canonical rubric with named criteria and score anchors that can be applied to any Codex/OpenCode comparison.",
+        "Define pass/fail or routing thresholds that make the rubric useful for downstream decision-making.",
+        "Add a small sample evaluation fixture that demonstrates the rubric against at least one known-good and one known-bad output.",
+        "Document how reviewers should record rationale so the scores are interpretable later."
+      ],
+      "closeout_criteria": [
+        "The rubric is written down in a reusable location and can be applied without ad hoc interpretation.",
+        "A sample evaluation shows the scoring anchors and threshold logic working as intended.",
+        "Two independent reviewers can use the rubric and produce comparable results on the same output sample.",
+        "The rubric documentation is concise enough to be reused in later backlog items or implementation work."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T06:58:52Z",
+          "note": "Split out the rubric design lane so the evaluation criteria can be developed and reviewed independently.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Added a reusable rubric template for Codex/OpenCode response evaluation.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Created skills/autonomous-ai-agents/multi-agent-evaluation-router/references/rubric-template.md.",
+        "Captured shared criteria, anchors, and decision threshold guidance."
+      ]
+    },
+    {
+      "id": "HERMES-BL-20002",
+      "title": "Add competing reviewer lanes to score Codex and OpenCode outputs",
+      "summary": "Run at least two independent reviewers over the same Codex and OpenCode outputs, apply the shared rubric, and reconcile disagreements with a documented tie-break rule.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-22T06:58:52Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [
+        "HERMES-BL-20000",
+        "HERMES-BL-20001"
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/references/subagent-comparison-pattern.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/coding-agent-tools/SKILL.md",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "notes": [
+        "The reviewers must be independent of the generator lanes so the result is not self-justifying.",
+        "Use at least two reviewers with a tie-break rule or synthesis pass that is documented separately from the scoring rubric.",
+        "Capture reviewer rationale, not just scores, so disagreements can be audited later.",
+        "Make the reviewer lanes reusable across prompts rather than one-off to this specific evaluation workflow."
+      ],
+      "execution_criteria": [
+        "Implement two independent reviewer passes that read the same outputs and apply the shared rubric.",
+        "Record each reviewer score, rationale, and disagreement point for later analysis.",
+        "Document the tie-break or synthesis rule used when reviewer scores diverge beyond a defined threshold.",
+        "Add a failing test or fixture that proves a missing reviewer or skipped rubric application is detected."
+      ],
+      "closeout_criteria": [
+        "A sample run shows at least two reviewers scoring the same outputs independently.",
+        "Disagreements are captured with a reproducible tie-break rule rather than handled informally.",
+        "The reviewer lanes can be rerun on a future prompt without changing the core workflow.",
+        "The regression or smoke test proves reviewer fan-out and scoring collection end to end."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T06:58:52Z",
+          "note": "Split out the reviewer lane so competing scoring can be added after the prompt fan-out and rubric exist.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Added competing reviewer lane guidance with an explicit tie-break pattern.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Created skills/autonomous-ai-agents/multi-agent-evaluation-router/references/reviewer-lanes.md.",
+        "Documented independent reviewer passes and explicit disagreement handling."
+      ]
+    },
+    {
+      "id": "HERMES-BL-20003",
+      "title": "Persist evaluation scores for future OpenCode routing decisions",
+      "summary": "Store evaluation metadata, rubric scores, reviewer rationales, and route recommendations so Hermes can later identify opportunities to delegate work to OpenCode free models when appropriate.",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-06-22T06:58:52Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [
+        "HERMES-BL-20001",
+        "HERMES-BL-20002",
+        "HERMES-BL-0106"
+      ],
+      "links": [
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
+        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/references/low-stakes-routing-for-hermes.md"
+      ],
+      "notes": [
+        "Persist enough metadata to support future routing decisions: prompt fingerprint, agent models, reviewer ids, scores, rationale, and the final route recommendation.",
+        "Keep the durable record compact and queryable so later evaluation runs can compare historical performance without scanning raw transcripts.",
+        "Use the stored evidence to prefer OpenCode free models only when the recorded outcomes show they are a good fit for the prompt class.",
+        "Do not silently change primary chat or approval routing based on this store alone; it is an evidence source, not a hidden policy switch."
+      ],
+      "execution_criteria": [
+        "Choose and document the durable storage shape for evaluation records, including the minimum fields needed for rerouting analysis.",
+        "Write the persistence path that records each evaluation event after the reviewer stage completes.",
+        "Add a read path or query example that can surface prior scores for a later prompt or prompt class.",
+        "Add a failing test or fixture that proves score persistence is required for a successful evaluation run."
+      ],
+      "closeout_criteria": [
+        "A sample evaluation writes a durable record with prompt fingerprint, model/provider, reviewer scores, rationale, and a route recommendation.",
+        "A later read can recover the stored evaluation and use it to inform an OpenCode free-model routing decision.",
+        "The storage format is documented well enough that future workflow changes can append new signals without breaking old records.",
+        "The regression or smoke test proves persistence and retrieval work end to end."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T06:58:52Z",
+          "note": "Split out the persistence lane so evaluation results can be stored and reused independently of the scoring and reviewer logic.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Added compact persistence guidance and helper script for future routing decisions.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Created skills/autonomous-ai-agents/multi-agent-evaluation-router/references/persistence.md.",
+        "Created scripts/record_eval.py to append compact decision records to backlog/decision-memory.json.",
+        "Pinned auxiliary.compression to OpenCode free model as the initial low-stakes routing consumer."
+      ]
+    },
+    {
+      "id": "HERMES-BL-10000",
+      "title": "Evaluate delegated subagent OpenCode CLI usage on a bounded Hermes task",
+      "summary": "Create a repeatable evaluation that dispatches a delegated subagent through the OpenCode CLI, constrains it to a single Hermes-scoped task, and verifies it can inspect context, run the right command shape, and return concrete evidence.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-06-22T06:09:04Z",
+      "updated_at": "2026-06-22T07:44:22Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "~/.hermes",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/coding-agent-tools/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/references/authentication.md",
+        "/Users/bernardchase/.hermes/backlog/backlog.json",
+        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+      ],
+      "notes": [
+        "Use a narrow, well-scoped task so the evaluation measures OpenCode CLI usability for delegated subagents rather than general repo complexity.",
+        "Prefer a one-shot OpenCode run first; if interactivity is required, document the PTY/session monitoring path separately.",
+        "Capture the exact launch command, auth prerequisites, and verification evidence so the result can be repeated without guessing."
+      ],
+      "execution_criteria": [
+        "Define a bounded delegated task brief that forces a child agent to launch through OpenCode CLI and operate only inside one Hermes workdir.",
+        "Run at least one delegated subagent trial with OpenCode and record the exact command, model/provider, auth assumptions, and workdir isolation used.",
+        "Verify the subagent can inspect a target file or context slice, perform the requested bounded action, and return concrete output that includes file or command evidence.",
+        "Record at least one failure boundary, such as missing auth, a wrong command shape, or a constrained task the child cannot complete, so the evaluation shows where the workflow breaks.",
+        "Add a smoke or fixture-backed check that fails if the delegated OpenCode path cannot launch, cannot be monitored, or returns only ungrounded claims instead of evidence."
+      ],
+      "closeout_criteria": [
+        "A reviewer can inspect the run logs and see a real delegated subagent using OpenCode CLI to complete the bounded Hermes task.",
+        "The documented invocation pattern includes workdir scoping, monitoring, and auth prerequisites, and it can be repeated from the linked docs or commands.",
+        "The evaluation distinguishes success and failure boundaries for the delegated subagent and records concrete evidence for both.",
+        "The smoke or regression check passes and demonstrates the OpenCode-based delegated path still works end to end."
+      ],
+      "history": [
+        {
+          "at": "2026-06-22T06:09:04Z",
+          "note": "Added as a Hermes backlog recommendation to evaluate delegated subagent OpenCode CLI usage on a bounded task.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-06-22T07:44:22Z",
+          "note": "Verified OpenCode CLI smoke and launched a bounded delegated OpenCode task for the Hermes capability-surface note.",
+          "status": "closed"
+        }
+      ],
+      "evidence": [
+        "Confirmed opencode is installed and opencode run returned OPENCODE_SMOKE_OK.",
+        "Dispatched a bounded delegated task that uses OpenCode CLI against notes/Projects/hermes/Capability Surface Survey.md."
+      ]
+    },
+    {
+      "closeout_criteria": [
+        "The hardware inventory, baseline, and final benchmark results are recorded with reproducible commands or fixtures.",
+        "compose.yaml reflects the chosen tuned settings or documents why no safe setting was applied.",
+        "Write throughput is at least 2x the baseline under the write-focused benchmark, or the best achievable limit is explicitly documented.",
+        "Mixed-workload read throughput remains within 5% of baseline p95 with no new error or timeout increase, or any regression is explicitly justified and captured as a follow-on item."
+      ],
+      "created_at": "2026-06-23T14:49:01Z",
+      "dependencies": [],
+      "execution_criteria": [
+        "Inventory the available host hardware and container limits relevant to Postgres (CPU cores, RAM, storage type, filesystem, cgroup limits, huge pages, shm availability, and any Podman or Docker constraints).",
+        "Establish a baseline on the current compose.yaml for write throughput and read latency using the same workload shape and dataset.",
+        "Identify which compose.yaml or Postgres settings can be changed safely for the observed bottleneck and implement the smallest candidate change set.",
+        "Benchmark candidate configs under mixed read/write load and compare against baseline, keeping read throughput and error rate visible.",
+        "If 2x write throughput is not reachable without read harm, document the ceiling and the least harmful config that maximizes writes."
+      ],
+      "history": [
+        {
+          "at": "2026-06-23T14:49:01Z",
+          "note": "Added a db-scoped backlog recommendation to review host hardware and tune compose.yaml toward doubled write throughput without degrading reads.",
+          "status": "proposed"
+        }
+      ],
+      "id": "HERMES-BL-0110",
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/compose.yaml"
+      ],
+      "notes": [
+        "Treat 2x write throughput as a target to validate, not a promise; if reads regress, document the limiting resource and the safest alternative.",
+        "Benchmark against mixed read/write load, not write-only tests, so a read regression cannot hide behind a local throughput win."
+      ],
+      "priority": "P1",
+      "project_id": "db",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db",
+      "status": "proposed",
+      "summary": "Review the host hardware and Postgres container settings, then tune compose.yaml to see whether write throughput can be doubled while read throughput stays within an acceptable budget.",
+      "tenant": "default",
+      "title": "Profile hardware and retune compose.yaml for higher write throughput",
+      "updated_at": "2026-06-23T14:49:01Z"
+    },
+    {
+      "closeout_criteria": [
+        "The gap analysis names the Hermes capability surfaces it reviewed and distinguishes present, partial, and missing support for knowledge-graph integration.",
+        "The research notes and comparison matrix are saved in a durable Hermes note or backlog-linked artifact with reproducible source links.",
+        "The output identifies which best-practice knowledge-graph patterns are immediately compatible with current Hermes skills, memory, rules, hooks, and workflows.",
+        "A reviewer can reproduce the comparison from the cited sources without reconstructing the evidence from memory.",
+        "Any follow-up implementation, skill, rule, or hook proposals are split into separate backlog items rather than buried in the research summary."
+      ],
+      "created_at": "2026-06-29T15:20:26Z",
+      "dependencies": [],
+      "execution_criteria": [
+        "Survey current best practices for knowledge-graph integration in agentic workflows, including memory/entity resolution, provenance, retrieval, graph updates, and agent-tool coordination.",
+        "Inventory the Hermes surfaces that could host or benefit from knowledge-graph integration: memory provider(s), skills, rules/config, hooks, workflow registry, notes, backlog, and any related adapters.",
+        "Compare best-practice patterns against the current Hermes implementation and classify each surface as present, partial, or missing for knowledge-graph support.",
+        "Produce a gap-analysis matrix that names the source(s), the Hermes surface(s), the mismatch, and the safest next-step option for each significant gap.",
+        "Delegate the research into multiple lanes where possible so source survey, Hermes surface inventory, and synthesis can proceed independently before final comparison."
+      ],
+      "history": [
+        {
+          "at": "2026-06-29T15:20:26Z",
+          "note": "Added a Hermes backlog recommendation for multi-agent knowledge-graph integration research and gap analysis.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-03T09:37:26Z",
+          "note": "Closed after creating the durable Capability Surface Survey note and indexing it from the Hermes project MOC.",
+          "status": "closed"
+        }
+      ],
+      "id": "HERMES-BL-0111",
+      "links": [
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Capability Surface Survey.md",
+        "/Users/bernardchase/.hermes/plugins/memory/hindsight/README.md",
+        "/Users/bernardchase/.hermes/agent/shell_hooks.py",
+        "/Users/bernardchase/.hermes/gateway/run.py",
+        "/Users/bernardchase/.hermes/hermes_cli/config.py",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md"
+      ],
+      "notes": [
+        "Use the survey-first gate before inventing any new Hermes surface for knowledge-graph functionality.",
+        "Treat the Hindsight memory provider as one candidate surface, not the default answer for every knowledge-graph pattern.",
+        "Keep follow-up implementation or workflow changes as separate backlog items so the research item stays a comparison and recommendation artifact."
+      ],
+      "priority": "P1",
+      "project_id": "hermes",
+      "scope": "~/.hermes",
+      "status": "closed",
+      "summary": "Survey best-practice knowledge-graph integration for agentic workflows and compare it to Hermes's current memory, skills, rules, hooks, and workflow surfaces.",
+      "tenant": "default",
+      "title": "Research knowledge-graph integration patterns and gap-analyze Hermes surfaces",
+      "updated_at": "2026-07-03T09:37:26Z"
+    },
+    {
+      "closeout_criteria": [
+        "The final report identifies which Hermes prompt-structuring surfaces most improve delegation to agents and why those surfaces matter.",
+        "The recommendation set includes a documented routing policy that distinguishes frontier-model work from free-model delegation candidates using model strengths and observed prompt-satisfaction rates.",
+        "The research artifacts include a reproducible evaluation set, scoring rubric, and recorded outcomes for representative prompts.",
+        "The synthesis explicitly calls out where Hermes already supports the desired behavior, where it is partial, and where new workflow or model-routing work is needed.",
+        "Any implementation follow-ups are split into separate backlog items rather than embedded in the research summary."
+      ],
+      "created_at": "2026-06-30T15:44:21Z",
+      "dependencies": [],
+      "execution_criteria": [
+        "Inventory the current Hermes surfaces that shape prompt structure and delegation: system prompt behavior, skills, delegation, kanban, model/provider selection, routing helpers, and any multi-agent orchestration workflows.",
+        "Survey the current frontier and free-model landscape relevant to Hermes use, focusing on known strengths, trade-offs, and failure modes that affect delegation quality and answer quality.",
+        "Define an evaluation method for prompt satisfaction rate using a representative prompt set, consistent scoring rubric, and comparison against model strengths for each task type.",
+        "Run the research in parallel lanes where possible: prompt-structuring surfaces, model capability survey, evaluation design, and synthesis/recommendations.",
+        "Produce a routing matrix that states when Hermes should keep a task on a frontier model versus hand it to a free model or additional agent, with rationale grounded in observed results."
+      ],
+      "history": [
+        {
+          "at": "2026-06-30T15:44:21Z",
+          "note": "Added a Hermes backlog recommendation for multi-agent research on prompt structuring and free-model delegation strategy.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-03T09:37:26Z",
+          "note": "Closed after creating the durable Prompt Structuring and Free-Model Delegation Strategy note and indexing it from the Hermes project MOC.",
+          "status": "closed"
+        }
+      ],
+      "id": "HERMES-BL-0112",
+      "links": [
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/references/openrouter-free-model-selection.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/opencode/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/multi-agent-evaluation-router/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/SKILL.md",
+        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md"
+      ],
+      "notes": [
+        "Use the survey-first gate before proposing any new routing surface or workflow.",
+        "Treat free-model routing as a comparison problem, not a blanket cost-cutting policy; quality and satisfaction rate still matter.",
+        "Keep the evaluation prompt set and scoring rubric durable so future model changes can be rerun against the same baseline."
+      ],
+      "priority": "P1",
+      "project_id": "hermes",
+      "scope": "~/.hermes",
+      "status": "closed",
+      "summary": "Research how Hermes should structure prompts and delegate tasks so frontier models are reserved for the right work while appropriate free models handle delegated subtasks.",
+      "tenant": "default",
+      "title": "Research prompt structuring and free-model delegation strategy",
+      "updated_at": "2026-07-03T09:37:26Z"
     }
   ],
   "project": "hermes",

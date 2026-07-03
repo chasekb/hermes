@@ -48,6 +48,11 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - Greptime, OpenTelemetry GenAI semantic conventions
   - https://greptime.com/blogs/2026-05-09-opentelemetry-genai-semantic-conventions
 
+## 2026-06-29 review addendum
+- OpenTelemetry Semantic Conventions for GenAI repo, Agent Framework reference scenario commit
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/b028dceecdad117461a785c3af35315e7184e813
+  - Why it matters: adds native Agent Framework coverage to invoke-agent-internal, inference, and execute-tool reference scenarios and extends the mock Responses server with function-call and usage-detail payloads needed for telemetry validation.
+
 ## Sources used in synthesis
 - OpenAI Harness engineering
 - OpenAI Evaluate agent workflows
@@ -67,6 +72,10 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - Telemetry is becoming boundary-aware: OpenTelemetry's GenAI conventions now define separate agent-invocation and tool-execution duration histograms plus a requested reasoning-level attribute.
 - ADK's evaluation docs now separate trajectory/tool-use scoring from final-response quality and expose both reference-based and rubric-based criteria for predefined datasets.
 - OpenAI's results guide now treats result surfaces as part of the harness contract: final output, replay history, continuation IDs, and resumable approval state each serve a different operational need.
+- OpenTelemetry's GenAI conventions are tightening boundary identity: the latest repo alignment keeps `gen_ai.agent.name` on `execute_tool` spans while aligning `invoke_agent.internal` span and metric attributes, which makes cross-boundary trace correlation more reliable.
+- OpenAI's eval guide now explicitly points code-first SDK workflows to the Integrations and observability guide for high-signal traces before graders, which reinforces trace-first harnessing for SDK apps.
+- OpenTelemetry's GenAI reference repo now includes native Agent Framework coverage, so harnesses should expect agent-framework to appear alongside other runtimes in invoke-agent-internal, inference, and execute-tool reference scenarios.
+- Anthropic's agentic-search cookbook shows that reproducing long-horizon benchmark scores depends on harness details such as programmatic tool calling, server-side context compaction, and explicit task budgets, not just dataset and grader selection.
 
 ## Best practices
 - Start with traces, not a giant prompt blob.
@@ -88,6 +97,7 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - Observability is standardizing around OpenTelemetry-style conventions.
 - Harnesses are becoming productized control planes for agents.
 - Durable execution and checkpoints are becoming table stakes.
+- Long-horizon benchmark harnesses are treating compaction prompts, task budgets, and in-sandbox tool fan-out as first-class knobs for score fidelity.
 
 ## Open questions
 - How should long-horizon success be measured without overfitting to benchmark quirks?
@@ -102,3 +112,8 @@ Harness engineering covers evaluation harnesses, test harnesses, sandboxes, grad
 - 2026-06-19: OpenAI's orchestration guide now makes the ownership split explicit: use handoffs when a specialist should own the next turn, use `agent.asTool()` when a manager should keep control, and avoid splitting too early because it adds prompts, traces, and approval surfaces.
 - 2026-06-20: OpenTelemetry's GenAI semantic-conventions repo added `gen_ai.invoke_agent.duration`, `gen_ai.execute_tool.duration`, and `gen_ai.request.reasoning.level`; Google ADK's conformance evaluation docs now formalize trajectory/tool-use scoring alongside final-response review.
 - 2026-06-21: OpenAI's results guide now separates final output, replay history, continuation IDs, and resumable approval state; the guardrails guide also notes that approval interruptions can surface after handoffs or inside nested `agent.asTool()` calls, so harnesses need to preserve resumable state across multi-agent workflows.
+- 2026-06-25: OpenAI's results/state guide now spells out richer run-item and diagnostics surfaces beyond the high-level result contract, including item-level tool and handoff records, raw model responses, guardrail results, and usage details; harnesses should keep these around for audits and deep debugging.
+- 2026-06-26: reviewed the OpenTelemetry GenAI semantic-conventions repo alignment commit; appended source-backed notes on keeping agent identity consistent across `invoke_agent.internal` and `execute_tool` spans/metrics.
+- 2026-06-27: reviewed refreshed OpenAI eval and observability docs; appended source-backed notes on starting code-first SDK workflows with built-in tracing before graders.
+- 2026-06-29: reviewed the OpenTelemetry GenAI Agent Framework reference scenario commit; appended source-backed notes on native Agent Framework coverage, mock Responses function-call payloads, and usage-detail telemetry fields.
+- 2026-07-02: reviewed OpenAI Agents SDK strict-schema handoff validation and Anthropic's agentic-search benchmark reproduction cookbook; appended source-backed notes on strict validation at control boundaries plus programmatic tool calling, server-side compaction, and task budgets for long-horizon benchmark harnesses.

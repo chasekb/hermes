@@ -29,6 +29,14 @@ Use when the task is multi-step or needs a handoff-ready implementation path.
 - Name files, commands, and expected verification.
 - Keep the plan executable, not aspirational.
 
+### Backlog and implementation-plan execution
+Use when the work starts from a backlog item, a roadmap row, or a written implementation plan.
+- Ground each item in the repository before editing.
+- Mirror the work in a task list so each item can be tracked separately.
+- Keep implementation and verification scoped to one item at a time.
+- Verify each item with the narrowest command that proves the behavior before moving on.
+- Treat the backlog or plan as the source of truth; do not invent scope while implementing.
+
 ### Evidence-backed dashboard backlog recommendations
 Use when the task is to turn a live UI/problem into multiple backlog recommendations that each prove one calculation or widget.
 - Drive the real UI or frontend API enough to gather live evidence for every displayed value you intend to test.
@@ -45,6 +53,8 @@ Use when creating or changing behavior.
 - Watch it fail for the right reason.
 - Implement the minimum to pass.
 - Refactor only after green.
+- For data-analysis workflows, keep the tests narrow and deterministic: validate the regularization helpers, the spectral peak detector, and one negative-control fixture before running the full report.
+- If a module is loaded dynamically in pytest and uses dataclasses or module-level type introspection, ensure the module is registered in sys.modules before exec_module.
 
 ### Systematic debugging
 Use when something is broken and the cause is unclear.
@@ -106,3 +116,4 @@ This class-level workflow replaces the narrower standalone skills for code revie
 
 ## References
 - Use support files under `references/` for reusable checklists, example prompts, and repo-specific diagnostics.
+- See `references/db-spectral-analysis-workflow.md` for the repeatable pattern used when building live Postgres-backed Fourier analysis reports.

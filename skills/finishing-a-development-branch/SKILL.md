@@ -51,9 +51,11 @@ Stop. Don't proceed to Step 2.
 
 If the user explicitly wants a development branch workflow, keep the branch alive until the remote build is verified and the user confirms the next integration step.
 
-If a GitHub Actions build is required, use the verification pattern in `references/github-actions-verification.md`.
+If a GitHub Actions build is required, use the verification pattern in the GitHub workflows skill reference `references/remote-build-monitoring.md`.
 - Prefer `gh run list` and `gh run view` for final proof; `gh run watch` is only for live status.
 - If `gh run watch` exits early or can't fetch annotations, do not infer failure from that alone.
+- For matrix builds, require the final run conclusion and the pushed head SHA before considering the branch finished.
+- If a sibling PR run exists on the same SHA, do not use it as proof for the push run that triggered the remote build.
 
 ```bash
 GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
@@ -183,6 +185,14 @@ git branch -D <feature-branch>
 ```
 
 ### Step 6: Cleanup Workspace
+
+If the task included purging a tracked generated tree (for example `data/`), do not stop at `.gitignore`.
+- Add the ignore rule for future writes.
+- Rewrite history to remove the tracked tree from all commits/branches.
+- Force-push the rewritten shared branches.
+- Remove local rewrite backups (`refs/original/*`, temporary backup branches, reflogs) once verified.
+- Verify with `git ls-files <path>` and `git status --short` that the tree is no longer tracked.
+
 
 **Only runs for Options 1 and 4.** Options 2 and 3 always preserve the worktree.
 

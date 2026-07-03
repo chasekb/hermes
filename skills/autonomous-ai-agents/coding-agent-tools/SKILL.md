@@ -33,6 +33,13 @@ Pick the agent that best matches the environment and then constrain it tightly:
 - **Codex**: useful for GitHub/OpenAI-centric coding workflows and branch-local automation.
 - **OpenCode**: useful when you want a provider-agnostic coding worker with TUI and CLI modes.
 
+## Multi-agent routing and evaluation
+Use this lane when you need to compare several agent outputs or combine multiple model perspectives.
+- Prefer it when a single agent is likely to miss tradeoffs or edge cases.
+- Keep generation, scoring, and final synthesis separate.
+- Record the prompt class, models used, and final routing decision so the result can be reused later.
+- Treat MoA-style synthesis as a reusable workflow, not a one-off trick.
+
 ## Workflow shape
 1. Describe the task narrowly.
 2. Provide the repository path and any required constraints.
@@ -47,4 +54,4 @@ Pick the agent that best matches the environment and then constrain it tightly:
 - Do not confuse provider auth quirks with task failure; check the exact CLI and session state.
 
 ## Legacy subclasses absorbed into this umbrella
-This class-level tool-selection workflow replaces the narrower standalone skills for Claude Code, Codex, and OpenCode delegation.
+This class-level tool-selection workflow replaces the narrower standalone skills for Claude Code, Codex, OpenCode delegation, MoA-style multi-model synthesis, and multi-agent evaluation routing.

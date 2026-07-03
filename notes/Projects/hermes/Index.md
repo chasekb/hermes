@@ -16,6 +16,8 @@ Canonical selective-retrieval entrypoint for Hermes notes.
 - [[Activity Tracking Checklist]]
 - [[Harness Loop Gap Analysis]]
 - [[Harness and Loop Engineering Research Notebook]]
+- [[Capability Surface Survey]]
+- [[Prompt Structuring and Free-Model Delegation Strategy]]
 
 ## Canonical telemetry paths
 - Hook router: `~/.hermes/agent-hooks/hook_router.py`

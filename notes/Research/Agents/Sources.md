@@ -117,3 +117,62 @@ Central source registry for the harness and loop research pages.
 - LangGraph, Fault tolerance
   - https://docs.langchain.com/oss/python/langgraph/fault-tolerance
   - Why it matters: documents `run_timeout` vs `idle_timeout`, progress signals, `refresh_on="heartbeat"`, and manual `runtime.heartbeat()` calls for long-running async nodes.
+
+## 2026-06-22 review addendum
+- LangGraph, Fault tolerance
+  - https://docs.langchain.com/oss/python/langgraph/fault-tolerance
+  - Why it matters: adds callable retry predicates, `node_attempt` inspection for fallbacks, structured `NodeTimeoutError` fields, and per-`Send` timeout overrides for fan-out tasks.
+- OpenAI Agents SDK, Running agents
+  - https://openai.github.io/openai-agents-python/running_agents
+  - Why it matters: documents the `Runner` loop directly, including `RunState`-based resumption, `RunResultStreaming`, and explicit `max_turns`/`RunConfig` control surfaces.
+
+## 2026-06-24 review addendum
+- LangGraph, Fault tolerance
+  - https://docs.langchain.com/oss/python/langgraph/fault-tolerance
+  - Why it matters: now distinguishes `run_timeout` from `idle_timeout`, adds `refresh_on="heartbeat"` and explicit `runtime.heartbeat()` semantics, exposes `execution_info.node_attempt` even without retries, and returns structured `NodeTimeoutError` context for attempt-aware fallback handling.
+
+## 2026-06-25 review addendum
+- OpenAI Docs, Results and state
+  - https://developers.openai.com/api/docs/guides/agents/results
+  - Why it matters: now makes the result contract explicitly include replay-ready history, `lastAgent`/`lastResponseId` continuation surfaces, resumable approval snapshots, and richer run-item diagnostics for audits and debugging.
+- LangChain docs, Fault tolerance
+  - https://docs.langchain.com/oss/python/langgraph/fault-tolerance
+  - Why it matters: clarifies that the default idle refresh mode is `refresh_on="auto"`, which resets on state writes, stream output, child-task scheduling, runtime writer calls, and callback events, while `refresh_on="heartbeat"` stays strict.
+
+## 2026-06-26 review addendum
+- OpenTelemetry Semantic Conventions for GenAI repo, invoke_agent/execute_tool attribute alignment
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/48126929c29206df00303d37d761e9c3e8e8c9af
+  - https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-metrics.md
+  - Why it matters: aligns agent/tool boundary telemetry, keeps `gen_ai.agent.name` on tool spans, and removes `gen_ai.agent.version` from the internal invoke-agent span, which makes cross-boundary trace correlation cleaner.
+
+## 2026-06-27 review addendum
+- OpenAI Docs, Evaluate agent workflows
+  - https://developers.openai.com/api/docs/guides/agent-evals.md
+  - Why it matters: now explicitly tells code-first SDK workflows to start with Integrations and observability for high-signal traces before formalizing graders.
+- OpenAI Docs, Integrations and observability
+  - https://developers.openai.com/api/docs/guides/agents/integrations-observability
+  - Why it matters: clarifies the SDK-specific tracing/observability loop and the boundary between SDK-managed MCP wiring and tool semantics.
+- LangGraph, Fault tolerance
+  - https://docs.langchain.com/oss/python/langgraph/fault-tolerance
+  - Why it matters: documents `Send`-level timeout overrides for dynamic fan-out, so timeout provenance should be captured per push when evaluating long-running loops.
+
+## 2026-06-29 review addendum
+- OpenTelemetry Semantic Conventions for GenAI repo, Agent Framework reference scenario commit
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/b028dceecdad117461a785c3af35315e7184e813
+  - Why it matters: adds first-party Agent Framework coverage to the GenAI reference scenarios and extends the mock Responses server with function-call and usage-detail payloads, making the telemetry baseline broader and more realistic.
+
+## 2026-06-30 review addendum
+- LangGraph commit, snapshot `DeltaChannel` overwrite supersteps
+  - https://github.com/langchain-ai/langgraph/commit/9a27693c64d3a0d6847dfe1c3d57e301cbf15bbf
+  - Why it matters: snapshots delta channels after overwrite semantics are applied so sparse replay starts from the same post-overwrite value rather than a pre-overwrite mix.
+- LangGraph commit, make `Overwrite` survive JSON roundtrips
+  - https://github.com/langchain-ai/langgraph/commit/1b5ca0a1b1e1889879e43536fc5efd0739a3c479
+  - Why it matters: preserves overwrite intent across JSON-serialized state updates by recognising the discriminator form emitted after dataclass erasure.
+
+## 2026-07-02 review addendum
+- OpenAI Agents SDK commit, enforce strict Pydantic validation when `strict_json_schema=True`
+  - https://github.com/openai/openai-agents-python/commit/56921c89fc01a0bee60d5e2a1e3c698a22cde585
+  - Why it matters: handoff and output validation now opt into strict Pydantic behavior when strict JSON schemas are enabled, which prevents silent type coercion at control-flow boundaries and makes schema failures easier to catch in harnesses.
+- Anthropic cookbook notebook, Reproducing Claude's Agentic Search Benchmark Scores
+  - https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/evals/agentic_search/reproduce_agentic_search_benchmarks.ipynb
+  - Why it matters: shows that published DeepSearchQA and BrowseComp scores are reproducible on the public Messages API when the harness uses programmatic tool calling, server-side compaction, and explicit task budgets.

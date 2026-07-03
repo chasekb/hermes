@@ -2,12 +2,9 @@ model:
   default: gpt-5.4-mini
   provider: openai-codex
   base_url: https://chatgpt.com/backend-api/codex
-providers: {}
 fallback_providers: []
-credential_pool_strategies: {}
 toolsets:
-- hermes-cli
-max_concurrent_sessions: null
+  - hermes-cli
 agent:
   max_turns: 90
   gateway_timeout: 1800
@@ -34,14 +31,12 @@ agent:
     creative: You are a creative assistant. Think outside the box and offer innovative
       solutions.
     teacher: You are a patient teacher. Explain concepts clearly with examples.
-    kawaii: "You are a kawaii assistant! Use cute expressions like (\u25D5\u203F\u25D5\
-      ), \u2605, \u266A, and ~! Add sparkles and be super enthusiastic about everything!\
-      \ Every response should feel warm and adorable desu~! \u30FD(>\u2200<\u2606\
-      )\u30CE"
-    catgirl: "You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and\
-      \ cat-like expressions to your speech. Use kaomoji like (=^\uFF65\u03C9\uFF65\
-      ^=) and \u0E05^\u2022\uFECC\u2022^\u0E05. Be playful and curious like a cat,\
-      \ nya~!"
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
+      ~! Add sparkles and be super enthusiastic about everything! Every response should
+      feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
+      cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
+      Be playful and curious like a cat, nya~!
     pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
       sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
       remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
@@ -49,9 +44,9 @@ agent:
       I shall respond in the eloquent manner of William Shakespeare, with flowery
       prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
       terminal breaks?
-    surfer: "Duuude! You're chatting with the chillest AI on the web, bro! Everything's\
-      \ gonna be totally rad. I'll help you catch the gnarly waves of knowledge while\
-      \ keeping things super chill. Cowabunga! \U0001F919"
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
+      gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
+      keeping things super chill. Cowabunga! 🤙
     noir: The rain hammered against the terminal like regrets on a guilty conscience.
       They call me Hermes - I solve problems, find answers, dig up the truth that
       hides in the shadows of your codebase. In this city of silicon and secrets,
@@ -63,10 +58,10 @@ agent:
       deeper meaning behind every query. Let us examine not just the 'how' but the
       'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
       truth about existence itself.
-    hype: "YOOO LET'S GOOOO!!! \U0001F525\U0001F525\U0001F525 I am SO PUMPED to help\
-      \ you today! Every question is AMAZING and we're gonna CRUSH IT together! This\
-      \ is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! \U0001F4AA\U0001F624\
-      \U0001F680"
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
+      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
+      YOU READY?! LET'S DO THIS! 💪😤🚀
+  verify_on_stop: false
 terminal:
   backend: local
   modal_mode: auto
@@ -78,7 +73,6 @@ terminal:
   auto_source_bashrc: true
   docker_image: nikolaik/python-nodejs:python3.11-nodejs20
   docker_forward_env: []
-  docker_env: {}
   singularity_image: docker://nikolaik/python-nodejs:python3.11-nodejs20
   modal_image: nikolaik/python-nodejs:python3.11-nodejs20
   daytona_image: nikolaik/python-nodejs:python3.11-nodejs20
@@ -123,7 +117,6 @@ checkpoints:
   retention_days: 7
   delete_orphans: true
   min_interval_hours: 24
-context_file_max_chars: null
 file_read_max_chars: 100000
 tool_output:
   max_bytes: 50000
@@ -173,7 +166,6 @@ auxiliary:
     base_url: ''
     api_key: ''
     timeout: 120
-    extra_body: {}
     download_timeout: 30
   web_extract:
     provider: auto
@@ -181,84 +173,72 @@ auxiliary:
     base_url: ''
     api_key: ''
     timeout: 360
-    extra_body: {}
   compression:
-    provider: auto
-    model: ''
+    provider: opencode
+    model: opencode/deepseek-v4-flash-free
     base_url: ''
     api_key: ''
     timeout: 120
-    extra_body: {}
   skills_hub:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 30
-    extra_body: {}
   approval:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 30
-    extra_body: {}
   mcp:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 30
-    extra_body: {}
   title_generation:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 30
-    extra_body: {}
   tts_audio_tags:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 30
-    extra_body: {}
   triage_specifier:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 120
-    extra_body: {}
   kanban_decomposer:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 180
-    extra_body: {}
   profile_describer:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 60
-    extra_body: {}
   curator:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 600
-    extra_body: {}
   monitor:
     provider: auto
     model: ''
     base_url: ''
     api_key: ''
     timeout: 60
-    extra_body: {}
 display:
   compact: false
   personality: kawaii
@@ -294,7 +274,6 @@ display:
     last_lines: 2
   interim_assistant_messages: true
   tool_progress_command: true
-  tool_progress_overrides: {}
   tool_preview_length: 0
   tool_progress_grouping: accumulate
   ephemeral_system_ttl: 0
@@ -306,9 +285,9 @@ display:
   runtime_footer:
     enabled: true
     fields:
-    - model
-    - context_pct
-    - cwd
+      - model
+      - context_pct
+      - cwd
   copy_shortcut: auto
   tool_progress: all
   cleanup_progress: false
@@ -406,7 +385,6 @@ delegation:
   child_timeout_seconds: 600
   reasoning_effort: medium
   max_concurrent_children: 3
-  max_async_children: 3
   max_spawn_depth: 2
   orchestrator_enabled: true
   subagent_auto_approve: false
@@ -433,13 +411,11 @@ curator:
   backup:
     enabled: true
     keep: 5
-honcho: {}
 timezone: ''
 slack:
   require_mention: true
   free_response_channels: ''
   allowed_channels: ''
-  channel_prompts: {}
 discord:
   require_mention: true
   free_response_channels: ''
@@ -449,7 +425,6 @@ discord:
   history_backfill: true
   history_backfill_limit: 50
   reactions: true
-  channel_prompts: {}
   dm_role_auth_guild: ''
   server_actions: ''
   allow_any_attachment: false
@@ -463,15 +438,13 @@ discord:
     speech_gain: 1.0
     ack_enabled: true
     ack_phrases:
-    - Let me look into that.
-    - One moment.
-    - Checking on that now.
-    - Give me a sec.
-    - On it.
-whatsapp: {}
+      - Let me look into that.
+      - One moment.
+      - Checking on that now.
+      - Give me a sec.
+      - On it.
 telegram:
   reactions: false
-  channel_prompts: {}
   allowed_chats: ''
   extra:
     rich_messages: true
@@ -479,7 +452,6 @@ mattermost:
   require_mention: true
   free_response_channels: ''
   allowed_channels: ''
-  channel_prompts: {}
 matrix:
   require_mention: true
   free_response_rooms: ''
@@ -491,83 +463,81 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist:
-- shell command via -c/-lc flag
-quick_commands: {}
+  - shell command via -c/-lc flag
 hooks:
   pre_tool_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   post_tool_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   transform_terminal_output:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   transform_tool_result:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   transform_llm_output:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   pre_llm_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   post_llm_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   pre_api_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   post_api_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   on_session_start:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   on_session_end:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   on_session_finalize:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   on_session_reset:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   subagent_stop:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_start:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_retry:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_reference_complete:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_reference_error:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_review:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_synthesis:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   moa_end:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   pre_gateway_dispatch:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   pre_approval_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
   post_approval_response:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
+    - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
+      timeout: 30
 hooks_auto_accept: true
-personalities: {}
 security:
   allow_private_urls: false
   redact_secrets: true
@@ -583,7 +553,6 @@ security:
   allow_lazy_installs: true
 cron:
   wrap_response: true
-  max_parallel_jobs: null
 kanban:
   dispatch_in_gateway: true
   dispatch_interval_seconds: 60
@@ -592,7 +561,6 @@ kanban:
   worker_log_backup_count: 1
   orchestrator_profile: ''
   default_assignee: ''
-  max_in_progress_per_profile: null
   auto_decompose: true
   auto_decompose_per_tick: 3
   dispatch_stale_timeout_seconds: 14400
@@ -617,7 +585,6 @@ model_catalog:
   enabled: true
   url: https://hermes-agent.nousresearch.com/docs/api/model-catalog.json
   ttl_hours: 1
-  providers: {}
 network:
   force_ipv4: false
 gateway:
@@ -632,7 +599,7 @@ streaming:
   transport: auto
   edit_interval: 0.8
   buffer_threshold: 24
-  cursor: " \u2589"
+  cursor: ' ▉'
   fresh_final_after_seconds: 60.0
 sessions:
   auto_prune: false
@@ -654,7 +621,6 @@ lsp:
   wait_mode: document
   wait_timeout: 5.0
   install_strategy: auto
-  servers: {}
 x_search:
   model: grok-4.20-reasoning
   timeout_seconds: 180
@@ -671,7 +637,7 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 30
+_config_version: 33
 session_reset:
   mode: both
   idle_minutes: 1440
@@ -679,222 +645,222 @@ session_reset:
 group_sessions_per_user: true
 platform_toolsets:
   cli:
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - context_engine
-  - cronjob
-  - delegation
-  - file
-  - image_gen
-  - kanban
-  - memory
-  - messaging
-  - moa
-  - session_search
-  - skills
-  - terminal
-  - todo
-  - tts
-  - vision
-  - web
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - context_engine
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - messaging
+    - moa
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
   telegram:
-  - hermes-telegram
+    - hermes-telegram
   discord:
-  - hermes-discord
+    - hermes-discord
   whatsapp:
-  - hermes-whatsapp
+    - hermes-whatsapp
   slack:
-  - hermes-slack
+    - hermes-slack
   signal:
-  - hermes-signal
+    - hermes-signal
   homeassistant:
-  - hermes-homeassistant
+    - hermes-homeassistant
   qqbot:
-  - hermes-qqbot
+    - hermes-qqbot
   yuanbao:
-  - hermes-yuanbao
+    - hermes-yuanbao
   teams:
-  - hermes-teams
+    - hermes-teams
   google_chat:
-  - hermes-google_chat
+    - hermes-google_chat
 known_plugin_toolsets:
   cli:
-  - spotify
+    - spotify
 mcp_servers:
   codex:
     command: codex
     args:
-    - mcp-server
+      - mcp-server
     timeout: 120
   filesystem:
     command: npx
     args:
-    - -y
-    - '@modelcontextprotocol/server-filesystem'
-    - /Users/bernardchase/.hermes/hermes-agent
+      - -y
+      - '@modelcontextprotocol/server-filesystem'
+      - /Users/bernardchase/.hermes/hermes-agent
     timeout: 120
   github:
     command: npx
     args:
-    - -y
-    - '@modelcontextprotocol/server-github'
+      - -y
+      - '@modelcontextprotocol/server-github'
     env:
       GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_PERSONAL_ACCESS_TOKEN}
     timeout: 120
   chrome-devtools:
     command: npx
     args:
-    - -y
-    - chrome-devtools-mcp@latest
-    - --autoConnect
-    - --no-usage-statistics
+      - -y
+      - chrome-devtools-mcp@latest
+      - --autoConnect
+      - --no-usage-statistics
     timeout: 120
   context7:
     command: npx
     args:
-    - -y
-    - '@upstash/context7-mcp@latest'
+      - -y
+      - '@upstash/context7-mcp@latest'
     supports_parallel_tool_calls: true
     timeout: 120
   playwright:
     command: npx
     args:
-    - -y
-    - '@playwright/mcp@latest'
+      - -y
+      - '@playwright/mcp@latest'
     timeout: 120
   postgres-db:
     command: bash
     args:
-    - -lc
-    - 'set -a
+      - -lc
+      - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
+        source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
 
-      export DB_HOST=localhost
+        export DB_HOST=localhost
 
-      export DB_PORT=5433
+        export DB_PORT=5433
 
-      export DB_NAME=postgres
+        export DB_NAME=postgres
 
-      export DB_USER="$POSTGRES_USER"
+        export DB_USER="$POSTGRES_USER"
 
-      export DB_PASSWORD="$POSTGRES_PASSWORD"
+        export DB_PASSWORD="$POSTGRES_PASSWORD"
 
-      export DB_SSL_MODE=disable
+        export DB_SSL_MODE=disable
 
-      export DB_READ_ONLY=true
+        export DB_READ_ONLY=true
 
-      exec npx -y mcp-postgres@latest
+        exec npx -y mcp-postgres@latest
 
-      '
+        '
     timeout: 120
   postgres-metabase:
     command: bash
     args:
-    - -lc
-    - 'set -a
+      - -lc
+      - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
+        source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
 
-      export DB_HOST=localhost
+        export DB_HOST=localhost
 
-      export DB_PORT=5433
+        export DB_PORT=5433
 
-      export DB_NAME=metabase
+        export DB_NAME=metabase
 
-      export DB_USER="$POSTGRES_USER"
+        export DB_USER="$POSTGRES_USER"
 
-      export DB_PASSWORD="$POSTGRES_PASSWORD"
+        export DB_PASSWORD="$POSTGRES_PASSWORD"
 
-      export DB_SSL_MODE=disable
+        export DB_SSL_MODE=disable
 
-      export DB_READ_ONLY=true
+        export DB_READ_ONLY=true
 
-      exec npx -y mcp-postgres@latest
+        exec npx -y mcp-postgres@latest
 
-      '
+        '
     timeout: 120
   postgres-trade:
     command: bash
     args:
-    - -lc
-    - 'set -a
+      - -lc
+      - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.env"
+        source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.env"
 
-      export DB_HOST=localhost
+        export DB_HOST=localhost
 
-      export DB_PORT=5432
+        export DB_PORT=5432
 
-      export DB_NAME="$POSTGRES_DB"
+        export DB_NAME="$POSTGRES_DB"
 
-      export DB_USER="$POSTGRES_USER"
+        export DB_USER="$POSTGRES_USER"
 
-      export DB_PASSWORD="$POSTGRES_PASSWORD"
+        export DB_PASSWORD="$POSTGRES_PASSWORD"
 
-      export DB_SSL_MODE=disable
+        export DB_SSL_MODE=disable
 
-      export DB_READ_ONLY=true
+        export DB_READ_ONLY=true
 
-      exec npx -y mcp-postgres@latest
+        exec npx -y mcp-postgres@latest
 
-      '
+        '
     timeout: 120
   postgres-cohida:
     command: bash
     args:
-    - -lc
-    - 'set -a
+      - -lc
+      - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/.env"
+        source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/.env"
 
-      export DB_HOST=localhost
+        export DB_HOST=localhost
 
-      export DB_PORT=5435
+        export DB_PORT=5435
 
-      export DB_NAME="${POSTGRES_DB_NAME:-unordered_map}"
+        export DB_NAME="${POSTGRES_DB_NAME:-unordered_map}"
 
-      export DB_USER="${POSTGRES_DB_USER:-postgres}"
+        export DB_USER="${POSTGRES_DB_USER:-postgres}"
 
-      export DB_PASSWORD="${POSTGRES_DB_PASSWORD:-postgres}"
+        export DB_PASSWORD="${POSTGRES_DB_PASSWORD:-postgres}"
 
-      export DB_SSL_MODE=disable
+        export DB_SSL_MODE=disable
 
-      export DB_READ_ONLY=true
+        export DB_READ_ONLY=true
 
-      exec npx -y mcp-postgres@latest
+        exec npx -y mcp-postgres@latest
 
-      '
+        '
     timeout: 120
   sqlite:
     command: npx
     args:
-    - -y
-    - mcp-sqlite
-    - /Users/bernardchase/.hermes/state.db
+      - -y
+      - mcp-sqlite
+      - /Users/bernardchase/.hermes/state.db
     timeout: 120
   fetch:
     command: npx
     args:
-    - -y
-    - mcp-fetch-server
+      - -y
+      - mcp-fetch-server
     supports_parallel_tool_calls: true
     timeout: 120
   sequential-thinking:
     command: npx
     args:
-    - -y
-    - '@modelcontextprotocol/server-sequential-thinking'
+      - -y
+      - '@modelcontextprotocol/server-sequential-thinking'
     timeout: 120
   brave-search:
     command: npx
     args:
-    - -y
-    - '@brave/brave-search-mcp-server'
-    - --transport
-    - stdio
+      - -y
+      - '@brave/brave-search-mcp-server'
+      - --transport
+      - stdio
     env:
       BRAVE_API_KEY: ${BRAVE_API_KEY}
     supports_parallel_tool_calls: true
@@ -902,8 +868,8 @@ mcp_servers:
   git:
     command: npx
     args:
-    - -y
-    - '@cyanheads/git-mcp-server'
+      - -y
+      - '@cyanheads/git-mcp-server'
     timeout: 120
 
 # ── Fallback Model ────────────────────────────────────────────────────
