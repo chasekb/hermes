@@ -17,6 +17,7 @@ updated_at: 2026-06-12T00:00:00Z
 - Keep the Obsidian vault anchored at `~/.hermes/notes` and use the vault-activation checklist when verifying fresh shells or bootstrap state.
 - Use `[[Capability Surface Survey]]` as the durable comparison record for memory, hook, workflow, and retrieval-surface questions.
 - Use `[[Prompt Structuring and Free-Model Delegation Strategy]]` as the durable routing record for frontier-vs-free-model decisions.
+- Keep Claude Code CLI authentication as a separate, opt-in Hermes delegation lane; do not conflate Claude Code OAuth credentials with Hermes's Anthropic Messages API provider. This remains proposed pending policy-gated implementation evidence in `HERMES-BL-20009`.
 
 ## Follow-up
 - Add or update linked notes only when they are directly relevant to a task or decision.

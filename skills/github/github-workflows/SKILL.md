@@ -59,6 +59,8 @@ Use this lane for:
 - waiting for matrix jobs to finish before declaring success
 - merging when checks are green
 
+This section absorbs the former `github-actions-remote-build-verification` skill; the exact-SHA run check stays here so users do not have to look in two places.
+
 Always match the workflow run against the pushed commit SHA, not just the newest run on the branch.
 
 ### Remote build verification pattern
@@ -84,9 +86,9 @@ When a workflow looks “mostly done” but the run is still `in_progress`, keep
 
 For long-running push builds, avoid a blanket `cancel-in-progress: true` if a later push would routinely kill a still-valid backend build. Prefer canceling pull request runs, but let protected branch push runs finish so GitHub Actions can produce a real source-of-truth result.
 
-Reference: `references/remote-build-monitoring.md` for the matrix-run polling checklist and safe generated-artifact cleanup notes, and `references/ci-workflow-auth.md` for workflow-file push auth scope and SSH fallback notes.
+Reference: `references/remote-build-monitoring.md` for the matrix-run polling checklist and safe generated-artifact cleanup notes, `references/remote-build-verification-session-note.md` for the compact push→run→proof sequence, and `references/ci-workflow-auth.md` for workflow-file push auth scope and SSH fallback notes.
 
-If you need to keep waiting without blocking the turn, use a background `gh run watch <run_id> --exit-status` watcher and then confirm the final state with `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt` before reporting success.
+If you need to keep waiting without blocking the turn, use a background `gh run watch <run_id> --exit-status` watcher and then confirm the final state with `gh run view <run_id> --json status,conclusion,headSha,url,name,updatedAt` before reporting success. If `gh run watch` times out, keep polling the exact run id with `gh run view` until GitHub returns a final conclusion; the timeout itself is not proof of failure.
 
 Important nuance from a live run: `gh run watch` is a convenience for monitoring, not proof. The proof is the exact run object for the pushed SHA. If a sibling PR run exists on the same commit, do not use it as evidence for the push run.
 

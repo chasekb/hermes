@@ -1,0 +1,197 @@
+Local context: cwd=/Users/bernardchase/.hermes
+
+git branch: workflow/macbook-air-m5
+git status:
+## workflow/macbook-air-m5
+ M backlog/backlog.json
+ M backlog/decision-memory.json
+ M config.yaml
+ M interrupt_debug.log
+ M "notes/Projects/hermes/Decision Log.md"
+ M notes/Projects/hermes/Index.md
+ M "notes/Research/Agents/Agents Research Index.md"
+ M "notes/Research/Agents/Harness Engineering.md"
+ M "notes/Research/Agents/Harness Loop Synthesis.md"
+ M "notes/Research/Agents/Loop Engineering.md"
+ M notes/Research/Agents/Sources.md
+ M "notes/Research/Research Workflow.md"
+ D skills/.curator_backups/2026-06-01T19-29-02Z/cron-jobs.json
+ D skills/.curator_backups/2026-06-01T19-29-02Z/manifest.json
+ D skills/.curator_backups/2026-06-01T19-29-02Z/skills.tar.gz
+ D skills/.curator_backups/2026-06-10T16-55-42Z/cron-jobs.json
+ D skills/.curator_backups/2026-06-10T16-55-42Z/manifest.json
+ D skills/.curator_backups/2026-06-10T16-55-42Z/skills.tar.gz
+ M skills/apple/apple-notes/SKILL.md
+ M skills/autonomous-ai-agents/claude-code/SKILL.md
+ M skills/autonomous-ai-agents/codex/SKILL.md
+ M skills/autonomous-ai-agents/coding-agent-tools/SKILL.md
+ D skills/computer-use/SKILL.md
+ M skills/creative/ascii-art/SKILL.md
+ M skills/creative/ascii-video/SKILL.md
+ M skills/creative/design-md/SKILL.md
+ M skills/creative/excalidraw/SKILL.md
+ M skills/creative/humanizer/SKILL.md
+ M skills/creative/manim-video/SKILL.md
+ M skills/creative/p5js/SKILL.md
+ M skills/creative/pretext/SKILL.md
+ M skills/creative/sketch/SKILL.md
+ M skills/creative/songwriting-and-ai-music/SKILL.md
+ M skills/creative/touchdesigner-mcp/SKILL.md
+ M skills/devops/containerized-build-verification/SKILL.md
+ M skills/devops/kanban-orchestrator/SKILL.md
+ D skills/dogfood/SKILL.md
+ D skills/dogfood/references/issue-taxonomy.md
+ D skills/dogfood/templates/dogfood-report-template.md
+ M skills/github/github-auth/SKILL.md
+ M skills/github/github-auth/scripts/gh-env.sh
+ M skills/github/github-code-review/SKILL.md
+ M skills/github/github-issues/SKILL.md
+ M skills/github/github-pr-workflow/SKILL.md
+ M skills/github/github-repo-management/SKILL.md
+ M skills/github/github-workflows/SKILL.md
+ M skills/media/youtube-content/SKILL.md
+ M skills/media/youtube-content/scripts/fetch_transcript.py
+ D skills/mlops/evaluation/lm-evaluation-harness/SKILL.md
+ D skills/mlops/evaluation/lm-evaluation-harness/references/api-evaluation.md
+ D skills/mlops/evaluation/lm-evaluation-harness/references/benchmark-guide.md
+ D skills/mlops/evaluation/lm-evaluation-harness/references/custom-tasks.md
+ D skills/mlops/evaluation/lm-evaluation-harness/references/distributed-eval.md
+ M skills/mlops/evaluation/weights-and-biases/SKILL.md
+ M skills/mlops/huggingface-hub/SKILL.md
+ D skills/mlops/inference/vllm/SKILL.md
+ D skills/mlops/inference/vllm/references/optimization.md
+ D skills/mlops/inference/vllm/references/quantization.md
+ D skills/mlops/inference/vllm/references/server-deployment.md
+ D skills/mlops/inference/vllm/references/troubleshooting.md
+ M skills/productivity/airtable/SKILL.md
+ M skills/productivity/google-workspace/SKILL.md
+ M skills/productivity/google-workspace/scripts/google_api.py
+ M skills/productivity/google-workspace/scripts/gws_bridge.py
+ M skills/productivity/google-workspace/scripts/setup.py
+ M skills/productivity/maps/SKILL.md
+ M skills/productivity/nano-pdf/SKILL.md
+ D skills/productivity/powerpoint/LICENSE.txt
+ M skills/productivity/powerpoint/SKILL.md
+ D skills/productivity/powerpoint/editing.md
+ D skills/productivity/powerpoint/pptxgenjs.md
+ D skills/productivity/powerpoint/scripts/__init__.py
+ D skills/productivity/powerpoint/scripts/add_slide.py
+ D skills/productivity/powerpoint/scripts/clean.py
+ D skills/productivity/powerpoint/scripts/office/helpers/__init__.py
+ D skills/productivity/powerpoint/scripts/office/helpers/merge_runs.py
+ D skills/productivity/powerpoint/scripts/office/helpers/simplify_redlines.py
+ D skills/productivity/powerpoint/scripts/office/pack.py
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chart.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-chartDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-diagram.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-lockedCanvas.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-picture.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-spreadsheetDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-wordprocessingDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/pml.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-additionalCharacteristics.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-bibliography.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-commonSimpleTypes.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlDataProperties.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-customXmlSchemaProperties.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesCustom.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesExtended.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-documentPropertiesVariantTypes.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-math.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/shared-relationshipReference.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/sml.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/vml-main.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/vml-officeDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/vml-presentationDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/vml-spreadsheetDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/vml-wordprocessingDrawing.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/wml.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/xml.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ecma/fourth-edition/opc-contentTypes.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ecma/fourth-edition/opc-coreProperties.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ecma/fourth-edition/opc-digSig.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/ecma/fourth-edition/opc-relationships.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/mce/mc.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-2010.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-2012.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-2018.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-cex-2018.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-cid-2016.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-sdtdatahash-2020.xsd
+ D skills/productivity/powerpoint/scripts/office/schemas/microsoft/wml-symex-2015.xsd
+ M skills/productivity/teams-meeting-pipeline/SKILL.md
+ M skills/research/arxiv/SKILL.md
+ M skills/research/llm-wiki/SKILL.md
+ M skills/research/research-paper-writing/SKILL.md
+ M skills/smart-home/openhue/SKILL.md
+ M skills/social-media/xurl/SKILL.md
+ M skills/software-development/hermes-agent-skill-authoring/SKILL.md
+ M skills/software-development/node-inspect-debugger/SKILL.md
+ M skills/software-development/plan/SKILL.md
+ M skills/software-development/python-debugpy/SKILL.md
+ M skills/software-development/simplify-code/SKILL.md
+ M skills/software-development/software-development-workflows/SKILL.md
+ M skills/software-development/spike/SKILL.md
+ M verification_evidence.db
+?? .codex_gpt55_autoraise_notice
+?? .mcp-discovery.lock
+?? .npm_lock_hash_998acfd86cee
+?? hook_outputs/
+?? memory_store.db
+?? memory_store.db-shm
+?? memory_store.db-wal
+?? "notes/Projects/hermes/Claude Code CLI Authenticated Delegation Plan.md"
+?? "notes/Research/Agents/Claude Code CLI Auth Handoff for Hermes.md"
+?? "notes/Research/Agents/Claude Code State and Token-Efficient Knowledge Gap Analysis.md"
+?? "notes/Research/Agents/Workflow Automation Feasibility.md"
+?? skills/autonomous-ai-agents/coding-agent-tools/references/
+?? skills/autonomous-ai-agents/computer-use/
+?? skills/autonomous-ai-agents/llm-provider-routing/
+?? skills/autonomous-ai-agents/merge-reconciler/
+?? skills/devops/containerized-build-verification/references/compose-named-volume-to-project-bind-mount.md
+?? skills/devops/containerized-build-verification/references/podman-compose-provider-routing.md
+?? skills/devops/containerized-build-verification/references/tmux-launch-marker-parser-crash.md
+?? skills/devops/kanban-orchestrator/references/trade-backlog-materialization.md
+?? skills/devops/sdlc-review/
+?? skills/email/email-inbox-triage/
+?? skills/github/github-auth/scripts/git-credential-token.py
+?? skills/github/github-issue-to-pr/
+?? skills/github/github-workflows/references/remote-build-verification-session-note.md
+?? skills/hermes-desktop-plugins/
+?? skills/hermes-themes/
+?? skills/mlops/evaluation/evaluating-llms-harness/
+?? skills/mlops/inference/serving-llms-vllm/
+?? skills/productivity/document-to-action-items/
+?? skills/productivity/docx/
+?? skills/productivity/google-workspace/references/daily-brief.md
+?? skills/productivity/meeting-action-items/
+?? skills/productivity/pdf/
+?? skills/productivity/powerpoint/LICENSE
+?? skills/productivity/powerpoint/scripts/pptx_create.py
+?? skills/productivity/powerpoint/scripts/pptx_edit.py
+?? skills/productivity/powerpoint/scripts/pptx_from_template.py
+?? skills/productivity/powerpoint/scripts/pptx_read.py
+?? skills/productivity/powerpoint/scripts/pptx_render.py
+?? skills/productivity/powerpoint/tests/
+?? skills/productivity/product-price-monitor/
+?? skills/productivity/session-librarian/
+?? skills/productivity/tui-widgets/
+?? skills/productivity/weekly-review-planning/
+?? skills/productivity/xlsx/
+?? skills/research/blocked-page-recovery/
+?? skills/research/competitor-news-monitor/
+?? skills/research/grounded-citations/
+?? skills/research/public-source-market-research/
+?? skills/research/research-paper-writing/references/phase5-paper-drafting.md
+?? skills/shared-backlog/
+?? skills/software-development/dogfood/
+?? skills/software-development/hermes-update-troubleshooting/
+?? skills/software-development/inspecting-hermes-desktop-dom/
+?? skills/software-development/project-backlog-workflows/
+?? skills/software-development/software-development-workflows/references/backlog-driven-development.md
+?? skills/software-development/software-development-workflows/references/branch-finish-fast-path.md
+?? skills/software-development/software-development-workflows/references/runtime-configuration-and-knowledge-layer.md
+?? skills/software-development/software-development-workflows/references/trade-simulated-trading-low-win-rate-investigation.md
+?? skills/software-development/software-development-workflows/references/trade-stat-denominator-alignment.md
+?? web-ui-build-stamp.json

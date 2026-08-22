@@ -61,11 +61,15 @@ Related umbrella: `hermes-orchestrator-layout` covers the broader global-vs-proj
 
 If the work starts from a Hermes project backlog item, preserve the backlog item as the durable spec and use Kanban only for execution. The backlog store lives at `~/.hermes/backlog/backlog.json`.
 
+This section absorbs the former `project-backlog-display` skill: project-scoped backlog display, open-vs-closed counts, and repo-local fallback now live here.
+
 When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
 
 For project-specific backlog items, include an explicit `project_id` and keep it consistent with the board / repo scope. When the user asks for an open project backlog, read the live JSON and filter on both `project_id` and `status != "closed"` rather than relying on the thread summary. When importing a repo backlog into live Hermes, write each recommendation as a discrete item with stable sequential ids, source-doc links, and criteria derived from the repo backlog rows.
 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
+
+When a repo-local recommendation doc is only a staging artifact, materialize the item into the live Hermes backlog first, verify the project-scoped item count and status mix, and only then delete the duplicate repo document. Keep the durable criteria in the live backlog item, not in the throwaway doc. See `references/trade-backlog-materialization.md` for the exact trade-project pattern.
 
 For capability-surface research items (for example knowledge-graph integration, memory backends, or hook/rule/workflow coordination), use a survey-first gate before proposing new surfaces. Compare installed skills, workflow registry entries, hooks/config, memory/retrieval layers, and existing notes/backlog artifacts, then write the gap analysis as present / partial / missing rather than as a vague brainstorm. See `references/capability-surface-survey-gate.md`.
 
@@ -175,6 +179,8 @@ If the work starts from a Hermes project backlog item, preserve the backlog item
 When the user asks to turn a feature request into a new backlog recommendation, make it executable up front: include the canonical source or input set, the normalization/merge rule, the refresh cadence or trigger, a test or fixture plan that can fail before implementation, and explicit closeout evidence. Prefer stable scope links to the exact code, tests, or docs that the implementer should inspect. If the request is for an index or stock universe, explicitly state the anti-proxy rule in the recommendation: use constituent symbols, not ETF wrapper tickers.
 
 For implementation-oriented intake, structure the recommendation body with an explicit `Execution checklist` section and an explicit `Closeout criteria` section. Keep those lists short, testable, and scoped to one lane. See `references/backlog-recommendation-intake-notes.md` for the intake shape and checklist wording that worked well in practice.
+
+When a repo-local recommendation doc is only a staging artifact, materialize the item into the live Hermes backlog first, verify the project-scoped item count and status mix, and only then delete the duplicate repo document. Keep the durable criteria in the live backlog item, not in the throwaway doc. See `references/trade-backlog-materialization.md` for the exact trade-project pattern.
 
 For capability-surface research items (for example knowledge-graph integration, memory backends, or hook/rule/workflow coordination), use a survey-first gate before proposing new surfaces. Compare installed skills, workflow registry entries, hooks/config, memory/retrieval layers, and existing notes/backlog artifacts, then write the gap analysis as present / partial / missing rather than as a vague brainstorm. See `references/capability-surface-survey-gate.md`.
 

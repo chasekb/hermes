@@ -1,0 +1,52 @@
+---
+name: remote-ci-backlog-closeout
+description: "Use for backlog work verified and closed through remote CI."
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [backlog, github-actions, ci, closeout, evidence, remote-build]
+    related_skills: [project-backlog-workflows, containerized-build-verification, github-pr-workflow]
+---
+
+# Remote-CI Backlog Closeout
+
+Use this class-level workflow when a user asks to complete backlog implementation, forbids local builds, requires a commit and push, and wants GitHub Actions as build proof.
+
+## Core distinction
+
+Separate three states:
+
+- `in_progress`: implementation or verification is still underway.
+- `done`: execution criteria are complete and the implementation has remote build proof.
+- `closed`: every execution and closeout criterion has been checked with real evidence.
+
+A green container build proves compilation, tests included by that workflow, packaging, and publication steps only to the extent the workflow actually runs them. It does not prove a post-fix live UI/session exercise, runtime log artifact, injected-failure scenario, or screenshot unless those were actually performed.
+
+## Procedure
+
+1. Load the project-scoped backlog items and preserve their project id, priority, provenance, and ordering.
+2. Trace the implementation paths and make scoped changes. Do not run Docker, Podman, CMake, or another local build when the user forbids local builds.
+3. Run only allowed non-build checks, such as `git diff --check`, and document their scope.
+4. Stage only intended files; leave unrelated untracked files untouched. Commit and push the requested branch.
+5. Select the GitHub Actions run by exact branch, event, and pushed `headSha`. Do not use an older successful run or a same-SHA PR run as proof for a push run when push proof was requested.
+6. Poll the same run until top-level `status=completed` and `conclusion=success`. Require every required architecture, build, test, manifest, and publish job to succeed. Long C++ matrix builds can take hours; partial green jobs are not final proof.
+7. Record the exact run URL, verified head SHA, terminal status/conclusion, and required job results in backlog notes.
+8. Check only criteria backed by evidence actually collected. Source inspection and CI compilation cannot substitute for a post-fix runtime exercise.
+9. Move to `done` when execution criteria and remote build proof are complete. Close only when all closeout criteria are genuinely evidenced. If `close` rejects incomplete criteria, leave the item open/done as appropriate and name the missing evidence instead of forcing closure.
+
+## Evidence discipline
+
+For every checked closeout criterion, retain a concrete proof source: exact command output, CI run URL/job, runtime log window, reproducible artifact path, API response, test result, or screenshot. If a criterion was not exercised, leave it unchecked and add a note naming the next required action.
+
+## Pitfalls
+
+- Do not mark runtime-only criteria complete because code inspection looks correct.
+- Do not infer success from a run that is still `in_progress`, even if all visible jobs except one are green.
+- Do not replace a slow exact-SHA run with an older run or a PR run.
+- Do not claim a backlog item is closed when the CLI says criteria are incomplete.
+- Do not stage `.claude/`, secrets, environment files, or unrelated untracked content.
+
+See `references/remote-ci-evidence-checklist.md` for the compact command and reporting checklist.

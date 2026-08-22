@@ -176,3 +176,1165 @@ Central source registry for the harness and loop research pages.
 - Anthropic cookbook notebook, Reproducing Claude's Agentic Search Benchmark Scores
   - https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/evals/agentic_search/reproduce_agentic_search_benchmarks.ipynb
   - Why it matters: shows that published DeepSearchQA and BrowseComp scores are reproducible on the public Messages API when the harness uses programmatic tool calling, server-side compaction, and explicit task budgets.
+
+## 2026-07-04 review addendum
+- OpenAI Docs, Configuration / provider defaults
+  - https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/config.md
+  - Why it matters: documents SDK-wide defaults for Responses websocket transport and harness registration metadata, which affect provider routing and trace attribution in harnessed runs.
+- OpenAI Docs, Models / Chat Completions compatibility options
+  - https://raw.githubusercontent.com/openai/openai-agents-python/main/docs/models/index.md
+  - Why it matters: explains that Chat Completions compatibility silently drops Responses-only fields unless strict feature validation is enabled, and notes streamed tool-call buffering for providers whose delta chunks are unreliable.
+
+## 2026-07-06 review addendum
+- OpenAI Agents SDK commit, add invalid final output recovery handler
+  - https://github.com/openai/openai-agents-python/commit/3d07ff16
+  - Why it matters: adds a first-class `invalid_final_output` run error handler that can return a validated fallback structured output, optionally exclude the fallback from history, and avoid an extra model turn when the framework can recover from malformed or missing final output.
+
+## 2026-07-07 review addendum
+- Anthropic cookbook, Coordinator pattern: big models for planning, small models for execution
+  - https://raw.githubusercontent.com/anthropics/anthropic-cookbook/main/managed_agents/CMA_plan_big_execute_small.ipynb
+  - Why it matters: documents a frontier-coordinator plus cheap-worker split for token-heavy web reading, with per-thread cost metering and a rigor-matched solo control to measure real savings.
+- LangGraph commit, force snapshot instead of stub checkpoint on fresh-thread `update_state`
+  - https://github.com/langchain-ai/langgraph/commit/b45d96b8eb
+  - Why it matters: changes fresh-thread state persistence to a single self-contained checkpoint with an inline snapshot, which affects replay shape and test expectations for first writes.
+- Temporal docs, External Storage operations aren't retried within a task attempt
+  - https://docs.temporal.io/encyclopedia/data-conversion/external-storage
+  - Why it matters: clarifies that storage failures fail the current Workflow Task or Activity Task attempt and Temporal retries the whole task, not the storage call in place.
+- Google ADK docs, update output_key behavior description
+  - https://github.com/google/adk-docs/commit/a57b9ea2c9
+  - Why it matters: clarifies that `output_key` follows the root agent's final response, so delegated sub-agent turns do not automatically overwrite the keyed state.
+
+## 2026-07-08 review addendum
+- OpenAI Agents SDK commit, close Chat Completions streams on early exit
+  - https://github.com/openai/openai-agents-python/commit/b3f8d8ce54f6bda7d1900e2bf32629383015c79b
+  - Why it matters: ensures provider streams are explicitly closed when a Chat Completions run exits early, which prevents leaked async resources and makes loop cancellation behave like a real teardown path.
+- OpenAI Agents SDK commit, preserve nested tool state during restoration
+  - https://github.com/openai/openai-agents-python/commit/60d3f95219654d68e0a43789ecbd600e38ee2606
+  - Why it matters: rehydrates pending nested agent-as-tool state from the deserialized action itself, which prevents dropped or filtered earlier function entries from shifting later pending interruptions during replay.
+- Google ADK docs, collaboration workflow delegation tools and task completion
+  - https://github.com/google/adk-docs/commit/a52a2d48a28bad34e85c083713865bbe65eb28b0
+  - Why it matters: clarifies that coordinator subagents auto-generate delegation tools named after each subagent and that task mode returns to the parent via `finish_task`, which changes the control-flow contract harnesses should assert.
+- Google ADK docs, A2A supported capabilities
+  - https://github.com/google/adk-docs/commit/70575c7bd5e7077e29a2d5ba89cd55f552f4cbeb
+  - Why it matters: explicitly frames A2A around preserved reasoning, long-running tools, and artifact transfer, which makes cross-agent trace and replay requirements more concrete.
+
+## 2026-07-09 review addendum
+- OpenAI Agents SDK commit, make realtime session cleanup deterministic
+  - https://github.com/openai/openai-agents-python/commit/70c447e14f
+  - Why it matters: cleanup now has an explicit closing phase, waits briefly for tracked guardrail/tool tasks, and closes the model only after background work settles, which makes realtime teardown testable and deterministic.
+- OpenAI Agents SDK docs, clarify agent tool state options
+  - https://github.com/openai/openai-agents-python/commit/158b2f489e
+  - Why it matters: clarifies that `agent.as_tool` does not inherit parent conversation state automatically and that nested runs must choose explicit state ownership via shared `session` or server-managed continuation.
+- Temporal docs, OpenAI Agents SDK integration streaming
+  - https://github.com/temporalio/documentation/commit/d350b94644
+  - Why it matters: adds `stream: true`, `WorkflowStream`, and `WorkflowStreamClient` to the TypeScript integration and states that workflow-internal streaming is replay-safe.
+
+## 2026-07-10 review addendum
+- OpenAI Agents SDK v0.18.1 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.18.1
+  - Why it matters: consolidates deterministic realtime cleanup, nested tool-state restoration, early-exit stream closure, cache-write usage compatibility, and session browsing fixes into a released SDK baseline.
+- OpenAI Agents SDK, hosted multi-agent beta support
+  - https://github.com/openai/openai-agents-python/commit/0354f482a8e76d33c50a6a3e462c814eefde1e6b
+  - Why it matters: introduces an experimental Responses-based model that coordinates hosted GPT-5.6 subagents while local Runner execution retains developer-defined function tools, creating a new cross-boundary trace, metadata, and failure-isolation surface.
+- OpenAI Agents SDK, own deferred sandbox cleanup and PTY close tasks
+  - https://github.com/openai/openai-agents-python/commit/32bf99dff310bd1379a3eac2f69f94cea1813853
+  - https://github.com/openai/openai-agents-python/commit/dd0300bff9d5f4067b07e141dcc806af63242c3a
+  - Why it matters: sandbox shutdown now tracks deferred cleanup work and drains it before backend/session teardown, making resource ownership and shutdown ordering explicit and testable.
+- OpenAI Agents SDK, monotonic realtime playback timing
+  - https://github.com/openai/openai-agents-python/commit/4e06694db2ffce239328919c346851badce1cb45
+  - Why it matters: playback elapsed time now uses a monotonic clock rather than wall time, avoiding clock adjustments corrupting realtime loop timing.
+- LangGraph 1.2.9, `update_state` delta-channel metadata/counters fix
+  - https://github.com/langchain-ai/langgraph/releases/tag/1.2.9
+  - https://github.com/langchain-ai/langgraph/commit/7d0b33c961
+  - Why it matters: non-fresh `update_state` now advances `counters_since_delta_snapshot` and persists the metadata needed by Postgres replay, extending the earlier fresh-thread snapshot fix to subsequent state updates.
+
+## 2026-07-11 review addendum
+- OpenAI Agents SDK v0.18.2 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.18.2
+  - Why it matters: the released baseline includes serialization of model-backed rollout interruptions as dictionaries, GPT-5.6 request controls, hosted multi-agent support, and sandbox/realtime cleanup fixes; harnesses should test interruption persistence and resource teardown against the released behavior rather than only source snapshots.
+- Google ADK commit, best-effort agent/run error callbacks
+  - https://github.com/google/adk-python/commit/2f48ad3f0e4721e25d31641d564415c1d0f51e29
+  - Why it matters: error callbacks are now notification-only; callback failures are logged and suppressed so they cannot mask the triggering agent or run exception, which gives harnesses a stable primary-failure contract.
+- Google ADK commit, cancellation-safe toolset cleanup
+  - https://github.com/google/adk-python/commit/a69ba4fa74e87f3dc742f3cfaece6cff1cc86eee
+  - Why it matters: `Runner.close()` shields each toolset close task and bounds it with a timeout, so caller cancellation does not silently abandon in-flight cleanup; teardown tests should verify both cancellation propagation and eventual resource closure.
+- Google ADK commit, explicit dynamic scheduler lifetime and resume behavior
+  - https://github.com/google/adk-python/commit/ce2e4caf147ebcc8e6a7bb9997e6e961f626807d
+  - Why it matters: scheduler creation is made explicit at the root, scheduler lifetime leakage is addressed, and workflow nodes rerun on resume; replay harnesses should assert scheduler ownership and resume behavior rather than relying on implicit context mutation.
+- Google ADK commit, single-turn ManagedAgent as an inline tool
+  - https://github.com/google/adk-python/commit/fc985492447a133cbbd7d90bf34cb849b445a26b
+  - Why it matters: a `ManagedAgent` declaring `mode='single_turn'` is now wrapped as an inline tool and excluded from transfer targets, making delegation mode and ownership an explicit cross-agent loop boundary.
+
+## 2026-07-12 review addendum
+- OpenAI Agents SDK commit, replace provider-argument assertions with `UserError`
+  - https://github.com/openai/openai-agents-python/commit/beb3c5102ff9dc5ec9e2a7cbb7e55761f9f77ce
+  - Why it matters: conflicting `openai_client` plus API-key/base-URL arguments now raise a runtime `UserError` rather than a bare assertion that disappears under `python -O`; configuration validation is therefore a release/runtime harness contract, including for the voice provider.
+- Google ADK commit, offload synchronous code executors from the event loop
+  - https://github.com/google/adk-python/commit/585809cf98838fb64b076400fe5bfbe92f8543ad
+  - Why it matters: pre- and post-processors now run blocking `execute_code` calls through `asyncio.to_thread`, with tests verifying work runs off the main event-loop thread and does not freeze concurrent async progress.
+
+## 2026-07-13 review addendum
+- OpenAI Agents SDK commit, fix AdvancedSQLiteSession metadata leaks
+  - https://github.com/openai/openai-agents-python/commit/68fadc7abaefa2d33e22bdea71d93ce8d9ef2f10
+  - Why it matters: `clear_session()` and `pop_item()` now clean structure/usage metadata, and generation-guarded branch-pointer updates prevent stale concurrent operations from resurrecting cleared state; this expands durable-session testing beyond message payloads.
+- OpenAI Agents SDK commit, serialize OpenAI conversation session initialization
+  - https://github.com/openai/openai-agents-python/commit/c3986d697831d95383a90d9ef671265f7b2a27a7
+  - Why it matters: an async lock and double-check make concurrent first writes share one lazily created conversation, while a failed creation can be retried; this is a concrete single-flight pattern for remote loop state.
+- OpenAI Agents SDK commit, preserve user messages containing history wrappers
+  - https://github.com/openai/openai-agents-python/commit/b24d5dd460ab5a76e9eac18e08d33a732f006162
+  - Why it matters: nested handoff-history extraction now requires exact assistant-generated wrapper structure and accepts the legacy preamble, preventing literal user or ordinary assistant text from being misclassified as control history.
+- OpenAI Agents SDK commit, track realtime response usage in session context
+  - https://github.com/openai/openai-agents-python/commit/8221e424db96c0dd3152f36e6848f9b8c6f10646
+  - Why it matters: realtime `response.done` events now expose typed usage with text/audio/image and cached-token details, accumulate usage in session context, and provide debug summaries that avoid transcript/audio payload logging.
+- Google ADK commit, exclude rewound invocations from event compaction
+  - https://github.com/google/adk-python/commit/0d4d3783f7825a620c95a7b9dca919db790b879f
+  - Why it matters: prompt construction and token/sliding-window compaction now share `_apply_rewinds`, with end-to-end coverage proving rewound content cannot leak through a compaction summary into later prompts.
+
+## 2026-07-14 review addendum
+- Google ADK commit, validate artifact-service path segments
+  - https://github.com/google/adk-python/commit/45a77dc514f1e151c08e32f7c9a94b0a222eea36
+  - Why it matters: centralizes validation of `app_name`, `user_id`, and `session_id` across file, in-memory, and GCS artifact services, rejecting traversal, absolute-path, null-byte, and empty identifiers while permitting namespaced IDs; this gives storage-backed harnesses a concrete scope-isolation test contract.
+- Google ADK commit, tag ManagedAgent traffic with a distinct framework suffix
+  - https://github.com/google/adk-python/commit/0a62d39ff989d3a914a9377d278d89d8c4f2e58e
+  - Why it matters: adds `google-adk/<version>+managed_agent` to request tracking headers for ManagedAgent Interactions API calls, making delegated-surface traffic distinguishable in server-side usage telemetry and harness attribution.
+- Google ADK commit, allow context caches with empty content prefixes
+  - https://github.com/google/adk-python/commit/ee7174da1fc1101f16b1b4f067d9beb2bc0a1de7
+  - Why it matters: maps an empty cacheable prefix to `contents=None` instead of invalid `contents=[]`, preserving fingerprint-only metadata and allowing later cache-creation retries at the SDK boundary.
+
+## 2026-07-15 review addendum
+- OpenAI Agents SDK commit, make task and turn tracing spans configurable
+  - https://github.com/openai/openai-agents-python/commit/7369b73c76ef823572b0e6f581c3e1890b2ce82c
+  - Why it matters: adds per-run `include_task_and_turn_spans` control, defaulting to enabled while preserving lower-level agent/generation/function spans when wrapper spans are disabled; this makes trace cardinality an explicit harness configuration.
+- Google ADK commit, block OS and socket module aliases in agent config validation
+  - https://github.com/google/adk-python/commit/faa174425453b7adc1243c5217a2a40e13b4f031
+  - Why it matters: closes `posix`, `nt`, `_posixsubprocess`, and `_socket` escape routes and adds regression tests, giving config-driven agent harnesses a concrete alias-completeness security contract.
+- Google ADK commit, optimize workflow rehydration performance with indexing
+  - https://github.com/google/adk-python/commit/64a7448fc6e05f37e6dedadd6c0e65bc19264057
+  - Why it matters: indexes direct/transitive event ancestry, refreshes the index as session history grows, and uses function-call IDs to route interrupt responses, making multi-turn replay filtering and sequence ordering explicit test surfaces.
+- Google ADK commit, scope Gemini cache identity
+  - https://github.com/google/adk-python/commit/8de4237e18bc7a6a8bed3f252bca7d1b15ddbec9
+  - Why it matters: includes model and backend/project/location/base-URL scope in canonical cache fingerprints, preventing reuse across incompatible model or service namespaces and avoiding order-dependent cache misses.
+- Google ADK commit, honor server-reported Gemini cache expiry
+  - https://github.com/google/adk-python/commit/4fdc94c79185f13db9f8c20870add6b611a235c3
+  - Why it matters: uses the API-returned expiration timestamp when present and only falls back to local TTL calculation when it is absent, preventing clock/network skew from causing incorrect cache reuse.
+- Google ADK commit, remove OpenTelemetry event logger setup
+  - https://github.com/google/adk-python/commit/bb3b2a47f887bd3ae0b2f363cb38c27a9f012fe5
+  - Why it matters: removes the deprecated OpenTelemetry Events provider wiring, so telemetry harnesses should validate supported spans/logs/metrics rather than depend on the legacy event API.
+
+## 2026-07-21 review addendum
+- OpenTelemetry Semantic Conventions for GenAI commit, replace agent steps with per-invocation call-count metrics
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/33b7f9da9ade6162d4a5c16247d0bc6ad5f8b469
+  - Why it matters: removes the framework-dependent `gen_ai.agent.steps` metric and adds `gen_ai.invoke_agent.inference_calls` plus `gen_ai.invoke_agent.tool_calls`, giving harnesses a more comparable per-invocation budget surface.
+- OpenTelemetry Semantic Conventions for GenAI commit, extend reference coverage skill to evaluations
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/c26a2c21d1ee70d5231bd440c7b48d3c94ee506a
+  - Why it matters: folds scenario-scoped reference evaluation into the reference workflow, reinforcing executable validation for telemetry conventions.
+- Google ADK commit, match rubric verdicts by echoed ID
+  - https://github.com/google/adk-python/commit/0b7355baa385270cf0be59e601dc7c1e898980c4
+  - Why it matters: prevents paraphrased rubric text from silently dropping grader verdicts by asking judges to echo short rubric IDs and matching by ID first.
+- Google ADK commit, share one event ID across partial streaming chunks
+  - https://github.com/google/adk-python/commit/8f98bcd513df19aa67b0ac6ba2607f2bb1cb4695
+  - Why it matters: gives partial chunks and the aggregated final event for one LLM call a shared identity while keeping function calls/responses distinct, making streaming replay and harness grouping less ambiguous.
+- Google ADK commit, add `state_delta` support to `LiveRequest`
+  - https://github.com/google/adk-python/commit/82197740a603e146ee35e0f18d2761a5c8f155d6
+  - Why it matters: lets live/bidirectional callers seed or update session state as a separate state-delta event regardless of request content type.
+- Google ADK commit, forward ManagedAgent instruction as system instruction
+  - https://github.com/google/adk-python/commit/49fdc26e40018a268da43803d555151dafe988b8
+  - Why it matters: makes ManagedAgent instruction propagation explicit on every Managed Agents API turn, including chained turns and state-placeholder injection for string instructions.
+- Temporal documentation commit, add Go Google ADK integration page
+  - https://github.com/temporalio/documentation/commit/bc57938649acabd33fa86621467d3a477d794ea0
+  - Why it matters: documents deterministic Google ADK loop execution in Temporal Go Workflows, including `ActivityAsTool`, MCP tools, human confirmation signals, continue-as-new session snapshots, replay-safe streaming, and error classification.
+- OpenAI Agents SDK v0.18.3 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.18.3
+  - Why it matters: releases configurable tracing spans and realtime/session fixes already tracked here, plus new reliability fixes for concurrent computer providers, streamed retry input preservation, strict-schema expansion bounds, stale prepared-item identity reuse, and non-tool trace error redaction.
+- OpenAI Agents SDK PR, isolate computer providers across concurrent runs
+  - https://github.com/openai/openai-agents-python/pull/3843
+  - Why it matters: makes provider/factory-backed `ComputerTool` instances run-local during serialization and action processing when a shared agent handles concurrent runs.
+- OpenAI Agents SDK PR, preserve streamed session input across model retries
+  - https://github.com/openai/openai-agents-python/pull/3857
+  - Why it matters: treats committed local-session input as run-owned during streamed retries, avoiding accidental `Session.pop_item()` removal of current user input.
+- OpenAI Agents SDK PR, prevent stale prepared-item identity reuse
+  - https://github.com/openai/openai-agents-python/pull/3858
+  - Why it matters: scopes prepared-item mappings to the current preparation batch and uses fingerprint fallback so server-managed conversations do not resend or mis-mark items after object-ID reuse.
+- OpenAI Agents SDK PR, bound strict JSON-schema `$ref` expansion
+  - https://github.com/openai/openai-agents-python/pull/3838
+  - Why it matters: adds a node-visit budget to strict schema conversion to prevent recursive `$ref` expansion from stalling the async run loop.
+- OpenAI Agents SDK PR, redact non-tool trace error details
+  - https://github.com/openai/openai-agents-python/pull/3848
+  - Why it matters: applies sensitive-data redaction to streamed agent failures, model-input-filter failures, STT failures, and TTS failures when sensitive tracing is disabled.
+
+## 2026-07-22 review addendum
+- OpenAI Agents SDK commit, redact raw model and tool exceptions from error logs
+  - https://github.com/openai/openai-agents-python/commit/5921667f570aa73a9f1d18b9a4ba0cb6c9549669
+  - Why it matters: extends sensitive-data protection beyond trace errors to ordinary model-response, streamed-response, computer-action, and shell-executor error logs, with regression tests for secret prompt/tool payloads.
+- OpenAI Agents SDK commit, redact realtime raw-message conversion-failure logs
+  - https://github.com/openai/openai-agents-python/commit/a251b42dfd154755f12113ee1199e380e2d48ed6
+  - Why it matters: prevents malformed realtime raw messages from logging embedded transcript or payload data when model-data logging is disabled, while retaining the failed message type for diagnosis.
+- OpenAI Agents SDK commit, add Vercel cloud mount strategy
+  - https://github.com/openai/openai-agents-python/commit/104b490b061f398d40d45e4d5b91d46638cd7188
+  - Why it matters: documents and implements a narrow create-time S3 mount lifecycle for Vercel sandboxes, keeping mount contents out of workspace persistence and credentials out of serialized session state.
+- OpenAI Agents SDK commit, preserve dot-prefixed Modal tar skip paths
+  - https://github.com/openai/openai-agents-python/commit/95185352c8b829405a96c3886960f030163bdf07
+  - Why it matters: fixes workspace persistence excludes so `.venv`-style skip paths retain their leading dot instead of being converted to a different path.
+- Google ADK commit, propagate RunConfig custom metadata to InvocationContext
+  - https://github.com/google/adk-python/commit/79ba5aff17cf1203b6d4b0948e493802847dfae8
+  - Why it matters: makes run-scoped custom metadata visible to tools through invocation context, turning metadata propagation into a testable loop boundary.
+- Google ADK commit, preserve metadata in A2A artifact updates
+  - https://github.com/google/adk-python/commit/2316b83468b6fa99405d8ee5c2fba4174846c466
+  - Why it matters: restores inbound A2A artifact metadata parity for grounding, custom, usage, citation, and error-code fields, so cross-agent replay can retain more than event actions.
+- Google ADK commit, serialize raw bytes as base64 in A2A converters
+  - https://github.com/google/adk-python/commit/e6604e1d2109261bb548975b0897b76dd3fcc8b2
+  - Why it matters: ensures byte-bearing multimodal tool outputs such as screenshots become JSON/protobuf-safe base64 strings instead of crashing A2A conversion.
+- Google ADK commit, preserve requested tool confirmations through session services
+  - https://github.com/google/adk-python/commit/c4270203c657d4abb14188b90ed692465f1f36c9
+  - Why it matters: fixes production resumption for dynamic tool-confirmation approval loops by serializing and deserializing requested confirmation payloads.
+- Google ADK commit, wait for in-flight BigQuery analytics writes on flush
+  - https://github.com/google/adk-python/commit/6e43800fcb9263c9debdb570dab837bce6f51f31
+  - Why it matters: makes analytics flush wait for dequeued but unfinished writes, giving harness closeout and shutdown code a stronger telemetry-drain barrier.
+
+## 2026-07-23 review addendum
+- OpenAI Agents Python commit, cleanup cancelled MCP servers during connect failure
+  - https://github.com/openai/openai-agents-python/commit/34ab93536750dc3e245a07dfa465c599f1f5697e
+  - Why it matters: records cancelled MCP connect failures before re-raising so partially opened servers are included in failure cleanup even when context-manager entry aborts.
+- OpenAI Agents Python commit, redact MCP tool-call and formatter errors from logs
+  - https://github.com/openai/openai-agents-python/commit/9f06efe9dfa1b3ed640d9aca4b3b9c2b0dd63563
+  - Why it matters: extends sensitive tool-data logging policy to MCP upstream errors and tool approval rejection formatter failures.
+- OpenAI Agents Python commit, pin and verify rclone sandbox installs
+  - https://github.com/openai/openai-agents-python/commit/28c41b79b3f8362a1fa206b2a54e62260476ec7e
+  - Why it matters: replaces installer-script execution with architecture-specific pinned rclone releases and SHA-256 verification for sandbox mount support.
+- OpenAI Agents JS commit, fail closed on invalid dynamic tool approval arguments
+  - https://github.com/openai/openai-agents-js/commit/efdd60ef1711270caea30bc677bbfeb4a28c6712
+  - Why it matters: routes malformed or non-object arguments through approval without invoking dynamic approval policies or tools, including realtime behavior.
+- OpenAI Agents JS commit, preserve assistant message phases across Responses history and replay
+  - https://github.com/openai/openai-agents-js/commit/b45fd21b7022c5c82741acfe3225c8feba3bc3f6
+  - Why it matters: preserves `commentary` versus `final_answer` assistant phases in run state and Responses replay, while documenting Chat Completions incompatibility.
+- OpenAI Agents JS commit, redact sensitive tool and model data from error logs
+  - https://github.com/openai/openai-agents-js/commit/457166e40627a8fb180925f5145036c395cf2ed8
+  - Why it matters: brings JS log redaction in line with sensitive model/tool data settings for shell, apply-patch, computer, realtime, and formatter errors.
+- Google ADK commit, allow invocation-level rubrics
+  - https://github.com/google/adk-python/commit/67ab27f2547db48f7248b1689aab4c18502aee17
+  - Why it matters: lets rubrics be supplied per invocation, merges them into effective rubric lists, and fails when no effective rubric remains.
+- Google ADK commit, add user_simulation eval sample
+  - https://github.com/google/adk-python/commit/481fe21cff0502f3e9c14861bd5f885b7f5969f9
+  - Why it matters: documents LLM-backed simulated-user eval cases with conversation plans, personas, supported criteria, and explicit turn caps.
+- Google ADK commit, degrade gracefully for Vertex AI return-schema failures
+  - https://github.com/google/adk-python/commit/268815df6427b7cb0dc08f18dc8c51ab96ce0c1b
+  - Why it matters: omits only unsupported response schemas while preserving valid tool parameter declarations instead of rejecting automatic function calls.
+- Google ADK commit, lazy-load heavy dependencies while preserving auth-config validation
+  - https://github.com/google/adk-python/commit/88b388ecde41950d9bd9ac886df23a17a366ca2a
+  - Why it matters: validates requested auth configs during event-action parsing without eager-loading the auth stack.
+- Temporal documentation commit, document Google ADK plugin wiring as standard worker setup
+  - https://github.com/temporalio/documentation/commit/57afbb89787d1355359dde1303d23923c125d000
+  - Why it matters: makes the worker plugin lifecycle the documented path for registering Google ADK model/MCP activities and closing cached MCP toolsets.
+- Anthropic Claude Cookbooks commit, add Managed Agents live subagent streaming cookbook
+  - https://github.com/anthropics/claude-cookbooks/commit/c39be3a2e64d2cff678045233d7c56065b94f93e
+  - Why it matters: demonstrates per-thread `event_deltas`, session `initial_events`, and live observation of coordinator/subagent work.
+
+## 2026-07-24 review addendum
+- OpenTelemetry Semantic Conventions for GenAI commit, add previous response ID request attribute
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/712c94fe6f6a165ee0b93d9687286357eb335c7e
+  - Why it matters: adds `gen_ai.request.previous_response.id` as a recommended attribute when a request references a previous response or interaction ID, giving multi-turn harnesses a portable continuation-lineage field.
+- OpenAI Agents Python commit, reject empty `additionalProperties` mappings in strict schemas
+  - https://github.com/openai/openai-agents-python/commit/9684cef97b2d51691db0e33032fa19ff6ac263c9
+  - Why it matters: treats `additionalProperties: {}` and schema-valued `additionalProperties` as non-strict, closing a common OpenAPI/MCP schema loophole at tool and output validation boundaries.
+- OpenAI Agents Python commit, preserve session history on retries
+  - https://github.com/openai/openai-agents-python/commit/4c251ff7795d8c9619e8311ea600e7e071b449d0
+  - Why it matters: scopes session rewinds to actual model retry attempts and adds memory/SQLite tests proving committed session input is preserved outside retry handling.
+- OpenAI Agents Python commit, surface content-filter refusals during streamed Chat Completions tool-call buffering
+  - https://github.com/openai/openai-agents-python/commit/aa3ac378b9875ec2492debe44ad9b9e96de6308e
+  - Why it matters: converts a content-filter finish reason with no emitted text into explicit refusal/completion events instead of a silent empty turn.
+- OpenAI Agents Python commit, encode structured programmatic tool errors as JSON
+  - https://github.com/openai/openai-agents-python/commit/658bfc488b6e5c320d3d1f561b5ba6445d0d8d41
+  - Why it matters: returns JSON object error payloads for programmatic structured tools, aligning error-path outputs with provider/tool schemas.
+- OpenAI Agents JS commit, disable sensitive data logging by default
+  - https://github.com/openai/openai-agents-js/commit/67e97331ba3fba5c4327c2d41144649506d5d2cf
+  - Why it matters: makes sensitive model/tool data logging opt-in and exposes a programmatic override, changing the expected default privacy posture for harness logs.
+- OpenAI Agents JS commit, honor sensitive logging flags across runtime paths
+  - https://github.com/openai/openai-agents-js/commit/fa7c36f4d7c5d0ada07caa515cf9072a6f13eb94
+  - Why it matters: extends sensitive logging controls across MCP, memory session, run/result, debug/warn/error, and payload paths, expanding the negative-path redaction surface harnesses should test.
+- OpenAI Agents JS commit, distinguish missing sandbox paths from inaccessible files
+  - https://github.com/openai/openai-agents-js/commit/a3092caf4113270476980137a51db2a6d60468fd
+  - Why it matters: adds typed sandbox path probing and errors so harnesses can tell absent files from permission/archive-read failures.
+- Google ADK commit, prevent `transfer_to_agent` loop on resumable invocation replay
+  - https://github.com/google/adk-python/commit/19df9b9b9b9153a2e1fcf3c96bb15f86a22835d7
+  - Why it matters: skips display-only partial streaming transfer calls during replay so resumable delegation does not re-enter stale transfer control flow.
+- Google ADK commit, support user labels in RunConfig
+  - https://github.com/google/adk-python/commit/13bef9cf93e4b5a7e97362bc8514c9684cd2eb03
+  - Why it matters: propagates per-invocation labels into LLM request labels for attribution and billing metadata.
+- Google ADK commit, populate finish_reason on AnthropicLlm responses
+  - https://github.com/google/adk-python/commit/716be893d201c25859c44cc0cab5b060c2977021
+  - Why it matters: maps Anthropic stop reasons to normalized `finish_reason` in both streaming and non-streaming responses, improving provider-agnostic termination handling.
+- Google ADK commit, apply `after_timestamp` and `num_recent_events` together in VertexAiSessionService
+  - https://github.com/google/adk-python/commit/021f6f6c1e6b55f71e2144ec5857820cd010b6e4
+  - Why it matters: fixes combined session-window filtering for replay and resumed invocations that need both recency and timestamp constraints.
+- Google ADK commit, add opt-in final-response tool names to BigQueryAgentAnalyticsPlugin
+  - https://github.com/google/adk-python/commit/07455ee62cbd5c11625aed8c75380b88eba55e6d
+  - Why it matters: lets analytics record configured successful final-response tools as `AGENT_RESPONSE` events with source-tool attribution while keeping the default off.
+
+## 2026-07-25 review addendum
+- OpenAI Agents Python commit, redact realtime and RunState diagnostics
+  - https://github.com/openai/openai-agents-python/commit/14ad7e1c62446cc809144e9d8b30b4b047aa9fdb
+  - Why it matters: removes realtime event identities and RunState item/agent diagnostic details from ordinary logs when sensitive model or tool data logging is disabled, expanding privacy harness coverage beyond traces.
+- OpenAI Agents Python commit, reject unsupported streamed STT audio dtypes
+  - https://github.com/openai/openai-agents-python/commit/d9d623098e879baf904e869416486f7cc2b93ac8
+  - Why it matters: raises `UserError` unless streamed STT buffers are `int16` or `float32`, making voice-loop input representation a testable boundary.
+- OpenAI Agents Python commit, include device nodes when parsing sandbox `ls` output
+  - https://github.com/openai/openai-agents-python/commit/c1b423749e2bf8ca5f89cad13e2a144c9683a6ee
+  - Why it matters: preserves GNU and BSD character/block device entries as size-zero non-file entries, preventing sandbox listing harnesses from silently dropping device-node rows.
+- Google ADK commit, prevent continuation forgery in tool confirmation
+  - https://github.com/google/adk-python/commit/4b002c4b56e0b5fa83a0d989ef7663fbedf23211
+  - Why it matters: validates tool-confirmation responses against registered tools, original session-history calls, confirmation requirements, exact name/args, and agent authorship before continuing tool execution.
+- Google ADK commit, reject `base_url` and `extra_body` in `generate_content_config`
+  - https://github.com/google/adk-python/commit/472e4635fb4014f7ed2c77db7c2b97f17bbd45bf
+  - Why it matters: prevents ordinary agent generation config from overriding transport, tools, system instructions, or response schemas through privileged HTTP options while allowing safe timeout settings.
+- LangGraph commit, type v3 stream-events return and native projections
+  - https://github.com/langchain-ai/langgraph/commit/1e1ca88dad9c7e708263257fa9fc27a3fbdfff68
+  - Why it matters: makes `stream_events(version="v3")` and `astream_events(version="v3")` return typed graph-stream handles with native projections for values, messages, lifecycle, and subgraphs.
+- Temporal documentation commit, add Java SDK Workflow Streams docs
+  - https://github.com/temporalio/documentation/commit/02e448136f2db3809bde788266e541fb671b75af
+  - Why it matters: documents durable progress streaming for Java workflows, including `@WorkflowInit` stream creation, workflow/activity/client publishing, subscriptions, and carrying stream state across continue-as-new.
+
+## 2026-07-26 review addendum
+- OpenAI Agents Python commit, support async callable objects as function tools
+  - https://github.com/openai/openai-agents-python/commit/6eb779d9397085ab61358dc5b3a47436c9419d54
+  - Why it matters: makes callable instances first-class function tools, adds API-safe fallback-name validation, preserves context handling, and adds broad schema/invocation regression coverage for callable-object tools.
+- OpenAI Agents Python commit, preserve callable function tool compatibility
+  - https://github.com/openai/openai-agents-python/commit/117bd1bb9abb77087de0aa56ac26bab40cd6c802
+  - Why it matters: ignores annotated callable-instance state and validates unsupported callable-object annotations before invocation, reducing schema drift and runtime surprises for class-backed tools.
+- OpenAI Agents Python commit, preserve `*args`/`**kwargs` docstring descriptions in tool schemas
+  - https://github.com/openai/openai-agents-python/commit/99e88c14db33ec85e3e7ca1ad09e972934b56b5e
+  - Why it matters: keeps variadic parameter descriptions from Google and NumPy docstrings in generated tool schemas by normalizing starred parameter names.
+- OpenAI Agents Python commit, reuse verbose stdout logging handler
+  - https://github.com/openai/openai-agents-python/commit/5aff70faebce1d3e49a6796c7f2e6ec00a019681
+  - Why it matters: makes repeated and concurrent verbose logging setup idempotent, avoiding duplicate debug output in long-lived harnesses and worker processes.
+- OpenAI Agents JS commit, add published SDK behavior integration coverage
+  - https://github.com/openai/openai-agents-js/commit/da2b8a3c5aff9b48658b7ba41d3c032154ae9e61
+  - Why it matters: adds first-party real-package integration profiles for core SDK semantics and capability coverage, including provider parity, guardrails, execution controls, hosted tools, tool search, programmatic tool calling, approval/resume, and hosted multi-agent identity.
+- Google ADK commit, allow `http_options.extra_body` in `generate_content_config`
+  - https://github.com/google/adk-python/commit/4c6f22e8e6daa8d55cadf3999f010bcb4303f8bf
+  - Why it matters: narrows the previous config restriction by allowing request-body extensions while still rejecting `base_url` transport overrides, so harness assertions need to match the current boundary.
+- Google ADK commit, use `flush()` instead of fixed sleeps in BigQuery plugin tests
+  - https://github.com/google/adk-python/commit/8addc447983dff3a91110bf6ed746b12655438d1
+  - Why it matters: reinforces plugin `flush()` as the analytics write-completion barrier and removes timing guesses from observability tests.
+- Google ADK commit, remove mock races from cross-loop startup tests
+  - https://github.com/google/adk-python/commit/fabf0fd552eceda2a5cbc0263eb76ea2e6655fe8
+  - Why it matters: keeps concurrency tests focused on `_ensure_started` coalescing rather than racing on a non-thread-safe patch, improving reliability of cross-event-loop startup harnesses.
+
+## 2026-07-27 review addendum
+- OpenAI Docs, Programmatic Tool Calling
+  - https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling.md
+  - Why it matters: defines hosted JavaScript tool orchestration for Responses API requests, including `allowed_callers`, supported tools, routing guidance, program/function/program-output response items, stateless replay requirements, and direct-vs-programmatic evaluation criteria.
+- OpenAI Agents Python v0.19.0 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.19.0
+  - Why it matters: releases `ProgrammaticToolCallingTool`, structured programmatic tool output support, dict/typed SDK config normalization, expanded sensitive logging hardening, WebSocket overload retry handling, Vercel cloud mounts, callable-tool support, and related harness-visible fixes as a public SDK baseline.
+- OpenAI Agents Python commit, retry pre-response WebSocket overload errors
+  - https://github.com/openai/openai-agents-python/commit/da82ee786ad5968f52001f271a9144bf000aa039
+  - Why it matters: marks Responses WebSocket `server_is_overloaded` errors retryable before a response starts while keeping partial unsafe overloads non-retryable, giving retry loops a concrete replay-safety boundary.
+- OpenAI Agents Python commit, use `last_agent` for streaming error details
+  - https://github.com/openai/openai-agents-python/commit/fe41cc39e00396aa77bad216fb35bc6f515cfb5f
+  - Why it matters: avoids masking terminal streaming exceptions when the current-agent weak reference has been released or collected, improving closeout diagnostics for long-lived streaming runs.
+- OpenAI Agents Python commit, compare `inspect` sentinels by identity in function schemas
+  - https://github.com/openai/openai-agents-python/commit/a335b32024883fce51d3453228949edaa8da4e49
+  - Why it matters: prevents user-defined equality on defaults or annotations from crashing schema generation or changing optionality, adding negative fixtures for schema harnesses.
+- OpenAI Agents JS commit, propagate non-streaming cancellation to function tools
+  - https://github.com/openai/openai-agents-js/commit/e4f32931d5f9d72499dbba46e3e66efcd13b9c77
+  - Why it matters: passes abort signals into function-tool execution, adds incomplete synthetic tool results, and persists cancellation checkpoints, making non-streaming cancellation a replayable loop state.
+- OpenAI Agents JS commit, wait for cancelled stream cleanup before resolving completion
+  - https://github.com/openai/openai-agents-js/commit/4461a35b2249526e2b51ac92a47a30dc11893fc8
+  - Why it matters: keeps `completed` pending until the background streaming run loop settles after cancellation, so teardown failures are still observable.
+- OpenAI Agents JS commit, preserve refusal messages in AI SDK history
+  - https://github.com/openai/openai-agents-js/commit/c93911914760522bc659477ad4a1fa8bad54a1d7
+  - Why it matters: maps assistant refusal parts into ordered text content for AI SDK history conversion, preventing safety refusals from being dropped by compatibility adapters.
+
+## 2026-07-28 review addendum
+- OpenAI Agents Python commit, allow empty streamed model input
+  - https://github.com/openai/openai-agents-python/commit/65db9a7eacd9d1ecadcd9f7bf5dd703b717fb54d
+  - Why it matters: removes a streamed-run preflight rejection for empty prepared input lists and adds regression coverage that empty-list input reaches the model.
+- OpenAI Agents Python commit, route falsey mapped providers
+  - https://github.com/openai/openai-agents-python/commit/ba58983a178c772c96fb501a61b5e9940028dc06
+  - Why it matters: provider maps now route when `get_provider()` returns any non-`None` provider, even if the provider object is falsey, preventing custom adapter routing from depending on truthiness.
+- OpenAI Agents Python commit, cancel parallel input-guardrail task when the model turn fails
+  - https://github.com/openai/openai-agents-python/commit/5804bd039f2c92c9b93b3b8e8037c9e8ef9906eb
+  - Why it matters: ensures sibling guardrail work does not continue after a terminal non-tripwire model failure, making concurrent guardrail cleanup a testable loop contract.
+- OpenAI Agents Python commit, enforce trace `max_batch_size` during force flush and shutdown
+  - https://github.com/openai/openai-agents-python/commit/b2f0344e92a2eaafad1a987bb32c06e249217c7f2
+  - Why it matters: applies exporter batch-size limits during telemetry closeout paths, so forced flush and shutdown behavior match normal background export constraints.
+- OpenAI Agents Python commit, redact Blaxel unmount paths in logging
+  - https://github.com/openai/openai-agents-python/commit/a6cb92244211dc3845e738b2125c684906e59824
+  - Why it matters: makes sandbox unmount logs follow tool-data redaction policy, preventing mount paths from leaking during teardown failures.
+- OpenAI Agents Python commit, redact realtime audio-format diagnostics
+  - https://github.com/openai/openai-agents-python/commit/88bfb18c2fc8265e6c9ea798877d03d21d88ddc6
+  - Why it matters: makes unknown realtime audio-format logs follow model-data redaction policy, expanding privacy coverage to realtime configuration diagnostics.
+- OpenAI Agents JS v0.14.0 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.14.0
+  - Why it matters: releases Programmatic Tool Calling support with preservation across streaming, sessions, replay, and serialized `RunState`, and makes sensitive model/tool data logging disabled by default.
+- OpenAI Agents JS commit, propagate streamed cancellation to function tools
+  - https://github.com/openai/openai-agents-js/commit/84aed6ebe49f0245e8a317912f6e3c26e89526a7
+  - Why it matters: forwards cancellation into streamed function-tool execution while avoiding replay of settled work and preserving resumable sandbox state.
+- OpenAI Agents JS commit, propagate cancellation to MCP tool requests
+  - https://github.com/openai/openai-agents-js/commit/b907917f5fa9cf52b485d6c80fe51c3d5f4beb0d
+  - Why it matters: adds abort-signal plumbing for MCP tool calls, making MCP cancellation part of the same loop teardown contract as function tools.
+- Google ADK commit, scope replay sequence to the current invocation
+  - https://github.com/google/adk-python/commit/455853b5bca2dad68923a9100f9ba945845ad6d0
+  - Why it matters: keeps session-wide replay indexes for context while filtering replay sequences by current invocation, preventing prior invocation terminal events from contaminating resumption.
+- Google ADK commit, isolate delegated task branches
+  - https://github.com/google/adk-python/commit/95feafa3b23dbcce19c287cf749a2076fb9c5db9
+  - Why it matters: gives each delegated task a stable sub-branch while retaining function-call-based isolation scope, making resumable subagent task history better isolated.
+- Google ADK commit, raise `SessionNotFoundError` when appending to a missing session
+  - https://github.com/google/adk-python/commit/0a70337f29fd76dba18da6b82e072621d60f9117
+  - Why it matters: standardizes missing-session append failures across Firestore, database, and SQLite session services as a typed recovery condition.
+- Google ADK commit, single-flight Discovery Engine mode detection
+  - https://github.com/google/adk-python/commit/3a9a88c975117a8cfde1ef9d920a978eb4ffe701
+  - Why it matters: coalesces concurrent auto-detection of Discovery Engine search-result mode and caches mode decisions, reducing racey backend probes in tool loops.
+- Google ADK commit, publish companion constraints files for transitive dependency protection
+  - https://github.com/google/adk-python/commit/75c773ed9d2a369e69fb1ce387cf31983bf9450b
+  - Why it matters: documents Python-version-specific constraints files and a four-day buffer for dependency protection, improving reproducibility of ADK harness environments.
+- Google ADK commit, complete BigQuery Agent Analytics privacy and shutdown hardening
+  - https://github.com/google/adk-python/commit/9adf0113ea7adb14044f010cbe1366f6eab53565
+  - Why it matters: hardens formatter/parser failure behavior, redacts sensitive mappings/diagnostics/signed URIs/raw prompts before storage, validates table schemas recursively, bounds JSON nesting, and reports shutdown success only after owned work and clients are drained or closed.
+
+## 2026-07-29 review addendum
+- OpenAI Agents Python v0.19.1 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.19.1
+  - Why it matters: releases the latest sandbox path-grant, guardrail cancellation, streamed-retry accounting, SQLite session-window, trace-flush, and privacy-redaction fixes as a public Python SDK baseline.
+- OpenAI Agents Python commit, support native host paths in sandbox path grants
+  - https://github.com/openai/openai-agents-python/commit/1dddc0d1e2b596da711de39717b9b4b14bb2fd3a
+  - Why it matters: extends sandbox path-grant handling across providers and local/Docker sessions so harnesses must validate native host path normalization and grant preservation, not only POSIX-style workspace paths.
+- OpenAI Agents Python commit, cancel sibling enablement checks on failure
+  - https://github.com/openai/openai-agents-python/commit/e75cdd2e2c76f7930d894c6f46174cb091fc724f
+  - Why it matters: adds a shared async task utility and coverage across function tools, realtime handoffs, realtime sessions, and model settings so failed enablement checks do not leave sibling checks running after the control boundary has failed.
+- OpenAI Agents Python commit, cancel streamed models when input guardrails fail
+  - https://github.com/openai/openai-agents-python/commit/3142f3ace3af8c42ce4329a2694cb80f27447d32
+  - Why it matters: completes the bidirectional guardrail/model cancellation contract by ensuring streamed model work is cancelled when an input guardrail fails first.
+- OpenAI Agents Python commit, honor falsey input builders in agent-tools
+  - https://github.com/openai/openai-agents-python/commit/3f45d9e56fccf51747f7a3e891b4ec99a5a09aad
+  - Why it matters: prevents falsey custom input-builder objects from being ignored at agent-as-tool boundaries, mirroring the recent falsey-provider routing fix.
+- OpenAI Agents Python commit, count streamed retries when terminal usage is missing
+  - https://github.com/openai/openai-agents-python/commit/e8311b45886edcede59aecc539821a95586369e5
+  - Why it matters: keeps retry/usage accounting correct when a streamed terminal event lacks usage data, which affects harness cost and retry metrics.
+- OpenAI Agents Python commit, count valid SQLite session items for positive limits
+  - https://github.com/openai/openai-agents-python/commit/35c880541592c242e54079bbe0588f0b33967125
+  - Why it matters: makes positive history limits count valid session items rather than raw rows, improving reproducibility for memory-backed replay windows.
+- OpenAI Agents Python commit, preserve zero Blobfuse attribute cache timeout
+  - https://github.com/openai/openai-agents-python/commit/71aa44e4b9b900c0a3bf94800383d08a571e57e4
+  - Why it matters: treats an explicit zero mount-cache timeout as meaningful configuration rather than falling back through falsey-default logic.
+- OpenAI Agents JS commit, preserve verified Docker sessions across resumes
+  - https://github.com/openai/openai-agents-js/commit/48094d010fd8c49f7878dd1d553a155ea020ba23
+  - Why it matters: serializes and validates sandbox session trust state so resumable Docker sessions can be preserved only when their path grants and verification state remain trustworthy.
+- OpenAI Agents JS commit, allow Docker workdirs within path grants
+  - https://github.com/openai/openai-agents-js/commit/e4158f1f5e1e305fc018568ee983bb30f94cee2c
+  - Why it matters: expands Docker sandbox workdir validation to allow directories inside granted paths, which affects path-grant fixtures for workspace reproducibility.
+- OpenAI Agents JS commit, support native Windows paths in path grants
+  - https://github.com/openai/openai-agents-js/commit/73abbdc7b2066fbceebc1165eac3fbf98157adfe
+  - Why it matters: makes sandbox path-grant normalization cross-platform and persists path-grant state through session serialization.
+- Google ADK commit, cache FunctionTool declarations across LLM calls
+  - https://github.com/google/adk-python/commit/57f3af24a00de46096089bd3279791a6a98b5c48
+  - Why it matters: memoizes expensive Pydantic/JSON-schema declaration generation while returning mutable copies for callers, making schema caching a harness-visible performance and mutation-isolation boundary.
+- Google ADK commit, serialize eval criteria as concrete subclasses
+  - https://github.com/google/adk-python/commit/623da4930a43cbaa5386a096c5a54266bae02522
+  - Why it matters: preserves criterion subtype data when eval configs and metrics are serialized, reducing grader-configuration drift across persisted harness runs.
+- Google ADK commit, scope tool thread pools to event loops
+  - https://github.com/google/adk-python/commit/a1792a712ae6b90dee4fecdee79cf0ddff1b5609
+  - Why it matters: keys tool thread pools by the event loop they serve and shuts them down when the loop is collected, preventing leaked idle threads in long-lived or multi-loop harness processes.
+- Google ADK commit, make Vertex RAG memory uploads async-safe
+  - https://github.com/google/adk-python/commit/80a05b7f639216c8bf60a870598f0d44efcba339
+  - Why it matters: moves RAG upload/search to the async SDK surface and closes async clients in `finally`, preventing memory operations from blocking the event loop or leaking HTTP sessions on cancellation.
+- Google ADK commit, close AsyncDaytona client in environment close
+  - https://github.com/google/adk-python/commit/ecf6d13f64d6df4b0860c1b32643d12cc1c0d381
+  - Why it matters: makes Daytona sandbox/environment close include the async client, adding another provider-specific teardown assertion for resource harnesses.
+- Google ADK commit, telemetry consent/status and interrupt-safe CLI handling
+  - https://github.com/google/adk-python/commit/6bab08fc803d26853417c4d6e71704b1a72e035e
+  - Why it matters: adds persistent telemetry consent controls and handles `KeyboardInterrupt`/`EOFError` by defaulting off for the current session without saving, making CLI telemetry opt-in and interruption behavior testable.
+- OpenTelemetry Semantic Conventions for GenAI commit, make retrieval document ID and score optional
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/3cfb9e6e2344a337f9378e2bfdfd8ed9e1f20ca2
+  - Why it matters: allows retrieval documents to omit ID and score in spans and models, which helps harnesses represent partial retrieval evidence without fabricating identifiers or confidence values.
+- LangGraph 1.2.10 release
+  - https://github.com/langchain-ai/langgraph/releases/tag/1.2.10
+  - Why it matters: releases the previously reviewed typed v3 stream-events/native projections and the newer node `trace_policy` changes as the current LangGraph package baseline.
+
+## 2026-07-30 review addendum
+- Google ADK commit, add `gen_ai.agent.name` to `execute_tool` spans
+  - https://github.com/google/adk-python/commit/1a80962124d54dbbb052327c00c7ba9f215fb39b
+  - Why it matters: makes tool-execution spans carry explicit agent attribution when invocation context is available, improving cross-boundary harness correlation for ADK tool calls.
+- Google ADK commit, support `elicitation_callback` in `McpToolset`
+  - https://github.com/google/adk-python/commit/48246195ac55f7cf57c7dbe74c511bf43a787e20
+  - Why it matters: forwards MCP `elicitation/create` handling through the toolset, session manager, and session context, adding an explicit control path for out-of-band flows such as auth challenges.
+- Google ADK commit, avoid quadratic text/audio accumulation in streaming
+  - https://github.com/google/adk-python/commit/7fd876027049f86a4a580a56c45373c8e2908e24
+  - Why it matters: replaces repeated string/byte concatenation with list accumulation and join for streaming response and audio-cache aggregation, making high-chunk streaming performance a testable harness property.
+- Google ADK commit, add regional and MREP endpoint routing for DataAgentToolset
+  - https://github.com/google/adk-python/commit/20842eb8e035a6e128b7585ca81f4625e00147c2
+  - Why it matters: derives Gemini Data Analytics endpoints from explicit settings, resource names, regional/REP locations, mTLS, or custom endpoints, so tool-loop provenance must capture routing inputs.
+- Google ADK commit, honor Apigee request timeouts
+  - https://github.com/google/adk-python/commit/2547db61dd4599d5e0ac2f77cd0b45f5ded6b498
+  - Why it matters: applies `http_options.timeout` to both streaming and non-streaming OpenAI-compatible Apigee requests, making request-time timeout propagation part of loop failure provenance.
+- Google ADK commit, refresh expired OAuth2 tokens in OpenAPI credential exchanger
+  - https://github.com/google/adk-python/commit/b3c9783427b2d6cfad945bdb841396fb0a63c82f
+  - Why it matters: refreshes expired OAuth2 credentials when a refresh token is available and falls back to the existing token on refresh failure, adding auth-recovery cases for tool-loop harnesses.
+- Google ADK commit, log commands run in CLI
+  - https://github.com/google/adk-python/commit/a58220cd05a671082b913fd4955613f806b2bd49
+  - Why it matters: records CLI subcommands and flags when telemetry is enabled, making developer-workflow telemetry consent and command metadata a harnessable surface.
+- Google ADK commit, add parent terminal grouping and TTL pruning to ADK CLI telemetry
+  - https://github.com/google/adk-python/commit/2c6a7ffb4a8f46e2bf94359290476a2664ddf8b6
+  - Why it matters: groups CLI telemetry into parent-terminal sessions and prunes inactive/corrupt session files, turning telemetry session state into another reproducibility and privacy boundary.
+- OpenAI Agents JS v0.14.1 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.14.1
+  - Why it matters: releases native Windows path grants, Docker workdirs inside grants, verified Docker session preservation across resumes, and lifecycle/agent-tool helper type exports as the current JS SDK baseline.
+
+## 2026-07-31 review addendum
+- OpenAI Agents Python commit, use monotonic deadlines for trace export
+  - https://github.com/openai/openai-agents-python/commit/2c6be96b5c6a4027e5cf33a505510d915411edb7
+  - Why it matters: makes scheduled trace export robust to wall-clock changes by using monotonic time, which affects trace-drain and closeout harnesses.
+- OpenAI Agents Python commit, reject ephemeral paths during Modal tar hydration
+  - https://github.com/openai/openai-agents-python/commit/a017105509f6b0eec8877e81d3c2d35ee5fe7151
+  - Why it matters: changes sandbox archive validation from skipping excluded paths to rejecting them before extraction, preventing ephemeral workspace members from being restored.
+- OpenAI Agents Python commit, preserve raw realtime server-event payloads
+  - https://github.com/openai/openai-agents-python/commit/2a69638f0af8cb7ccd89406ec70fa112ee26b5a3
+  - Why it matters: avoids mutating retained raw realtime events while applying compatibility normalization only to validation copies.
+- OpenAI Agents Python commits, harden voice streaming cancellation and dispatcher closeout
+  - https://github.com/openai/openai-agents-python/commit/2cec48924bcd5f514091aaf6ae2a38683710437e
+  - https://github.com/openai/openai-agents-python/commit/b5465c705e80746b9bcb080429905ade45b11d8d
+  - https://github.com/openai/openai-agents-python/commit/0ffa36840cb812488738f6fc5be3d3a1f51397b7
+  - Why it matters: propagates consumer cancellation, closes STT websockets on cancellation, blocks idle audio dispatch without spinning, and exits dispatch on `session_ended`.
+- OpenAI Agents Python commits, MCP cleanup and URL-credential redaction
+  - https://github.com/openai/openai-agents-python/commit/9e1564e00635bbd9896fae3b14ca52612beb2655
+  - https://github.com/openai/openai-agents-python/commit/bdc19899934d011481ff511cbbe3808cffca82b8
+  - https://github.com/openai/openai-agents-python/commit/d3ea084b0b7f269b467d1ff818b9ab7e81dfcf57
+  - https://github.com/openai/openai-agents-python/commit/000a96b602889b00f7cfaa210c41e1a74be65272
+  - Why it matters: redacts URL credentials from SDK errors, tracing, tool-origin metadata, and nested cleanup logs while making failed-server reconnect clean up partial resources first.
+- OpenAI Agents Python commits, memory-session closed state and valid-item history windows
+  - https://github.com/openai/openai-agents-python/commit/c510261cad3636eb5389ef7d937b6f00edce28ed
+  - https://github.com/openai/openai-agents-python/commit/974733eff567edeb8d550f042610fa9966efa5c2
+  - Why it matters: makes Redis/Dapr memory sessions reject use after close, release owned clients idempotently, and count valid conversational items for recency limits after skipping corrupt backend records.
+- OpenAI Agents Python commits, sandbox environment discriminator and tool-schema trimming fixes
+  - https://github.com/openai/openai-agents-python/commit/27fc1f440757b0979953bfe45929d5fe5af23c29
+  - https://github.com/openai/openai-agents-python/commit/df0b4a2eb745da9dc549abef631e1af647685a03
+  - https://github.com/openai/openai-agents-python/commit/1058e842584042330d81fc14516773aac71ad400
+  - Why it matters: preserves typed environment values through manifest serialization, keeps schema-keyword-like parameter names during trimming, and exposes original callables behind wrapped function tools.
+- Google ADK commit, wire App plugins through eval paths
+  - https://github.com/google/adk-python/commit/73ecb5b535a7fde3e604eeb1148442f9cc5699c4
+  - Why it matters: makes CLI/dev-server/local/generator evaluation paths carry App plugins instead of bypassing plugin lifecycle by resolving only the root agent.
+- Google ADK commit, make session event reads deterministic and timezone-correct
+  - https://github.com/google/adk-python/commit/4ca975eb9acd30a64b2c8615a93d31dada63052c
+  - Why it matters: serializes exact event epochs, avoids naive-datetime reconstruction during DST ambiguity, and tie-breaks equal timestamps with event IDs for deterministic replay windows.
+- Google ADK commit, validate audio sample rates
+  - https://github.com/google/adk-python/commit/d24c84cdd90d8b2cc78f4162c42d14b53b8f37d6
+  - Why it matters: tightens audio MIME parsing and rejects non-positive resampling rates before live/eval audio processing.
+- Google ADK commit, kill runaway code on timeout in container and local executors
+  - https://github.com/google/adk-python/commit/27548e392f8a8503609a6abce0fb8081e8fb24f5
+  - Why it matters: enforces hard code-execution timeouts with process-group cleanup, reducing escaped child processes and hung output streams in code-tool harnesses.
+- Google ADK commit, return schema-validation feedback to models
+  - https://github.com/google/adk-python/commit/b5b27cb074d00f2e6889098514d8f716bc1cdfad
+  - Why it matters: turns invalid structured final responses into model-visible validation feedback instead of accepted final output.
+- Google ADK commit, introduce LLM capability reporting
+  - https://github.com/google/adk-python/commit/2aff82c30923e5f7df5ce4101db52bce82740329
+  - Why it matters: gives provider/model harnesses an explicit capability surface for features such as combining output schemas with tools.
+- Google ADK commits, tighten eval custom metrics and skill-registry path validation
+  - https://github.com/google/adk-python/commit/5d2aca08eb47e78d5915cd27c41db1541d9b18f8
+  - https://github.com/google/adk-python/commit/11101acc681022d5b06e9ddcb99ca86f0e5c35e8
+  - Why it matters: scopes custom metric registration per registry, trusts custom metric code paths only from eval config, and rejects unsafe model-issued skill names before URL construction.
+- Google ADK commits, A2A peer trust boundaries
+  - https://github.com/google/adk-python/commit/0ba7d3cba7004c0fcc0a05f1f4cfb6ea78e38f91
+  - https://github.com/google/adk-python/commit/16cbb7d1c6020ec9a2d26ef97b6041410f0d256c
+  - Why it matters: filters unsafe peer-supplied event-action metadata and constrains network-fetched agent-card RPC destinations across all advertised interfaces.
+- Google ADK commits, live/realtime and auth/provider loop fixes
+  - https://github.com/google/adk-python/commit/0f738a549413713a059fd24b12e7f34580f6613a
+  - https://github.com/google/adk-python/commit/b0f52f0d970e16877d748284b6a68664385fb97f
+  - https://github.com/google/adk-python/commit/cde301ba68dc2970465b1b847fa805aad6f1f2ed
+  - https://github.com/google/adk-python/commit/d58caa6c7804e613609e0d1a66cc0194a17cac3b
+  - https://github.com/google/adk-python/commit/923dee79707049d93e94d081a90f7aa70e0896f2
+  - Why it matters: adds explicit `audio_stream_end`, moves synchronous OAuth2 token work off the event loop, wraps Anthropic rate-limit errors, expands provider routing, and distinguishes `num_recent_events=0` from unset.
+- LangGraph commit, segment-aware checkpoint-store namespace matching
+  - https://github.com/langchain-ai/langgraph/commit/66ebe1a0da921e73f0f9f879ba105d314c079f7c
+  - Why it matters: prevents namespace-prefix searches in checkpoint-postgres/sqlite from matching sibling namespaces by raw string prefix, improving graph store isolation.
+- Temporal documentation commits, Worker Identity and metrics-reference consistency
+  - https://github.com/temporalio/documentation/commit/580fce5f8adc884600405e3a5923c3373700925d
+  - https://github.com/temporalio/documentation/commit/595ea0fd6b6122891111db18bf9c1a4ec3347e8f
+  - https://github.com/temporalio/documentation/commit/c015fbab91cd733da0d752a37363cd465db4a07d
+  - Why it matters: recommends explicit Cloud Run Worker Identity for Temporal worker observability and adds/checks consistency for SDK metrics documentation.
+
+## 2026-08-01 review addendum
+- OpenTelemetry Semantic Conventions for GenAI commit, add fetch/get-response operation and span
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/683d28da9f
+  - Why it matters: adds `gen_ai.operation.name=get_response` and `gen_ai.get_response.client` for fetching previous model responses by ID, and states that this non-inference operation must not emit token usage metrics for historical response tokens.
+- OpenAI Agents JS v0.14.2 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.14.2
+  - Why it matters: releases sandbox archive ephemeral-path rejection, raw realtime transport event preservation, MCP credential redaction, MCP cleanup-before-reconnect, and sandbox secret-reference persistence as the current JS SDK baseline.
+- OpenAI Agents JS PR, preserve sandbox environment secret references
+  - https://github.com/openai/openai-agents-js/pull/1547
+  - Why it matters: persists reconstructable secret-reference metadata while keeping resolved secret values runtime-only and binding resume to the current trusted manifest before resolution.
+- OpenAI Agents JS PR, preserve raw realtime transport event payloads
+  - https://github.com/openai/openai-agents-js/pull/1550
+  - Why it matters: delivers exact raw parsed JSON to wildcard/transport listeners while using separately validated event representations for typed listeners and internal state.
+- OpenAI Agents JS PR, reject ephemeral paths during sandbox archive hydration
+  - https://github.com/openai/openai-agents-js/pull/1553
+  - Why it matters: makes JS sandbox archive restoration fail closed when archives contain ephemeral/excluded paths, matching the Python-side sandbox-hardening pattern.
+- OpenAI Agents JS PRs, redact MCP endpoint credentials and clean before reconnect
+  - https://github.com/openai/openai-agents-js/pull/1551
+  - https://github.com/openai/openai-agents-js/pull/1552
+  - https://github.com/openai/openai-agents-js/pull/1554
+  - Why it matters: prevents credential-bearing MCP URLs from leaking through errors, traces, serialized state, diagnostics, and model-visible tool names, and makes reconnect retry only after selected server cleanup succeeds.
+- Google ADK commit, support fallback OAuth token and prefixless credential lookups
+  - https://github.com/google/adk-python/commit/f4e7233469
+  - Why it matters: resolves raw fallback token strings and prefixless session-state credential keys, expanding authenticated tool-loop recovery fixtures.
+- Google ADK commit, strip markdown and typographic decoration from rubric text
+  - https://github.com/google/adk-python/commit/bf8388aaed
+  - Why it matters: makes rubric verdict matching robust to model echoes that include markdown or typographic decoration around rubric text.
+- Google ADK commit, stop marking defaulted output-schema fields as required
+  - https://github.com/google/adk-python/commit/d4ec2fc382
+  - Why it matters: keeps schema-feedback loops from over-requiring fields that have defaults in structured output schemas.
+- Temporal documentation commits, TypeScript external-storage stage and OpenAI Agents streaming-topic configuration
+  - https://github.com/temporalio/documentation/commit/4c31482d9e
+  - https://github.com/temporalio/documentation/commit/5ab53ef44f
+  - Why it matters: clarifies that Temporal External Storage is Pre-release for TypeScript even while Go/Python stay Public Preview, and that the OpenAI Agents streaming topic belongs on the Client plugin rather than the Worker plugin.
+
+## 2026-08-02 review addendum
+- OpenAI Agents Python v0.19.2 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.19.2
+  - Why it matters: releases the current Python baseline for monotonic trace export, raw realtime event preservation, MCP credential redaction and cleanup-before-reconnect, memory-session valid-item windows and closed-state enforcement, ephemeral sandbox archive rejection, tagged sandbox environment values, schema-keyword-safe tool trimming, LiteLLM stream cleanup, voice cancellation/idle dispatch, and input-guardrail error reporting.
+- OpenAI Agents Python PR, report tool guardrail results for streamed runs
+  - https://github.com/openai/openai-agents-python/pull/4097
+  - https://github.com/openai/openai-agents-python/commit/fc084ae29cd751b801c2779c9ebd23ff6bad1668
+  - Why it matters: makes `RunResultStreaming.tool_input_guardrail_results`, `tool_output_guardrail_results`, and serialized streaming state report the same guardrail results as equivalent non-streamed runs.
+- OpenAI Agents Python PR, auto-paginate MCP tool and prompt listings
+  - https://github.com/openai/openai-agents-python/pull/4094
+  - https://github.com/openai/openai-agents-python/commit/a134f3a29869f3aa0e10e37447897046d18c2d23
+  - Why it matters: follows MCP `nextCursor` for tools and prompts, retries failed pages, caches full pre-filter tool lists, preserves first-page prompt metadata, rejects cursor cycles, and adds second-page stdio integration coverage.
+- OpenAI Agents JS PR, include all paginated MCP tools
+  - https://github.com/openai/openai-agents-js/pull/1556
+  - https://github.com/openai/openai-agents-js/commit/1154aa0c8ac02a40880c54ed760a2d373e7bde42
+  - Why it matters: brings MCP tool-pagination support to JS across stdio, SSE, and Streamable HTTP, including aggregate metadata publication, failure rollback, repeated-cursor rejection, empty-string cursor preservation, and fail-closed behavior when metadata caching is unavailable.
+- OpenAI Agents Python PR, define explicit zero-value contracts
+  - https://github.com/openai/openai-agents-python/pull/4101
+  - https://github.com/openai/openai-agents-python/commit/0db81169ccf5b5f63e4e3550ef189d8bdd42c117
+  - Why it matters: documents and tests field-specific zero semantics for file-search result limits, shell timeouts, MCP lifecycle/read timeouts, sandbox cache settings, and SQL/session limits so harnesses can distinguish intentional zero/default behavior from invalid configuration.
+- OpenAI Agents Python PR, replace closed default loop in `run_sync`
+  - https://github.com/openai/openai-agents-python/pull/4102
+  - https://github.com/openai/openai-agents-python/commit/4808a9adf9c8a90a5d9f4ac1488ee5043f3f947a
+  - Why it matters: creates and registers a replacement thread-default event loop when the existing default loop is closed before `AgentRunner.run_sync()` schedules work.
+- OpenAI Agents Python PR, remove apply-patch moved source as the bound user
+  - https://github.com/openai/openai-agents-python/pull/4100
+  - https://github.com/openai/openai-agents-python/commit/98df4ea63d274315d124301f169220abeb02feb2
+  - Why it matters: ensures sandbox apply-patch move cleanup runs source removal as the bound sandbox user and avoids deleting the file when move destination equals source.
+- OpenAI Agents Python PRs, LiteLLM stream cleanup
+  - https://github.com/openai/openai-agents-python/pull/4066
+  - https://github.com/openai/openai-agents-python/pull/4077
+  - Why it matters: closes LiteLLM provider streams on normal, cancelled, and failure paths while preserving a completed streamed response if post-terminal cleanup fails.
+- OpenAI Agents Python PR, report input guardrail results when a tripwire aborts the run
+  - https://github.com/openai/openai-agents-python/pull/4071
+  - Why it matters: aligns non-streamed `Runner.run()` / `run_sync()` input-guardrail error details with streamed behavior by preserving completed input-guardrail results when a tripwire aborts.
+- OpenTelemetry Semantic Conventions for GenAI PR, remove delegated inference spans from agentic reference instrumentations
+  - https://github.com/open-telemetry/semantic-conventions-genai/pull/351
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/6da96d248f37477e524faa4bc8e934da3932523f
+  - Why it matters: adds reference-scenario guidance that instrumentation should emit only operations the library itself performs; agent frameworks should not emit inference spans for model calls delegated to an instrumentable underlying LLM library, preventing duplicated model telemetry.
+
+## 2026-08-03 review addendum
+- OpenAI Agents Python commit, preserve tool-call and output order when deduplicating inputs
+  - https://github.com/openai/openai-agents-python/commit/c546ca12091b16a5bfbb73cfbdf9827e7a8c6f6a
+  - Why it matters: keeps replacement `function_call_output` items after their matching `function_call` during session save/deduplication, making replay order a harness-visible invariant.
+- OpenAI Agents Python commits, keep input item order and stop treating handoffs as streamed tool-called events
+  - https://github.com/openai/openai-agents-python/commit/bdc294fcd446718060b3444c2894c8b3d39fae56
+  - https://github.com/openai/openai-agents-python/commit/9af785b110bb3a90bedcd5b527d92b47e0b5c4b2
+  - Why it matters: preserves ordering while collapsing duplicate inputs and separates handoff/delegation events from ordinary streamed tool-call events.
+- OpenAI Agents Python commit, resolve agent-tool name collisions consistently
+  - https://github.com/openai/openai-agents-python/commit/9f4292e5d8235fcec85ae5670a99c51aabd89281
+  - Why it matters: adds deterministic handling for colliding normalized `Agent.as_tool()` names, including explicit-name disambiguation and fail-closed error behavior.
+- OpenAI Agents Python and JS commits, normalize closed typeless object schemas in strict tools
+  - https://github.com/openai/openai-agents-python/commit/7de6ccf05ddcddcd67839814fea9e4959f22b515
+  - https://github.com/openai/openai-agents-js/commit/0f9b12ea7535860ffcb4a00210411837f211218b
+  - Why it matters: aligns strict schema conversion for object schemas that omit an explicit `type` but define closed object properties, improving MCP/OpenAPI-style tool-schema coverage.
+- OpenAI Agents Python and JS commits, harden default sandbox snapshot path resolution
+  - https://github.com/openai/openai-agents-python/commit/306ac1974576101653e75b117b07bf484832b1f9
+  - https://github.com/openai/openai-agents-js/commit/1eaa42544570114ebb74503fa20936cb17a8fab7
+  - Why it matters: strengthens path-resolution safety for default sandbox snapshots, giving archive/persistence harnesses another boundary fixture.
+- OpenAI Agents JS commit, apply realtime output guardrails to text deltas
+  - https://github.com/openai/openai-agents-js/commit/73cce946f6f415d8a58d9a4a29ccd3fdd2a756b7
+  - Why it matters: expands realtime guardrail enforcement from audio transcript streams to text-only output deltas, changing realtime cutoff expectations.
+- OpenAI Agents JS commit, preserve approved tool results across output guardrails
+  - https://github.com/openai/openai-agents-js/commit/9cbba54444c6cffc0d24810dfd593a8987dfba64
+  - Why it matters: keeps approved tool results replayable in session/RunState even when a later output guardrail tripwire blocks the final response.
+- OpenAI Agents JS commit, serialize OpenAI conversation session ID lifecycle
+  - https://github.com/openai/openai-agents-js/commit/c727ef3790f65265b386fbb521036a66c104be93
+  - Why it matters: makes concurrent lazy conversation creation single-flight, retryable after failure, and no-op on clear before creation, improving remote-session loop reliability.
+- OpenTelemetry Semantic Conventions for GenAI commit, emit `execute_tool` only where the library actually runs the tool
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/9af08349db7e70b2528accde90bae81d4ebcfa1e
+  - Why it matters: narrows reference execute-tool span coverage to actual tool execution ownership and adds `google-genai`, `langchain`, and `vertexai` coverage while removing libraries that only delegate.
+
+## 2026-08-04 review addendum
+- OpenAI Agents Python v0.19.3 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.19.3
+  - Why it matters: releases max-turn session persistence, output/tool guardrail result preservation, falsey extractor/filter handling, MCP pagination, zero-value contracts, session close/rollback fixes, realtime text/audio guardrail fixes, voice cleanup/STT listener handling, workflow-name tracing, and AnyLLM provider-stream closeout as the current Python SDK baseline.
+- OpenAI Agents Python commit, scope delayed audio guardrail interruption
+  - https://github.com/openai/openai-agents-python/commit/27c136cec871804c8508d19365801bce63bc0b1e
+  - Why it matters: adds response IDs to realtime turn-end/interruption paths, tracks audio by response, and prevents a delayed audio guardrail from interrupting unrelated current playback.
+- OpenAI Agents Python commit, finish STT event handling after listener errors
+  - https://github.com/openai/openai-agents-python/commit/d89fddee7757af9452e87cf05c0d7c7739b53e9e
+  - Why it matters: makes voice STT listener-error closeout deterministic by propagating listener errors through event queues and completing session cleanup expectations.
+- OpenAI Agents Python commit, name streamed task spans after the run's own workflow
+  - https://github.com/openai/openai-agents-python/commit/72e7c6e5495c6d3963e5115069ea75795e67deeb
+  - Why it matters: passes the run's workflow name into streaming span creation so nested/outer traces do not misattribute streamed task spans.
+- OpenAI Agents JS commit, preserve inline compaction items across turns
+  - https://github.com/openai/openai-agents-js/commit/78f85817be141f77637ac9b22de066afdf40b616
+  - Why it matters: introduces `RunCompactionItem` and `compaction_item_created`, validates compaction items, reconciles legacy compaction sessions before resume, and preserves compaction markers as replayable control state.
+- OpenAI Agents JS commit, preserve causal order when deduplicating model input
+  - https://github.com/openai/openai-agents-js/commit/2d5d040b80b791b116b413adf0b1f3c20cc38f86
+  - Why it matters: deduplicates provider-identified inputs while preserving call-before-output ordering for non-streaming, streaming, and session-persistence paths.
+- OpenAI Agents JS commit, resolve model-visible tool name collisions consistently
+  - https://github.com/openai/openai-agents-js/commit/15ac711f232202a33315ad1f4e694680ce26a108
+  - Why it matters: adds consistent tool/handoff name-collision behavior, an opt-in error policy, inherited collision policy for agent tools, and owner-scoped approval state for nested agents.
+- Google ADK commit, promote Data Agent tools to stable
+  - https://github.com/google/adk-python/commit/fd33158f3db2cbb2faf9aab9f82836949fa274fd
+  - Why it matters: marks `DATA_AGENT_TOOL_CONFIG` and `DATA_AGENT_TOOLSET` as stable and removes experimental decorators from Data Agent tool configuration/toolset classes.
+- Google ADK commit, convert LiteLLM timeout from milliseconds to seconds
+  - https://github.com/google/adk-python/commit/e74917e71905bb9d341302ce059c46245b7b727f
+  - Why it matters: fixes provider timeout propagation by converting ADK `http_options.timeout` milliseconds into LiteLLM seconds, making configured request budgets actually take effect.
+- OpenTelemetry Semantic Conventions for GenAI commit, add missing `create_agent` reference coverage
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/fe5608e249d64bc5961329a82f8915fe95ced51a
+  - Why it matters: expands `create_agent` reference scenarios to Anthropic Managed Agents, AWS Bedrock Agent, Google GenAI, Mistral, Azure AI Foundry, and OpenAI Assistants, and clarifies that local AutoGen agent construction should not emit a remote-service `create_agent` span.
+- Temporal documentation commit, document Visibility scope, consistency, and rate-limited APIs
+  - https://github.com/temporalio/documentation/commit/8966c3463c886267d6d94811521f8bd392f634f5
+  - Why it matters: clarifies which list/search/count APIs use the Visibility index, that Visibility reads are eventually consistent and rate-limited, and that single-entity lookups by ID are outside the Visibility API rate limit.
+
+## 2026-08-05 review addendum
+- OpenAI Agents Python v0.19.4 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.19.4
+  - Why it matters: releases completed tool-guardrail preservation, invalid tool-argument redaction, deferred non-stream session saves until output guardrails, non-streaming content-filter refusals, realtime failed-connection cleanup, sandbox token output budgets, MongoDB closed-state enforcement, repeated session-history provenance, empty-add no-op conversation behavior, branch-ID reuse rejection, and streamed provider thinking-block preservation as the current Python SDK baseline.
+- OpenAI Agents Python commit, prevent queue consumer deadlocks
+  - https://github.com/openai/openai-agents-python/commit/6af30c57e257a6fb75f4891bf50a890d1a0b107c
+  - Why it matters: adds a producer/consumer task helper and regression coverage for streaming agent-as-tool, Codex-tool, and sandbox-memory closeout paths so callback/worker failures and cancellation do not leave queue consumers hanging.
+- OpenAI Agents Python commit, support MCP Python SDK v1 and v2
+  - https://github.com/openai/openai-agents-python/commit/8f7e6d763c6a623c296b41a606c6dba0d5c3c19f
+  - Why it matters: adds MCP v1 compatibility testing while documenting repository examples as MCP v2-targeted, making MCP SDK version compatibility a first-party harness dimension.
+- OpenAI Agents Python commit, cancel sibling sandbox environment resolvers when one fails
+  - https://github.com/openai/openai-agents-python/commit/d270dac3a5b18d711c84fb15268dff0b2e8d159d
+  - Why it matters: resolves sandbox manifest environment values with sibling cancellation so user-supplied secret/network resolvers do not continue after a peer resolver has already failed the manifest.
+- OpenAI Agents Python commit, harden tool output trimming contracts
+  - https://github.com/openai/openai-agents-python/commit/f6a32fee4e28661e61c734b78ac89868b1b2fc97
+  - Why it matters: tightens schema traversal so trimmers preserve unfamiliar/user-controlled data instead of deleting nested values by assuming every mapping is a schema, improving output-token budget harness fidelity.
+- OpenAI Agents JS commit, add idempotent session history transactions
+  - https://github.com/openai/openai-agents-js/commit/31bc820b6efe3807ae2d3e83866da28746332fb1
+  - Why it matters: introduces append and replace-suffix session transactions plus MemorySession coverage, making session mutation idempotence and expected-suffix checks a JS loop-state contract.
+- OpenAI Agents JS commit, preserve committed tool effects when output guardrails block final output
+  - https://github.com/openai/openai-agents-js/commit/90781d80ec43d974dc3a3ac73404024d1db53af5
+  - Why it matters: records executed tool outputs and hides final output separately when output guardrails block a run, preserving side-effect evidence for replay and harness scoring.
+- OpenAI Agents JS commit, cancel sibling tool work on failure
+  - https://github.com/openai/openai-agents-js/commit/08169dfb7b44b773de652b05f075467e5e0912b8
+  - Why it matters: adds a sibling-cancellation helper for concurrent tool execution so failed parallel tool work cancels and drains peer tasks rather than allowing late state mutation.
+- OpenAI Agents JS commit, clean up failed realtime connection attempts
+  - https://github.com/openai/openai-agents-js/commit/00bfb9dc340a518fe250adc5c022d96a042dfc9b
+  - Why it matters: makes failed WebRTC/WebSocket realtime connects clean up in-flight state and restore prior connection parameters, turning connection failure into a testable cleanup transition.
+- OpenAI Agents JS commit, surface empty content-filter responses as refusals
+  - https://github.com/openai/openai-agents-js/commit/eb59cd66c00501d7b3985293a8d721b842ff3cd8
+  - Why it matters: converts empty Chat Completions content-filter terminal responses into explicit refusals for both streaming and non-streaming paths instead of silent empty turns.
+- OpenAI Agents JS commit, redact invalid tool argument errors
+  - https://github.com/openai/openai-agents-js/commit/f4314758bc649c5735acd20dcf3b0e7eae8a70e5
+  - Why it matters: makes invalid tool-input diagnostics redacted by default across ordinary function tools, nested agent tools, and streamed/non-streamed outputs while still returning model-visible failure information.
+- OpenAI Agents JS commit, preserve repeated session history provenance
+  - https://github.com/openai/openai-agents-js/commit/427331fcf9ad9964a824adc30c6eb2a636933e15
+  - Why it matters: keeps original history-object identity available even when callbacks repeat or remove references, preventing session histories from growing duplicates across turns.
+- Google ADK commit, use thread-local REST client caching for GCP auth providers
+  - https://github.com/google/adk-python/commit/b1c6f44da559bba167d0013de3ea82e5ca466444
+  - Why it matters: replaces shared auth-provider client fields with thread-local caches for Agent Identity and IAM Connector credential providers, reducing cross-thread shared-state contention in concurrent authenticated tool loops.
+- OpenTelemetry Semantic Conventions for GenAI commit, rename workflow duration metric
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/11658bba3eb02448618ddf1fc52789a3fc2937cc
+  - Why it matters: renames `gen_ai.workflow.duration` to `gen_ai.invoke_workflow.duration` and aligns the metric with `invoke_workflow.internal` semantics, requiring harness dashboards and assertions to migrate metric names.
+- OpenTelemetry Semantic Conventions for GenAI commit, clarify MCP client/server error status
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/683c74506292a4c0ad1c772982e7d51e6128ba5d
+  - Why it matters: clarifies that MCP server telemetry should not mark client-side JSON-RPC errors as server failures, while MCP client telemetry reports JSON-RPC error codes as errors; MCP harnesses need responsibility-aware status assertions.
+- Temporal documentation commit, add Python Google GenAI plugin integration guide
+  - https://github.com/temporalio/documentation/commit/4150d9f49ad25d4800535ac90248013797a0fe9e
+  - Why it matters: documents the Temporal Python SDK Google GenAI plugin for durable Gemini/Vertex calls, tools as Activities, structured output, MCP servers, streaming, files, Interactions API/managed agents, and Activity timeout/retry guidance.
+
+## 2026-08-06 review addendum
+- OpenAI Agents Python commit, make session mutations atomic
+  - https://github.com/openai/openai-agents-python/commit/4a1773f405b2c516b774fbd8971d670f2801e61c
+  - Why it matters: makes session mutations atomic across supported memory backends and documents MongoDB logical-batch writes, giving replay/session harnesses transaction-like invariants to test.
+- OpenAI Agents Python commit, propagate Chat Completions request IDs
+  - https://github.com/openai/openai-agents-python/commit/19f6bde526ed4700664a844a8e1ce2be3713174c
+  - Why it matters: adds the OpenAI SDK request ID to Chat Completions model responses, aligning provider-correlation metadata with Responses-path debugging.
+- OpenAI Agents Python commit, preserve `move_to` in sandbox `apply_patch` operation mappings
+  - https://github.com/openai/openai-agents-python/commit/f3b6c617853880b6dbad16b58ff9d071d5756afb
+  - Why it matters: fixes JSON/mapping-shaped patch move operations so sandbox file-edit harnesses can verify destination-path preservation.
+- OpenAI Agents Python docs commit, document API Fast mode through `extra_args`
+  - https://github.com/openai/openai-agents-python/commit/065feebfd8d9eb913612c0b82d72ba52c1726982
+  - Why it matters: documents passing OpenAI request fields such as `service_tier: "fast"` through model settings, making service-tier provenance relevant to latency/cost harnesses.
+- OpenAI Agents JS v0.14.3 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.14.3
+  - Why it matters: releases session-history transactions, tool-name collision handling, guardrail/tool-result preservation, sibling tool cancellation, invalid-argument redaction, repeated-history provenance, realtime cleanup, and content-filter refusal surfacing as the current JS SDK baseline.
+- OpenAI Agents JS commit, redact structured final-output validation errors
+  - https://github.com/openai/openai-agents-js/commit/ba85cda57826d505358628c1d64f51cbc5c4efd4
+  - Why it matters: treats final-output schema validation errors as a redaction-sensitive surface across streamed/non-streamed results, guardrails, and tracing.
+- OpenAI Agents JS commits, preserve AI SDK response order and complete final output
+  - https://github.com/openai/openai-agents-js/commit/daefc6397c3b0e88571c1957b52197b0f0ed7cac
+  - https://github.com/openai/openai-agents-js/commit/2f70da48ce0b5ae3841d5a0a576a9f1f906099c0
+  - https://github.com/openai/openai-agents-js/commit/db484f63b63c02fe89c1496deb8361780b9a1f27
+  - Why it matters: preserves AI SDK item ordering around tool calls, reconstructs complete final output across reasoning-separated messages, and avoids double-transforming interleaved structured output.
+- Google ADK commit, emit typed dictionary `additional_properties` schemas
+  - https://github.com/google/adk-python/commit/93f57f472796bc8ccdf922fcc085169e1585768a
+  - Why it matters: preserves `dict[K, V]` value-type information in generated function declarations while leaving untyped dictionaries flexible.
+- Google ADK commit, route Claude 5 model names to the Anthropic LLM class
+  - https://github.com/google/adk-python/commit/e300ae7aa6a50ec0f71c01dc3b7291f4111a3f90
+  - Why it matters: updates provider/model-family routing fixtures for new Claude model-name patterns.
+- Google ADK commit, detect Live `task_completed` among parallel function responses
+  - https://github.com/google/adk-python/commit/cebfd74afc786a573fbf425a52aefe3873d38e68
+  - Why it matters: fixes SequentialAgent Live sub-agent closeout when the model calls `task_completed` alongside other tools and the completion response is not the first event part.
+
+## 2026-08-08 review addendum
+- OpenAI Agents Python commit, bind tool approvals to concrete invocations
+  - https://github.com/openai/openai-agents-python/commit/4720150f
+  - Why it matters: makes approval/resume state identify the exact pending tool invocation and context, giving harnesses a fail-closed boundary for stale, cross-call, and concurrent approval responses.
+- OpenAI Agents Python commit, count requests when providers omit usage
+  - https://github.com/openai/openai-agents-python/commit/9c6cadf8
+  - Why it matters: preserves request-count evidence when optional provider usage is absent, allowing cost/retry/latency harnesses to distinguish an unreported token payload from a missing model turn.
+- OpenAI Agents Python commit, apply realtime tool-call updates to session history
+  - https://github.com/openai/openai-agents-python/commit/ed7fd85e
+  - Why it matters: keeps incremental realtime tool-call state replayable across interruption and resume rather than only exposing the final live update.
+- OpenAI Agents Python commit, restore archived file modes during workspace extraction
+  - https://github.com/openai/openai-agents-python/commit/d9a384bd
+  - Why it matters: makes sandbox hydration reproduce permission-sensitive workspace metadata, not just file bytes.
+- Google ADK commit, keep jittered retry delay within `max_delay`
+  - https://github.com/google/adk-python/commit/b333c859
+  - Why it matters: ensures randomized workflow backoff respects its configured upper bound, making retry budgets predictable under high-attempt loops.
+- Google ADK commit, preserve all tool results for parallel function calls
+  - https://github.com/google/adk-python/commit/93dff414
+  - Why it matters: prevents fan-out turns from dropping tool results and gives replay/eval harnesses a complete call-to-result correspondence contract.
+- Google ADK commit, harden FileArtifactService against tampered metadata and partial writes
+  - https://github.com/google/adk-python/commit/c5672030
+  - Why it matters: validates artifact metadata and publication behavior so durable loop state cannot be accepted from tampered or partially written files.
+- Google ADK commit, collect eval state from workflow nodes
+  - https://github.com/google/adk-python/commit/568b4f6b
+  - Why it matters: includes workflow-node state in evaluation collection, making intermediate control state part of the scored harness artifact.
+- OpenTelemetry GenAI commit, allow conversation ID on workflow spans
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/8c1b98a3
+  - Why it matters: gives workflow telemetry a portable conversation-lineage field for correlating multi-turn runs without requiring message payload capture.
+- OpenTelemetry GenAI commit, track client token usage and operation duration in reference reports
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/aa85df42
+  - Why it matters: adds executable reference coverage for client-operation metrics, helping harnesses distinguish client request telemetry from model inference telemetry.
+- OpenTelemetry GenAI commit, warn about sensitive tool descriptions and definitions
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/04702bce
+  - Why it matters: explicitly identifies tool schemas as potentially sensitive exported data, expanding privacy checks beyond prompts, completions, and tool arguments.
+- LangGraph checkpoint releases
+  - https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres
+  - https://github.com/langchain-ai/langgraph/releases/tag/checkpoint
+  - Why it matters: reviewed the 2026-08-07 checkpoint package releases as current persistence baselines; no stronger new harness/loop claim than the existing LangGraph checkpoint notes was added.
+
+## 2026-08-09 review addendum
+- OpenAI Agents Python commit, add durable pending input to `RunState`
+  - https://github.com/openai/openai-agents-python/commit/7bf73afa47ac48c1efb599d0b1505cee994e74f5
+  - Why it matters: gives resumed input durable occurrence IDs and an explicit server-acceptance commit point, allowing harnesses to test exactly-once admission and pending-input preservation across interruptions, filtering, and retries.
+- OpenAI Agents Python commit, prune orphaned tool outputs from limited sessions
+  - https://github.com/openai/openai-agents-python/commit/443e1f5113f4ca212dc6bcaa12806392c442d4cc
+  - Why it matters: makes session-window truncation preserve call/output integrity instead of retaining tool results whose originating calls were evicted.
+- OpenAI Agents Python commit, allow applications to approve unsafe replays
+  - https://github.com/openai/openai-agents-python/commit/6115461c6b0f661398d63b1de2b3ecc9390a5a09
+  - Why it matters: exposes replay risk as an application policy decision, so retry harnesses can require explicit approval before repeating potentially side-effectful sequences.
+- OpenAI Agents Python commit, preserve local shell outputs across `RunState` resume
+  - https://github.com/openai/openai-agents-python/commit/47498d45b7fa8f3036de1c06167c8647df6df075
+  - Why it matters: makes completed local command output durable across interruption/resume, preventing duplicate execution and preserving tool-result provenance.
+- OpenAI Agents JS commit, serialize compaction session mutations
+  - https://github.com/openai/openai-agents-js/commit/f7aca85e3a33c14f859b3f23aced6433aa323e18
+  - Why it matters: makes long-context compaction updates durable and ordered across persistence/resume paths instead of relying on an in-memory compaction marker.
+- OpenTelemetry Semantic Conventions for GenAI commit, run reference scenarios under the conformance runner
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/46d43c8949afb53765a202e89f4534eeb75ca3fa
+  - Why it matters: replaces ad hoc scenario execution with pinned, declared conformance fixtures that run a mock provider plus live semantic-convention validation and persist per-scenario coverage data.
+
+## 2026-08-10 review addendum
+- OpenAI Agents Python commit, serialize MCP manager lifecycle operations
+  - https://github.com/openai/openai-agents-python/commit/7da5696020a82d7ee2546a557eb8990169e23815
+  - Why it matters: makes overlapping cleanup/reconnect operations share serialized lifecycle state and adds regression coverage for single-execution cleanup and cleanup errors.
+- OpenAI Agents Python commit, bound MCP lifecycle and CI waits
+  - https://github.com/openai/openai-agents-python/commit/54cc7d938f37dc6681e4d50171df336a47100e85
+  - Why it matters: adds finite default connect/cleanup timeouts and bounded workflow waits, turning teardown liveness into an explicit harness contract.
+- OpenAI Agents Python commit, preserve sandbox error contracts during mount redaction
+  - https://github.com/openai/openai-agents-python/commit/9a8ecd257d2f16c978d9da59da024e9d7957e48b
+  - Why it matters: redacts protected mount details while preserving typed sandbox error classes and safe operation/error-code metadata for reliable diagnostics.
+- OpenAI Agents Python commit, report transcription-session close failures
+  - https://github.com/openai/openai-agents-python/commit/afd11195cf4275008e3fad578be099b842138f15
+  - Why it matters: forwards a cleanup failure to the consumer when no earlier terminal error exists, preventing a voice consumer from waiting forever after apparent producer success.
+- OpenAI Agents JS commit, add durable pending input to `RunState`
+  - https://github.com/openai/openai-agents-js/commit/75af3ee125754f6bb195a856add784fe0042cab2
+  - Why it matters: adds identity-bearing pending input, server-acceptance checkpoints, and context-processing reconciliation to resumable JS runs.
+- OpenAI Agents JS commit, preserve structured tool outputs in `RunState`
+  - https://github.com/openai/openai-agents-js/commit/96201ba8693738df86d6b351787ff78e3cedcefe
+  - Why it matters: round-trips JSON-compatible tool outputs as structured values while safely handling invalid/cyclic values and legacy string serialization.
+- OpenAI Agents JS commit, serialize MCP manager lifecycle operations
+  - https://github.com/openai/openai-agents-js/commit/8249c455245863605fdea019ecc392482643013b
+  - Why it matters: makes overlapping MCP close calls single-flight and timeout-aware, with tests for concurrent cleanup and close-state transitions.
+- Google ADK commit, auto-discover `test_config.json` for a single eval file
+  - https://github.com/google/adk-python/commit/0477e5743bdf5e0cce5a698951c7b70a07baa80a
+  - Why it matters: defines explicit evaluation-config precedence: a provided path wins, a lone local eval file may resolve an adjacent `test_config.json`, and eval-set IDs do not infer a local config.
+- SWE-bench commit, add grouped `swebench` CLI with evaluation/reporting commands
+  - https://github.com/SWE-bench/SWE-bench/commit/f82e8bee86fe4445ea0865b3893127b7d18242cf
+  - Why it matters: provides first-party commands for evaluation, image preparation, dataset operations, and post-run report recomputation from saved logs without starting containers, strengthening reproducible benchmark-harness workflows.
+
+## 2026-08-11 review addendum
+- OpenAI Agents Python v0.20.0 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.20.0
+  - Why it matters: releases durable pending input, MCP v1/v2 compatibility, unsafe-replay approval, sandbox credential acknowledgements, structured replay, and strict-schema safety changes as a pinned Python baseline.
+- OpenAI Agents JS v0.15.0 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.15.0
+  - Why it matters: releases durable pending input, structured tool-output replay, canonical approval/replay identity, MCP v2 negotiation with legacy fallback, sandbox credential protections, and provider-result fidelity fixes as a pinned JS baseline.
+- OpenAI Agents JS commit, add historical RunState compatibility corpus
+  - https://github.com/openai/openai-agents-js/commit/e006790faa41527f874bcd411155cbb6e5135b4b
+  - Why it matters: adds versioned positive and negative serialized-state fixtures plus compatibility tests, making migration and fail-closed resume behavior executable release criteria.
+- OpenAI Agents Python commits, bound strict-schema recursion and reject unsafe `$ref` siblings
+  - https://github.com/openai/openai-agents-python/commit/2231eb5d40cd4a9d6b86f79492e984eeb3301263
+  - https://github.com/openai/openai-agents-python/commit/27c1060185b2fcb1cad756adab201cd2d4e9769c
+  - Why it matters: bounds schema traversal and rejects ambiguous referenced-schema siblings before execution, giving tool/control-boundary harnesses concrete negative fixtures.
+- Google ADK commit, persist AgentEvaluator eval-set results
+  - https://github.com/google/adk-python/commit/76027ddb2f1f932d45dc0611c07c08b6025c2774
+  - Why it matters: saves aggregated results before failure assertions while preserving public positional-call compatibility, so failed evals remain inspectable artifacts.
+- Google ADK commit, add property-based metrics-export tests
+  - https://github.com/google/adk-python/commit/f4fd7d5db9dac2aeb4b87f6a0658618e2c9fd654
+  - Why it matters: uses generated cases to test telemetry metric-export invariants, complementing example-based instrumentation tests.
+- Google ADK commit, add BigQuery analytics delivery and termination observability
+  - https://github.com/google/adk-python/commit/04b8b72709f6d17b503cf674c8ac1b89798f655e
+  - Why it matters: assigns event IDs before enqueue, exposes retry-duplicate identity, and adds opt-in exactly-once delivery plus explicit terminal workflow-node events.
+- Google ADK commit, stop Cloud Run sandbox executor waiting forever
+  - https://github.com/google/adk-python/commit/a39e71aace8490772b9fb554713ba964f7225adf
+  - Why it matters: closes an executor liveness failure that could leave a tool loop waiting indefinitely, reinforcing bounded sandbox closeout.
+- OpenTelemetry GenAI commit, clarify workflow spans and add LangChain/OpenAI Agents reference scenarios
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/8d3e4a0f3c34a46f6edb9c71e8666e02e6bf3958
+  - Why it matters: clarifies when workflow spans apply and updates executable reference scenarios for LangGraph-agent and OpenAI Agents implementations.
+- SWE-bench commit, fix harness bugs that silently drop instances
+  - https://github.com/SWE-bench/SWE-bench/commit/ec9181d65aca823e8fd8d07a61bdcd39914564ef
+  - Why it matters: fixes default image tagging, browser-compatible seccomp setup, and malformed-output decoding so infrastructure conditions cannot silently remove benchmark instances from results.
+
+## 2026-08-12 review addendum
+- OpenAI Agents JS commit, add scripted testing utilities
+  - https://github.com/openai/openai-agents-js/commit/b72779074b081922bb25f9734d199461bddcbbec
+  - Why it matters: adds scripted model and sandbox-session utilities plus snapshot helpers and broad scenario coverage, making deterministic replay of agent-loop behavior a first-party testing surface.
+- OpenAI Agents Python commit, close model streams on terminal streamed-turn failure
+  - https://github.com/openai/openai-agents-python/commit/dd34097826cb8f8304b5fcc4e67aa038c2ff5841
+  - Why it matters: explicitly closes the provider stream when a streamed turn ends in a terminal failure, turning failure-path resource teardown into a testable runtime contract.
+- OpenAI Agents Python commit, reject non-positive voice audio channels
+  - https://github.com/openai/openai-agents-python/commit/5250cb86053f50abea9d30e7d06b8fc4b5b6adb1
+  - Why it matters: rejects invalid audio-channel configuration before voice-loop execution, giving harnesses a concrete input-validation fixture.
+- Google ADK commit, validate GCS evaluation path segments
+  - https://github.com/google/adk-python/commit/a56f6e13ae38296b608808c7a3b37efe4b8c862e
+  - Why it matters: applies traversal, separator, and null-byte validation to app/eval identifiers before building GCS blob names, closing a shared-evaluation-storage isolation gap.
+- LangGraph commit, expose `trace_policy` on `add_node`
+  - https://github.com/langchain-ai/langgraph/commit/7d6b5790ba84ce38c26f27a533d8419a31103c36
+  - Why it matters: makes node-level trace policy configurable and tested, allowing harnesses to declare where graph execution should emit detailed traces.
+- OpenTelemetry GenAI commit, clarify workflow spans and add LangChain/OpenAI Agents reference scenarios
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/8d3e4a0f3c34a46f6edb9c71e8666e02e6bf3958
+  - Why it matters: clarifies workflow-span criteria and adds executable reference coverage for LangGraph-agent and OpenAI Agents implementations, strengthening cross-framework telemetry conformance.
+- SWE-bench commit, materialize multimodal assets after patch application
+  - https://github.com/SWE-bench/SWE-bench/commit/f5daed8662c1b6b7c4ca63d3ffacf302d19e48aa
+  - Why it matters: makes image-asset hydration after `git apply` and repository-specific success markers explicit harness behavior, reducing false failures in multimodal benchmark evaluation.
+
+## 2026-08-13 review addendum
+- OpenAI Agents Python commit, add scripted model test utilities
+  - https://github.com/openai/openai-agents-python/commit/05d6850da5da7ae5efe0e89e85660e5878547ba4
+  - Why it matters: adds first-party scripted model, sandbox, realtime, and voice test utilities for deterministic agent-loop scenarios.
+- OpenAI Agents Python commit, freeze public testing module contracts
+  - https://github.com/openai/openai-agents-python/commit/66ae98fb1ea0d464126c4f4127d7e9a4d23714cf
+  - Why it matters: adds released-API contract fixtures for testing helpers, making harness support a versioned compatibility surface.
+- OpenAI Agents Python commit, isolate interruption results in RunState
+  - https://github.com/openai/openai-agents-python/commit/f251c70c0c204a6ec3892034331a16e67e20dc5b
+  - Why it matters: prevents copied run states from sharing mutable interruption results, which protects branched approval/resume replay.
+- OpenAI Agents Python commit, configurable MCP retry backoff ceiling
+  - https://github.com/openai/openai-agents-python/commit/0fc268e3e25e857431ad18877ebf205359206e86
+  - Why it matters: gives MCP retry policy an explicit upper delay bound and makes wall-clock retry behavior testable.
+- OpenAI Agents JS commit, support Standard Schema inputs and outputs
+  - https://github.com/openai/openai-agents-js/commit/aa6dd2d10ac387c9cdc5d2d495d8a48d165fce36
+  - Why it matters: broadens schema-first validation across tool inputs, handoffs, and agent final outputs through a common schema interface.
+- Google ADK commit, expand `load_skill` telemetry
+  - https://github.com/google/adk-python/commit/bddbb3dd8cedb3a2e49449573d87ff51f846df40
+  - Why it matters: adds skill-specific execute-tool attributes and versioned golden telemetry cases for cache, invalid-schema, and disabled-telemetry paths.
+- Google ADK commit, fail eval when an agent crashes before metrics run
+  - https://github.com/google/adk-python/commit/efeec703dad61357ad1d79860a4696d4801ce487
+  - Why it matters: prevents pre-metric agent crashes from being misclassified as empty or valid evaluations.
+- Google ADK commit, bound Apigee completions timeout and redirects
+  - https://github.com/google/adk-python/commit/f57a67d638a71899404dba2d4899ff42459e9f09
+  - Why it matters: makes provider transport liveness and redirect behavior bounded and testable.
+- SWE-bench commit, add local binary-asset directory support
+  - https://github.com/SWE-bench/SWE-bench/commit/c7fd5abffe0b2086a8bb9389d23c47d930ef571f
+  - Why it matters: allows benchmark runs to use deterministic local copies when URL-hosted multimodal assets become unavailable.
+
+## 2026-08-14 review addendum
+- OpenAI Agents Python commit, isolate RunState checkpoint tool decisions
+  - https://github.com/openai/openai-agents-python/commit/0b93ce8faa27d4631df399fe48856b52a8fd9897
+  - Why it matters: gives independently copied checkpoints fresh tool-state scopes and copies nested approval ledgers, preventing one branch's decision from changing another branch's resumable state.
+- OpenAI Agents Python commit, detach RunState interruption snapshots
+  - https://github.com/openai/openai-agents-python/commit/95f9d9a103f1fec7e2937c4eee92c65d38b08f9a
+  - Why it matters: broadens interruption snapshot copying across approval-capable tool item types and makes resumed interruption objects independent from the original mutable state.
+- OpenAI Agents Python commit, order test spans by start sequence
+  - https://github.com/openai/openai-agents-python/commit/3e87dc8ab154039e59764762155e1f7230950c5f
+  - Why it matters: makes trace ordering deterministic when span timestamps tie, so harness comparisons can use causal start order rather than wall-clock timestamps alone.
+- OpenAI Agents JS commit, detach RunState interruption snapshots
+  - https://github.com/openai/openai-agents-js/commit/ede1fb9797a320cde561b141e2056718fc7d4f56
+  - Why it matters: aligns the JS durable-state baseline with branch-safe interruption snapshots and prevents shared interruption result arrays across resumed states.
+- Google ADK commit, cancel parallel worker items when the worker is cancelled
+  - https://github.com/google/adk-python/commit/dec729f15721bcc78aac75f133aa6e153e9e4af0
+  - Why it matters: propagates cancellation to in-flight parallel items and bounds cancellation draining at five seconds, preventing abandoned workers from continuing after the owning run has stopped.
+- SWE-bench commit, detect stdout spoofing via test exit code
+  - https://github.com/SWE-bench/SWE-bench/commit/62ad43acd5219d40cf91056e4ba68594cdb1cbc4
+  - Why it matters: records the test command's exit status separately and rejects parser output that claims success after a non-zero test process, strengthening benchmark result-integrity checks.
+- SWE-bench commit, preserve API usage details in inference outputs
+  - https://github.com/SWE-bench/SWE-bench/commit/b3f33bf3f7dc07080486fa2e1c5d3f0de8ab14e
+  - Why it matters: persists normalized input/output, cache, and cache-creation token details for OpenAI and Anthropic inference records, making cost and provider-usage auditing reproducible.
+- OpenAI Agents Python commit, fix max-turn handler session semantics
+  - https://github.com/openai/openai-agents-python/commit/40927c9f95c5efc28382d4d76c028e3be2fb04df
+  - Why it matters: keeps max-turn termination, data-redacted exception boundaries, and cleanup behavior aligned across session and streaming paths, giving loop closeout a stable failure contract.
+- OpenAI Agents Python commit, expose the scripted sandbox session type
+  - https://github.com/openai/openai-agents-python/commit/dc1bef7b883fe260f8d0b76dec1a75186a41cc5a
+  - Why it matters: makes the deterministic scripted sandbox fixture part of the supported testing surface instead of an inaccessible implementation detail.
+
+## 2026-08-15 review addendum
+- OpenAI Agents Python v0.21.0 release
+  - https://github.com/openai/openai-agents-python/releases/tag/v0.21.0
+  - Why it matters: releases provider-neutral testing utilities for deterministic agent, sandbox, realtime, and voice workflows; freezes public testing contracts; and bundles RunState isolation, stream cleanup, redaction, MCP retry ceilings, and sandbox/voice validation fixes into a versioned harness baseline.
+- OpenAI Agents JS v0.16.0 release
+  - https://github.com/openai/openai-agents-js/releases/tag/v0.16.0
+  - Why it matters: adds scripted model/sandbox/realtime testing utilities and Standard Schema support, while releasing interruption-snapshot isolation, reasoning-message ownership, MCP cache encapsulation, and replay/termination fixes as a cross-language baseline.
+- OpenAI Agents Python commit, keep model paths POSIX-normalized
+  - https://github.com/openai/openai-agents-python/commit/9aba9002935b56d7253d28d99b2a8bca2d2450a7
+  - Why it matters: keeps sandbox model paths in POSIX form when resolving work directories and adds regression coverage, reducing platform-dependent replay differences in sandbox harnesses.
+- OpenAI Agents Python commit, reject partially matched stacked anchors
+  - https://github.com/openai/openai-agents-python/commit/6b62225f03d34833d409fcdac608f0860509dfd5
+  - Why it matters: requires stacked apply-patch anchors to match rather than silently accepting a fuzzy partial match, strengthening deterministic tool-loop mutation and failure evidence.
+- OpenAI Agents JS commit, preserve Chat Completions reasoning message ownership
+  - https://github.com/openai/openai-agents-js/commit/70a766e56f334bdcf8903b72d2cc1bb7bc8d7f07
+  - Why it matters: keeps reasoning attached to its assistant message during conversion, preventing replay and subsequent-turn history from changing event ownership.
+- OpenAI Agents JS commit, keep cached MCP tool arrays private
+  - https://github.com/openai/openai-agents-js/commit/d7fd0cf68c3e42d221eabac5077ac46c51c2353a
+  - Why it matters: prevents callers from mutating the manager's cached discovery state, making MCP setup-loop cache integrity explicit.
+- Google ADK commit, run an agent tool under the caller's RunConfig
+  - https://github.com/google/adk-python/commit/983c28056f664b6229a541bcbd442cd20c1b6345
+  - Why it matters: propagates caller run settings and metadata into nested agent-tool execution while explicitly transforming incompatible code-execution configuration, making delegation policy observable and testable.
+- Google ADK commit, stop background tool tasks when a live agent run ends
+  - https://github.com/google/adk-python/commit/0088abbe6651da6a6c644cace087a79d6a674821
+  - Why it matters: cancels live background tool work and bounds shutdown waiting, turning orphan-task cleanup into an explicit loop closeout contract.
+- Google ADK commit, prevent prompt injection via GitHub event data in workflows
+  - https://github.com/google/adk-python/commit/4f558f19d4dc0916437269dade3b03554e9ab0f4
+  - Why it matters: replaces raw event JSON passed to an agent prompt with a discussion identifier fetched through the API, demonstrating an identifier-based boundary for untrusted workflow inputs.
+
+## 2026-08-16 review addendum
+- OpenAI Agents Python commit, add model-call timeouts
+  - https://github.com/openai/openai-agents-python/commit/b4faf7090c1c27e9638de163c6b5197f3b250dd3
+  - Why it matters: adds a finite per-attempt `ModelSettings.timeout`, timeout-specific tracing, cooperative cancellation/draining, and retry classification that blocks unsafe stateful replay after a timeout.
+- OpenAI Agents Python commit, run-scoped sandbox working directories
+  - https://github.com/openai/openai-agents-python/commit/cb8a2e7e7dd83a427cff9076e58356d00c4f90b2
+  - Why it matters: makes cwd-relative tool paths explicit and validates/revalidates a workspace-relative run directory without claiming that cwd isolates the shared session workspace.
+- OpenAI Agents Python commit, disable Docker sandbox networking
+  - https://github.com/openai/openai-agents-python/commit/2f1c83d5b78ee8a5b402ef9fd74e4be8085d2ae4
+  - Why it matters: adds an explicit no-network sandbox mode and security-test coverage, making network capability part of reproducible sandbox policy.
+- OpenAI Agents Python commit, end realtime iteration after clean server close
+  - https://github.com/openai/openai-agents-python/commit/2632043a4ed91fc819a7cfdee96958b54a00d247
+  - Why it matters: treats a clean server close as terminal iteration state, preventing realtime loops from waiting or yielding after the transport has ended.
+- OpenAI Agents JS commit, add model-call timeouts
+  - https://github.com/openai/openai-agents-js/commit/51fb85936f7900c84e0e81dd4ef6ec212b8b9c69
+  - Why it matters: brings explicit model-attempt timeout configuration to the JS loop surface, supporting cross-SDK timeout-policy fixtures.
+- OpenAI Agents JS commit, trace effective run-scoped sandbox paths
+  - https://github.com/openai/openai-agents-js/commit/937fb9851f49df21bd42c014d4a7906ea876af85
+  - Why it matters: records the effective cwd-scoped sandbox path in traces, improving replay and auditability for relative-path tool calls.
+- Google ADK commit, rank and bound in-memory memory search results
+  - https://github.com/google/adk-python/commit/f3fae72e6a52f33c4fca4a7b90d37270c64990be
+  - Why it matters: ranks memories by distinct query-word overlap and caps results at ten, preventing broad keyword matches from expanding every model prompt with most of the memory store.
+- Google ADK commit, sort function-call arguments in cross-agent context
+  - https://github.com/google/adk-python/commit/735402d01aaaacf64eaf5034bf0517981c4886ce7
+  - Why it matters: canonicalizes argument rendering for cross-agent context, reducing nondeterministic textual prompts while preserving structured call semantics.
+- SWE-bench commit, reject zero-count test summaries and preserve task repo through re-grading
+  - https://github.com/SWE-bench/SWE-bench/commit/ca6e4e0d252f32f8762625b73575d5dee49d0a5a
+  - Why it matters: requires positive runner evidence, prevents empty summaries from resolving fail-only tests, and preserves the task repository identity when report-only re-grading.
+- SWE-bench commit, publish eval cards per dataset and all splits in one push
+  - https://github.com/SWE-bench/SWE-bench/commit/4e6126978a16bdfebc6538db8f28cacc2c8b77dc
+  - Why it matters: aligns eval-card identity with each dataset and publishes all splits together, reducing benchmark metadata/schema drift across partial pushes.
+
+## 2026-08-17 review addendum
+- OpenAI Agents Python commit, require update hunks in sandbox `apply_patch`
+  - https://github.com/openai/openai-agents-python/commit/37a7aa20cee5f16d3720214c39dc66ca9f143e74
+  - Why it matters: requires `Update File` operations to contain a real diff hunk and adds grammar/runtime tests for empty and move-only updates, making patch mutation preconditions an explicit harness boundary.
+- SWE-bench commit, validate Modal/task-repository compatibility and interpreter selection
+  - https://github.com/SWE-bench/SWE-bench/commit/187897a2d730faae089ff77bae7ff18ec7f8bac8
+  - Why it matters: refuses Modal runs with a task repo that cannot contribute to the remotely built image, removes an ineffective subprocess-local recursion-limit command, and uses `sys.executable` in CLI tests so smoke tests target the active environment.
+
+## 2026-08-18 review addendum
+- OpenAI Agents Python commit, keep Codex verification sandboxed
+  - https://github.com/openai/openai-agents-python/commit/ebb746dc00b0dd6a90c30bc5ccb7e9c445e55493
+  - Why it matters: keeps verification inside the normal workspace sandbox, adds a separately scheduled native-macOS sandbox test job, and tests that verification guidance does not request elevated host access.
+- OpenAI Agents Python commit, harden agent workflow validation
+  - https://github.com/openai/openai-agents-python/commit/1a4cfa20a343779b729bb77e2adb515c715e668e
+  - Why it matters: validates recursive submodule cleanliness/commit identity and regular-file evidence reads, and binds runtime probes to explicit approval of their disclosed command and capability scope.
+- Google ADK commit, support custom metrics in `AgentEvaluator`
+  - https://github.com/google/adk-python/commit/babb11c83c4b4c21c7d7af8b8e3ecf50c20b34a9
+  - Why it matters: forks the metric registry per evaluation run so `EvalConfig` custom metrics do not leak across runs while retaining existing registered evaluators.
+- Google ADK commit, deduplicate in-memory session events by equality
+  - https://github.com/google/adk-python/commit/c9323d586153eab8cae31bc33f1114c8849cdd80
+  - Why it matters: makes copied re-delivered events idempotent, preventing duplicate event entries and double-applied state deltas during broadcast/replay.
+- Google ADK commit, expand `load_skill_resource` telemetry
+  - https://github.com/google/adk-python/commit/6e0facf9370261c788149a5330bb5632985e3531
+  - Why it matters: adds resource-path telemetry and functional schema goldens for skill-resource loads, giving harnesses an attributable sub-operation surface.
+- Google ADK commit, harden BigQuery tools against SQL injection
+  - https://github.com/google/adk-python/commit/d6290a0b2e344a92b8879acfeab02e4252d1b47c
+  - Why it matters: validates identifiers and inputs, escapes literals, dry-run validates dynamic SELECT subqueries, and separates validation failures from infrastructure failures.
+- Google ADK commit, read long-running function name from canonical data payload
+  - https://github.com/google/adk-python/commit/029c17b3384f4ad584c4b4f6f83335be98a04f02
+  - Why it matters: fixes A2A continuation-state selection by reading the function name from the data part rather than metadata.
+- SWE-bench release commit, 5.0.1
+  - https://github.com/SWE-bench/SWE-bench/commit/87ab1f6ced28f75ba73ca899dc759b0193109448
+  - Why it matters: establishes a new released benchmark/harness baseline immediately after the 5.0.0 harness changes; comparisons should pin and record the release tag.
+
+## 2026-08-20 review addendum
+- OpenAI Agents Python commit, preserve usage on truncated empty Chat Completions failures
+  - https://github.com/openai/openai-agents-python/commit/e26a7d8aed59141ee13fb0a1fa16445017b0ccf1
+  - Why it matters: raises `ModelBehaviorError` for empty `length`-truncated completions while recording request/token usage before terminal failure handling, preserving evidence for failed attempts.
+- OpenAI Agents Python commit, deep-copy cached MCP tools
+  - https://github.com/openai/openai-agents-python/commit/eb3a5d5b5d1539e304c452b207639a320d89ac6e
+  - Why it matters: prevents callers from mutating nested cached tool schemas through a shallow list snapshot.
+- OpenAI Agents Python commit, flush tracing processors when disabled
+  - https://github.com/openai/openai-agents-python/commit/502bccddd3b68f4183f8679687ff3a340928b817
+  - Why it matters: makes shutdown flushing independent of the recording-enabled flag, so buffered telemetry is not stranded during disable/closeout transitions.
+- OpenAI Agents JS commit, reject unsuccessful Responses terminal states without losing usage
+  - https://github.com/openai/openai-agents-js/commit/c3bfb2c737569e34d64ffd45c72a8e839f8bd29c
+  - Why it matters: records usage from failed model attempts and distinguishes unsafe response-started failures from retryable states.
+- Google ADK commit, prevent duplicate function execution with computer-use support
+  - https://github.com/google/adk-python/commit/c986ff0fceedef2107485cf136dc3b70acec32d8
+  - Why it matters: closes a capability-dependent duplicate-execution path, making canonical tool-call identity and idempotent execution testable.
+- Google ADK commit, run local code execution in a plain child interpreter
+  - https://github.com/google/adk-python/commit/c244a9c8330589d93046823ea21da80ae33a1400
+  - Why it matters: separates local code execution from the agent process, strengthening process isolation and cleanup boundaries.
+- OpenTelemetry GenAI semantic-conventions commit, add modality/cache/phase usage breakdowns
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/8a3767d6c5d09bc0917722720973c0c44182d960
+  - Why it matters: adds text/image/audio/reasoning and cache-read/cache-write detail, defines subset relationships to aggregate usage, and updates executable reference scenarios.
+- SWE-bench release commit, 5.0.2
+  - https://github.com/SWE-bench/SWE-bench/commit/490635b2e9e775dca1e1d6b40ce9dbcff91e780
+  - Why it matters: establishes the current released benchmark version for pinned comparisons and evaluation provenance.
+- Temporal documentation, cost governance best practices
+  - https://github.com/temporalio/documentation/commit/845270e2bf24be9706e70d5a111b9c7fab998f1d
+  - Why it matters: documents namespace/workload cost attribution, budget burn-rate tracking, and usage anomaly detection through Billing API and OpenMetrics.
+- Google ADK commit, make SQLite session state merges use `dict.update()` semantics
+  - https://github.com/google/adk-python/commit/e4ba7040fb12f9a3ea468052567ec174dc31d443
+  - Why it matters: makes resumed state conflict precedence explicit for SQLite-backed session merges.
+- Google ADK commit, pair function responses with their originating calls
+  - https://github.com/google/adk-python/commit/deee6d2c474ccb971e0b25a0b290bb76cc54c45
+  - Why it matters: gives tool-loop reconciliation a canonical call/response pairing instead of relying on positional matching.
+- Google ADK commit, keep RemoteA2aAgent credential requests local
+  - https://github.com/google/adk-python/commit/2aea8595fb1c5e0fd7893a1985dc96dc82692
+  - Why it matters: prevents a remote peer from receiving credential-request continuations across the A2A trust boundary.
+
+## 2026-08-22 review addendum
+- OpenAI Agents Python commit, freeze the public voice API contract
+  - https://github.com/openai/openai-agents-python/commit/5b8f6c71747e5feef143c7047a165ebadf0a021d
+  - Why it matters: extends released API-contract fixtures with public class/type-alias and canonical import validation, making downstream compatibility and accidental export drift executable checks.
+- OpenAI Agents JS commit, reject truncated empty Chat Completions
+  - https://github.com/openai/openai-agents-js/commit/c242bfb7016a7d2884830c19fe255b3dd4c9deb3
+  - Why it matters: classifies an empty `finish_reason="length"` result as unsafe to replay while preserving usage, raw response evidence, and terminal error provenance; partial output remains valid.
+- OpenAI Agents JS commit, preserve handoff callback errors
+  - https://github.com/openai/openai-agents-js/commit/cd5a2c8fc163d02129163319d5b8e214c70fa978
+  - Why it matters: keeps a valid handoff callback failure distinct from input-validation failure, so delegation loops do not mislabel post-parse side-effect errors.
+- Google ADK commit, make MCP liveness probing resilient to SDK stream changes
+  - https://github.com/google/adk-python/commit/d9f4d3d288257593471fc708a9ab851779005ca5
+  - Why it matters: treats moved/absent private stream attributes as unknown rather than crashing and relies on an ADK-owned task-aliveness check for stronger detection.
+- Google ADK commit, preserve event actions during PostgreSQL migration
+  - https://github.com/google/adk-python/commit/e3ae4ac2b431c589887e9bf2d70b452e8360f0c
+  - Why it matters: accepts bytes-like driver outputs including `memoryview`, preventing serialized state deltas from being silently dropped during migration.
+- Google ADK commit, record context-cache state on LLM spans
+  - https://github.com/google/adk-python/commit/c0614d65806be5e7525b72e662e0987378996b53
+  - Why it matters: adds opt-in cache hit/fingerprint/content-count/invocation-use attributes to LLM spans and tests both enabled and default-off behavior.
+- Google ADK commit, let live streaming tools send messages directly to users
+  - https://github.com/google/adk-python/commit/98896eb2aaafb57577c02fc00b62db4367cb003
+  - Why it matters: separates direct user progress events from model-directed tool results, avoids model turns for status updates, persists messages in session history, and provides explicit streaming-tool cancellation behavior.
+- Google ADK commit, support opt-in session retention in MultimodalToolResultsPlugin
+  - https://github.com/google/adk-python/commit/775c1bd36e205eec65e207ad29fdc4cf2184e47e
+  - Why it matters: makes retention scope explicit across turns while keeping inline binary parts one-shot, creating a replay-policy boundary for multimodal tool outputs.

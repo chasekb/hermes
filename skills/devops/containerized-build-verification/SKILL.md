@@ -43,6 +43,20 @@ This umbrella now also absorbs the narrower container-image-release and tmux-rem
 ## CI verification rules
 
 - When GitHub Actions is the source of truth, treat the request as remote-only verification: do not spend time on a local build/test if the user explicitly wants the CI run as proof.
+
+### Backlog closeout lane
+Use this lane when backlog implementation must be committed and pushed, local builds are forbidden, and remote CI is the required proof.
+
+1. Load the project-scoped backlog item and preserve its id, priority, provenance, and ordering.
+2. Make scoped implementation changes without running Docker, Podman, CMake, or another forbidden local build; limit local checks to explicitly allowed non-build checks such as `git diff --check`.
+3. Stage only intended files, leave unrelated untracked files untouched, commit, and push the requested branch.
+4. Select the GitHub Actions run by exact branch, event, and pushed `headSha`. Never substitute an older successful run or an unrelated PR run.
+5. Poll that same run until top-level `status=completed` and `conclusion=success`; require every required architecture, build, test, manifest, and publish job to succeed.
+6. Record the run URL, verified head SHA, terminal status/conclusion, and required job results in the backlog notes.
+7. Mark execution `done` only when implementation criteria and remote proof are complete. Mark it `closed` only when every closeout criterion has concrete evidence; source inspection or compilation cannot substitute for runtime-only evidence.
+
+For the compact command/reporting checklist, see `references/remote-ci-evidence-checklist.md`.
+
 - Verify the exact workflow run created by the latest push by matching both the branch and the commit SHA (`headSha`); do not confuse it with an older run on the same branch.
 - If `gh run list` returns an older or unrelated run on the same branch, do not trust it just because it is the newest displayed row. Re-query with the Actions API and match `headSha` against the pushed commit before you start polling.
 - For ambiguous branch results, prefer `gh api 'repos/<owner>/<repo>/actions/runs?branch=<branch>&per_page=<n>'` or `gh run view <run_id> --json ...` over a one-line `gh run list` summary so you can see the exact `headSha`, `status`, and `conclusion` for each candidate run.
@@ -85,6 +99,7 @@ See `references/github-actions-remote-build-proof.md` for the shortest checklist
 ## Remote tmux / SSH triage
 Use this lane when the failure is visible in tmux, an SSH shell, or a remote container host.
 - Capture from the live pane and anchor on the last clear launch marker, not on old scrollback.
+- When the last visible line is a successful network fetch followed by a crash, treat the next parser/load step as the prime suspect and reproduce it with a tiny standalone harness on captured input before editing container wiring.
 - Identify the owning process, container, or port binding before editing compose or app code.
 - Separate host-port conflicts from container-internal failures before making a fix.
 - Re-capture the same pane after the change to prove the live error is gone.
@@ -103,11 +118,13 @@ Use this lane when the failure is visible in tmux, an SSH shell, or a remote con
 - If a model-load warning is emitted after training but the service still has enough context to answer with degraded defaults, prefer an explicit fallback response over turning the warning into a request-level hard error; surface `models_ready=false` plus a warning field so the UI can continue.
 - For simulated-trading dashboards, treat a "trained but empty widgets" report as a backend-liveness and request-shape problem first: verify `/api/simulated-trading/status`, inspect the live order-book request payload, and check the worker loop for per-tick exceptions before changing frontend polling code.
 - If `podman-compose config` looks correct but a launch still tries to pull from a registry, inspect the exported image override variables (`CPP_BACKEND_IMAGE`, `FRONTEND_IMAGE`, etc.) and compare them against `podman images` / `podman image exists` results before changing code.
+- On macOS, if a local CLI uses `podman compose` and the log shows an external `/opt/homebrew/bin/docker-compose` provider plus a stale/missing Docker API socket, compare it against direct `podman-compose -f ...`; prefer direct `podman-compose` command resolution when it uses the active Podman machine successfully. See `references/podman-compose-provider-routing.md`.
 - If the launch fails with `manifest unknown`, treat it as a tag mismatch first: confirm the exact image tag exists with `podman manifest inspect <image:tag>` before touching compose, and remember that a shell variable like `TAG=dev` only matters if the compose template actually references it.
 - For in-repo Python services, prefer mounting the repository root and launching with `python -m package.module` so imports resolve consistently inside containers.
 - When a host-bound service answers on the expected port but returns the wrong API, verify the port owner before changing code; a port conflict can look like an application regression.
 - For VPN-gateway + downstream-DNS compose stacks, check whether the gateway is publishing host port 53 while a child DNS service also needs it. If so, remove the gateway's host 53 bindings first, then re-run the stack and only add explicit internal DNS routing (for example `DNS_ADDRESS=127.0.0.1`) if the gateway's own healthcheck still needs a local resolver.
 - If a compose stack is nested under another stack or launched from a different working directory, inspect the live container labels (`com.docker.compose.project`, `com.docker.compose.project.working_dir`, and `com.docker.compose.project.config_files`) to locate and edit the owning compose file before restarting; don't assume the current shell directory is the source of truth.
+- When converting compose named volumes to project-local bind mounts, update the compose file, remove unused top-level volume declarations, add a narrowly scoped gitignore entry for the runtime data path, update backup/restore docs, create/verify the directory, and render `docker compose config`/`podman-compose config` to confirm `type: bind` resolves under the project root. See `references/compose-named-volume-to-project-bind-mount.md`.
 - After removing a port-binding conflict, re-check both the port map and the service logs: a stack may stop fighting for the host port yet still be unhealthy because a secondary healthcheck or DNS loop is now exposed.
 - When the build log shows `identifier is not a container` or a missing backend dependency after an unpack failure, treat it as fallout from the earlier image/volume failure and fix the first explicit error instead of chasing the cleanup noise.
 - When pruning local artifacts, remove only transient build layers/images/cache unless the user explicitly approves data-directory removal.
@@ -153,10 +170,12 @@ Use this lane when the failure is visible in tmux, an SSH shell, or a remote con
 - See `references/github-actions-remote-build-proof.md` for the shortest checklist when the user only wants GitHub Actions as proof of build completion.
 - See `references/db-auth-tmux-debugging.md` for a compact example of resolving a container DB auth mismatch discovered through tmux log capture.
 - See `references/long-running-compose-build-capture.md` for the tmux anchor + long-running Podman/compose build verification pattern from a live trade-stack session.
+- See `references/tmux-launch-marker-parser-crash.md` for the compact recipe for anchoring on a launch marker, isolating the first crash-adjacent log line, and proving a parser bug with a standalone harness.
 
 - See references/podman-compose-build-fallbacks.md for a focused checklist on local-tag verification, upstream fetch fallbacks, and disabling nonessential build cache submission in container builds.
 - See references/podman-local-image-aliasing.md for a concise note on Podman image aliasing, rendered compose verification, and avoiding accidental registry pulls from local dev stacks.
 - See references/podman-ghcr-dev-tag-triage.md for the tag-mismatch pattern where `TAG=dev` was present but compose still resolved to `:main`, causing `manifest unknown` pulls.
+- See `references/podman-compose-provider-routing.md` for the macOS pattern where `podman compose` delegates to Docker Compose and fails on a stale socket while direct `podman-compose` uses the active Podman machine.
 - See references/podman-storage-exhaustion.md for a concise playbook on diagnosing `no space left on device` during Podman layer unpack/build and recovering without touching persistent data.
 - See references/podman-vcpkg-download-fallbacks.md for vcpkg archive-download fallbacks, codeload usage, and exact-artifact cache seeding.
 - See references/vcpkg-release-host-triplet.md for the host-triplet/release-only triplet pattern that removes debug host packages from the install plan.

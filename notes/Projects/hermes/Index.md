@@ -18,6 +18,8 @@ Canonical selective-retrieval entrypoint for Hermes notes.
 - [[Harness and Loop Engineering Research Notebook]]
 - [[Capability Surface Survey]]
 - [[Prompt Structuring and Free-Model Delegation Strategy]]
+- [[Claude Code CLI Authenticated Delegation Plan]]
+- [[Claude Code CLI Auth Handoff for Hermes]]
 
 ## Canonical telemetry paths
 - Hook router: `~/.hermes/agent-hooks/hook_router.py`

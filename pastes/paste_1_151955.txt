@@ -1,0 +1,17 @@
+hermes profile create engineering \
+  --description "Coordinates engineering work across projects"
+
+hermes profile create architect \
+  --description "Architecture, decomposition, APIs, design decisions"
+
+hermes profile create implementer \
+  --description "Implements software changes and writes tests"
+
+hermes profile create reviewer \
+  --description "Reviews diffs for correctness, regressions and maintainability"
+
+hermes profile create tester \
+  --description "Runs tests, reproduces bugs and validates acceptance criteria"
+
+hermes profile create debugger \
+  --description "Investigates difficult bugs, logs and failing tests"

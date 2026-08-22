@@ -36,6 +36,11 @@ Use when the work starts from a backlog item, a roadmap row, or a written implem
 - Keep implementation and verification scoped to one item at a time.
 - Verify each item with the narrowest command that proves the behavior before moving on.
 - Treat the backlog or plan as the source of truth; do not invent scope while implementing.
+- This section absorbs the former `backlog-driven-development` skill.
+- When several tickets map to one shared code path, build the shared helper/component first and make the backlog items validate that one contract.
+- For remote proof, do not close the loop until the pushed commit's exact CI run is green.
+
+See `references/backlog-driven-development.md` for the condensed shared-component checklist and closeout sequence.
 
 ### Evidence-backed dashboard backlog recommendations
 Use when the task is to turn a live UI/problem into multiple backlog recommendations that each prove one calculation or widget.
@@ -45,6 +50,8 @@ Use when the task is to turn a live UI/problem into multiple backlog recommendat
 - Each recommendation should carry its own execution checklist and closeout checklist, plus a link to the evidence report.
 - Prioritize explicit formulas and normalization boundaries in the checklist so the eventual tests mirror the real data flow.
 - When the UI depends on a local fallback session or simulated data path, record the exact activation path in the evidence note so future agents can reproduce it.
+- For low simulated-trading win-rate investigations, split the backlog into metric/data-path, model-calibration, execution-logic, and regression-harness items; see `references/trade-simulated-trading-low-win-rate-investigation.md`.
+- When dashboard stats look wrong, check the denominator first: compare raw rows, backend stats, and frontend normalization with a fixture that includes an open/neutral leg; see `references/trade-stat-denominator-alignment.md`.
 - See `references/trade-dashboard-evidence-workflow.md` for the reusable checklist and session notes.
 
 ### Test-first implementation
@@ -78,6 +85,9 @@ Use before committing or merging.
 - Inspect the diff in fresh context.
 - Check security, correctness, and regression risk.
 - Prefer an external reviewer or subagent over self-review.
+- If the user explicitly asked to "commit and push", skip any local merge/PR decision menu and go straight from verification to commit → push → SHA verification.
+- If generated reports or analysis artifacts are part of the deliverable, stage them explicitly; do not assume they are disposable.
+- See `references/branch-finish-fast-path.md` for the fast-path checklist.
 
 ### Subagent execution
 Use when the work needs parallelism or isolated context.
@@ -91,6 +101,18 @@ Use when the work needs parallelism or isolated context.
 See `references/legacy-skill-aliases.md` for the absorbtion map and the `subagent-driven-development` history.
 See `references/subagent-comparison-pattern.md` for the option-vs-synthesis delegation pattern.
 See `references/repo-branch-workflow.md` for the Hermes branch topology and handoff pattern.
+
+### Runtime and user-home configuration changes
+Use when implementing recommendations against a CLI's user home, settings, hooks, skills, agents, or local knowledge store.
+- Re-audit the live state before editing; distinguish global, project-local, and managed runtime surfaces.
+- Back up only the user-authored files in scope before changing configuration. Do not copy credentials, transcripts, telemetry, shell snapshots, or other sensitive managed state into backups.
+- Consult the installed version's live schema/docs for hook names, command arguments, async behavior, and setting keys; do not infer configuration syntax from older versions.
+- Apply the smallest reversible scope correction: global files should contain cross-project policy, while repository/home-specific guidance belongs in project-local instructions or path-scoped rules.
+- For durable knowledge layers, keep raw episodes cold, store atomic provenance-rich records, bound retrieval by count and rendered output size, reject credential-like metadata, and make expiry, sensitivity, and supersession semantics explicit.
+- Write failing regression tests for expiry, access boundaries, metadata privacy, supersession integrity, malformed input, and actual CLI serialization before hardening implementation.
+- Verify with syntax/config parsing, database integrity checks, unit tests, `doctor`/diagnostics, and a real no-tool startup. If adding a subagent or lifecycle hook, invoke it in a capped smoke test and inspect only allowlisted metadata.
+- Record the implementation state, exact verification evidence, rollback path, and deliberately deferred experiments in the accompanying report.
+- See `references/runtime-configuration-and-knowledge-layer.md` for the reusable checklist and failure patterns.
 
 ### Simplification and spikes
 Use when the change is sprawling or uncertain.

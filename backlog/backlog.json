@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T09:37:26Z",
+  "generated_at": "2026-07-10T08:10:00Z",
   "history": [
     {
       "at": "2026-06-02T03:44:51Z",
@@ -239,6 +239,43 @@
       "event": "added_db_write_throughput_hardware_recommendation",
       "id": "HERMES-BL-0110",
       "note": "Added a db-scoped backlog recommendation for hardware review and compose.yaml tuning focused on doubling write throughput without harming reads."
+    },
+    {
+      "at": "2026-07-05T00:39:25Z",
+      "count": 4,
+      "event": "added_trade_simulated_trading_win_rate_investigation_recommendations",
+      "ids": [
+        "HERMES-BL-20004",
+        "HERMES-BL-20005",
+        "HERMES-BL-20006",
+        "HERMES-BL-20007"
+      ],
+      "note": "Materialized the simulated trading low-win-rate investigation recommendations into the live trade backlog and removed the duplicate repo documentation.",
+      "project_id": "trade"
+    },
+    {
+      "at": "2026-07-07T00:00:00Z",
+      "count": 1,
+      "event": "added_trade_simulated_trading_portfolio_reconciliation_recommendation",
+      "ids": [
+        "HERMES-BL-20008"
+      ],
+      "note": "Materialized the simulated trading cash / positions / total value reconciliation recommendation into the live trade backlog.",
+      "project_id": "trade"
+    },
+    {
+      "at": "2026-07-10T08:03:57Z",
+      "event": "added_claude_code_cli_auth_delegation_recommendation",
+      "id": "HERMES-BL-20009",
+      "note": "Added a Hermes-scoped recommendation for an opt-in Claude Code CLI transport using Claude Code OAuth/setup-token authentication rather than Hermes Anthropic API routing.",
+      "project_id": "hermes"
+    },
+    {
+      "at": "2026-07-10T08:10:00Z",
+      "event": "updated_claude_code_cli_auth_delegation_recommendation",
+      "id": "HERMES-BL-20009",
+      "note": "Applied delegated multi-agent research and narrowed the design to a local single-user external CLI delegation lane with explicit policy and security gates.",
+      "project_id": "hermes"
     }
   ],
   "items": [
@@ -2124,9 +2161,9 @@
       "title": "Verify simulated trading total net P&L calculation",
       "summary": "Add a focused regression test for the Total Net P&L card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2157,6 +2194,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Total Net P&L card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2165,9 +2207,9 @@
       "title": "Verify simulated trading win rate calculation",
       "summary": "Add a focused regression test for the Win Rate card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2198,6 +2240,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Win Rate card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2206,9 +2253,9 @@
       "title": "Verify simulated trading total trades calculation",
       "summary": "Add a focused regression test for the Total Trades card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2239,6 +2286,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Total Trades card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2247,9 +2299,9 @@
       "title": "Verify simulated trading winning trades count",
       "summary": "Add a focused regression test for the Winning Trades count on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2280,6 +2332,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Winning Trades count using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2288,9 +2345,9 @@
       "title": "Verify simulated trading losing trades count",
       "summary": "Add a focused regression test for the Losing Trades count on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2321,6 +2378,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Losing Trades count using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2329,9 +2391,9 @@
       "title": "Verify simulated trading cash balance calculation",
       "summary": "Add a focused regression test for the Cash Balance card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2362,6 +2424,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Cash Balance card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2370,9 +2437,9 @@
       "title": "Verify simulated trading total value calculation",
       "summary": "Add a focused regression test for the Total Value card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2403,6 +2470,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Total Value card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2411,9 +2483,9 @@
       "title": "Verify simulated trading positions value calculation",
       "summary": "Add a focused regression test for the Positions Value card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2444,6 +2516,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Positions Value card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2452,9 +2529,9 @@
       "title": "Verify simulated trading active positions calculation",
       "summary": "Add a focused regression test for the Active Positions card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2485,6 +2562,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Active Positions card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2493,9 +2575,9 @@
       "title": "Verify simulated trading unrealized P&L calculation",
       "summary": "Add a focused regression test for the Unrealized P&L card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2526,6 +2608,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Unrealized P&L card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2534,9 +2621,9 @@
       "title": "Verify simulated trading realized P&L calculation",
       "summary": "Add a focused regression test for the Realized P&L card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2567,6 +2654,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Realized P&L card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2575,9 +2667,9 @@
       "title": "Verify simulated trading total fees calculation",
       "summary": "Add a focused regression test for the Total Fees card on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2608,6 +2700,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Total Fees card using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2616,9 +2713,9 @@
       "title": "Verify simulated trading average win calculation",
       "summary": "Add a focused regression test for the Average Win value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2649,6 +2746,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Average Win value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2657,9 +2759,9 @@
       "title": "Verify simulated trading average loss calculation",
       "summary": "Add a focused regression test for the Average Loss value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2690,6 +2792,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Average Loss value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2698,9 +2805,9 @@
       "title": "Verify simulated trading best trade calculation",
       "summary": "Add a focused regression test for the Best Trade value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2731,6 +2838,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Best Trade value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2739,9 +2851,9 @@
       "title": "Verify simulated trading worst trade calculation",
       "summary": "Add a focused regression test for the Worst Trade value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2772,6 +2884,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Worst Trade value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2780,9 +2897,9 @@
       "title": "Verify simulated trading profit factor calculation",
       "summary": "Add a focused regression test for the Profit Factor value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2813,6 +2930,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Profit Factor value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2821,9 +2943,9 @@
       "title": "Verify simulated trading total volume calculation",
       "summary": "Add a focused regression test for the Total Volume value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2854,6 +2976,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Total Volume value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2862,9 +2989,9 @@
       "title": "Verify simulated trading average trade size calculation",
       "summary": "Add a focused regression test for the Avg Trade Size value on the Simulated Trading tab.",
       "priority": "P1",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:05:00Z",
+      "updated_at": "2026-07-05T00:00:00Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2895,6 +3022,11 @@
           "at": "2026-06-21T21:05:00Z",
           "note": "Create a dedicated recommendation for the Avg Trade Size value using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
         }
       ]
     },
@@ -2903,9 +3035,9 @@
       "title": "Verify open positions widget values",
       "summary": "Add a focused widget test for the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -2949,6 +3081,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Split the widget check into column-level recommendations and made the widget-level item depend on them.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -2957,9 +3094,9 @@
       "title": "Verify recent trades widget values",
       "summary": "Add a focused widget test for the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3001,6 +3138,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Split the widget check into column-level recommendations and made the widget-level item depend on them.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3009,9 +3151,9 @@
       "title": "Verify order book signals widget values",
       "summary": "Add a focused widget test for the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:05:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3057,6 +3199,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Split the widget check into column-level recommendations and made the widget-level item depend on them.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3065,9 +3212,9 @@
       "title": "Verify open positions column: symbol",
       "summary": "Add a focused regression test for the SYMBOL column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3099,6 +3246,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions symbol column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3107,9 +3259,9 @@
       "title": "Verify open positions column: side",
       "summary": "Add a focused regression test for the SIDE column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3141,6 +3293,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions side column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3149,9 +3306,9 @@
       "title": "Verify open positions column: quantity",
       "summary": "Add a focused regression test for the QUANTITY column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3183,6 +3340,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions quantity column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3191,9 +3353,9 @@
       "title": "Verify open positions column: entry price",
       "summary": "Add a focused regression test for the ENTRY PRICE column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3225,6 +3387,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions entry price column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3233,9 +3400,9 @@
       "title": "Verify open positions column: current price",
       "summary": "Add a focused regression test for the CURRENT PRICE column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3267,6 +3434,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions current price column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3275,9 +3447,9 @@
       "title": "Verify open positions column: unrealized P&L",
       "summary": "Add a focused regression test for the UNREALIZED P&L column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3309,6 +3481,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions unrealized P&L column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3317,9 +3494,9 @@
       "title": "Verify open positions column: opened timestamp",
       "summary": "Add a focused regression test for the OPENED TIMESTAMP column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3351,6 +3528,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions opened timestamp column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3359,9 +3541,9 @@
       "title": "Verify open positions column: action",
       "summary": "Add a focused regression test for the ACTION column in the Open Positions table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3393,6 +3575,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Open Positions action column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3401,9 +3588,9 @@
       "title": "Verify recent trades column: time",
       "summary": "Add a focused regression test for the TIME column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3435,6 +3622,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades time column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3443,9 +3635,9 @@
       "title": "Verify recent trades column: symbol",
       "summary": "Add a focused regression test for the SYMBOL column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3477,6 +3669,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades symbol column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3485,9 +3682,9 @@
       "title": "Verify recent trades column: side",
       "summary": "Add a focused regression test for the SIDE column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3519,6 +3716,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades side column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3527,9 +3729,9 @@
       "title": "Verify recent trades column: quantity",
       "summary": "Add a focused regression test for the QUANTITY column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3561,6 +3763,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades quantity column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3569,9 +3776,9 @@
       "title": "Verify recent trades column: price",
       "summary": "Add a focused regression test for the PRICE column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3603,6 +3810,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades price column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3611,9 +3823,9 @@
       "title": "Verify recent trades column: P&L",
       "summary": "Add a focused regression test for the P&L column in the Recent Trades table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3645,6 +3857,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Recent Trades P&L column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3653,9 +3870,9 @@
       "title": "Verify order book signals column: time",
       "summary": "Add a focused regression test for the TIME column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3687,6 +3904,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals time column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3695,9 +3917,9 @@
       "title": "Verify order book signals column: symbol",
       "summary": "Add a focused regression test for the SYMBOL column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3729,6 +3951,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals symbol column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3737,9 +3964,9 @@
       "title": "Verify order book signals column: price",
       "summary": "Add a focused regression test for the PRICE column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3771,6 +3998,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals price column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3779,9 +4011,9 @@
       "title": "Verify order book signals column: signal",
       "summary": "Add a focused regression test for the SIGNAL column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3813,6 +4045,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals signal column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3821,9 +4058,9 @@
       "title": "Verify order book signals column: strength",
       "summary": "Add a focused regression test for the STRENGTH column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3855,6 +4092,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals strength column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3863,9 +4105,9 @@
       "title": "Verify order book signals column: spread",
       "summary": "Add a focused regression test for the SPREAD column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3897,6 +4139,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals spread column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3905,9 +4152,9 @@
       "title": "Verify order book signals column: volume",
       "summary": "Add a focused regression test for the VOLUME column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3939,6 +4186,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals volume column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3947,9 +4199,9 @@
       "title": "Verify order book signals column: criteria",
       "summary": "Add a focused regression test for the CRITERIA column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -3981,6 +4233,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals criteria column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -3989,9 +4246,9 @@
       "title": "Verify order book signals column: ML analysis",
       "summary": "Add a focused regression test for the ML ANALYSIS column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -4023,6 +4280,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals ML analysis column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -4031,9 +4293,9 @@
       "title": "Verify order book signals column: details",
       "summary": "Add a focused regression test for the DETAILS column in the Order Book Signals table on the Simulated Trading tab.",
       "priority": "P2",
-      "status": "proposed",
+      "status": "closed",
       "created_at": "2026-06-21T21:20:00Z",
-      "updated_at": "2026-06-21T21:20:00Z",
+      "updated_at": "2026-07-06T19:03:41Z",
       "project_id": "trade",
       "tenant": "default",
       "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
@@ -4065,6 +4327,11 @@
           "at": "2026-06-21T21:20:00Z",
           "note": "Create a dedicated recommendation for the Order Book Signals details column using the live session evidence.",
           "status": "proposed"
+        },
+        {
+          "at": "2026-07-06T19:03:41Z",
+          "note": "Implemented dashboard table coverage and shared recent-trades rendering; verified with local tests and build.",
+          "status": "closed"
         }
       ]
     },
@@ -5650,6 +5917,340 @@
       "tenant": "default",
       "title": "Research prompt structuring and free-model delegation strategy",
       "updated_at": "2026-07-03T09:37:26Z"
+    },
+    {
+      "id": "HERMES-BL-20004",
+      "title": "Trace the simulated trading win-rate data path",
+      "summary": "Verify the win rate shown in the Simulated Trading tab is computed from the same trade set the user sees.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-07-05T00:39:25Z",
+      "updated_at": "2026-07-05T00:00:00Z",
+      "project_id": "trade",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/simulatedTradingStats.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/TradingStatsService.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/api.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+      ],
+      "notes": [
+        "Start by comparing backend trade rows, frontend-normalized stats, and the recent trades widget so the metric cannot be blamed on the wrong layer.",
+        "Treat the live session evidence as the baseline, and fail fast if open/close legs are being counted inconsistently."
+      ],
+      "execution_criteria": [
+        "Trace the full path from signal generation to trade persistence to dashboard normalization.",
+        "Compare backend stats from TradingStatsService with frontend-normalized stats in frontend/lib/simulatedTradingStats.ts.",
+        "Confirm the win-rate numerator and denominator use the same trade population as the recent-trades widget.",
+        "Verify wins and losses are counted on closed trades only and not on both open and close legs.",
+        "Capture one end-to-end sample session and compare raw trade rows to rendered widget values."
+      ],
+      "closeout_criteria": [
+        "The win-rate formula is documented and confirmed to match the actual rendered trades.",
+        "Any discrepancy between backend and frontend stats is eliminated or explicitly accounted for.",
+        "Evidence from a sample session shows the widget and persisted trade rows agree.",
+        "A regression test protects against the same metric mismatch reappearing."
+      ],
+      "history": [
+        {
+          "at": "2026-07-05T00:39:25Z",
+          "note": "Materialized the win-rate data-path investigation as a live trade backlog item.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-20005",
+      "title": "Measure ML-enhanced order book prediction calibration",
+      "summary": "Compare predicted win probability and expected return against realized outcomes to determine whether the model is weak or broken.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-07-05T00:39:25Z",
+      "updated_at": "2026-07-05T00:00:00Z",
+      "project_id": "trade",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/api/PredictController.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/ml/ModelTrainer.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/ml/Metrics.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/components/dashboard/MLAnalyticsDashboard.tsx",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+      ],
+      "notes": [
+        "Check whether the backend model pack is actually loaded or whether the system is falling back to neutral predictions.",
+        "Compare ML-enhanced order book behavior against a non-ML baseline so poor predictions can be separated from execution bugs."
+      ],
+      "execution_criteria": [
+        "Collect a session-level sample of predicted win_probability, expected_return, confidence, and realized P&L.",
+        "Bucket trades by predicted win probability and compare actual win rate per bucket.",
+        "Compare model outputs between backend-generated signals and local frontend synthetic fallback signals.",
+        "Check whether PredictController::predict is returning fallback values because models are unavailable.",
+        "Compare performance when the strategy is ml_enhanced_orderbook versus a non-ML order book strategy.",
+        "Quantify precision and recall on directional calls, not just aggregate win rate."
+      ],
+      "closeout_criteria": [
+        "There is a clear conclusion on whether model quality is low, acceptable, or inconclusive.",
+        "The investigation identifies the model artifact/version used during the low-win-rate session.",
+        "If predictions are poor, a follow-up tuning or training backlog item is created.",
+        "If predictions are fine, the issue is reclassified as execution or reporting."
+      ],
+      "history": [
+        {
+          "at": "2026-07-05T00:39:25Z",
+          "note": "Materialized the model-calibration investigation as a live trade backlog item.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-20006",
+      "title": "Audit simulated trading execution logic for self-sabotage",
+      "summary": "Review the simulated trading engine for thresholds or flip rules that could erode win rate even when the signal is directionally right.",
+      "priority": "P1",
+      "status": "closed",
+      "created_at": "2026-07-05T00:39:25Z",
+      "updated_at": "2026-07-05T00:00:00Z",
+      "project_id": "trade",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/SimulatedTradingService.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/TradingStatsService.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/api.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+      ],
+      "notes": [
+        "Focus on the smallest execution slice that can explain low win rate: entry rules, hold rules, exit rules, and fee/slippage assumptions.",
+        "Compare ml_enhanced_orderbook behavior against a baseline strategy on the same market data."
+      ],
+      "execution_criteria": [
+        "Review SimulatedTradingService::buildSignalRecordLocked to confirm how signals become buy, sell, or hold actions.",
+        "Inspect the thresholds that decide whether a signal is generated, held, or reversed.",
+        "Verify the hold and exit rules, especially whether positions are closed too early or flipped too often.",
+        "Check whether fees and slippage assumptions make marginal winners become losers.",
+        "Compare behavior with ml_enhanced_orderbook against a baseline strategy using the same market data.",
+        "Confirm the ML analysis payload is actually used in execution decisions where intended."
+      ],
+      "closeout_criteria": [
+        "The entry and exit rules are documented and matched to observed trade outcomes.",
+        "The investigation identifies whether the strategy churns, flips, or exits too early.",
+        "If execution logic is the issue, a fix or tuning backlog item is created with a clear hypothesis.",
+        "A regression case is added for the specific bad execution pattern."
+      ],
+      "history": [
+        {
+          "at": "2026-07-05T00:39:25Z",
+          "note": "Materialized the execution-logic audit as a live trade backlog item.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-20007",
+      "title": "Add a deterministic regression harness for simulated trading win rate",
+      "summary": "Create a fixture-backed regression harness so the same low-win-rate path can be reproduced and proven fixed.",
+      "priority": "P2",
+      "status": "closed",
+      "created_at": "2026-07-05T00:39:25Z",
+      "updated_at": "2026-07-05T00:00:00Z",
+      "project_id": "trade",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/simulatedTradingStats.test.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/tests/test_trading_stats_calculator.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+      ],
+      "notes": [
+        "Use a fixed simulated-trading fixture with deterministic signals and trades so the test suite can fail before implementation and pass after the fix.",
+        "Keep the fixture narrow enough that the harness proves the dashboard, backend stats, and ML payloads all agree on the same scenario."
+      ],
+      "execution_criteria": [
+        "Create a fixed simulated-trading fixture with deterministic signals and trades.",
+        "Assert the dashboard shows the same win rate, total trades, and P&L as the fixture data.",
+        "Assert the ML-enhanced signal table shows the expected win_probability and expected_return fields.",
+        "Add a backend-side test or unit harness for the stats computation path.",
+        "Save a concise evidence artifact showing the before and after state for the chosen fixture."
+      ],
+      "closeout_criteria": [
+        "A deterministic regression test exists and passes.",
+        "The test fails on the known-bad behavior and passes once the bug is fixed.",
+        "The evidence artifact links the rendered UI values to the underlying data source.",
+        "Future changes to the simulated trading path cannot silently break win-rate reporting again."
+      ],
+      "history": [
+        {
+          "at": "2026-07-05T00:39:25Z",
+          "note": "Materialized the regression-harness recommendation as a live trade backlog item.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-05T00:00:00Z",
+          "note": "Implemented and verified in code/tests.",
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-20008",
+      "title": "Reconcile simulated trading cash balance, positions value, and total value calculations",
+      "summary": "Add a fixture-backed reconciliation recommendation to prove the simulated trading portfolio cards update together after buys and sells.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:00:00Z",
+      "updated_at": "2026-07-07T00:00:00Z",
+      "project_id": "trade",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "dependencies": [
+        "HERMES-BL-0043",
+        "HERMES-BL-0044",
+        "HERMES-BL-0045"
+      ],
+      "links": [
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-07-07_trade-simulated-portfolio-reconciliation-recommendation.md",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/SimulatedTradingService.cpp",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/simulatedTradingStats.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/components/dashboard/SimulatedTradingPanel.tsx",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/components/dashboard/LiveTradingPanel.tsx",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/lib/simulatedTradingStats.test.ts",
+        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+      ],
+      "notes": [
+        "Validate whether the dashboard is mixing signed and unsigned position semantics while presenting the three portfolio cards.",
+        "If short positions are supported, document whether positions value is absolute notional or signed exposure before changing the UI contract."
+      ],
+      "execution_criteria": [
+        "Use a deterministic fixture or captured session that includes at least one buy, one sell, and one open position.",
+        "Trace cash_balance, total_value, and positions_value from the backend response through the frontend normalization layer to the rendered cards.",
+        "Decide and document the canonical portfolio formula so the displayed values do not mix signed and unsigned semantics.",
+        "Add regression coverage that fails if cash balance, positions value, and total value stop updating in unison after a purchase or sale.",
+        "Fail the test if the widget falls back to current_capital or another stale field instead of the intended cash balance source of truth."
+      ],
+      "closeout_criteria": [
+        "A deterministic regression test exists and proves the portfolio cards stay consistent after buy and sell events.",
+        "The chosen formula for cash balance, positions value, and total value is documented in code comments or the test name.",
+        "The backend and frontend agree on the same source-of-truth fields for the simulated trading portfolio summary.",
+        "The test suite fails on the documented mismatch shape and passes once the reconciliation is corrected.",
+        "Future changes cannot silently reintroduce a mismatch between cash balance, positions value, and total value."
+      ],
+      "history": [
+        {
+          "at": "2026-07-07T00:00:00Z",
+          "note": "Materialized the simulated trading cash / positions / total value reconciliation recommendation as a live trade backlog item.",
+          "status": "proposed"
+        }
+      ]
+    },
+    {
+      "id": "HERMES-BL-20009",
+      "title": "Develop a Claude Code CLI delegation lane using Claude Code OAuth auth",
+      "summary": "Evaluate and implement a bounded, project-scoped Hermes delegation wrapper around claude -p that uses Claude Code-managed authentication, streams structured events, enforces bounded execution, and never routes through the Anthropic API directly.",
+      "priority": "P1",
+      "status": "proposed",
+      "created_at": "2026-07-10T08:03:57Z",
+      "updated_at": "2026-07-10T08:10:00Z",
+      "project_id": "hermes",
+      "tenant": "default",
+      "scope": "/Users/bernardchase/.hermes",
+      "dependencies": [],
+      "links": [
+        "/Users/bernardchase/.hermes/notes/Research/Agents/Claude Code CLI Auth Handoff for Hermes.md",
+        "/Users/bernardchase/.hermes/notes/Projects/hermes/Claude Code CLI Authenticated Delegation Plan.md",
+        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/provider-auth-handoffs/references/claude-code-hermes.md",
+        "/Users/bernardchase/.hermes/agent/anthropic_adapter.py",
+        "/Users/bernardchase/.hermes/agent/copilot_acp_client.py",
+        "/Users/bernardchase/.hermes/providers/base.py",
+        "/Users/bernardchase/.hermes/providers/__init__.py",
+        "/Users/bernardchase/.hermes/config.yaml",
+        "https://code.claude.com/docs/en/authentication",
+        "https://code.claude.com/docs/en/headless",
+        "https://code.claude.com/docs/en/cli-reference",
+        "/Users/bernardchase/.hermes/tools/delegate_tool.py",
+        "/Users/bernardchase/.hermes/hermes_cli/auth.py",
+        "/Users/bernardchase/.hermes/hermes_cli/runtime_provider.py",
+        "/Users/bernardchase/.hermes/hermes_cli/config.py",
+        "https://code.claude.com/docs/en/legal-and-compliance",
+        "https://code.claude.com/docs/en/agent-sdk/hosting",
+        "https://code.claude.com/docs/en/agent-sdk/streaming-output"
+      ],
+      "notes": [
+        "Keep this as a bounded, local single-user Hermes delegation lane in the first slice; do not turn Claude.ai login or subscription rate limits into a general multi-user Hermes service.",
+        "Use the installed Claude Code CLI as the compatibility boundary. Record the tested CLI version and treat CLI behavior as an external contract.",
+        "The child must preserve Claude Code auth behavior: use the Claude Code credential store or CLAUDE_CODE_OAUTH_TOKEN, never pass the token in argv, and never persist or log it.",
+        "Reject or clear ANTHROPIC_API_KEY and ANTHROPIC_AUTH_TOKEN for this lane so an API credential cannot shadow the requested Claude Code auth path.",
+        "Do not use --bare: official Claude Code documentation says bare mode skips OAuth/keychain reads and requires API-key-style auth.",
+        "Do not automate setup-token creation in Hermes. The operator must provision auth separately and only the auth-source class may appear in diagnostics.",
+        "Prefer extending tools/delegate_tool.py with a generic external CLI client over adding a first-class model provider; Claude Code is an autonomous agent/runtime, not an OpenAI-compatible endpoint.",
+        "Before accepting the item, record the three delegated research-lane conclusions and the account/plan policy gate in the linked research note."
+      ],
+      "execution_criteria": [
+        "Resolve and document the official authentication/policy gate: claude setup-token, CLAUDE_CODE_OAUTH_TOKEN precedence, supported subscription scope, inference-only limitation, legal/compliance caveat, and the no-Anthropic-API requirement.",
+        "Define the transport at tools/delegate_tool.py, using existing _build_child_agent(), delegate_task(), and _resolve_delegation_credentials() seams; preserve the current Hermes backend as the default.",
+        "Add a generic external CLI client (for example agent/external_cli_client.py) or narrowly scoped Claude Code client that accepts an explicit command/args list, trusted cwd, stdin prompt, child-only environment, separate stdout/stderr, and process-group cancellation.",
+        "Invoke non-bare claude -p with explicit structured output; support final json and stream-json parsing with system, retry, partial, tool, and terminal-result events without treating partial events as final text.",
+        "Use --allowedTools or a restrictive --permission-mode by default; add --max-turns, --max-budget-usd, and a Hermes wall-clock deadline. Terminate and reap the full process tree on timeout or cancellation.",
+        "Bound stdin/prompt size, concurrency, stdout/stderr bytes, background work, and retry behavior. Treat the documented piped-stdin limit as a guardrail and pass oversized inputs through trusted files only if a later design explicitly permits it.",
+        "Expose delegation configuration in hermes_cli/config.py and the delegation block without storing credentials; preserve the existing result schema, observability, credential-pool behavior, and default Hermes provider behavior.",
+        "Add deterministic fake-CLI tests covering command/args precedence, auth shadowing, prompt delivery, cwd/environment inheritance, JSON and stream parsing, malformed output, stderr isolation, nonzero exit, timeout, cancellation, partial/retry events, concurrency, and orphan cleanup.",
+        "Add a gated real smoke test only when Claude Code is installed and auth is already available; do not print, persist, or copy the credential."
+      ],
+      "closeout_criteria": [
+        "The linked research note contains the three delegated research summaries, official source URLs, local Hermes symbols/paths, confidence/uncertainty, and the account/plan policy decision.",
+        "Fake-CLI unit and integration tests pass, including proof that this transport does not import or call the Anthropic SDK/API path.",
+        "A real smoke run completes through non-bare claude -p using Claude Code-managed authentication, with no credential appearing in captured stdout, stderr, Hermes logs, session state, or test artifacts.",
+        "Streaming and final JSON fixtures parse system initialization, partial text/tool events, retry events, and terminal results correctly.",
+        "Timeout and cancellation tests prove the parent returns within the configured deadline and leaves no orphaned Claude Code subprocesses.",
+        "Concurrency tests demonstrate the configured limit and reject or queue excess work deterministically.",
+        "Reported cost/usage metadata is preserved when available and marked unavailable or unverified otherwise; the implementation records the tested Claude Code version and known version-sensitive flags.",
+        "Security review confirms direct Anthropic API routing, API-key fallback, token logging, unrestricted permissions, arbitrary cwd access, unbounded background execution, and multi-user credential brokering are excluded from the first slice.",
+        "Existing Hermes provider, auth-precedence, copilot-acp, delegation, and credential-pool tests remain green; operator docs and rollback steps are complete."
+      ],
+      "history": [
+        {
+          "at": "2026-07-10T08:03:57Z",
+          "note": "Added as a Hermes-scoped P1 recommendation after official Claude Code auth/headless review and delegated multi-agent research dispatch.",
+          "status": "proposed"
+        },
+        {
+          "at": "2026-07-10T08:10:00Z",
+          "note": "Incorporated delegated official-auth, Hermes-runtime, and security/operations research. Narrowed the implementation seam to tools/delegate_tool.py plus an external CLI client and added the local-single-user/legal policy gate.",
+          "status": "proposed"
+        }
+      ],
+      "evidence": [
+        "Delegated lane 1: official auth/headless research confirms claude setup-token, CLAUDE_CODE_OAUTH_TOKEN, structured headless output, --bare incompatibility, credential lifetime, and legal/compliance caveat.",
+        "Delegated lane 2: Hermes code inspection identifies tools/delegate_tool.py, hermes_cli/auth.py, hermes_cli/runtime_provider.py, hermes_cli/config.py, agent/copilot_acp_client.py, and agent/anthropic_adapter.py as the relevant seams.",
+        "Delegated lane 3: security/operations review recommends a local single-user subprocess adapter, child-only environment, explicit permissions, stream parsing, parent-side cancellation, bounded concurrency, and explicit non-goals.",
+        "Official auth documentation: https://code.claude.com/docs/en/authentication",
+        "Official headless/Agent SDK CLI documentation: https://code.claude.com/docs/en/headless",
+        "Official CLI reference: https://code.claude.com/docs/en/cli-reference",
+        "Official legal/compliance guidance: https://code.claude.com/docs/en/legal-and-compliance",
+        "Official Agent SDK hosting/streaming guidance: https://code.claude.com/docs/en/agent-sdk/hosting and https://code.claude.com/docs/en/agent-sdk/streaming-output",
+        "Local Claude Code 2.1.206 help verified claude -p, setup-token, structured output, permission controls, no-session-persistence, max-turns, and the --bare OAuth caveat.",
+        "Hermes currently resolves Claude Code credentials in agent/anthropic_adapter.py but routes them through Anthropic Messages; the existing subprocess precedent is agent/copilot_acp_client.py."
+      ]
     }
   ],
   "project": "hermes",
