@@ -38,6 +38,12 @@ When materializing backlog items, preserve the source and stable backlog id in t
 - `hermes kanban --board <board> stats` confirms the expected queue.
 - A project-linked task creation path is used for new work so its `workspace_kind` resolves to `worktree`.
 - Existing running or queued scratch tasks are not rewritten in place; changing their workspace can disrupt workers and lose state.
+- Every task defaults to `remote_ci_required=true`: workers must not run local package/container builds, and repository changes require commit, push, and exact-SHA GitHub Actions build verification before completion.
+- A local build is an explicit exception only when the task is created with `remote_ci_required=false` or the CLI `--allow-local-build` override.
+
+## Remote-only build policy
+
+The Kanban task schema and worker context carry the remote-CI requirement. New cards inherit it automatically, child cards inherit it unless explicitly overridden, and legacy cards are migrated to the required default. See `references/remote-ci-build-verification.md` for the push → exact-SHA run → build-proof sequence.
 
 ## Scope and safety
 
