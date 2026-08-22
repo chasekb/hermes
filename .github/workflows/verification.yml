@@ -7,6 +7,22 @@ on:
   workflow_dispatch:
 
 jobs:
+  package-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build wheel
+        run: |
+          python -m pip install --upgrade build
+          python -m build --wheel
+
   repo-integrity:
     runs-on: ubuntu-latest
     steps:
