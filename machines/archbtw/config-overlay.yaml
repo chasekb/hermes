@@ -1,0 +1,29 @@
+# Sanitized Hermes configuration overlay for archbtw.
+# This file contains no credentials, tokens, connection strings, or runtime state.
+
+kanban:
+  dispatch_in_gateway: true
+  review_dispatch: true
+  failure_limit: 3
+  orchestrator_profile: engineering
+  max_in_progress: 4
+  auto_decompose: true
+  auto_decompose_per_tick: 1
+
+gateway:
+  multiplex_profiles: true
+
+systemd_user_service:
+  unit: hermes-gateway.service
+  unit_file_state: enabled
+  active_state: active
+  restart: always
+  restart_delay_seconds: 5
+  per_profile_units: false
+
+project_boards:
+  - cohida
+  - db
+  - market
+  - trade
+  - transform

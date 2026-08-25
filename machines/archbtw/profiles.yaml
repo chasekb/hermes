@@ -1,0 +1,38 @@
+# Sanitized profile routing metadata for archbtw.
+# Credentials and profile-local environment files remain outside Git.
+
+profiles:
+  engineering:
+    role: orchestrator
+    description: >-
+      Canonical Kanban orchestrator. Coordinates engineering work across project boards,
+      decomposes requests into dependency-aware tasks, routes work to specialist profiles,
+      and synthesizes handoffs. Does not implement code or perform specialist work itself.
+  architect:
+    role: specialist
+    description: >-
+      Owns architecture, decomposition, API contracts, dependency graphs, and design
+      decisions. Produces implementation-ready plans and routes execution through the
+      Kanban orchestrator.
+  implementer:
+    role: specialist
+    description: >-
+      Implements narrowly scoped software changes in isolated worktrees, preserves repository
+      safety constraints, and records remote CI or verification evidence. Does not perform
+      live account or deployment mutations without explicit approval.
+  reviewer:
+    role: specialist
+    description: >-
+      Reviews diffs and delivery artifacts for correctness, regressions, security,
+      maintainability, and acceptance-criteria coverage. Creates remediation handoffs when
+      review fails.
+  tester:
+    role: specialist
+    description: >-
+      Reproduces bugs, runs authorized tests or remote verification, validates acceptance
+      criteria, and records evidence and remaining coverage gaps.
+  debugger:
+    role: specialist
+    description: >-
+      Investigates difficult bugs through logs, traces, reproducible failures, and root-cause
+      analysis. Produces evidence-backed handoffs rather than speculative fixes.
