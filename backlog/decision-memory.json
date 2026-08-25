@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "Durable decision-memory store for Hermes backlog, workflow, skill, and hook reviews.",
-  "updated_at": "2026-08-22T13:03:18.524832+00:00",
+  "updated_at": "2026-08-24T13:03:48.544359+00:00",
   "records": [
     {
       "ts": "2026-07-29T13:04:28.590939+00:00",
@@ -8474,6 +8474,681 @@
       "operation": "link_follow",
       "path": "Research/Agents/Sources.md",
       "session_id": "cron_21e481612226_20260822_080016",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.582389+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.599222+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.630016+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.643216+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.648030+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.681258+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:10.713999+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:45.702940+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:47.183464+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:48.514068+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:59.842421+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:59.873876+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:01:59.894397+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-23T13:02:53.139099+00:00",
+      "subject_type": "note",
+      "subject_id": "Research",
+      "expected": "link_follow note event",
+      "observed": "search_files -> Research",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research",
+        "tool:search_files"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research",
+      "session_id": "cron_21e481612226_20260823_080036",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:00:53.353235+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Index.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:00:54.824617+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:00:56.192047+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Agents Research Index.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Agents Research Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Agents Research Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Agents Research Index.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:00:57.654468+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:00:59.058513+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:01:00.474204+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Loop Synthesis.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Loop Synthesis.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Loop Synthesis.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Loop Synthesis.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:01:01.750306+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:01:03.092239+00:00",
+      "subject_type": "note",
+      "subject_id": "Projects/hermes/Index.md",
+      "expected": "read note event",
+      "observed": "read_file -> Projects/hermes/Index.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Projects/hermes/Index.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "hermes",
+      "note_type": "moc",
+      "operation": "read",
+      "path": "Projects/hermes/Index.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 0,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:03:12.963028+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:03:12.972197+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Harness Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Harness Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Harness Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Harness Engineering.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:03:12.993611+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Loop Engineering.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Loop Engineering.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Loop Engineering.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Loop Engineering.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:03:47.122657+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Research Workflow.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Research Workflow.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Research Workflow.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Research Workflow.md",
+      "session_id": "cron_21e481612226_20260824_080017",
+      "source_session_id": "",
+      "hop_count": 1,
+      "success": true
+    },
+    {
+      "ts": "2026-08-24T13:03:48.543691+00:00",
+      "subject_type": "note",
+      "subject_id": "Research/Agents/Sources.md",
+      "expected": "link_follow note event",
+      "observed": "read_file -> Research/Agents/Sources.md",
+      "outcome": "pass",
+      "recommendation": "keep",
+      "evidence": [
+        "vault:Research/Agents/Sources.md",
+        "tool:read_file"
+      ],
+      "risk_flags": [
+        "secret_redacted"
+      ],
+      "redacted": true,
+      "project_id": "Research",
+      "note_type": "note",
+      "operation": "link_follow",
+      "path": "Research/Agents/Sources.md",
+      "session_id": "cron_21e481612226_20260824_080017",
       "source_session_id": "",
       "hop_count": 1,
       "success": true

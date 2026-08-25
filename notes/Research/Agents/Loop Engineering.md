@@ -523,3 +523,11 @@ Loop engineering covers agent control loops, tool-use loops, reflection/review l
 - Google ADK now runs local code execution in a plain child interpreter. Execution loops should treat interpreter/process identity and process cleanup as explicit boundaries, with failure evidence retained separately from the parent agent process.
 - Google ADK's SQLite session merge now follows `dict.update()` semantics, making resumed state conflict behavior explicit. Persistence loops should test overwrite/merge precedence rather than relying on incidental dictionary iteration or append order.
 - Google ADK stopped forwarding credential requests from `RemoteA2aAgent` to the remote peer. Cross-agent loops should keep credential prompting local to the owning trust boundary and fail closed when a remote continuation requests credentials.
+
+## 2026-08-23 review addendum
+- OpenAI Agents Python and JS now allow output-guardrail blocked messages to be customized through run configuration while preserving blocked-output state and redaction behavior. Hermes loops should keep policy outcome, user-facing explanation, and raw blocked content as separate fields so presentation changes do not alter enforcement or leak sensitive output.
+- OpenAI Agents Python now uses monotonic deadlines for streamed STT events and advances realtime guardrail thresholds across crossed intervals. Voice/realtime loops should derive timeout and threshold decisions from monotonic elapsed time, handle skipped intervals deterministically, and test wall-clock jumps without changing safety behavior.
+- Google ADK fixed single-turn agent resumption so a synthetic user event is not appended when resume inputs already contain the tool response. HITL loops should assert that resumption consumes the persisted function response exactly once; duplicate synthetic input can shadow the response and recreate an infinite confirmation loop.
+
+## 2026-08-24 review addendum
+- OpenAI Agents Python and JS now persist the exact current-response boundary and approval-item ownership needed to resume output-guardrail interruptions. Resumption loops should classify missing/ambiguous ownership as unsafe, fail closed before executing tools, and preserve the schema/version evidence that explains why a checkpoint is or is not replayable.

@@ -608,11 +608,13 @@ kanban:
   failure_limit: 2
   worker_log_rotate_bytes: 2097152
   worker_log_backup_count: 1
-  orchestrator_profile: ''
-  default_assignee: ''
+  orchestrator_profile: engineering
+  default_assignee: engineering
   auto_decompose: true
-  auto_decompose_per_tick: 3
+  auto_decompose_per_tick: 2
   dispatch_stale_timeout_seconds: 14400
+  review_dispatch: true
+  max_in_progress: 6
 code_execution:
   mode: project
   timeout: 300

@@ -1338,3 +1338,39 @@ Central source registry for the harness and loop research pages.
 - Google ADK commit, support opt-in session retention in MultimodalToolResultsPlugin
   - https://github.com/google/adk-python/commit/775c1bd36e205eec65e207ad29fdc4cf2184e47e
   - Why it matters: makes retention scope explicit across turns while keeping inline binary parts one-shot, creating a replay-policy boundary for multimodal tool outputs.
+
+## 2026-08-23 review addendum
+- OpenAI Agents Python commit, enforce public type alias contract coverage
+  - https://github.com/openai/openai-agents-python/commit/233467994fac7e7dbd868931573cc9a4302c0a16
+  - Why it matters: extends the executable released-API contract to public type aliases and canonical imports, catching downstream compatibility drift beyond class and callable signatures.
+- OpenAI Agents Python commit, customize output guardrail blocked messages
+  - https://github.com/openai/openai-agents-python/commit/89fab0fc0d32020112a9ec14bbe851ddbb96edca
+  - Why it matters: separates configurable user-facing blocked-output text from the guardrail decision and preserves streamed/non-streamed blocked-output handling.
+- OpenAI Agents Python commit, use monotonic STT event deadlines
+  - https://github.com/openai/openai-agents-python/commit/9da8f49637892e96e198d7d061471b031ec13fcc
+  - Why it matters: prevents wall-clock adjustments from changing voice event timeout behavior, making elapsed-time control deterministic.
+- OpenAI Agents Python commit, strip `created_by` when replaying RunItems as input
+  - https://github.com/openai/openai-agents-python/commit/8cd1f5e6e5e25a7c9c643a7d3f41cc008cb50993
+  - Why it matters: keeps framework-internal provenance out of replayed provider input while retaining it in local run-item state.
+- OpenAI Agents Python commit, deduplicate managed servers
+  - https://github.com/openai/openai-agents-python/commit/042d84a15c37bc6f66058dca3deda0311883db38
+  - Why it matters: makes MCP manager cleanup single-owner when the same managed server is encountered more than once.
+- OpenAI Agents Python commit, advance crossed realtime guardrail thresholds
+  - https://github.com/openai/openai-agents-python/commit/4f7c1d668f9d73c5a0ec0e8c17687fcb03b04a63
+  - Why it matters: ensures threshold state advances across skipped/crossed intervals instead of waiting for an exact boundary observation.
+- OpenAI Agents JS commits, custom blocked messages, replay metadata stripping, and MCP lifecycle deduplication
+  - https://github.com/openai/openai-agents-js/commit/d7ed6b27ba53b252411bcff81c53fa4bbc0343d2
+  - https://github.com/openai/openai-agents-js/commit/0035d339f1be9e52503d98416f7955574bfeda0b
+  - https://github.com/openai/openai-agents-js/commit/b09622f32f6a9af642b289e80be14fadbdbd363
+  - Why it matters: brings guardrail presentation, replay-boundary sanitization, and single-owner MCP cleanup into the current JS baseline as well as Python.
+- Google ADK commit, prevent duplicate synthetic user event on single-turn agent resumption
+  - https://github.com/google/adk-python/commit/e753651b7df26febe00bde2cb043225e644cd207
+  - Why it matters: prevents synthetic input from shadowing a persisted function response after HITL resume, avoiding repeated confirmation loops.
+
+## 2026-08-24 review addendum
+- OpenAI Agents Python commit, preserve serialized approval resume ownership
+  - https://github.com/openai/openai-agents-python/commit/b354ef0aba8850dd9a93c69b2db25932df1ade59
+  - Why it matters: serializes the exact current-response generated-item range and interruption indexes, then rejects older or malformed approval snapshots when current-response provenance cannot be proven before tool execution.
+- OpenAI Agents JS commit, preserve serialized approval resume ownership
+  - https://github.com/openai/openai-agents-js/commit/0b949bc7afd66b052a430a9470a66651b4e68ecb
+  - Why it matters: brings exact current-response ownership, guardrail-result boundaries, schema-versioned RunState, and fail-closed replay checks to the JS runtime, making the approval-resume contract cross-SDK rather than Python-only.
