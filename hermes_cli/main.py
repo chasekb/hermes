@@ -7120,18 +7120,53 @@ def _stash_local_changes_if_needed(git_cmd: list[str], cwd: Path) -> Optional[st
         "hermes-update-autostash-%Y%m%d-%H%M%S"
     )
     print("→ Local changes detected — stashing tracked changes before update...")
-    subprocess.run(
-        git_cmd + ["stash", "push", "-m", stash_name],
-        cwd=cwd,
-        check=True,
-    )
-    stash_ref = subprocess.run(
+    # Include generated/untracked files. Without this flag Git prints
+    # "No local changes to save" for a tree containing only generated files,
+    # then the unconditional refs/stash probe below aborts the update.
+    # Probe first so an empty/no-op stash cannot be mistaken for an older
+    # user's stash entry when refs/stash already exists.
+    previous_stash = subprocess.run(
         git_cmd + ["rev-parse", "--verify", "refs/stash"],
         cwd=cwd,
         capture_output=True,
         text=True,
-        check=True,
     ).stdout.strip()
+    push = subprocess.run(
+        git_cmd + ["stash", "push", "--include-untracked", "-m", stash_name],
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+    )
+    if push.stdout.strip():
+        print(push.stdout.strip())
+    stash_probe = subprocess.run(
+        git_cmd + ["rev-parse", "--verify", "refs/stash"],
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+    )
+    stash_ref = stash_probe.stdout.strip()
+    stash_created = (
+        stash_probe.returncode == 0 and bool(stash_ref) and stash_ref != previous_stash
+    )
+    if push.returncode != 0 and not stash_created:
+        print("✗ Could not stash local changes — update aborted.")
+        if push.stderr.strip():
+            print(f"  {push.stderr.strip().splitlines()[0]}")
+        print("  Commit, stash, or clean up your local changes manually, then re-run `hermes update`.")
+        raise subprocess.CalledProcessError(
+            push.returncode, push.args, output=push.stdout, stderr=push.stderr
+        )
+    if not stash_created:
+        # A status race or a Git implementation that declined an empty stash
+        # must not turn a recoverable no-op into a hard updater failure.
+        print("  No stash entry was created; continuing without restore.")
+        return None
+    if push.returncode != 0:
+        # Git can save the entry but return non-zero when an untracked path
+        # cannot be removed. The saved changes are safe; keep going.
+        print("  ⚠ Changes were saved, but Git could not remove every untracked path.")
+        subprocess.run(git_cmd + ["reset", "--hard", "HEAD"], cwd=cwd, capture_output=True)
     return stash_ref
 
 
@@ -8829,6 +8864,20 @@ def _cmd_update_impl(args, gateway_mode: bool):
         )
         commit_count = int(result.stdout.strip())
 
+        # A fork may match origin/main while its official upstream is newer.
+        # Sync before the no-update return so the normal dependency refresh and
+        # gateway restart run for code pulled from upstream. HEAD movement is
+        # itself proof of an update, even when the informational count fails.
+        if commit_count == 0 and is_fork and branch == "main":
+            pre_sync_sha = _capture_head_sha(git_cmd, PROJECT_ROOT)
+            _sync_with_upstream_if_needed(git_cmd, PROJECT_ROOT)
+            post_sync_sha = _capture_head_sha(git_cmd, PROJECT_ROOT)
+            if pre_sync_sha and post_sync_sha and pre_sync_sha != post_sync_sha:
+                synced_count = _count_commits_between(
+                    git_cmd, PROJECT_ROOT, pre_sync_sha, post_sync_sha
+                )
+                commit_count = max(1, synced_count)
+
         if commit_count == 0:
             _invalidate_update_cache()
             # Restore stash and switch back to original branch if we moved
@@ -8977,9 +9026,8 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 f"  ✓ Cleared {removed} stale __pycache__ director{'y' if removed == 1 else 'ies'}"
             )
 
-        # Fork upstream sync logic (only for main branch on forks)
-        if is_fork and branch == "main":
-            _sync_with_upstream_if_needed(git_cmd, PROJECT_ROOT)
+        # Fork upstream sync, when needed, was performed before the no-update
+        # decision above so all post-update steps cover the synced checkout.
 
         # Reinstall Python dependencies. Prefer .[all], but if one optional extra
         # breaks on this machine, keep base deps and reinstall the remaining extras
