@@ -717,6 +717,59 @@ def build_assistant_message(agent, assistant_message, finish_reason: str) -> dic
 
 
 
+def _record_fallback_selection(
+    agent,
+    *,
+    reason: "FailoverReason | None",
+    fallback_index: int,
+    selected_source: str = "",
+) -> None:
+    """Record a fallback target with stable source labels, fail-open."""
+    try:
+        from agent.routing_telemetry import (
+            SOURCE_CODEX_NATIVE,
+            SOURCE_DEFAULT_FALLBACK,
+            record_routing_decision,
+        )
+
+        current_provider = str(getattr(agent, "provider", "") or "").strip().lower()
+        primary_provider = current_provider
+        primary_api_mode = str(getattr(agent, "api_mode", "") or "").strip().lower()
+        primary_runtime = getattr(agent, "_primary_runtime", None)
+        if isinstance(primary_runtime, dict):
+            primary_provider = str(
+                primary_runtime.get("provider", "") or primary_provider
+            ).strip().lower()
+            primary_api_mode = str(
+                primary_runtime.get("api_mode", "") or primary_api_mode
+            ).strip().lower()
+        route_intent = (
+            SOURCE_CODEX_NATIVE
+            if primary_provider in {"openai-codex", "codex", "codex-native"}
+            or primary_api_mode in {"codex_responses", "codex_app_server"}
+            else "hermes"
+        )
+        selected_source = selected_source or (
+            SOURCE_CODEX_NATIVE
+            if current_provider in {"openai-codex", "codex", "codex-native"}
+            else SOURCE_DEFAULT_FALLBACK
+        )
+        reason_value = getattr(reason, "value", None) or "unavailable"
+        session_id = getattr(agent, "session_id", None)
+        record_routing_decision(
+            request_id=f"{session_id or 'routing'}:fallback:{fallback_index}",
+            session_id=session_id,
+            route_intent=route_intent,
+            selected_agent_source=selected_source,
+            fallback=True,
+            fallback_reason=str(reason_value),
+            task_shape="single_task",
+        )
+    except Exception:
+        # Metrics, logs, and files must never prevent failover itself.
+        logger.debug("Fallback routing telemetry failed", exc_info=True)
+
+
 def try_activate_fallback(agent, reason: "FailoverReason | None" = None) -> bool:
     """Switch to the next fallback model/provider in the chain.
 
@@ -739,6 +792,12 @@ def try_activate_fallback(agent, reason: "FailoverReason | None" = None) -> bool
         if (not fallback_already_active) or (primary_provider and current_provider == primary_provider):
             agent._rate_limited_until = time.monotonic() + 60
     if agent._fallback_index >= len(agent._fallback_chain):
+        _record_fallback_selection(
+            agent,
+            reason=reason,
+            fallback_index=agent._fallback_index,
+            selected_source="default_fallback",
+        )
         return False
 
     fb = agent._fallback_chain[agent._fallback_index]
@@ -950,6 +1009,11 @@ def try_activate_fallback(agent, reason: "FailoverReason | None" = None) -> bool
         logger.info(
             "Fallback activated: %s → %s (%s)",
             old_model, fb_model, fb_provider,
+        )
+        _record_fallback_selection(
+            agent,
+            reason=reason,
+            fallback_index=agent._fallback_index - 1,
         )
         return True
     except Exception as e:

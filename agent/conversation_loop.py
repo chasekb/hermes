@@ -229,7 +229,7 @@ def _restore_or_build_system_prompt(agent, system_message, conversation_history)
             )
 
 
-def run_conversation(
+def _run_conversation(
     agent,
     user_message: str,
     system_message: str = None,
@@ -4188,6 +4188,230 @@ def run_conversation(
 
     return result
 
+
+
+def _routing_source_for_agent(agent: Any, *, prefer_primary: bool = False) -> str:
+    """Return the stable source label for one runtime conversation."""
+    source = getattr(agent, "_routing_selected_source", None)
+    if source in {"hermes", "codex_native", "claude_code_cli", "default_fallback"}:
+        return source
+    provider = str(getattr(agent, "provider", "") or "").strip().lower()
+    api_mode = str(getattr(agent, "api_mode", "") or "").strip().lower()
+    if prefer_primary and getattr(agent, "_fallback_activated", False):
+        primary_runtime = getattr(agent, "_primary_runtime", None)
+        if isinstance(primary_runtime, dict):
+            provider = str(primary_runtime.get("provider", "") or "").strip().lower()
+            api_mode = str(primary_runtime.get("api_mode", "") or "").strip().lower()
+    if getattr(agent, "_fallback_activated", False) and not prefer_primary:
+        return "codex_native" if provider in {"openai-codex", "codex", "codex-native"} else "default_fallback"
+    if provider in {"openai-codex", "codex", "codex-native"} or api_mode == "codex_responses":
+        return "codex_native"
+    return "hermes"
+
+
+def _record_entrypoint_decision(
+    *,
+    request_id: str,
+    session_id: Optional[str],
+    source: str,
+    routing_context: Optional[Dict[str, Any]] = None,
+) -> None:
+    """Emit a fail-open selection event for an AIAgent conversation."""
+    try:
+        if routing_context:
+            from agent.routing_telemetry import record_routing_decision_from_context
+
+            record_routing_decision_from_context(
+                routing_context,
+                request_id=request_id,
+                session_id=session_id,
+            )
+        else:
+            from agent.routing_telemetry import record_routing_decision
+
+            record_routing_decision(
+                request_id=request_id,
+                session_id=session_id,
+                route_intent=source,
+                selected_agent_source=source,
+                task_shape="single_task",
+            )
+    except Exception:
+        # Routing telemetry must never alter the provider result or exception.
+        logger.debug("Conversation routing decision telemetry failed", exc_info=True)
+
+
+def _entrypoint_routing_context(
+    *,
+    agent: Any,
+    user_message: str,
+    actual_source: str,
+) -> Optional[Dict[str, Any]]:
+    """Classify a turn for telemetry without changing the configured runtime.
+
+    Provider selection is already fixed when an ``AIAgent`` is constructed;
+    this classification is observational.  The configured runtime is used as
+    the safe default so ordinary turns are not mislabeled as fallbacks, while
+    an explicit/task-shape route that differs from it remains visible as an
+    intended-versus-actual mismatch.
+    """
+    try:
+        from agent.routing import ROUTE_CODEX_NATIVE, ROUTE_HERMES, route_task
+
+        default_route = ROUTE_HERMES if actual_source == ROUTE_HERMES else ROUTE_CODEX_NATIVE
+        decision = route_task(user_message, default_route=default_route)
+        try:
+            setattr(agent, "_routing_decision", decision)
+        except Exception:
+            pass
+        return decision.telemetry_context(actual_agent_source=actual_source)
+    except Exception:
+        # A routing classifier is an observability enhancement and must never
+        # prevent the already-selected provider from serving the request.
+        logger.debug("Conversation task-shape classification failed", exc_info=True)
+        return None
+
+
+def _record_entrypoint_outcome(
+    *,
+    request_id: str,
+    session_id: Optional[str],
+    source: str,
+    outcome: str,
+    outcome_quality: Optional[str] = None,
+) -> None:
+    """Emit a fail-open terminal event for an AIAgent conversation."""
+    try:
+        from agent.routing_telemetry import record_routing_outcome
+        record_routing_outcome(
+            request_id=request_id,
+            session_id=session_id,
+            selected_agent_source=source,
+            outcome=outcome,
+            outcome_quality=outcome_quality,
+        )
+    except Exception:
+        # Routing telemetry must never alter the provider result or exception.
+        logger.debug("Conversation routing outcome telemetry failed", exc_info=True)
+
+
+def _record_entrypoint_memory(
+    *,
+    agent: Any,
+    intended_source: str,
+    actual_source: str,
+    outcome: str,
+    outcome_quality: str,
+) -> None:
+    """Persist an optional agent-source record without requiring memory."""
+    try:
+        from agent.agent_source_memory import record_agent_source_outcome
+
+        record_agent_source_outcome(
+            intended_route=intended_source,
+            actual_agent_source=actual_source,
+            request_class="single_task",
+            completion_status=outcome,
+            outcome_quality=outcome_quality,
+            session_id=getattr(agent, "session_id", None),
+            agent=agent,
+        )
+    except Exception:
+        # Memory is an enhancement, not a dependency of routing.
+        logger.debug("Conversation routing memory persistence failed", exc_info=True)
+
+
+def run_conversation(
+    agent: Any,
+    user_message: str,
+    system_message: str = None,
+    conversation_history: List[Dict[str, Any]] = None,
+    task_id: str = None,
+    stream_callback: Optional[callable] = None,
+    persist_user_message: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Instrument the production conversation boundary without changing it."""
+    # delegate_tool owns child selection/outcome events because it also
+    # handles timeout and executor failures outside this function.
+    if getattr(agent, "_routing_outcome_managed_externally", False):
+        return _run_conversation(
+            agent,
+            user_message,
+            system_message,
+            conversation_history,
+            task_id,
+            stream_callback,
+            persist_user_message,
+        )
+
+    request_id = (
+        task_id
+        or getattr(agent, "_routing_request_id", None)
+        or getattr(agent, "_current_task_id", None)
+        or str(uuid.uuid4())
+    )
+    session_id = getattr(agent, "session_id", None)
+    source = _routing_source_for_agent(agent, prefer_primary=True)
+    routing_context = _entrypoint_routing_context(
+        agent=agent,
+        user_message=user_message,
+        actual_source=source,
+    )
+    _record_entrypoint_decision(
+        request_id=str(request_id),
+        session_id=session_id,
+        source=source,
+        routing_context=routing_context,
+    )
+    try:
+        result = _run_conversation(
+            agent,
+            user_message,
+            system_message,
+            conversation_history,
+            task_id,
+            stream_callback,
+            persist_user_message,
+        )
+    except BaseException:
+        outcome_source = _routing_source_for_agent(agent)
+        _record_entrypoint_outcome(
+            request_id=str(request_id),
+            session_id=session_id,
+            source=outcome_source,
+            outcome="failed",
+            outcome_quality="poor",
+        )
+        _record_entrypoint_memory(
+            agent=agent,
+            intended_source=source,
+            actual_source=outcome_source,
+            outcome="failed",
+            outcome_quality="poor",
+        )
+        raise
+
+    interrupted = bool(result.get("interrupted")) if isinstance(result, dict) else False
+    completed = bool(result.get("completed")) if isinstance(result, dict) else False
+    response = result.get("final_response") if isinstance(result, dict) else None
+    outcome = "interrupted" if interrupted else "completed" if completed and response else "failed"
+    quality = "good" if outcome == "completed" else "poor" if outcome == "failed" else "unknown"
+    outcome_source = _routing_source_for_agent(agent)
+    _record_entrypoint_outcome(
+        request_id=str(request_id),
+        session_id=session_id,
+        source=outcome_source,
+        outcome=outcome,
+        outcome_quality=quality,
+    )
+    _record_entrypoint_memory(
+        agent=agent,
+        intended_source=source,
+        actual_source=outcome_source,
+        outcome=outcome,
+        outcome_quality=quality,
+    )
+    return result
 
 
 __all__ = ["run_conversation"]

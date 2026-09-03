@@ -1374,3 +1374,158 @@ Central source registry for the harness and loop research pages.
 - OpenAI Agents JS commit, preserve serialized approval resume ownership
   - https://github.com/openai/openai-agents-js/commit/0b949bc7afd66b052a430a9470a66651b4e68ecb
   - Why it matters: brings exact current-response ownership, guardrail-result boundaries, schema-versioned RunState, and fail-closed replay checks to the JS runtime, making the approval-resume contract cross-SDK rather than Python-only.
+
+## 2026-08-25 review addendum
+- OpenAI Agents Python commit, recover failed resumed Session writes on a renewed interruption
+  - https://github.com/openai/openai-agents-python/commit/a624e17956bfeac0599aa3f6b12a97a0ea689fc6
+  - Why it matters: keeps pending session-write state eligible across both retry and renewed-interruption transitions, with live and JSON round-trip tests covering repeated approval resumes.
+- OpenAI Agents Python commit, configurable Unix-local environment isolation
+  - https://github.com/openai/openai-agents-python/commit/91f8c490a99253205b082b1b29d2d65f123a799
+  - Why it matters: adds a host-environment allowlist for local sandbox execution while preserving manifest and sandbox overrides, making environment leakage and reproducibility explicit test surfaces.
+- OpenAI Agents Python commit, preserve response IDs in redacted traces
+  - https://github.com/openai/openai-agents-python/commit/f265bae41c8d31ba18e82109f60f8d01fd5fad3c
+  - Why it matters: retains a response identifier without full payload data only for the official OpenAI endpoint, preserving continuation lineage while enforcing endpoint trust.
+- OpenAI Agents Python commit, renewed streamed transcription configuration
+  - https://github.com/openai/openai-agents-python/commit/5f9f4f09c3fe840b5a4c09bdbbf6f0b1239bf0ec
+  - Why it matters: exposes language lists and transcription keywords and reuses a detached effective configuration across turns, reducing configuration drift in streamed voice loops.
+- OpenAI Agents JS commit, server-wide MCP tool guardrails
+  - https://github.com/openai/openai-agents-js/commit/05e5851f5326fa69638acaada869943fd443dc19
+  - Why it matters: adds a server-scope guardrail boundary for MCP tools, extending approval/policy coverage beyond per-tool declarations.
+- Google ADK commits, workflow telemetry controls and spend metrics
+  - https://github.com/google/adk-python/commit/00fc6ebd1990bd53b8615cdbd309702d50e51e62
+  - https://github.com/google/adk-python/commit/6e6c4a505e29bb0ba632c92add3a0e1be1bbaf00
+  - https://github.com/google/adk-python/commit/dd8797e77f7e7dbac6fd5bfffc945ae20d3cd611
+  - Why it matters: makes runner-level telemetry enablement explicit and adds workflow-level inference/tool counts plus token-spend dimensions, with opt-in/out goldens and nested attribution coverage.
+- Google ADK commit, resolve every function response before resuming an invocation
+  - https://github.com/google/adk-python/commit/54493140a6697af5b82e03b9d7ecb77c15df4eb6
+  - Why it matters: aligns agent and node-path resolution so parallel responses from different invocations are rejected instead of being attributed to the first response.
+
+## 2026-08-26 review addendum
+- OpenAI Agents Python commit, consolidate Docker-backed integration tests
+  - https://github.com/openai/openai-agents-python/commit/a40ae9803e6b7a79faa246293f56adb100d5868b
+  - Why it matters: adds a strict packaged-wheel container profile with pinned Testcontainers, Dapr/Redis service integration, explicit ephemeral-runner cleanup, and JUnit profile reporting, making prerequisite and environment separation part of the release harness.
+- OpenAI Agents Python commit, redact STT prompts from traces
+  - https://github.com/openai/openai-agents-python/commit/1df6e81474a439d4fff8eac227743cfb3f5d2d6d
+  - Why it matters: removes transcription prompts from trace model configuration when sensitive-data tracing is off while leaving the actual provider request unchanged, with regression coverage for both surfaces.
+- OpenAI Agents Python commit, preserve tuple annotations for variadic tool arguments
+  - https://github.com/openai/openai-agents-python/commit/e773b15488c491d907d42756d91e470f280a3d7e
+  - Why it matters: preserves homogeneous tuple structure in variadic tool schemas and validates nested arguments during invocation, strengthening schema-generation compatibility tests.
+- OpenAI Agents JS commit, recover failed resumed Session writes before continuing runs
+  - https://github.com/openai/openai-agents-js/commit/eb690a4044470c322e2aac3c5b055ee11e2e0952
+  - Why it matters: introduces identity-bound checkpoints for ordinary Session appends during approval resumption, exact history reconciliation, fail-closed concurrent/different-session checks, and compaction-pending recovery tests.
+- Google ADK commit, fail a workflow when a detached dynamic node errors or interrupts
+  - https://github.com/google/adk-python/commit/34e13df41750fc5243a1cd42a86491ee5acdd876
+  - Why it matters: inspects in-flight detached dynamic tasks after scheduling, surfaces child errors, and converts non-resumable detached interrupts into failures instead of silently reporting workflow success; tests also pin the finished-before-check limitation.
+- Google ADK commit, raise a sub-agent's own error from ParallelAgent, not a group
+  - https://github.com/google/adk-python/commit/3ecd3d719b8bebeb5a331338365e7a7b9b8bde2e
+  - Why it matters: unwraps single-error exception groups while preserving multi-error grouping, so callers and harnesses can classify the original branch failure consistently.
+- Google ADK commit, create top-level live package and extract live runner logic
+  - https://github.com/google/adk-python/commit/85b52f6a3075980eb0bc20a6ab2a6780bb9efe7c1
+  - Why it matters: moves live request/runner utilities into explicit packages with backward-compatible re-exports and adds validation/branch-resumption tests, making live-loop ownership and import compatibility testable.
+
+## 2026-08-27 review addendum
+- OpenAI Agents Python commit, reject `**kwargs` collisions with named tool parameters
+  - https://github.com/openai/openai-agents-python/commit/2b81a9e32708b276846a0cd3721c42e6fb4067e2
+  - Why it matters: classifies a schema-valid but uncallable keyword collision as `ModelBehaviorError`, preventing replacement of validated named arguments or an opaque multiple-values failure at tool invocation.
+- OpenAI Agents Python commit, keep unbounded UnixLocal workspace I/O off the event loop
+  - https://github.com/openai/openai-agents-python/commit/494ea5978778a4daa48b513419dc5786084802d4
+  - Why it matters: runs recursive deletion and archive hydration/persistence in a worker while waiting through caller cancellation, preserving mutation ownership and preventing post-cancellation workspace races.
+- OpenAI Agents Python commit, reject unpaired function outputs in Chat Completions
+  - https://github.com/openai/openai-agents-python/commit/10cdae4a3c30a29c6e96c8ec14e6bf1c5f02940e
+  - Why it matters: rejects Responses-only function outputs lacking a call ID before a Chat Completions request, while tests verify the Responses path preserves the external-context item.
+- Google ADK commit, add `FallbackModel` for automatic failover between models
+  - https://github.com/google/adk-python/commit/c300b8ded62b8bc4168cdede4c85bec66d1aa8ee
+  - Why it matters: introduces an ordered, experimental model wrapper that moves to the next model on failure without retrying the failed model or routing by cost/task, making failover provenance a loop contract.
+- Google ADK commit, preserve upstream error status/details in workflow node failures
+  - https://github.com/google/adk-python/commit/9f824af29b20b4f3ea98ecaad10bbe222e72ad30
+  - Why it matters: carries canonical provider status and response details through workflow failure objects and events, improving retry/escalation classification beyond exception type names.
+- Google ADK commit, validate app name before Dockerfile interpolation
+  - https://github.com/google/adk-python/commit/6eb1d35d84a9cb28445249119d951b13f604c823
+  - Why it matters: validates deployment identity before inserting it into a generated Dockerfile, making pre-side-effect configuration validation explicit.
+- Google ADK commit, release Spanner clients/transports/sessions created per tool call
+  - https://github.com/google/adk-python/commit/edf99a3ac2e2bfb22e820b73cdfcbecac2491e37
+  - Why it matters: raises the supported Spanner dependency floor so per-call database resources can be closed, preventing client maintenance threads and multiplexed sessions from leaking across tool calls.
+- OpenTelemetry GenAI commit, remove cache token usage attributes from internal agent spans
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/5f5ae69e52464c56eea4389fb793c2690caaea78
+  - Why it matters: narrows internal agent-span usage attribution so cache-token accounting is not duplicated across delegated inference ownership boundaries.
+- OpenTelemetry GenAI commit, add findings and entities to conformance runner
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/814aa0a659e7e5a1b9d40bd58894ba5926ff3c0c
+  - Why it matters: reference scenario artifacts now retain structured validation findings and entity data, allowing harnesses to diagnose partial conformance rather than emitting only aggregate status.
+- LangGraph SDK commit, route LangSmith traces from thread streams
+  - https://github.com/langchain-ai/langgraph/commit/bdb8a9c7a4aa1390af225f6a5d292e5088659bd5
+  - Why it matters: sync and async thread-stream `run.start` calls can carry LangSmith project/example tracing metadata, preserving attribution for streamed runs.
+
+## 2026-08-29 review addendum
+- Google ADK commit, terminate the whole process tree when a local command times out
+  - https://github.com/google/adk-python/commit/fa321f1b49f7bd961b58ad19fd8b8e6fa285b918
+  - Why it matters: sends bounded SIGTERM/SIGKILL cleanup through the command process group and adds tests for inherited pipes and descendant processes, making timeout teardown a concrete sandbox-harness contract.
+- Google ADK commit, extend the workflow replay index instead of rebuilding it per event
+  - https://github.com/google/adk-python/commit/f8fdfed281186489dc915e767e7f9f4a18081ae2
+  - Why it matters: changes replay indexing from repeated full rebuilds to incremental extension with prefix-staleness detection for compaction/rewind, so performance and full-rebuild equivalence become testable replay properties.
+- Google ADK commit, match a branch's run IDs exactly when resolving HITL interrupts
+  - https://github.com/google/adk-python/commit/8db82ba298af92256f9566a766bbe55a4912d873
+  - Why it matters: parses branch run IDs instead of using substring matching, preventing ambiguous interrupt ownership during multi-branch resumption.
+- Google ADK commit, treat `max_iterations=0` as zero loop passes
+  - https://github.com/google/adk-python/commit/afbcaff7b8744edbd2992c5ea6bf03ecb5e78787
+  - Why it matters: distinguishes explicit zero/negative iteration limits from `None` (unlimited) in execution, config round-trips, and workflow descriptions, tightening termination-policy fidelity.
+- OpenAI Agents JS commit, preserve approvals before handoffs and recover resumed writes
+  - https://github.com/openai/openai-agents-js/commit/c0a67186c531789c631938ed79a85284df359d83
+  - Why it matters: checkpoints filtered handoff input and resumed Session-write state until persistence settles, with extensive recovery tests for approval/handoff transitions and duplicate-side-effect avoidance.
+- OpenAI Agents JS commit, preserve response span data on early stream close
+  - https://github.com/openai/openai-agents-js/commit/4b539bbccde506ac87509ddf581a69bd3bc63ab4
+  - Why it matters: stores terminal response identity and payload in the trace before a streamed-response consumer closes at completion, preserving replay/usage evidence on an early-close path.
+
+## 2026-09-01 review addendum
+- Google ADK commit, revert storing single-turn node synthetic input in the session
+  - https://github.com/google/adk-python/commit/7b0f7f019db043f24b3ab94682a8eccd32382189
+  - Why it matters: restores ephemeral single-turn node input behavior while retaining the resume guard that prevents synthetic user events from shadowing persisted function responses.
+- Google ADK commit, normalize concurrent session-create races
+  - https://github.com/google/adk-python/commit/cbccae64b3dc1a1e1de29aad674f2c13fba7f5bd
+  - Why it matters: maps backend integrity failures from non-atomic same-ID creation races to a stable `AlreadyExistsError`, giving persistence harnesses a provider-neutral duplicate-ownership outcome.
+- Google ADK commit, stop after final preprocessing responses
+  - https://github.com/google/adk-python/commit/764e2cbdac854e8fe7b31af98222b6bcf4238d80
+  - Why it matters: prevents an unnecessary LLM call when preprocessing already yields a final function response, making preprocessing terminality an explicit loop contract.
+- Google ADK commit, prevent CompletionsHTTPClient exit cleanup leaks
+  - https://github.com/google/adk-python/commit/3fcda36d852ceeaf7e78e52aa48d71aa22c2808e
+  - Why it matters: uses weak-reference exit handlers, unregisters explicit close callbacks, and retains pending async cleanup tasks so long-lived providers do not pin clients or abandon shutdown work.
+- OpenTelemetry GenAI semantic-conventions commit, deprecate per-message finish reasons
+  - https://github.com/open-telemetry/semantic-conventions-genai/commit/5ca9052bc796ef1e497200b1d558fd87a201f335
+  - Why it matters: makes positional `gen_ai.response.finish_reasons` authoritative, preserves expected-generation cardinality, and uses `error` for missing positions instead of relying on output-message-local fields.
+- SWE-bench commit, close Docker exec streams
+  - https://github.com/SWE-bench/SWE-bench/commit/9d412af47e5aeb659a4ca5c372af21cb3e8f3830
+  - Why it matters: closes both Docker stream readers and underlying HTTP responses on normal and timeout paths, with idempotent cleanup tests for leaked sockets and finalizer noise.
+- SWE-bench commit, separate inference/evaluation log artifacts and submission commands
+  - https://github.com/SWE-bench/SWE-bench/commit/334882dd1f2664cc55c1abfe9de4884af023c0c0
+  - Why it matters: gives inference and evaluation distinct run directories and adds package/publish/register/verify submission stages, strengthening artifact lineage and post-run validation.
+- SWE-bench commit, add LiteLLM inference provider
+  - https://github.com/SWE-bench/SWE-bench/commit/d65695fd38d4bbd211ddd1f25fcee3c425b91170
+  - Why it matters: adds opt-in multi-provider routing with context-window filtering, bounded retries, and strict cost accounting that fails when pricing metadata is missing.
+
+## 2026-09-02 review addendum
+- Google ADK commit, add optional transfer reason without expanding the default tool schema
+  - https://github.com/google/adk-python/commit/22ab4d82ca026adc87ffbf47a7ea2ed8e99676d1
+  - Why it matters: records an optional delegation rationale while preserving the existing default model-visible transfer schema; this makes delegation provenance and compatibility surface separately testable.
+- Google ADK commit, preserve task-mode follow-up turns
+  - https://github.com/google/adk-python/commit/678d7e9394acea792115610cea4dcd332ffb68c6
+  - Why it matters: distinguishes a new user message that borrows a paused task's invocation scope from replay of the original message, including a regression test for repeated follow-up text.
+- Google ADK commit, omit resume inputs from resumable checkpoints
+  - https://github.com/google/adk-python/commit/790cb7c4c7af3f2a0812ba86f50a2b0154f769ae
+  - Why it matters: removes credential-bearing `resume_inputs` from persisted node state and verifies that an exchanged API key is not present in the checkpoint, while resumption reconstructs inputs from session function responses.
+- Google ADK commit, preserve JSON-Schema aliases in LiteLLM adapters
+  - https://github.com/google/adk-python/commit/0e97a8f4342f74ddaba38a9c7596b064c18371ce
+  - Why it matters: preserves `anyOf`/`additionalProperties` aliases, handles union type lists, prefers explicit JSON schemas, and prevents stale legacy `required` fields from overriding the provider-facing schema.
+- SWE-bench commit, colocate evaluation reports with run artifacts and remove report-directory overrides
+  - https://github.com/SWE-bench/SWE-bench/commit/e2c13307b6cf7764a50958b9c8bfbfb3f72cb70a
+  - Why it matters: evaluation summaries now live under `logs/evaluation/<run_id>/results.json`, while the submit flow records and derives run metadata for later packaging/verification; this reduces artifact-lineage ambiguity and accidental report placement.
+- SWE-bench commit, use one run path across submit commands
+  - https://github.com/SWE-bench/SWE-bench/commit/3542b2c1a9b07b32b25f6f62922ae389a70a002c
+  - Why it matters: package, publish, register, and verify accept the same run-directory shape and resolve the deeper submission/entry paths, making the benchmark workflow's control boundary explicit and reducing path-selection errors.
+- Google ADK commit, validate function-call author before auth resumption
+  - https://github.com/google/adk-python/commit/328ecb938d0db97738de92dd6e7c92d57f76e39
+  - Why it matters: shared-session auth resumption now requires the historical function-call event to belong to the current agent, preventing cross-agent execution with the wrong canonical tool scope.
+- Google ADK commit, split tool-call preparation from execution
+  - https://github.com/google/adk-python/commit/2e5bb94d101e0c028736cfdd2c3dc852e77036f6
+  - Why it matters: tool lookup, argument copying, and before-tool callbacks are represented separately from side-effecting execution, with explicit live-mode handling and a documented confirmation-state limitation; this makes phase isolation and cleanup testable loop contracts.
+- Google ADK commit, add `ignore_args` to tool-trajectory evaluation
+  - https://github.com/google/adk-python/commit/e2a213f5e4c56d3aa4b5129d5c9db644b0543ceb
+  - Why it matters: trajectory scoring can compare tool names and ordering without argument equality across exact, in-order, and any-order modes, allowing harnesses to separate tool-selection quality from argument-fidelity quality.

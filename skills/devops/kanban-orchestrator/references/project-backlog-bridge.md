@@ -3,7 +3,11 @@
 This document defines the bridge between the Hermes-native project backlog and Kanban execution.
 
 Canonical backlog store:
-- `~/.hermes/backlog/backlog.json`
+- `~/.agent-commons/backlog/`, accessed through `backlog.py`
+- `~/.hermes/backlog/backlog.json` is a legacy JSON snapshot and must not be treated as current authority.
+
+Scope rule:
+- A project-scoped list is a filtered projection of the canonical store, not a second backlog. Preserve the exact project identifier and report the source and filter when materializing it.
 
 Bridge contract:
 - backlog owns scope, criteria, and state

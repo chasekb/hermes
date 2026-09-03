@@ -2,10 +2,10 @@
 
 This note captures the display pattern that came up when showing a project backlog from the live Hermes backlog store.
 
-## Live backlog read pattern
+## Canonical live backlog read pattern
 
-- Read `~/.hermes/backlog/backlog.json` fresh.
-- Filter items by `project_id == <requested project>`.
+- Query `~/.agent-commons/backlog/backlog.py` through its supported CLI.
+- Filter items by the exact canonical `project` value (accept `project_id` only as a legacy/import alias).
 - For a generic "show the backlog" request, prefer `status != "closed"`.
 - If the user specifically wants actionable work, consider excluding `archived` as well; `archived` items are not closed, but they are usually not active work.
 
@@ -13,8 +13,10 @@ This note captures the display pattern that came up when showing a project backl
 
 - When the user asks for a specific project such as `project_id=trade`, report the item count and status mix before the item list.
 - Keep the item list concise: `id | priority | status | title`.
-- If the user references `.hermes/backlog.json`, treat it as a path shorthand to resolve; the live store to read is `~/.hermes/backlog/backlog.json`.
+- If the user references `.hermes/backlog.json`, resolve it as a legacy/project snapshot and label it as such; the canonical live store is `~/.agent-commons/backlog/`.
 - If there are no live matches, say so explicitly and then fall back to repo-local backlog docs separately so the user can tell durable Hermes intake apart from documentation.
+
+For snapshot reads, report the source path, project/status filter, and `generated_at` value when present. A filtered project view is not a new authoritative store.
 
 ## Fallback pattern
 

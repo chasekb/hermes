@@ -4061,7 +4061,44 @@ class AIAgent:
     ) -> Dict[str, Any]:
         """Forwarder — see ``agent.conversation_loop.run_conversation``."""
         from agent.conversation_loop import run_conversation
-        return run_conversation(self, user_message, system_message, conversation_history, task_id, stream_callback, persist_user_message)
+        try:
+            from agent.agent_source_memory import record_agent_source_outcome_for_agent
+        except Exception as exc:
+            # Agent-source memory is optional. A missing or broken optional
+            # persistence module must not prevent the request from running.
+            record_agent_source_outcome_for_agent = None
+            logger.debug("agent-source outcome recorder unavailable: %s", exc)
+
+        try:
+            result = run_conversation(
+                self,
+                user_message,
+                system_message,
+                conversation_history,
+                task_id,
+                stream_callback,
+                persist_user_message,
+            )
+        except BaseException:
+            if record_agent_source_outcome_for_agent is not None:
+                try:
+                    record_agent_source_outcome_for_agent(
+                        self,
+                        user_message,
+                        {"completed": False, "failed": True, "completion_status": "failed"},
+                    )
+                except Exception as outcome_exc:
+                    logger.debug("agent-source failure outcome could not be persisted: %s", outcome_exc)
+            raise
+
+        if record_agent_source_outcome_for_agent is not None:
+            try:
+                record_agent_source_outcome_for_agent(self, user_message, result)
+            except Exception as outcome_exc:
+                # Persistence is post-request observability and must remain
+                # fail-open even if a custom recorder unexpectedly raises.
+                logger.debug("agent-source outcome could not be persisted: %s", outcome_exc)
+        return result
 
     def chat(self, message: str, stream_callback: Optional[callable] = None) -> str:
         """

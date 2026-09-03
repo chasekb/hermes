@@ -564,6 +564,20 @@ class MemoryManager:
                     provider.name, e,
                 )
 
+    def on_agent_source_outcome(self, outcome: Dict[str, Any]) -> None:
+        """Notify providers about a sanitized routing outcome."""
+        for provider in self._providers:
+            callback = getattr(provider, "on_agent_source_outcome", None)
+            if not callable(callback):
+                continue
+            try:
+                callback(dict(outcome))
+            except Exception as e:
+                logger.debug(
+                    "Memory provider '%s' on_agent_source_outcome failed: %s",
+                    provider.name, e,
+                )
+
     def on_delegation(self, task: str, result: str, *,
                       child_session_id: str = "", **kwargs) -> None:
         """Notify all providers that a subagent completed."""

@@ -14,6 +14,7 @@ This module provides:
 
 import copy
 import logging
+import math
 import os
 import platform
 import re
@@ -1205,6 +1206,28 @@ DEFAULT_CONFIG = {
     # Uses the same runtime provider resolution as CLI/gateway startup, so all
     # configured providers (OpenRouter, Nous, Z.ai, Kimi, etc.) are supported.
     "delegation": {
+        # The normal Hermes child-agent runtime remains the default. The
+        # Claude Code CLI lane is separately gated below and never selected
+        # implicitly by provider or credential discovery.
+        "backend": "hermes",
+        "claude_code": {
+            "enabled": False,
+            "command": "claude",
+            "args": [],
+            "cwd_roots": [],
+            "allowed_tools": ["Read", "Grep"],
+            "permission_mode": "dontAsk",
+            "output_format": "stream-json",
+            "max_turns": 20,
+            "max_budget_usd": None,
+            "timeout_seconds": 900,
+            "input_max_bytes": 10485760,
+            "stdout_max_bytes": 8388608,
+            "stderr_max_bytes": 65536,
+            "max_concurrent": 1,
+            "retry_limit": 0,
+            "no_session_persistence": True,
+        },
         "model": "",       # e.g. "google/gemini-3-flash-preview" (empty = inherit parent model)
         "provider": "",    # e.g. "openrouter" (empty = inherit parent provider + credentials)
         "base_url": "",    # direct OpenAI-compatible endpoint for subagents
@@ -3326,6 +3349,207 @@ class ConfigIssue:
     hint: str
 
 
+_CLAUDE_CODE_MAX_TURNS = 200
+_CLAUDE_CODE_MAX_TIMEOUT_SECONDS = 900.0
+_CLAUDE_CODE_MAX_INPUT_BYTES = 10 * 1024 * 1024
+_CLAUDE_CODE_MAX_STDOUT_BYTES = 8 * 1024 * 1024
+_CLAUDE_CODE_MAX_STDERR_BYTES = 256 * 1024
+_CLAUDE_CODE_MAX_CONCURRENT = 8
+_CLAUDE_CODE_OWNED_FLAGS = {
+    "-p", "--print", "--bare", "--output-format", "--verbose",
+    "--include-partial-messages", "--no-session-persistence",
+    "--permission-mode", "--allowedTools", "--allowed-tools", "--tools",
+    "--max-turns", "--max-budget-usd", "--resume", "--continue", "--cloud",
+    "--bg", "--background", "--dangerously-skip-permissions",
+}
+_CLAUDE_CODE_EXTRA_FLAGS = {"--model", "--effort", "--fallback-model"}
+
+
+def _config_truthy(value: Any) -> bool:
+    """Parse the small set of boolean spellings accepted in YAML config."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.strip().lower() in {"1", "true", "yes", "on"}
+    return bool(value)
+
+
+def _validate_claude_code_config(delegation: Any, issues: List[ConfigIssue]) -> None:
+    """Add operator-facing issues for the opt-in external CLI configuration."""
+    if delegation is None:
+        return
+    if not isinstance(delegation, dict):
+        issues.append(ConfigIssue(
+            "error", "delegation must be a mapping", "Use a YAML mapping under delegation:"
+        ))
+        return
+
+    backend = delegation.get("backend", "hermes")
+    if not isinstance(backend, str) or backend not in {"hermes", "claude-code-cli"}:
+        issues.append(ConfigIssue(
+            "error",
+            f"delegation.backend '{backend}' is unsupported",
+            "Use 'hermes' (the default) or 'claude-code-cli'",
+        ))
+
+    claude = delegation.get("claude_code")
+    if claude is None:
+        if _config_truthy(delegation.get("enabled")) or backend == "claude-code-cli":
+            issues.append(ConfigIssue(
+                "error",
+                "delegation.claude_code must be a mapping when the Claude Code backend is selected",
+                "Add delegation.claude_code with enabled, cwd_roots, and safety settings",
+            ))
+        return
+    if not isinstance(claude, dict):
+        issues.append(ConfigIssue(
+            "error",
+            "delegation.claude_code must be a mapping",
+            "Indent Claude Code settings below delegation.claude_code:",
+        ))
+        return
+
+    enabled = _config_truthy(claude.get("enabled", False))
+    if enabled and backend != "claude-code-cli":
+        issues.append(ConfigIssue(
+            "error",
+            "delegation.claude_code.enabled=true requires delegation.backend=claude-code-cli",
+            "Set delegation.backend: claude-code-cli, or disable the Claude Code block",
+        ))
+
+    command = claude.get("command", "claude")
+    if not isinstance(command, str) or not command.strip() or "\x00" in command:
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.command must be a non-empty executable name",
+            "Use 'claude' or an absolute executable path; shell commands are not supported",
+        ))
+
+    args = claude.get("args", [])
+    if not isinstance(args, list) or not all(isinstance(arg, str) for arg in args):
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.args must be a list of strings",
+            "Pass token-free Claude Code flags as separate YAML list items",
+        ))
+    else:
+        for arg in args:
+            flag = arg.split("=", 1)[0]
+            if flag in _CLAUDE_CODE_OWNED_FLAGS:
+                issues.append(ConfigIssue(
+                    "error",
+                    f"delegation.claude_code.args contains Hermes-controlled flag '{arg}'",
+                    "Remove the flag; Hermes supplies mandatory protocol and safety flags",
+                ))
+            elif flag not in _CLAUDE_CODE_EXTRA_FLAGS:
+                issues.append(ConfigIssue(
+                    "error",
+                    f"delegation.claude_code.args contains unsupported flag '{arg}'",
+                    "Only --model, --effort, and --fallback-model are permitted",
+                ))
+
+    allowed_tools = claude.get("allowed_tools", ["Read", "Grep"])
+    if (not isinstance(allowed_tools, list) or not allowed_tools or
+            any(not isinstance(tool, str) or not tool.strip() for tool in allowed_tools)):
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.allowed_tools must be a non-empty list of strings",
+            "Use an explicit restrictive allowlist such as [Read, Grep]",
+        ))
+
+    permission_mode = claude.get("permission_mode", "dontAsk")
+    if permission_mode != "dontAsk":
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.permission_mode must be 'dontAsk'",
+            "Unattended Claude Code delegation requires an explicit allowlist and dontAsk",
+        ))
+    output_format = claude.get("output_format", "stream-json")
+    if not isinstance(output_format, str) or output_format not in {"stream-json", "json"}:
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.output_format must be 'stream-json' or 'json'",
+            "Use stream-json (recommended) or json",
+        ))
+
+    bounded = {
+        "max_turns": (20, _CLAUDE_CODE_MAX_TURNS, True),
+        "timeout_seconds": (900.0, _CLAUDE_CODE_MAX_TIMEOUT_SECONDS, False),
+        "input_max_bytes": (10 * 1024 * 1024, _CLAUDE_CODE_MAX_INPUT_BYTES, True),
+        "stdout_max_bytes": (8 * 1024 * 1024, _CLAUDE_CODE_MAX_STDOUT_BYTES, True),
+        "stderr_max_bytes": (65536, _CLAUDE_CODE_MAX_STDERR_BYTES, True),
+        "max_concurrent": (1, _CLAUDE_CODE_MAX_CONCURRENT, True),
+    }
+    for key, (default, ceiling, integral) in bounded.items():
+        value = claude.get(key, default)
+        valid = not isinstance(value, bool)
+        if integral and isinstance(value, float) and not value.is_integer():
+            valid = False
+        try:
+            parsed = int(value) if integral else float(value)
+            if not integral and not math.isfinite(parsed):
+                valid = False
+        except (TypeError, ValueError, OverflowError):
+            valid = False
+            parsed = None
+        if not valid or parsed is None or parsed <= 0 or parsed > ceiling:
+            issues.append(ConfigIssue(
+                "error",
+                f"delegation.claude_code.{key} must be greater than zero and at most {ceiling:g}",
+                "Lower the value to stay within Hermes external-process safety ceilings",
+            ))
+
+    budget = claude.get("max_budget_usd")
+    if budget is not None:
+        try:
+            budget_value = float(budget)
+        except (TypeError, ValueError, OverflowError):
+            budget_value = -1
+        if isinstance(budget, bool) or not math.isfinite(budget_value) or budget_value < 0:
+            issues.append(ConfigIssue(
+                "error",
+                "delegation.claude_code.max_budget_usd must be finite and non-negative",
+                "Use null for no Claude Code budget flag, or a finite USD amount",
+            ))
+
+    retry_limit = claude.get("retry_limit", 0)
+    if retry_limit != 0:
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.retry_limit must be zero",
+            "Automatic retries are disabled for the first Claude Code lane",
+        ))
+    if not _config_truthy(claude.get("no_session_persistence", True)):
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.no_session_persistence must be true",
+            "Claude Code sessions must not be persisted or resumed by Hermes",
+        ))
+
+    roots = claude.get("cwd_roots", [])
+    if (not isinstance(roots, list) or
+            any(not isinstance(root, str) or not root.strip() for root in roots)):
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.cwd_roots must be a list of path strings",
+            "Use existing absolute project roots; relative and empty roots fail closed",
+        ))
+    elif enabled and not roots:
+        issues.append(ConfigIssue(
+            "error", "delegation.claude_code.cwd_roots must be non-empty when enabled",
+            "Add at least one existing absolute trusted project root",
+        ))
+    else:
+        for root in roots:
+            try:
+                root_path = Path(root).expanduser()
+                if (not root_path.is_absolute() or not root_path.is_dir() or
+                        root_path.is_symlink()):
+                    issues.append(ConfigIssue(
+                        "error",
+                        f"delegation.claude_code.cwd_root '{root}' must be an existing absolute directory",
+                        "Use a real, non-symlink project root; cwd checks run again before launch",
+                    ))
+            except (TypeError, ValueError, OSError):
+                issues.append(ConfigIssue(
+                    "error",
+                    "delegation.claude_code.cwd_roots contains an invalid path",
+                    "Use existing absolute project-root paths",
+                ))
+
+
 def validate_config_structure(config: Optional[Dict[str, Any]] = None) -> List["ConfigIssue"]:
     """Validate config.yaml structure and return a list of detected issues.
 
@@ -3341,6 +3565,8 @@ def validate_config_structure(config: Optional[Dict[str, Any]] = None) -> List["
             return [ConfigIssue("error", "Could not load config.yaml", "Run 'hermes setup' to create a valid config")]
 
     issues: List[ConfigIssue] = []
+
+    _validate_claude_code_config(config.get("delegation"), issues)
 
     # ── custom_providers must be a list, not a dict ──────────────────────
     cp = config.get("custom_providers")

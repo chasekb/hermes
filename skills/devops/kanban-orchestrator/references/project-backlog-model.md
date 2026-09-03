@@ -1,9 +1,14 @@
 # Project backlog model (Hermes-native)
 
-A project backlog is the project's durable intake/spec layer. It belongs to Hermes, not to an external system.
+A project backlog is the project's durable intake/spec layer. It belongs to the shared backlog contract, not to an external system or a filtered report.
 
 Canonical store:
-- `~/.hermes/backlog/backlog.json`
+- `~/.agent-commons/backlog/`, accessed through `backlog.py`
+
+Scope and snapshot rules:
+- A project query is a read-only projection of the canonical shared store.
+- `~/.hermes/backlog/backlog.json` and repository-local `backlog/backlog.json` are legacy/project snapshots; they are not authoritative current state.
+- Read `references/backlog-scope-rules.md` before comparing global, project, repository, or Kanban views.
 
 Recommended division of responsibility:
 - Project backlog: intake, prioritization, scope, and criteria

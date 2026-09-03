@@ -1,9 +1,13 @@
 # Hermes project backlog
 
-This directory is the durable intake/spec layer for Hermes-native project backlog work.
+This directory contains Hermes's repository-local backlog snapshot and intake documentation. It is not the canonical cross-agent backlog store.
 
 Canonical store:
-- `backlog.json`
+- `~/.agent-commons/backlog/`, accessed through `backlog.py`
+
+Snapshot in this repository:
+- `backlog.json` — checked-in project-local JSON snapshot for history, review, and compatibility
+- Scope rules: `skills/devops/kanban-orchestrator/references/backlog-scope-rules.md`
 
 Expected item shape:
 - `id`
@@ -33,6 +37,8 @@ Tooling:
 - `skills/devops/kanban-orchestrator/scripts/kanban_closeout_sync.py`
 
 Operational notes:
+- The shared backlog at `~/.agent-commons/backlog/` is authoritative after the 2026-07-15 migration; use its CLI for current reads and all mutations.
+- `backlog.json` may be stale or project-filtered. Read it only for explicit snapshot, migration, or compatibility work, and label reports from it as snapshots.
 - `skills/devops/kanban-orchestrator/references/workflow-registry.md` is the registry of the project workflows that move items from intake to review and closeout.
 - `skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md` captures the live bridge pattern and smoke-test recipe.
 - The bridge preserves the backlog item id in the created Kanban task title/body so closeout evidence can be synced back unambiguously.
@@ -45,4 +51,4 @@ Review cadence:
 - stale-item review when items stop moving or remain blocked without updates (`skills/devops/kanban-orchestrator/references/stale-item-review.md`)
 - use the decision-memory store to feed the next weekly or stale review recommendation instead of rebuilding the session from scratch
 
-The backlog is the source of truth. Kanban is the execution surface.
+The shared backlog is the source of truth. This repository JSON is a project-local snapshot, and Kanban is the execution surface.

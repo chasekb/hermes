@@ -19,11 +19,16 @@ never the child's intermediate tool calls or reasoning.
 import enum
 import json
 import logging
+import math
+import shutil
+import subprocess
+import sys
 
 logger = logging.getLogger(__name__)
 import os
 import threading
 import time
+from pathlib import Path
 from concurrent.futures import (
     ThreadPoolExecutor,
     TimeoutError as FuturesTimeoutError,
@@ -31,6 +36,18 @@ from concurrent.futures import (
 from typing import Any, Dict, List, Optional
 
 from toolsets import TOOLSETS
+from agent.external_cli_client import (
+    CLIResult,
+    ConcurrentExternalCLIRunner,
+    ExternalCLIClient,
+    _MAX_CONCURRENT_CAP as _CLAUDE_MAX_CONCURRENT_CAP,
+    _MAX_INPUT_BYTES_CAP as _CLAUDE_MAX_INPUT_BYTES_CAP,
+    _MAX_STDERR_BYTES_CAP as _CLAUDE_MAX_STDERR_BYTES_CAP,
+    _MAX_STDOUT_BYTES_CAP as _CLAUDE_MAX_STDOUT_BYTES_CAP,
+    _MAX_TIMEOUT_SECONDS_CAP as _CLAUDE_MAX_TIMEOUT_SECONDS_CAP,
+    _MAX_TURNS_CAP as _CLAUDE_MAX_TURNS_CAP,
+    _reject_duplicate_flags as _reject_claude_duplicate_flags,
+)
 
 # Sentinel value used by the runtime provider system for providers that are
 # not natively known (named custom providers, third-party aggregators, etc.).
@@ -522,6 +539,533 @@ _HEARTBEAT_INTERVAL = 30  # seconds between parent activity heartbeats during de
 _HEARTBEAT_STALE_CYCLES_IDLE = 15  # 15 * 30s = 450s idle between turns → stale
 _HEARTBEAT_STALE_CYCLES_IN_TOOL = 40  # 40 * 30s = 1200s stuck on same tool → stale
 DEFAULT_TOOLSETS = ["terminal", "file", "web"]
+
+
+# ---------------------------------------------------------------------------
+# Claude Code CLI delegation policy helpers
+# ---------------------------------------------------------------------------
+
+CLAUDE_CODE_BACKEND = "claude-code-cli"
+
+
+def _claude_code_enabled(cfg: Optional[dict]) -> bool:
+    """Return whether the opt-in Claude Code backend has both gates enabled."""
+    if not isinstance(cfg, dict) or cfg.get("backend") != CLAUDE_CODE_BACKEND:
+        return False
+    settings = cfg.get("claude_code")
+    return isinstance(settings, dict) and is_truthy_value(settings.get("enabled"))
+
+
+def _claude_code_keychain_available() -> bool:
+    """Check for Claude Code's macOS Keychain item without reading its secret."""
+    if sys.platform != "darwin":
+        return False
+    security = shutil.which("security")
+    if not security:
+        return False
+    try:
+        completed = subprocess.run(
+            [security, "find-generic-password", "-s", "Claude Code-credentials"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+            timeout=2,
+        )
+        return completed.returncode == 0
+    except (OSError, subprocess.SubprocessError):
+        return False
+
+
+def _claude_code_api_key_helper_configured() -> bool:
+    """Detect an on-disk Claude API-key helper without reading its value."""
+    home = Path(os.environ.get("HOME") or os.path.expanduser("~"))
+    for candidate in (
+        home / ".claude" / "settings.json",
+        home / ".claude" / "settings.local.json",
+    ):
+        try:
+            if candidate.is_file() and '"apiKeyHelper"' in candidate.read_text(
+                encoding="utf-8", errors="ignore"
+            ):
+                return True
+        except OSError:
+            continue
+    return False
+
+
+def _resolve_claude_code_auth() -> Optional[str]:
+    """Identify an allowed Claude Code auth source without reading secrets.
+
+    The returned label is safe for diagnostics.  API keys and cloud-provider
+    credentials are intentionally not considered valid authentication for
+    this backend.
+    """
+    # An API-key helper wins over OAuth inside Claude Code.  Do not launch
+    # when one is configured because Hermes cannot safely broker or inspect
+    # the helper's secret; the operator must remove it or use another profile.
+    if _claude_code_api_key_helper_configured():
+        return None
+    if os.environ.get("CLAUDE_CODE_OAUTH_TOKEN", "").strip():
+        return "oauth_env"
+    if _claude_code_keychain_available():
+        return "managed_store"
+    home = Path(os.environ.get("HOME") or os.path.expanduser("~"))
+    candidates = (home / ".claude" / ".credentials.json", home / ".claude.json")
+    for candidate in candidates:
+        try:
+            if not candidate.is_file() or candidate.stat().st_size <= 0:
+                continue
+            # Recognize only Claude Code OAuth-shaped stores. Merely finding a
+            # non-empty file must not make an API-key-only or unrelated file a
+            # valid authentication source.
+            contents = candidate.read_text(encoding="utf-8", errors="ignore")
+            if any(marker in contents for marker in ('"claudeAiOauth"', '"oauthAccount"')):
+                return "managed_store"
+        except (OSError, UnicodeError):
+            continue
+    return None
+
+
+def _resolve_claude_code_cwd(cfg: dict, cwd: str) -> str:
+    """Resolve *cwd* under one of the configured trusted project roots."""
+    settings = cfg.get("claude_code") if isinstance(cfg.get("claude_code"), dict) else cfg
+    roots = settings.get("cwd_roots") if isinstance(settings, dict) else None
+    if not isinstance(roots, list) or not roots:
+        raise ValueError("Claude Code delegation requires non-empty cwd_roots")
+
+    try:
+        candidate = Path(cwd).expanduser()
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Claude Code delegation cwd is invalid") from exc
+    if not candidate.is_absolute() or not candidate.is_dir():
+        raise ValueError("Claude Code delegation cwd must be an existing absolute directory")
+    resolved_cwd = candidate.resolve()
+
+    resolved_roots = []
+    for root in roots:
+        root_path = Path(str(root)).expanduser()
+        if not root_path.is_absolute() or not root_path.is_dir():
+            raise ValueError("Each Claude Code cwd_root must be an existing absolute directory")
+        if root_path.is_symlink():
+            raise ValueError("Claude Code cwd_root must not be a symlink")
+        resolved_roots.append(root_path.resolve())
+    if not any(
+        resolved_cwd == root or root in resolved_cwd.parents
+        for root in resolved_roots
+    ):
+        raise ValueError("Claude Code delegation cwd is outside configured cwd_roots")
+    return str(resolved_cwd)
+
+
+def _claude_code_settings(cfg: dict) -> dict:
+    """Validate and return the explicitly configured Claude Code settings."""
+    raw_settings = cfg.get("claude_code") if isinstance(cfg, dict) else None
+    settings = dict(raw_settings) if isinstance(raw_settings, dict) else None
+    if not isinstance(settings, dict):
+        raise ValueError("Claude Code delegation requires a claude_code config block")
+    settings.setdefault("command", "claude")
+    settings.setdefault("args", [])
+    settings.setdefault("allowed_tools", ["Read", "Grep"])
+    settings.setdefault("permission_mode", "dontAsk")
+    settings.setdefault("output_format", "stream-json")
+    settings.setdefault("max_turns", 20)
+    settings.setdefault("max_budget_usd", None)
+    settings.setdefault("timeout_seconds", 900)
+    settings.setdefault("input_max_bytes", 10 * 1024 * 1024)
+    settings.setdefault("stdout_max_bytes", 8 * 1024 * 1024)
+    settings.setdefault("stderr_max_bytes", 64 * 1024)
+    settings.setdefault("max_concurrent", 1)
+    settings.setdefault("retry_limit", 0)
+    settings.setdefault("no_session_persistence", True)
+    settings.setdefault("cwd_roots", [])
+    command = settings.get("command", "claude")
+    if not isinstance(command, str) or not command.strip() or "\x00" in command:
+        raise ValueError("Claude Code command must be a non-empty executable name")
+    args = settings.get("args", [])
+    if not isinstance(args, list) or not all(isinstance(arg, str) for arg in args):
+        raise ValueError("Claude Code args must be a list of strings")
+    try:
+        _reject_claude_duplicate_flags(args)
+    except ValueError as exc:
+        raise ValueError(f"Claude Code args are unsafe: {exc}") from exc
+    allowed_tools = settings.get("allowed_tools", [])
+    if not isinstance(allowed_tools, list) or not allowed_tools or not all(
+        isinstance(tool, str) and tool.strip() for tool in allowed_tools
+    ):
+        raise ValueError(
+            "Claude Code allowed_tools must be a non-empty list of strings"
+        )
+    if settings.get("permission_mode", "dontAsk") != "dontAsk":
+        raise ValueError("Claude Code delegation requires permission_mode=dontAsk")
+    output_format = settings.get("output_format", "stream-json")
+    if not isinstance(output_format, str) or output_format not in {"stream-json", "json"}:
+        raise ValueError("Claude Code output_format must be 'stream-json' or 'json'")
+
+    def _bounded_number(key: str, default: Any, ceiling: float, *, integer: bool = False):
+        value = settings.get(key, default)
+        if isinstance(value, bool):
+            raise ValueError(f"Claude Code {key} must be numeric")
+        if integer and isinstance(value, float) and not value.is_integer():
+            raise ValueError(f"Claude Code {key} must be an integer")
+        try:
+            parsed = int(value) if integer else float(value)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"Claude Code {key} must be numeric") from exc
+        if not math.isfinite(parsed) or parsed <= 0 or parsed > ceiling:
+            raise ValueError(
+                f"Claude Code {key} must be greater than zero and at most {ceiling:g}"
+            )
+        return parsed
+
+    _bounded_number("max_turns", 20, _CLAUDE_MAX_TURNS_CAP, integer=True)
+    _bounded_number("timeout_seconds", 900, _CLAUDE_MAX_TIMEOUT_SECONDS_CAP)
+    _bounded_number("input_max_bytes", 10 * 1024 * 1024, _CLAUDE_MAX_INPUT_BYTES_CAP, integer=True)
+    _bounded_number("stdout_max_bytes", 8 * 1024 * 1024, _CLAUDE_MAX_STDOUT_BYTES_CAP, integer=True)
+    _bounded_number("stderr_max_bytes", 64 * 1024, _CLAUDE_MAX_STDERR_BYTES_CAP, integer=True)
+    _bounded_number("max_concurrent", 1, _CLAUDE_MAX_CONCURRENT_CAP, integer=True)
+    budget = settings.get("max_budget_usd")
+    if budget is not None:
+        if isinstance(budget, bool):
+            raise ValueError("Claude Code max_budget_usd must be numeric")
+        try:
+            budget_value = float(budget)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("Claude Code max_budget_usd must be numeric") from exc
+        if not (budget_value >= 0) or budget_value == float("inf"):
+            raise ValueError("Claude Code max_budget_usd must be finite and non-negative")
+    try:
+        retry_limit = int(settings.get("retry_limit", 0))
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Claude Code retry_limit must be zero") from exc
+    if retry_limit != 0:
+        raise ValueError("Claude Code delegation does not retry timed-out or cancelled children")
+    if is_truthy_value(settings.get("no_session_persistence", True)) is not True:
+        raise ValueError("Claude Code delegation requires no_session_persistence=true")
+    roots = settings.get("cwd_roots", [])
+    if not isinstance(roots, list) or any(not isinstance(root, str) or not root.strip() for root in roots):
+        raise ValueError("Claude Code cwd_roots must be a list of path strings")
+    if is_truthy_value(settings.get("enabled")) and not roots:
+        raise ValueError("Claude Code enabled delegation requires non-empty cwd_roots")
+    return settings
+
+
+def _claude_code_prompt(task: dict) -> str:
+    """Compose the child prompt without placing it in process argv."""
+    prompt = str(task.get("goal", ""))
+    context = task.get("context")
+    if context and str(context).strip():
+        prompt += "\n\nCONTEXT:\n" + str(context)
+    return prompt
+
+
+def _claude_code_result_entry(
+    task_index: int,
+    result: CLIResult,
+    tool_trace: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Map the external client's bounded result into delegate_task's contract."""
+    entry: Dict[str, Any] = {
+        "task_index": task_index,
+        "backend": result.backend,
+        "status": result.status,
+        "summary": result.summary,
+        "api_calls": result.num_turns or 0,
+        "duration_seconds": round(result.duration_seconds, 2),
+        "model": result.model,
+        "exit_reason": result.exit_reason,
+        "tokens": {
+            "input": result.usage.input_tokens,
+            "output": result.usage.output_tokens,
+            "source": result.usage.source,
+        },
+        "tool_trace": tool_trace,
+        "truncated": result.status == "output_truncated",
+        "cost_usd": result.cost_usd,
+        "cost_status": result.cost_status,
+        "session_id": result.session_id,
+        "malformed_event_count": result.malformed_event_count,
+    }
+    if result.error_detail:
+        entry["error"] = result.error_detail
+    return entry
+
+
+def _claude_code_failure_entry(
+    task_index: int, status: str, error: str,
+) -> Dict[str, Any]:
+    """Build the full delegate result shape for pre-launch failures."""
+    return {
+        "task_index": task_index,
+        "backend": CLAUDE_CODE_BACKEND,
+        "status": status,
+        "summary": None,
+        "api_calls": 0,
+        "duration_seconds": 0.0,
+        "model": None,
+        "exit_reason": status,
+        "tokens": {"input": 0, "output": 0, "source": "unavailable"},
+        "tool_trace": [],
+        "truncated": False,
+        "cost_usd": None,
+        "cost_status": "unavailable",
+        "session_id": None,
+        "malformed_event_count": 0,
+        "error": error,
+    }
+
+
+def _run_claude_code_child(
+    task_index: int,
+    task: dict,
+    settings: dict,
+    parent_agent,
+    task_count: int,
+    runner: ConcurrentExternalCLIRunner,
+) -> Dict[str, Any]:
+    """Run one project-scoped Claude Code child and return a safe result."""
+    if _resolve_claude_code_auth() is None:
+        return _claude_code_failure_entry(
+            task_index,
+            "auth_unavailable",
+            (
+                "Claude Code authentication unavailable; sign in with Claude Code "
+                "or set CLAUDE_CODE_OAUTH_TOKEN."
+            ),
+        )
+
+    # Prefer the parent agent's concrete cwd over TERMINAL_CWD.  The latter
+    # can describe the Hermes process directory rather than the project being
+    # delegated, while an explicit parent cwd is the request's scope.
+    workspace = (
+        getattr(parent_agent, "terminal_cwd", None)
+        or getattr(parent_agent, "cwd", None)
+        or _resolve_workspace_hint(parent_agent)
+    )
+    if not workspace:
+        return _claude_code_failure_entry(
+            task_index,
+            "failed",
+            "Claude Code delegation requires the parent project cwd.",
+        )
+    try:
+        cwd = _resolve_claude_code_cwd(settings, workspace)
+    except ValueError as exc:
+        return _claude_code_failure_entry(task_index, "failed", str(exc))
+
+    import uuid
+
+    subagent_id = f"sa-claude-{task_index}-{uuid.uuid4().hex[:8]}"
+    tool_trace: List[Dict[str, Any]] = []
+    progress = _build_child_progress_callback(
+        task_index,
+        str(task.get("goal", "")),
+        parent_agent,
+        task_count,
+        subagent_id=subagent_id,
+        parent_id=getattr(parent_agent, "_subagent_id", None),
+        depth=0,
+        model=None,
+        toolsets=settings.get("allowed_tools", []),
+    )
+
+    def on_event(event: dict) -> None:
+        event = dict(event)
+        event["task_index"] = task_index
+        event["subagent_id"] = subagent_id
+        event_type = event.get("event")
+        if event_type == "tool_use":
+            tool_trace.append({"tool": event.get("tool_name", "unknown")})
+            if progress:
+                progress("tool.started", tool_name=event.get("tool_name", "unknown"))
+        elif event_type == "partial" and progress:
+            progress("_thinking", preview="Claude Code output streaming")
+        elif event_type == "api_retry" and progress:
+            progress("subagent_progress", preview="Claude Code retry")
+
+    cancel_event = threading.Event()
+    monitor_stop = threading.Event()
+
+    def monitor_parent_interrupt() -> None:
+        while not monitor_stop.wait(0.1):
+            if (
+                getattr(parent_agent, "is_interrupted", False)
+                or getattr(parent_agent, "_interrupt_requested", False)
+                or getattr(parent_agent, "interrupt_requested", False)
+            ):
+                cancel_event.set()
+                return
+
+    monitor = threading.Thread(target=monitor_parent_interrupt, daemon=True)
+    monitor.start()
+    try:
+        client = ExternalCLIClient(
+            command=settings.get("command", "claude"),
+            args=settings.get("args", []),
+            cwd=cwd,
+            prompt=_claude_code_prompt(task),
+            output_format=settings.get("output_format", "stream-json"),
+            permission_mode=settings.get("permission_mode", "dontAsk"),
+            allowed_tools=settings.get("allowed_tools", []),
+            max_turns=settings.get("max_turns", 20),
+            max_budget_usd=settings.get("max_budget_usd"),
+            timeout=settings.get("timeout_seconds", 900),
+            input_max_bytes=settings.get("input_max_bytes", 10 * 1024 * 1024),
+            stdout_max_bytes=settings.get("stdout_max_bytes", 8 * 1024 * 1024),
+            stderr_max_bytes=settings.get("stderr_max_bytes", 64 * 1024),
+            cancel_event=cancel_event,
+            event_callback=on_event,
+        )
+        if progress:
+            progress("subagent.start", preview=str(task.get("goal", "")), status="running")
+        result = runner.run_bounded(client)
+        entry = _claude_code_result_entry(task_index, result, tool_trace)
+        if progress:
+            progress(
+                "subagent.complete",
+                preview=entry.get("summary") or entry.get("error", ""),
+                status=entry["status"],
+                summary=entry.get("summary") or entry.get("error", ""),
+                duration_seconds=entry["duration_seconds"],
+                backend=CLAUDE_CODE_BACKEND,
+            )
+        return entry
+    except (ValueError, TypeError) as exc:
+        return _claude_code_failure_entry(task_index, "failed", str(exc))
+    except Exception as exc:
+        # Do not serialize arbitrary exception text: a custom command or
+        # provider error could accidentally contain prompt/credential data.
+        logger.debug("Claude Code child failed", exc_info=True)
+        return _claude_code_failure_entry(
+            task_index, "failed", f"Claude Code child failed: {type(exc).__name__}"
+        )
+    finally:
+        monitor_stop.set()
+        monitor.join(timeout=1.0)
+        if progress and hasattr(progress, "_flush"):
+            progress._flush()
+
+
+def _run_claude_code_delegation(
+    task_list: List[dict],
+    settings: dict,
+    parent_agent,
+) -> str:
+    """Run a bounded single/batch Claude Code delegation."""
+    overall_start = time.monotonic()
+    try:
+        max_concurrent = int(settings.get("max_concurrent", 1))
+        runner = ConcurrentExternalCLIRunner(max_concurrent=max_concurrent)
+    except (TypeError, ValueError) as exc:
+        return tool_error(f"Invalid Claude Code concurrency setting: {exc}")
+
+    if len(task_list) == 1:
+        results = [_run_claude_code_child(0, task_list[0], settings, parent_agent, 1, runner)]
+    else:
+        with ThreadPoolExecutor(max_workers=min(max_concurrent, len(task_list))) as pool:
+            futures = [
+                pool.submit(
+                    _run_claude_code_child,
+                    index,
+                    task,
+                    settings,
+                    parent_agent,
+                    len(task_list),
+                    runner,
+                )
+                for index, task in enumerate(task_list)
+            ]
+            results = [future.result() for future in futures]
+
+    # Keep the same fail-open routing observability and delegation-memory
+    # behavior as the Hermes child path.  Telemetry contains only hashed
+    # correlation IDs and low-cardinality labels; the external client never
+    # exposes its prompt, environment, stdout, or stderr here.
+    try:
+        from agent.routing_telemetry import (
+            SOURCE_CLAUDE_CODE,
+            record_routing_decision,
+            record_routing_outcome,
+        )
+        parent_session_id = getattr(parent_agent, "session_id", None)
+        for index, entry in enumerate(results):
+            request_id = f"{parent_session_id or 'delegation'}:{index}"
+            record_routing_decision(
+                request_id=request_id,
+                session_id=parent_session_id,
+                route_intent=SOURCE_CLAUDE_CODE,
+                selected_agent_source=SOURCE_CLAUDE_CODE,
+                task_shape="bounded_coordination" if len(task_list) > 1 else "single_task",
+            )
+            record_routing_outcome(
+                request_id=request_id,
+                session_id=parent_session_id,
+                selected_agent_source=SOURCE_CLAUDE_CODE,
+                outcome=entry.get("status", "failed"),
+                outcome_quality=(
+                    "good" if entry.get("status") == "completed" and entry.get("summary")
+                    else "poor" if entry.get("status") in {"failed", "timeout"}
+                    else "unknown"
+                ),
+            )
+    except Exception:
+        logger.debug("Claude Code routing telemetry failed", exc_info=True)
+
+    if parent_agent and getattr(parent_agent, "_memory_manager", None):
+        for entry in results:
+            try:
+                index = entry.get("task_index", 0)
+                parent_agent._memory_manager.on_delegation(
+                    task=task_list[index].get("goal", "") if index < len(task_list) else "",
+                    result=entry.get("summary", "") or "",
+                    child_session_id=entry.get("session_id", ""),
+                    route_intent=CLAUDE_CODE_BACKEND,
+                    agent_source=CLAUDE_CODE_BACKEND,
+                    outcome=entry.get("status", "failed"),
+                    outcome_quality=(
+                        "good" if entry.get("status") == "completed" and entry.get("summary")
+                        else "poor" if entry.get("status") in {"failed", "timeout"}
+                        else "unknown"
+                    ),
+                )
+            except Exception:
+                logger.debug("Claude Code delegation memory update failed", exc_info=True)
+
+    try:
+        from hermes_cli.plugins import invoke_hook
+    except Exception:
+        invoke_hook = None
+    if invoke_hook is not None:
+        for entry in results:
+            try:
+                invoke_hook(
+                    "subagent_stop",
+                    parent_session_id=getattr(parent_agent, "session_id", None),
+                    child_role="leaf",
+                    child_summary=entry.get("summary"),
+                    child_status=entry.get("status"),
+                    agent_source=CLAUDE_CODE_BACKEND,
+                    route_intent=CLAUDE_CODE_BACKEND,
+                    fallback=False,
+                    outcome_quality=(
+                        "good" if entry.get("status") == "completed" and entry.get("summary")
+                        else "poor" if entry.get("status") in {"failed", "timeout"}
+                        else "unknown"
+                    ),
+                    duration_ms=int((entry.get("duration_seconds") or 0) * 1000),
+                )
+            except Exception:
+                logger.debug("Claude Code subagent_stop hook failed", exc_info=True)
+
+    return json.dumps(
+        {
+            "results": results,
+            "total_duration_seconds": round(
+                time.monotonic() - overall_start,
+                2,
+            ),
+        },
+        ensure_ascii=False,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1331,6 +1875,31 @@ def _run_single_child(
     """
     child_start = time.monotonic()
 
+    # Observability is best effort and must never make a child fail.  The
+    # telemetry module hashes the correlation identifiers before persistence.
+    _routing_request_id = getattr(child, "_routing_request_id", None) or f"subagent-{task_index}"
+    _routing_source = getattr(child, "_routing_selected_source", "hermes")
+    try:
+        from agent.routing_telemetry import record_routing_outcome as _record_routing_outcome
+    except Exception:
+        _record_routing_outcome = None
+
+    def _finish_with_routing_outcome(entry: Dict[str, Any]) -> Dict[str, Any]:
+        if _record_routing_outcome is not None:
+            try:
+                _record_routing_outcome(
+                    request_id=_routing_request_id,
+                    selected_agent_source=_routing_source,
+                    outcome=entry.get("status", "failed"),
+                    outcome_quality=(
+                        "good" if entry.get("status") == "completed" and entry.get("summary") else None
+                    ),
+                    session_id=getattr(parent_agent, "session_id", None),
+                )
+            except Exception:
+                logger.debug("Routing outcome telemetry failed", exc_info=True)
+        return entry
+
     # Get the progress callback from the child agent
     child_progress_cb = getattr(child, "tool_progress_callback", None)
 
@@ -1592,7 +2161,7 @@ def _run_single_child(
             else:
                 _err = str(_timeout_exc)
 
-            return {
+            return _finish_with_routing_outcome({
                 "task_index": task_index,
                 "status": "timeout" if is_timeout else "error",
                 "summary": None,
@@ -1602,7 +2171,7 @@ def _run_single_child(
                 "duration_seconds": duration,
                 "_child_role": getattr(child, "_delegate_role", None),
                 "diagnostic_path": diagnostic_path,
-            }
+            })
         finally:
             # Shut down executor without waiting — if the child thread
             # is stuck on blocking I/O, wait=True would hang forever.
@@ -1813,7 +2382,7 @@ def _run_single_child(
             except Exception as e:
                 logger.debug("Progress callback completion failed: %s", e)
 
-        return entry
+        return _finish_with_routing_outcome(entry)
 
     except Exception as exc:
         duration = round(time.monotonic() - child_start, 2)
@@ -1829,7 +2398,7 @@ def _run_single_child(
                 )
             except Exception as e:
                 logger.debug("Progress callback failure relay failed: %s", e)
-        return {
+        return _finish_with_routing_outcome({
             "task_index": task_index,
             "status": "error",
             "summary": None,
@@ -1837,7 +2406,7 @@ def _run_single_child(
             "api_calls": 0,
             "duration_seconds": duration,
             "_child_role": getattr(child, "_delegate_role", None),
-        }
+        })
 
     finally:
         # Stop the heartbeat thread so it doesn't keep touching parent activity
@@ -1995,6 +2564,25 @@ def delegate_task(
     try:
         creds = _resolve_delegation_credentials(cfg, parent_agent)
     except ValueError as exc:
+        # A credential/provider resolution failure is a routing fallback even
+        # though no child can be started. Keep it observable without allowing
+        # the telemetry path to alter the user-facing error.
+        try:
+            from agent.routing_telemetry import (
+                SOURCE_DEFAULT_FALLBACK,
+                record_routing_decision,
+            )
+
+            record_routing_decision(
+                request_id=getattr(parent_agent, "session_id", None),
+                session_id=getattr(parent_agent, "session_id", None),
+                route_intent="hermes",
+                selected_agent_source=SOURCE_DEFAULT_FALLBACK,
+                fallback=True,
+                fallback_reason="unavailable",
+            )
+        except Exception:
+            logger.debug("Routing fallback telemetry failed", exc_info=True)
         return tool_error(str(exc))
 
     # Normalize to task list
@@ -2033,6 +2621,16 @@ def delegate_task(
             )
         if not task.get("goal", "").strip():
             return tool_error(f"Task {i} is missing a 'goal'.")
+
+    # Claude Code is a deliberately separate, opt-in subprocess lane.  Keep
+    # this branch before Hermes child construction and provider resolution so
+    # it cannot accidentally enter the Anthropic Messages/API adapter path.
+    if _claude_code_enabled(cfg):
+        try:
+            claude_settings = _claude_code_settings(cfg)
+        except ValueError as exc:
+            return tool_error(str(exc))
+        return _run_claude_code_delegation(task_list, claude_settings, parent_agent)
 
     overall_start = time.monotonic()
     results = []
@@ -2081,6 +2679,42 @@ def delegate_task(
                 ),
                 role=effective_role,
             )
+            # A regular delegate child is the Hermes runtime. An explicit ACP
+            # command is the Codex-native route. Store the selection on the
+            # child so _run_single_child can emit the matching terminal event.
+            try:
+                from agent.routing_telemetry import (
+                    SOURCE_CODEX_NATIVE,
+                    SOURCE_HERMES,
+                    record_routing_decision,
+                )
+
+                uses_codex_native = bool(
+                    t.get("acp_command") or acp_command or creds.get("command")
+                )
+                selected_source = SOURCE_CODEX_NATIVE if uses_codex_native else SOURCE_HERMES
+                setattr(child, "_routing_selected_source", selected_source)
+                # The child runner emits its terminal event after handling
+                # executor timeouts and failures.  Prevent the generic
+                # conversation entrypoint wrapper from double-counting it.
+                setattr(child, "_routing_outcome_managed_externally", True)
+                routing_request_id = getattr(child, "_subagent_id", None) or (
+                    f"{getattr(parent_agent, 'session_id', '')}:{i}"
+                )
+                setattr(child, "_routing_request_id", routing_request_id)
+                record_routing_decision(
+                    request_id=routing_request_id,
+                    session_id=getattr(parent_agent, "session_id", None),
+                    route_intent=selected_source,
+                    selected_agent_source=selected_source,
+                    task_shape=(
+                        "bounded_coordination"
+                        if n_tasks > 1 or effective_role == "orchestrator"
+                        else "single_task"
+                    ),
+                )
+            except Exception:
+                logger.debug("Routing selection telemetry failed", exc_info=True)
             # Override with correct parent tool names (before child construction mutated global)
             child._delegate_saved_tool_names = _parent_tool_names
             children.append((i, t, child))
@@ -2233,6 +2867,18 @@ def delegate_task(
                         if entry["task_index"] < len(children)
                         else ""
                     ),
+                    route_intent=getattr(
+                        children[entry["task_index"]][2], "_routing_selected_source", "hermes"
+                    ) if entry["task_index"] < len(children) else "hermes",
+                    agent_source=getattr(
+                        children[entry["task_index"]][2], "_routing_selected_source", "hermes"
+                    ) if entry["task_index"] < len(children) else "hermes",
+                    outcome=entry.get("status", "failed"),
+                    outcome_quality=(
+                        "good" if entry.get("status") == "completed" and entry.get("summary")
+                        else "poor" if entry.get("status") in {"failed", "error", "timeout"}
+                        else "unknown"
+                    ),
                 )
             except Exception:
                 pass
@@ -2271,6 +2917,17 @@ def delegate_task(
                 child_role=child_role,
                 child_summary=entry.get("summary"),
                 child_status=entry.get("status"),
+                agent_source=(child_source := (
+                    getattr(children[entry["task_index"]][2], "_routing_selected_source", "hermes")
+                    if entry["task_index"] < len(children) else "hermes"
+                )),
+                route_intent=child_source,
+                fallback=child_source == "default_fallback",
+                outcome_quality=(
+                    "good" if entry.get("status") == "completed" and entry.get("summary")
+                    else "poor" if entry.get("status") in {"failed", "error", "timeout"}
+                    else "unknown"
+                ),
                 duration_ms=int((entry.get("duration_seconds") or 0) * 1000),
             )
         except Exception:
@@ -2363,6 +3020,21 @@ def _resolve_delegation_credentials(cfg: dict, parent_agent) -> dict:
 
     Raises ValueError with a user-friendly message on credential failure.
     """
+    # This backend is an external Claude Code process, not an inference
+    # provider.  Return a non-credential marker and never invoke the runtime
+    # provider resolver (which could select Anthropic Messages).
+    if _claude_code_enabled(cfg):
+        settings = cfg.get("claude_code") or {}
+        return {
+            "model": None,
+            "provider": None,
+            "base_url": None,
+            "api_key": None,
+            "api_mode": None,
+            "command": settings.get("command", "claude"),
+            "args": list(settings.get("args") or []),
+        }
+
     configured_model = str(cfg.get("model") or "").strip() or None
     configured_provider = str(cfg.get("provider") or "").strip() or None
     configured_base_url = str(cfg.get("base_url") or "").strip() or None

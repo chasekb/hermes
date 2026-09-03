@@ -61,4 +61,17 @@ Before declaring migration complete, independently verify:
 4. Delete only the intended source files; never delete a database data directory as part of backlog cleanup.
 5. Re-run source-absence, manifest, backup, and Kanban reconciliation checks after cleanup.
 
+## Configuration-remediation task intake
+
+When turning a live Hermes settings review into Kanban work, treat configuration remediation as a set of durable execution lanes rather than one large audit card:
+
+1. Read the live config, installed defaults/source, doctor output, gateway/cron state, MCP inventory, and existing board tasks before creating cards.
+2. Separate reliability/cron, provider-and-auxiliary cost, MCP reproducibility, state retention, and security/unattended-operation lanes. Keep independent lanes unlinked so they can run in parallel.
+3. Discover actual installed profiles with `hermes profile list`; never invent assignee names. Use the Hermes project and board explicitly.
+4. Create cards with `hermes kanban --board <slug> create ...`; `--board` belongs before the `create` subcommand, and `--priority` accepts integers rather than `P0`/`P1` strings.
+5. Use deterministic `--idempotency-key` values so a retry cannot duplicate remediation cards. Include an execution checklist, closeout criteria, rollback requirements, and an explicit no-secrets/no-database-deletion boundary in every card.
+6. Verify the exact created IDs, assignees, status, priority, workspace, and resolved `project_id` with `hermes kanban --board <slug> list --json`; do not rely on successful create output alone.
+
+See `references/configuration-remediation-kanban.md` for the lane split, card template, CLI ordering, priority convention, idempotency pattern, and verification checklist.
+
 See `references/backlog-kanban-migration.md` for the command-independent checklist, schema-alias notes, and verification report shape.
