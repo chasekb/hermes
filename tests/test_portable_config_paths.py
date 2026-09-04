@@ -2,11 +2,23 @@
 
 from pathlib import Path
 import os
+import importlib.util
 
+import pytest
 import yaml
 
 
 ROOT = Path(__file__).parents[1]
+
+
+def _contract_checker():
+    spec = importlib.util.spec_from_file_location(
+        "check_config_contract", ROOT / "scripts/check_config_contract.py"
+    )
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def _config() -> dict:
@@ -61,3 +73,22 @@ def test_local_state_paths_are_profile_relative() -> None:
     servers = _config()["mcp_servers"]
     assert "${HERMES_HOME}/hermes-agent" in servers["filesystem"]["args"]
     assert "${HERMES_HOME}/state.db" in servers["sqlite"]["args"]
+
+
+def test_linux_and_macos_target_fixtures_fail_closed() -> None:
+    checker = _contract_checker()
+    fixtures = [
+        ROOT / "tests/fixtures/config_contract/linux/missing-hook-target.yaml",
+        ROOT / "tests/fixtures/config_contract/linux/malformed-overlay.yaml",
+        ROOT / "tests/fixtures/config_contract/macos/missing-mcp-target.yaml",
+        ROOT / "tests/fixtures/config_contract/macos/unresolved-overlay.yaml",
+    ]
+    for fixture in fixtures:
+        with pytest.raises(checker.ContractError):
+            checker.check_targets(checker.load_config(fixture))
+
+
+def test_missing_overlay_input_is_not_treated_as_parse_only() -> None:
+    checker = _contract_checker()
+    with pytest.raises(checker.ContractError, match="explicit overlay input is missing"):
+        checker.load_overlays({}, [ROOT / "tests/fixtures/config_contract/macos/not-present.yaml"])
