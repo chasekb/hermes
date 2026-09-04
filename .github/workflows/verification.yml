@@ -20,6 +20,12 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install configuration-checker dependency
+        run: python -m pip install --disable-pip-version-check PyYAML==6.0.3
+
+      - name: Check fail-closed configuration contract
+        run: python scripts/check_config_contract.py --config config.yaml
+
       - name: Validate research notes and skill artifacts
         run: |
           python - <<'PY'
