@@ -21,7 +21,8 @@ class ContractError(Exception):
 
 
 ABSOLUTE_PATH = re.compile(r"(?:^|[ =\"'])(?:[A-Za-z]:[\\/]|/Users/|/home/|/opt/|/var/|/tmp/|/root/)")
-PORTABLE_REFERENCE = re.compile(r"\$\{[A-Za-z_][A-Za-z0-9_]*\}|(?:^|[ ./])(?:\.?\.?/|~?/)")
+VARIABLE_REFERENCE = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)(?::\?[^}]*)?\}")
+MALFORMED_REFERENCE = re.compile(r"\$\{[^}]*\}")
 DB_READ_ONLY = re.compile(r"(?:^|[\s;])(?:export\s+)?DB_READ_ONLY\s*=\s*(?:true|True|TRUE)(?:\s|;|$)")
 
 
@@ -53,40 +54,64 @@ def iter_strings(value: Any, path: str = "config") -> list[tuple[str, str]]:
 
 
 def check_paths(config: dict[str, Any]) -> None:
-    overlays = config.get("config_overlays", [])
-    if overlays is None:
-        overlays = []
-    if not isinstance(overlays, list) or any(not isinstance(item, str) or not item for item in overlays):
-        fail("CONTRACT_OVERLAY", "config_overlays must be a non-empty-string list")
-    overlay_names = {Path(item).name for item in overlays}
     for path, value in iter_strings(config):
         if not ABSOLUTE_PATH.search(value):
-            continue
-        if path.startswith("config.config_overlays[") and Path(value).name in overlay_names:
             continue
         fail("CONTRACT_ABSOLUTE_PATH", path)
 
 
 def check_targets(config: dict[str, Any]) -> None:
     hooks = config.get("hooks")
-    if hooks is not None:
-        if not isinstance(hooks, dict):
-            fail("CONTRACT_HOOK_TARGET", "hooks must be a mapping")
-        for event, entries in hooks.items():
-            if not isinstance(entries, list):
-                fail("CONTRACT_HOOK_TARGET", f"hooks.{event} must be a list")
-            for index, entry in enumerate(entries):
-                if not isinstance(entry, dict) or not isinstance(entry.get("command"), str) or not entry["command"].strip():
-                    fail("CONTRACT_HOOK_TARGET", f"hooks.{event}[{index}].command")
-                command = entry["command"]
-                if ABSOLUTE_PATH.search(command) and not PORTABLE_REFERENCE.search(command):
-                    fail("CONTRACT_HOOK_TARGET", f"hooks.{event}[{index}].command")
+    if not isinstance(hooks, dict) or not hooks:
+        fail("CONTRACT_HOOK_TARGET", "hooks must declare targets")
+    for event, entries in hooks.items():
+        if not isinstance(entries, list) or not entries:
+            fail("CONTRACT_HOOK_TARGET", f"hooks.{event} must declare targets")
+        for index, entry in enumerate(entries):
+            if not isinstance(entry, dict) or not isinstance(entry.get("command"), str) or not entry["command"].strip():
+                fail("CONTRACT_HOOK_TARGET", f"hooks.{event}[{index}].command")
+            command = entry["command"]
+            if "${HERMES_HOME}" not in command and "${HERMES_PROJECT_ROOT" not in command:
+                fail("CONTRACT_HOOK_TARGET", f"hooks.{event}[{index}].command is not an explicit portable target")
+            for reference in MALFORMED_REFERENCE.findall(command):
+                if not VARIABLE_REFERENCE.fullmatch(reference):
+                    fail("CONTRACT_HOOK_TARGET", f"hooks.{event}[{index}].command has malformed variable")
     servers = config.get("mcp_servers")
     if not isinstance(servers, dict) or not servers:
         fail("CONTRACT_MCP_TARGET", "mcp_servers must declare at least one target")
     for name, server in servers.items():
-        if not isinstance(server, dict) or not isinstance(server.get("command"), str) or not server["command"].strip():
+        if (
+            not isinstance(server, dict)
+            or not isinstance(server.get("command"), str)
+            or not server["command"].strip()
+            or not isinstance(server.get("args"), list)
+            or not server["args"]
+        ):
             fail("CONTRACT_MCP_TARGET", f"mcp_servers.{name}.command")
+        if name in {"filesystem", "sqlite"} and not any(
+            isinstance(arg, str) and "${HERMES_HOME}" in arg for arg in server["args"]
+        ):
+            fail("CONTRACT_MCP_TARGET", f"mcp_servers.{name} missing explicit HERMES_HOME target")
+        if name.startswith("postgres-") and not any(
+            isinstance(arg, str) and "${HERMES_PROJECT_ROOT:?" in arg for arg in server["args"]
+        ):
+            fail("CONTRACT_MCP_TARGET", f"mcp_servers.{name} missing explicit project-root target")
+
+
+def merge_overlay(base: dict[str, Any], overlay: dict[str, Any], source: Path) -> dict[str, Any]:
+    """Apply a mapping overlay with explicit, deterministic deep-merge semantics."""
+    if not overlay or any(key not in base for key in overlay):
+        fail("CONTRACT_OVERLAY", f"{source} must override known configuration sections")
+
+    def merge(left: Any, right: Any) -> Any:
+        if isinstance(left, dict) and isinstance(right, dict):
+            result = dict(left)
+            for key, value in right.items():
+                result[key] = merge(result[key], value) if key in result else value
+            return result
+        return right
+
+    return merge(base, overlay)
 
 
 def check_safety(config: dict[str, Any]) -> None:
@@ -113,18 +138,22 @@ def load_config(path: Path) -> dict[str, Any]:
     return data
 
 
+def load_overlays(config: dict[str, Any], paths: list[Path]) -> dict[str, Any]:
+    merged = config
+    for path in paths:
+        if not path.is_file():
+            fail("CONTRACT_OVERLAY", f"explicit overlay input is missing: {path}")
+        merged = merge_overlay(merged, load_config(path), path)
+    return merged
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path("config.yaml"))
     parser.add_argument("--overlay", action="append", type=Path, default=[])
     args = parser.parse_args()
     try:
-        config = load_config(args.config)
-        for overlay_path in args.overlay:
-            # Overlays are explicit, operator-supplied inputs and are not
-            # committed base configuration. Validate their YAML shape while
-            # keeping machine-local paths out of the repository contract.
-            load_config(overlay_path)
+        config = load_overlays(load_config(args.config), args.overlay)
         check_paths(config)
         check_targets(config)
         check_safety(config)

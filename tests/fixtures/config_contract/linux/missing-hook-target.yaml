@@ -1,0 +1,11 @@
+hooks:
+  pre_tool_call: []
+mcp_servers:
+  local:
+    command: python
+    args: [worker.py]
+security:
+  redact_secrets: true
+  tirith_fail_open: false
+approvals:
+  mode: manual
