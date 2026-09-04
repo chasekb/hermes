@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - workflow/macbook-air-m5
+      - workflow/linux-arch
   workflow_dispatch:
 
 jobs:
