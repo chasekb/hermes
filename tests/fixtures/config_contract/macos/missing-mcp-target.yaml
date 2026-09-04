@@ -1,0 +1,12 @@
+hooks:
+  pre_tool_call:
+    - command: '${HERMES_HOME}/agent-hooks/hook_router.py'
+mcp_servers:
+  filesystem:
+    command: npx
+    args: []
+security:
+  redact_secrets: true
+  tirith_fail_open: false
+approvals:
+  mode: manual

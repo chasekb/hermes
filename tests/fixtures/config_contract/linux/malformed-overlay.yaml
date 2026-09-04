@@ -1,0 +1,4 @@
+hooks:
+  pre_tool_call:
+    - command: '${HERMES_HOME/agent-hooks/hook_router.py'
+mcp_servers: {}

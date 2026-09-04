@@ -1,0 +1,7 @@
+hooks:
+  pre_tool_call:
+    - command: '${UNRESOLVED_HOME}/agent-hooks/hook_router.py'
+mcp_servers:
+  filesystem:
+    command: npx
+    args: ['${UNRESOLVED_HOME}/hermes-agent']
