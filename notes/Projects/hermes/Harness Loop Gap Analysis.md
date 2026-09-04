@@ -8,16 +8,16 @@ updated_at: 2026-06-12T00:00:00Z
 Compare the researched harness and loop engineering best practices against the current Hermes runtime, note, and backlog surfaces.
 
 ## Hermes surfaces reviewed
-- /Users/bernardchase/.hermes/config.yaml
-- /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-- /Users/bernardchase/.hermes/backlog/backlog.json
-- /Users/bernardchase/.hermes/notes/Projects/hermes/Index.md
-- /Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md
-- /Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md
-- /Users/bernardchase/.hermes/notes/Projects/hermes/Open Questions.md
-- /Users/bernardchase/.hermes/notes/Research/Agents/Harness Engineering.md
-- /Users/bernardchase/.hermes/notes/Research/Agents/Loop Engineering.md
-- /Users/bernardchase/.hermes/notes/Research/Agents/Harness Loop Synthesis.md
+- /path/to/hermes/.hermes/config.yaml
+- /path/to/hermes/.hermes/agent-hooks/hook_router.py
+- /path/to/hermes/.hermes/backlog/backlog.json
+- /path/to/hermes/.hermes/notes/Projects/hermes/Index.md
+- /path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md
+- /path/to/hermes/.hermes/notes/Projects/hermes/Decision Log.md
+- /path/to/hermes/.hermes/notes/Projects/hermes/Open Questions.md
+- /path/to/hermes/.hermes/notes/Research/Agents/Harness Engineering.md
+- /path/to/hermes/.hermes/notes/Research/Agents/Loop Engineering.md
+- /path/to/hermes/.hermes/notes/Research/Agents/Harness Loop Synthesis.md
 
 ## Gap matrix
 

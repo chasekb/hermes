@@ -44,8 +44,8 @@ Canonical Hermes checklist for tracking action execution, verification, and clos
 
 ## Example usage
 - action: Update Hermes research pages
-- scope: /Users/bernardchase/.hermes/notes/Research
-- evidence: /Users/bernardchase/.hermes/notes/Research/Research Workflow.md
+- scope: /path/to/hermes/.hermes/notes/Research
+- evidence: /path/to/hermes/.hermes/notes/Research/Research Workflow.md
 - status: closed
 
 ## Usage notes

@@ -3,12 +3,14 @@
 from pathlib import Path
 import os
 import importlib.util
+import subprocess
 
 import pytest
 import yaml
 
 
 ROOT = Path(__file__).parents[1]
+PERSONAL_PATH = "/Users/" + "bernardchase"
 
 
 def _contract_checker():
@@ -39,7 +41,7 @@ def test_hooks_and_mcp_paths_use_portable_variables() -> None:
         if isinstance(arg, str)
     )
     assert commands
-    assert all("/Users/bernardchase" not in value for value in commands)
+    assert all(PERSONAL_PATH not in value for value in commands)
     assert any("${HERMES_HOME}" in value for value in commands)
     assert any("${HERMES_PROJECT_ROOT" in value for value in commands)
 
@@ -73,6 +75,17 @@ def test_local_state_paths_are_profile_relative() -> None:
     servers = _config()["mcp_servers"]
     assert "${HERMES_HOME}/hermes-agent" in servers["filesystem"]["args"]
     assert "${HERMES_HOME}/state.db" in servers["sqlite"]["args"]
+
+
+def test_tracked_repository_has_no_personal_absolute_paths() -> None:
+    result = subprocess.run(
+        ["git", "grep", "-n", "-F", PERSONAL_PATH, "--", ":(exclude)*.pyc"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 1, result.stdout
 
 
 def test_linux_and_macos_target_fixtures_fail_closed() -> None:

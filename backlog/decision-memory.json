@@ -2870,7 +2870,7 @@
       "subject_type": "workflow",
       "subject_id": "activity_tracking_checklist",
       "expected": "capture activity-tracking checklist state and promote durable signals",
-      "observed": "action=Update Hermes research pages | scope=/Users/bernardchase/.hermes/notes/Research | status=closed | evidence=/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+      "observed": "action=Update Hermes research pages | scope=/path/to/hermes/.hermes/notes/Research | status=closed | evidence=/path/to/hermes/.hermes/notes/Research/Research Workflow.md",
       "outcome": "pass",
       "recommendation": "keep",
       "evidence": [
@@ -2891,8 +2891,8 @@
       "success": true,
       "checklist_fields": {
         "action": "Update Hermes research pages",
-        "scope": "/Users/bernardchase/.hermes/notes/Research",
-        "evidence": "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
+        "scope": "/path/to/hermes/.hermes/notes/Research",
+        "evidence": "/path/to/hermes/.hermes/notes/Research/Research Workflow.md",
         "status": "closed"
       },
       "promoted_from": "update:patch"

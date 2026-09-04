@@ -20,7 +20,7 @@ This review compares the remote `workflow/macbook-air-m5` branch with `workflow/
 
 | Area | Evidence | Gap | Risk |
 | --- | --- | --- | --- |
-| Host portability | Both branch configs contain `/Users/bernardchase/...` hook commands, MCP filesystem/state paths, and shell snippets sourcing `/Users/bernardchase/Documents/...`. | Configuration is not portable to Linux/Arch and can fail closed or invoke the wrong local resource. | High |
+| Host portability | Both branch configs contain `/path/to/hermes/...` hook commands, MCP filesystem/state paths, and shell snippets sourcing `/path/to/hermes/Documents/...`. | Configuration is not portable to Linux/Arch and can fail closed or invoke the wrong local resource. | High |
 | Hook installation | `hooks_auto_accept: true` is committed while every hook command points at a machine-local path. | A missing hook target is not represented as a validated installation prerequisite. | High |
 | MCP database access | PostgreSQL MCP entries source project `.env` files and set `DB_READ_ONLY=true`, but paths and ports are embedded in the committed config. | Read-only intent is good, but deployment/path resolution is machine-specific and needs explicit environment/project indirection. | High |
 | Workflow verification | `.github/workflows/verification.yml` triggers on `main` only. | Pushes to `workflow/macbook-air-m5` and `workflow/linux-arch` do not receive automatic verification. | High |

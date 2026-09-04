@@ -181,12 +181,12 @@
       "created_at": "2026-06-02T03:44:51Z",
       "dependencies": [],
       "evidence": [
-        "Runtime-verified /Users/bernardchase/.hermes/agent-hooks/hook_router.py with representative pre_tool_call, pre_llm_call, pre_approval_request, post_tool_call, and on_session_start events; each invocation returned success and reached the router.",
+        "Runtime-verified /path/to/hermes/.hermes/agent-hooks/hook_router.py with representative pre_tool_call, pre_llm_call, pre_approval_request, post_tool_call, and on_session_start events; each invocation returned success and reached the router.",
         "Confirmed the hook router blocks destructive terminal commands during pre_tool_call and that hooks_auto_accept remains true in config.yaml.",
         "Updated the routing notes in capability-audit-summary.md so the verified behavior is easy to re-check later."
       ],
       "execution_criteria": [
-        "Enumerate the intended hook surfaces in config.yaml and confirm each one is routed through /Users/bernardchase/.hermes/agent-hooks/hook_router.py.",
+        "Enumerate the intended hook surfaces in config.yaml and confirm each one is routed through /path/to/hermes/.hermes/agent-hooks/hook_router.py.",
         "Exercise a representative sample of hook events and observe them reaching the centralized router instead of ad hoc logic.",
         "Confirm hooks_auto_accept behaves as intended for the sampled event set and document any exceptions.",
         "Keep hook dispatch logic single-sourced; do not introduce parallel hook handling paths while verifying coverage."
@@ -205,9 +205,9 @@
       ],
       "id": "HERMES-BL-0001",
       "links": [
-        "/Users/bernardchase/.hermes/capability-audit-summary.md",
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/capability-audit-summary.md",
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
         "kanban://hermes/t_b76f1198"
       ],
       "notes": [
@@ -256,9 +256,9 @@
       ],
       "id": "HERMES-BL-0002",
       "links": [
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/weekly-backlog-review.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/stale-item-review.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/weekly-backlog-review.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/stale-item-review.md",
         "kanban://hermes/t_b431bd4d"
       ],
       "notes": [
@@ -306,8 +306,8 @@
       ],
       "id": "HERMES-BL-0003",
       "links": [
-        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/references/self-improvement-metrics.md",
+        "/path/to/hermes/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/agent-self-improvement-telemetry/references/self-improvement-metrics.md",
         "kanban://hermes/t_99246997"
       ],
       "notes": [
@@ -356,8 +356,8 @@
       ],
       "id": "HERMES-BL-0004",
       "links": [
-        "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
         "kanban://hermes/t_d86e5ca5"
       ],
       "notes": [
@@ -406,8 +406,8 @@
       ],
       "id": "HERMES-BL-0005",
       "links": [
-        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md",
+        "/path/to/hermes/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/capability-bridge-implementation-notes.md",
         "kanban://hermes/t_04d130d7"
       ],
       "notes": [
@@ -456,8 +456,8 @@
       ],
       "id": "HERMES-BL-0006",
       "links": [
-        "/Users/bernardchase/.hermes/backlog/capability-priority-list.md",
-        "/Users/bernardchase/.hermes/skills/devops/containerized-build-verification/SKILL.md",
+        "/path/to/hermes/.hermes/backlog/capability-priority-list.md",
+        "/path/to/hermes/.hermes/skills/devops/containerized-build-verification/SKILL.md",
         "kanban://hermes/t_52451d3e"
       ],
       "notes": [
@@ -506,9 +506,9 @@
       ],
       "id": "HERMES-BL-0007",
       "links": [
-        "/Users/bernardchase/.hermes/hermes-agent/cli.py",
-        "/Users/bernardchase/.hermes/hermes-agent/hermes_cli/main.py",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/updater-stash-resolution-recommendation.md"
+        "/path/to/hermes/.hermes/hermes-agent/cli.py",
+        "/path/to/hermes/.hermes/hermes-agent/hermes_cli/main.py",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/updater-stash-resolution-recommendation.md"
       ],
       "notes": [
         "High-priority recommendation based on a real hermes update conflict where local changes could not be restored cleanly.",
@@ -533,14 +533,14 @@
       "created_at": "2026-06-03T00:36:20Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
         "Survey synthesis from parallel subagents: public prior-art scan, Obsidian context-layer pattern scan, and local RAG routing scan.",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
       ],
       "execution_criteria": [
         "Delegate the public skill/workflow survey across Hermes, Codex, Claude Code, Clawdhub, and related sources to one or more subagents before deciding to design the note layer from scratch.",
@@ -565,8 +565,8 @@
       ],
       "id": "HERMES-BL-0008",
       "links": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md"
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md"
       ],
       "notes": [
         "Lower priority than the open P0 updater conflict item because this is a workflow optimization, not a recovery blocker.",
@@ -591,13 +591,13 @@
       "created_at": "2026-06-03T03:07:51Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
         "Survey synthesis from three parallel subagents covering Hermes, Claude Code, Codex, and public prior-art examples.",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md"
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md"
       ],
       "execution_criteria": [
         "Define a standard survey brief that instructs subagents to search public Hermes, Codex, Claude Code, Clawdhub, and related docs before any new capability is designed.",
@@ -620,9 +620,9 @@
       ],
       "id": "HERMES-BL-0009",
       "links": [
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md"
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md"
       ],
       "notes": [
         "This is a process-gating recommendation, not a feature implementation request.",
@@ -646,16 +646,16 @@
       "created_at": "2026-06-03T04:04:23Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
+        "/path/to/hermes/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-index.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-decision-log.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/examples/local-rag/project-orion-session-summary.md"
       ],
       "execution_criteria": [
         "Define the canonical retrieval sources and their roles, including selective Obsidian index notes, an MCP-backed local retrieval engine such as qmd or an equivalent, and the existing workflow registry.",
@@ -678,12 +678,12 @@
       ],
       "id": "HERMES-BL-0010",
       "links": [
-        "/Users/bernardchase/.hermes/skills/mcp/native-mcp/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/config.yaml"
+        "/path/to/hermes/.hermes/skills/mcp/native-mcp/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/public-skill-survey-gate.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/config.yaml"
       ],
       "notes": [
         "This recommendation follows the current research finding that Hermes already has native MCP and note-layer scaffolding, but not a single default local RAG workflow.",
@@ -710,12 +710,12 @@
         "HERMES-BL-0009"
       ],
       "evidence": [
-        "/Users/bernardchase/.hermes/hermes-agent/agent/learning_telemetry.py",
-        "/Users/bernardchase/.hermes/hermes-agent/tools/mixture_of_agents_tool.py",
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/hermes-agent/hermes_cli/plugins.py",
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/hermes-agent/tests/tools/test_mixture_of_agents_tool.py"
+        "/path/to/hermes/.hermes/hermes-agent/agent/learning_telemetry.py",
+        "/path/to/hermes/.hermes/hermes-agent/tools/mixture_of_agents_tool.py",
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/hermes-agent/hermes_cli/plugins.py",
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/hermes-agent/tests/tools/test_mixture_of_agents_tool.py"
       ],
       "execution_criteria": [
         "Define hook points for subagent delegation and MoA lifecycle events (start, completion, error, review, retry).",
@@ -738,11 +738,11 @@
       ],
       "id": "HERMES-BL-0011",
       "links": [
-        "/Users/bernardchase/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
-        "/Users/bernardchase/.hermes/backlog/backlog.json",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+        "/path/to/hermes/.hermes/skills/software-development/subagent-driven-development/SKILL.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/path/to/hermes/.hermes/backlog/backlog.json",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json"
       ],
       "notes": [
         "Builds on the closed telemetry loop and survey-first intake work; focus on hook-derived execution metadata and analysis, not raw logs or prompt content.",
@@ -769,12 +769,12 @@
         "HERMES-BL-0011"
       ],
       "evidence": [
-        "/Users/bernardchase/.hermes/hermes-agent/agent/learning_telemetry.py",
-        "/Users/bernardchase/.hermes/hermes-agent/agent/agent_init.py",
-        "/Users/bernardchase/.hermes/hermes-agent/agent/chat_completion_helpers.py",
-        "/Users/bernardchase/.hermes/hermes-agent/run_agent.py",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
-        "/Users/bernardchase/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
+        "/path/to/hermes/.hermes/hermes-agent/agent/learning_telemetry.py",
+        "/path/to/hermes/.hermes/hermes-agent/agent/agent_init.py",
+        "/path/to/hermes/.hermes/hermes-agent/agent/chat_completion_helpers.py",
+        "/path/to/hermes/.hermes/hermes-agent/run_agent.py",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json",
+        "/path/to/hermes/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
       ],
       "execution_criteria": [
         "Define the prompt-caching and RAG hook surfaces to capture cache hits/misses, prefix reuse, retrieval source, retrieval depth, fallback usage, latency, token savings, and answer-quality or review verdict signals.",
@@ -797,12 +797,12 @@
       ],
       "id": "HERMES-BL-0012",
       "links": [
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/backlog/backlog.json",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json"
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/agent-self-improvement-telemetry/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/backlog/backlog.json",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json"
       ],
       "notes": [
         "Current state: prompt caching is configured in ~/.hermes/config.yaml with cache_ttl=5m and OpenRouter response_cache enabled, while local RAG has a closed reusable profile/runbook but no durable learning loop yet.",
@@ -830,15 +830,15 @@
         "HERMES-BL-0012"
       ],
       "evidence": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/notes"
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/notes"
       ],
       "execution_criteria": [
-        "Resolve the notes vault path to /Users/bernardchase/.hermes/notes and verify the vault can host the minimal note set (project index, decision log, session summary, optional open-questions note).",
+        "Resolve the notes vault path to /path/to/hermes/.hermes/notes and verify the vault can host the minimal note set (project index, decision log, session summary, optional open-questions note).",
         "Define hook surfaces for note lifecycle events including create, read, update, link-follow, and write-back, and route them through the centralized hook router rather than ad hoc file logic.",
         "Capture redacted metadata for each note event, including project id, note type, relative path or path hash, operation, timestamp, hop count, source session id, and success/failure outcome.",
         "Keep the note workflow aligned with the selective retrieval policy: index first, then directly relevant linked notes, with no full-vault loading and no hidden fallback paths.",
@@ -847,7 +847,7 @@
       "history": [
         {
           "at": "2026-06-06T06:16:44Z",
-          "note": "Added a backlog recommendation to develop note-taking hooks for the Hermes notes vault using /Users/bernardchase/.hermes/notes as the vault root.",
+          "note": "Added a backlog recommendation to develop note-taking hooks for the Hermes notes vault using /path/to/hermes/.hermes/notes as the vault root.",
           "status": "proposed"
         },
         {
@@ -858,11 +858,11 @@
       ],
       "id": "HERMES-BL-0013",
       "links": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md"
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md"
       ],
       "notes": [
         "Use the notes subdirectory as the vault root for this recommendation.",
@@ -886,11 +886,11 @@
       "created_at": "2026-06-08T17:20:52Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/fixtures/blackrock_iwv_holdings_sample.csv",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/docs/russell_3000_universe_source.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/fixtures/blackrock_iwv_holdings_sample.csv",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/docs/russell_3000_universe_source.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
       ],
       "execution_criteria": [
         "Identify a canonical Russell 3000 constituent source and define a repeatable refresh path for the market project.",
@@ -913,11 +913,11 @@
       ],
       "id": "HERMES-BL-0014",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/fixtures/blackrock_iwv_holdings_sample.csv",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/docs/russell_3000_universe_source.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/src/collectors/SymbolManager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/test_symbol_manager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/tests/fixtures/blackrock_iwv_holdings_sample.csv",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/docs/russell_3000_universe_source.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market/CMakeLists.txt"
       ],
       "notes": [
         "Scope this recommendation to the market project working tree.",
@@ -925,7 +925,7 @@
       ],
       "priority": "P2",
       "project_id": "market",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/market",
       "status": "closed",
       "summary": "Ingest and normalize Russell 3000 constituents so the market project can query, refresh, and test against the broader U.S. equity symbol universe instead of relying only on S&P 500 plus ETF sources.",
       "tenant": "default",
@@ -943,14 +943,14 @@
       "created_at": "2026-06-12T00:00:00Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-model.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-recommendation-template.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Index.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md"
+        "/path/to/hermes/.hermes/notes/Research/Research Workflow.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-model.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-recommendation-template.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Index.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Decision Log.md"
       ],
       "execution_criteria": [
         "Define a canonical checklist structure for Hermes actions covering intake, inspection, action, verification, and closeout.",
@@ -973,10 +973,10 @@
       ],
       "id": "HERMES-BL-0015",
       "links": [
-        "/Users/bernardchase/.hermes/notes/Research/Research Workflow.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md"
+        "/path/to/hermes/.hermes/notes/Research/Research Workflow.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md"
       ],
       "notes": [
         "Use this recommendation to make Hermes activity tracking explicit and repeatable across daily work.",
@@ -1002,16 +1002,16 @@
       "created_at": "2026-06-12T00:00:00Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/backlog/backlog.json",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Index.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Engineering.md",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Loop Engineering.md",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/backlog/backlog.json",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Index.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Harness Engineering.md",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Loop Engineering.md",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
       ],
       "execution_criteria": [
         "Inventory the Hermes runtime and note surfaces relevant to harness and loop behavior.",
@@ -1034,12 +1034,12 @@
       ],
       "id": "HERMES-BL-0016",
       "links": [
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Engineering.md",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Loop Engineering.md",
-        "/Users/bernardchase/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Harness Engineering.md",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Loop Engineering.md",
+        "/path/to/hermes/.hermes/notes/Research/Agents/Harness Loop Synthesis.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Harness Loop Gap Analysis.md"
       ],
       "notes": [
         "Use this item to decide where Hermes already matches the research and where implementation work is still missing.",
@@ -1066,16 +1066,16 @@
       "created_at": "2026-06-12T00:00:00Z",
       "dependencies": [],
       "evidence": [
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/backlog/backlog.json",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/research-gap-analysis-and-activity-tracking.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/backlog/backlog.json",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/research-gap-analysis-and-activity-tracking.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/hermes-agent/tests/agent/test_learning_telemetry.py"
       ],
       "execution_criteria": [
         "Inventory the live Hermes hook, note, backlog, decision-memory, and workflow surfaces that can emit or consume checklist state.",
@@ -1099,12 +1099,12 @@
       ],
       "id": "HERMES-BL-0017",
       "links": [
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/config.yaml",
-        "/Users/bernardchase/.hermes/backlog/decision-memory.json",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Decision Log.md",
-        "/Users/bernardchase/.hermes/notes/Projects/hermes/Session Summary.md"
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/config.yaml",
+        "/path/to/hermes/.hermes/backlog/decision-memory.json",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Activity Tracking Checklist.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Decision Log.md",
+        "/path/to/hermes/.hermes/notes/Projects/hermes/Session Summary.md"
       ],
       "notes": [
         "Derived from the harness-and-loop gap analysis: the runtime has broad hook coverage and a durable decision-memory store, but checklist-aware routing and proactive memory surfacing remain missing.",
@@ -1151,16 +1151,16 @@
       ],
       "id": "HERMES-BL-0018",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/MetricsCalculator.hpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/MetricsCalculatorTest.cpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/MetricsCalculator.hpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/MetricsCalculatorTest.cpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Use the linked metrics code paths as the implementation starting point."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Remove duplicate TEMA work from the metrics pipeline so the same values are not recomputed unnecessarily.",
       "tenant": "default",
@@ -1199,15 +1199,15 @@
       ],
       "id": "HERMES-BL-0019",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/MetricsCalculatorTest.cpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/MetricsCalculatorTest.cpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Keep the rolling-window semantics identical even after the internal rewrite."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Replace rolling std/var rescans with incremental window math to cut repeated work.",
       "tenant": "default",
@@ -1246,15 +1246,15 @@
       ],
       "id": "HERMES-BL-0020",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/OptionsCalculator.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/OptionsCalculatorTest.cpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/OptionsCalculator.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/OptionsCalculatorTest.cpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Focus on stable numeric factors and fewer allocations in the pricing path."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Reduce binomial option-pricing overhead by removing repeated math and string work from the inner loop.",
       "tenant": "default",
@@ -1289,16 +1289,16 @@
       ],
       "id": "HERMES-BL-0021",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/OptionsCalculator.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/docs/c++.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/OptionsCalculator.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/docs/c++.md"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Preserve the current 252-row window semantics unless the implementation explicitly changes them."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Cache dividend-yield lookups so each contract does not rescan the same underlying history.",
       "tenant": "default",
@@ -1333,15 +1333,15 @@
       ],
       "id": "HERMES-BL-0022",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/DatabaseManager.hpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/DatabaseManager.hpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Keep the DB-layer change compatible with existing worker behavior."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Reuse or pool DB connections so repeated reads and writes do not reopen pqxx connections constantly.",
       "tenant": "default",
@@ -1380,16 +1380,16 @@
       ],
       "id": "HERMES-BL-0023",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "The handoff must keep the existing failure surface visible to operators."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Decouple compute from database writes so worker threads are not blocked by synchronous persistence.",
       "tenant": "default",
@@ -1424,15 +1424,15 @@
       ],
       "id": "HERMES-BL-0024",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Prefer a configurable knob rather than a hidden hard cap."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Remove the fixed eight-thread cap so the pipeline can scale with larger hosts.",
       "tenant": "default",
@@ -1462,16 +1462,16 @@
       ],
       "id": "HERMES-BL-0025",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/CMakeLists.txt",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/docs/c++.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/CMakeLists.txt",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/docs/c++.md"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Keep the optimization flags compatible with the documented container workflow."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Improve Release build flags so the compiler can better optimize hot numeric code paths.",
       "tenant": "default",
@@ -1501,16 +1501,16 @@
       ],
       "id": "HERMES-BL-0026",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/Types.hpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/StrategyEngine.cpp"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/Types.hpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/MetricsCalculator.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/StrategyEngine.cpp"
       ],
       "notes": [
         "Derived from the transform performance review.",
         "Prefer minimal changes to the external API while reshaping the internal hot path."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Rework the hot numeric data layout to improve cache locality and reduce memory traffic.",
       "tenant": "default",
@@ -1551,17 +1551,17 @@
       ],
       "id": "HERMES-BL-0027",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/PipelineMode.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/PipelineModeTest.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/PipelineMode.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/PipelineModeTest.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
       ],
       "notes": [
         "Derived from the transform runtime question about whether a single flag can run all four transforms.",
         "Keep this item focused on CLI orchestration and user-facing command shape, not on changing valuation math or pipeline internals."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Introduce one transform CLI option that executes daily 1d, daily 1m, incremental options, and snapshot options in a single run.",
       "tenant": "default",
@@ -1598,11 +1598,11 @@
       ],
       "id": "HERMES-BL-0028",
       "links": [
-        "/Users/bernardchase/.hermes/backlog/backlog.json",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/backlog-intake-template.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-recommendation-template.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/SKILL.md"
+        "/path/to/hermes/.hermes/backlog/backlog.json",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/backlog-intake-template.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/project-backlog-recommendation-template.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/SKILL.md"
       ],
       "notes": [
         "This directory is ~/.hermes; prefer explicit defaulting rather than post-hoc cleanup.",
@@ -1647,12 +1647,12 @@
       ],
       "id": "HERMES-BL-0029",
       "links": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/config.yaml"
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/references/vault-activation-checklist.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/config.yaml"
       ],
       "notes": [
         "Keep the vault root inside this Hermes workspace so the notes stay colocated with the project metadata.",
@@ -1700,13 +1700,13 @@
       ],
       "id": "HERMES-BL-0030",
       "links": [
-        "/Users/bernardchase/.hermes/skills/note-taking/obsidian/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
-        "/Users/bernardchase/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
-        "/Users/bernardchase/.hermes/skills/productivity/workflow-traceability/SKILL.md",
-        "/Users/bernardchase/.hermes/agent-hooks/hook_router.py",
-        "/Users/bernardchase/.hermes/config.yaml"
+        "/path/to/hermes/.hermes/skills/note-taking/obsidian/SKILL.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/obsidian-context-layer.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/local-rag-profile.md",
+        "/path/to/hermes/.hermes/skills/devops/kanban-orchestrator/references/workflow-registry.md",
+        "/path/to/hermes/.hermes/skills/productivity/workflow-traceability/SKILL.md",
+        "/path/to/hermes/.hermes/agent-hooks/hook_router.py",
+        "/path/to/hermes/.hermes/config.yaml"
       ],
       "notes": [
         "Keep Hermes memory separate from Obsidian note state; only durable project context belongs in the vault.",
@@ -1751,17 +1751,17 @@
       ],
       "id": "HERMES-BL-0031",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/PipelineModeTest.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/tests/PipelineModeTest.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
       ],
       "notes": [
         "This is a structural runtime change, not a tuning task.",
         "Keep the scope on the transform repo and preserve the existing command-line surface unless the implementation needs a documented wrapper change."
       ],
       "priority": "P1",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Replace the current std::thread worker pool with process-based parallelism so transform work runs in separate OS processes instead of one shared process.",
       "tenant": "default",
@@ -1793,17 +1793,17 @@
       ],
       "id": "HERMES-BL-0032",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/Main.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/DatabaseManager.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/src/cpp/include/WorkerPool.hpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform/README.md"
       ],
       "notes": [
         "This item is an evaluation first, not an implementation commitment.",
         "Treat the existing DB connection reuse and compute/write decoupling backlog items as related context, not as a substitute for the assessment."
       ],
       "priority": "P2",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/transform",
       "status": "closed",
       "summary": "Assess whether the current write path needs extra caching or buffering to keep PostgreSQL writes stable under higher transform throughput.",
       "tenant": "default",
@@ -1845,8 +1845,8 @@
       ],
       "id": "HERMES-BL-0033",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/compose.yaml",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/Dockerfile"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/compose.yaml",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/Dockerfile"
       ],
       "notes": [
         "Focus on db-postgres database unordered_map only; ignore the postgres database and cohida-db.",
@@ -1855,7 +1855,7 @@
       ],
       "priority": "P1",
       "project_id": "db",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db",
       "status": "proposed",
       "summary": "Create a daily workflow against the unordered_map database inside db-postgres that reviews the live symbol universe, uses the populated priority_queue tables as source data, and produces next-day action items with traceable inputs.",
       "tenant": "default",
@@ -1925,13 +1925,13 @@
       ],
       "id": "HERMES-BL-0035",
       "links": [
-        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/software-development/software-development-workflows/references/legacy-skill-aliases.md",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/software-development/plan/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/executing-plans/SKILL.md",
-        "/Users/bernardchase/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
-        "/Users/bernardchase/.hermes/backlog/backlog.json"
+        "/path/to/hermes/.hermes/skills/software-development/software-development-workflows/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/software-development-workflows/references/legacy-skill-aliases.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md",
+        "/path/to/hermes/.hermes/skills/software-development/plan/SKILL.md",
+        "/path/to/hermes/.hermes/skills/executing-plans/SKILL.md",
+        "/path/to/hermes/.hermes/skills/autonomous-ai-agents/mixture-of-agents/SKILL.md",
+        "/path/to/hermes/.hermes/backlog/backlog.json"
       ],
       "notes": [
         "Treat this as a consolidation/promotion traceability problem, not only a deleted-file recovery.",
@@ -1977,11 +1977,11 @@
       ],
       "id": "HERMES-BL-0036",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/SimulatedTradingService.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/TradingStatsService.cpp",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/components/dashboard/SimulatedTradingPanel.tsx",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/FRONTEND_ARCHITECTURE.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/SimulatedTradingService.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trading/TradingStatsService.cpp",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/frontend/components/dashboard/SimulatedTradingPanel.tsx",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/FRONTEND_ARCHITECTURE.md"
       ],
       "notes": [
         "Reference the companion plan document for the full checklist and verification sequence; treat it as the source-of-truth spec for this item.",
@@ -1989,7 +1989,7 @@
       ],
       "priority": "P0",
       "project_id": "trade",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "status": "closed",
       "summary": "Verify the simulated trading statistics widget on the trade dashboard calculates trade-level and portfolio-level metrics accurately from the canonical backend source.",
       "tenant": "default",
@@ -2029,11 +2029,11 @@
       ],
       "id": "HERMES-BL-0037",
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/model_trainer.py",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/training_manager.py",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/feature_engineer.py",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/unused_code_report.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/model_trainer.py",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/training_manager.py",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/src/trade_bot/ml/feature_engineer.py",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/unused_code_report.md"
       ],
       "notes": [
         "Use the validated statistics baseline from HERMES-BL-0036 before proposing trading-performance improvements.",
@@ -2041,7 +2041,7 @@
       ],
       "priority": "P1",
       "project_id": "trade",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "status": "closed",
       "summary": "Analyze executed trade history and performance metrics to recommend concrete training changes that improve trading performance.",
       "tenant": "default",
@@ -2058,11 +2058,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2099,11 +2099,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2140,11 +2140,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2181,11 +2181,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2222,11 +2222,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2263,11 +2263,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2304,11 +2304,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2345,11 +2345,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2386,11 +2386,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2427,11 +2427,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2468,11 +2468,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2509,11 +2509,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2550,11 +2550,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2591,11 +2591,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2632,11 +2632,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2673,11 +2673,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2714,11 +2714,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2755,11 +2755,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2796,11 +2796,11 @@
       "updated_at": "2026-06-21T21:05:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2837,7 +2837,7 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [
         "HERMES-BL-0060",
         "HERMES-BL-0061",
@@ -2849,8 +2849,8 @@
         "HERMES-BL-0067"
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2891,7 +2891,7 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [
         "HERMES-BL-0068",
         "HERMES-BL-0069",
@@ -2901,8 +2901,8 @@
         "HERMES-BL-0073"
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2943,7 +2943,7 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [
         "HERMES-BL-0074",
         "HERMES-BL-0075",
@@ -2957,8 +2957,8 @@
         "HERMES-BL-0083"
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md"
       ],
       "notes": [
         "Use the evidence report from the 2026-06-21 live simulated-trading session as the observed baseline.",
@@ -2999,12 +2999,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3041,12 +3041,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3083,12 +3083,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3125,12 +3125,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3167,12 +3167,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3209,12 +3209,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3251,12 +3251,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3293,12 +3293,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3335,12 +3335,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3377,12 +3377,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3419,12 +3419,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3461,12 +3461,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3503,12 +3503,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3545,12 +3545,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3587,12 +3587,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3629,12 +3629,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3671,12 +3671,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3713,12 +3713,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3755,12 +3755,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3797,12 +3797,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3839,12 +3839,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3881,12 +3881,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3923,12 +3923,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -3965,12 +3965,12 @@
       "updated_at": "2026-06-21T21:20:00Z",
       "project_id": "trade",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-18_105225-trade-backlog-recommendations.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/docs/reports/simulated-trading-tab-evidence-2026-06-21.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.hermes/plans/2026-06-21_simulated-trading-test-rollout-plan.md"
       ],
       "notes": [
         "Use the 2026-06-21 live simulated-trading evidence report as the baseline fixture.",
@@ -4007,10 +4007,10 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4046,10 +4046,10 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4085,14 +4085,14 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         84,
         85
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4129,13 +4129,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         84,
         85
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4172,10 +4172,10 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4211,12 +4211,12 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         88
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4252,13 +4252,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         88,
         89
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4294,14 +4294,14 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         88,
         90
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4337,10 +4337,10 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4376,12 +4376,12 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         92
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4417,10 +4417,10 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4456,14 +4456,14 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         84,
         85,
         94
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4499,13 +4499,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         88,
         90
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4541,14 +4541,14 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         84,
         85,
         87
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4584,14 +4584,14 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         84,
         85,
         87
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4627,13 +4627,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         98,
         97
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md"
       ],
       "notes": [
         "Imported from docs/TODO.md.",
@@ -4669,11 +4669,11 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
       ],
       "notes": [
         "Imported from docs/cpp_todo.md.",
@@ -4709,13 +4709,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         100
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
       ],
       "notes": [
         "Imported from docs/cpp_todo.md.",
@@ -4752,13 +4752,13 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         101
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
       ],
       "notes": [
         "Imported from docs/cpp_todo.md.",
@@ -4794,16 +4794,16 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         86,
         91,
         98
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/TODO.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md"
       ],
       "notes": [
         "Imported from docs/cpp_todo.md.",
@@ -4839,16 +4839,16 @@
       "updated_at": "2026-06-22T03:40:43Z",
       "project_id": "cohida",
       "tenant": "default",
-      "scope": "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
+      "scope": "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida",
       "dependencies": [
         101,
         102,
         103
       ],
       "links": [
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md",
-        "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/cpp_todo.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/docs/recommended_github_actions.md",
+        "/path/to/hermes/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/README.md"
       ],
       "notes": [
         "Imported from docs/cpp_todo.md.",
