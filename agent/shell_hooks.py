@@ -13,9 +13,10 @@ Design notes
   :func:`hermes_cli.plugins.invoke_hook` and its aggregators.  Python
   plugins are registered first (via ``discover_and_load()``) so their
   block decisions win ties over shell-hook blocks.
-* Subprocess execution uses ``shlex.split(os.path.expanduser(command))``
+* Subprocess execution uses ``shlex.split(os.path.expandvars(os.path.expanduser(command)))``
   with ``shell=False`` — no shell injection footguns.  Users that need
-  pipes/redirection wrap their logic in a script.
+  pipes/redirection wrap their logic in a script.  Unset variables remain
+  literal, so a missing profile/home input fails closed as ``command not found``.
 * First-use consent is gated by the allowlist under
   ``~/.hermes/shell-hooks-allowlist.json``.  Non-TTY callers must pass
   ``accept_hooks=True`` (resolved from ``--accept-hooks``,
@@ -380,7 +381,11 @@ def _spawn(spec: ShellHookSpec, stdin_json: str) -> Dict[str, Any]:
         "error": None,
     }
     try:
-        argv = shlex.split(os.path.expanduser(spec.command))
+        # Expand profile/project variables without invoking a shell.  Keep
+        # unresolved placeholders intact so missing configuration cannot
+        # accidentally target a different local path.
+        command = os.path.expandvars(os.path.expanduser(spec.command))
+        argv = shlex.split(command)
     except ValueError as exc:
         result["error"] = f"command {spec.command!r} cannot be parsed: {exc}"
         return result
