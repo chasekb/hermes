@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import importlib.util
+import shutil
 import subprocess
 
 import pytest
@@ -42,7 +43,7 @@ def test_hooks_and_mcp_paths_use_portable_variables() -> None:
     assert commands
     assert all("/Users/bernardchase" not in value for value in commands)
     assert any("${HERMES_HOME}" in value for value in commands)
-    assert any("${HERMES_PROJECT_ROOT" in value for value in commands)
+    assert any("${HERMES_POSTGRES_" in value for value in commands)
 
 
 def test_hook_path_resolves_from_profile_home_without_shell_execution() -> None:
@@ -60,13 +61,15 @@ def test_hook_path_resolves_from_profile_home_without_shell_execution() -> None:
             os.environ["HERMES_HOME"] = previous
 
 
-def test_missing_project_root_is_explicitly_fail_closed() -> None:
+def test_missing_postgres_env_is_explicitly_fail_closed() -> None:
     servers = _config()["mcp_servers"]
     postgres = [servers[name] for name in servers if name.startswith("postgres-")]
     assert len(postgres) == 4
     for server in postgres:
         wrapper = server["args"][-1]
-        assert '${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}' in wrapper
+        assert "set -euo pipefail" in wrapper
+        assert ': "${HERMES_POSTGRES_' in wrapper
+        assert 'source "$HERMES_POSTGRES_' in wrapper
         assert "export DB_READ_ONLY=true" in wrapper
 
 
@@ -88,8 +91,11 @@ def test_missing_postgres_env_prevents_mcp_launch(tmp_path: Path) -> None:
         )
         variable = f"HERMES_{env_name}_ENV"
         result = subprocess.run(
-            ["bash", "-lc", wrapper],
-            env={"PATH": str(tmp_path), variable: str(tmp_path / "missing.env")},
+            [shutil.which("bash") or "/bin/bash", "-lc", wrapper],
+            env={
+                "PATH": str(tmp_path) + os.pathsep + os.environ["PATH"],
+                variable: str(tmp_path / "missing.env"),
+            },
             capture_output=True,
             text=True,
             check=False,
