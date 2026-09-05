@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import importlib.util
+import subprocess
 
 import pytest
 import yaml
@@ -67,6 +68,34 @@ def test_missing_project_root_is_explicitly_fail_closed() -> None:
         wrapper = server["args"][-1]
         assert '${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}' in wrapper
         assert "export DB_READ_ONLY=true" in wrapper
+
+
+def test_missing_postgres_env_prevents_mcp_launch(tmp_path: Path) -> None:
+    servers = _config()["mcp_servers"]
+    sentinel = tmp_path / "npx-launched"
+    fake_npx = tmp_path / "npx"
+    fake_npx.write_text(f"#!/bin/sh\ntouch {sentinel}\n", encoding="utf-8")
+    fake_npx.chmod(0o755)
+
+    for name, server in servers.items():
+        if not name.startswith("postgres-"):
+            continue
+        wrapper = server["args"][-1]
+        env_name = next(
+            line.split("HERMES_", 1)[1].split("_ENV", 1)[0]
+            for line in wrapper.splitlines()
+            if line.strip().startswith(": \"${HERMES_")
+        )
+        variable = f"HERMES_{env_name}_ENV"
+        result = subprocess.run(
+            ["bash", "-lc", wrapper],
+            env={"PATH": str(tmp_path), variable: str(tmp_path / "missing.env")},
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        assert result.returncode != 0, name
+        assert not sentinel.exists(), name
 
 
 def test_local_state_paths_are_profile_relative() -> None:

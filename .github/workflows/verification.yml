@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install configuration test dependencies
+        run: python -m pip install --disable-pip-version-check 'pytest==9.0.2' 'pyyaml==6.0.3'
+
       - name: Validate research notes and skill artifacts
         run: |
           python - <<'PY'
@@ -72,3 +75,6 @@ jobs:
 
       - name: Validate portable Hermes configuration
         run: python scripts/check_config_portability.py
+
+      - name: Test portable Hermes configuration contract
+        run: python -m pytest -q tests/test_portable_config_paths.py
