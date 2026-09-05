@@ -69,3 +69,6 @@ jobs:
 
           print('verification-ok')
           PY
+
+      - name: Validate portable Hermes configuration
+        run: python scripts/check_config_portability.py
