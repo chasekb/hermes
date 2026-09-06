@@ -3380,7 +3380,7 @@ class DiscordAdapter(BasePlatformAdapter):
         and the handler both read from these instance attributes
         directly, so an in-place mutation is sufficient.
         """
-        from hermes_cli.commands import discord_skill_commands_by_category
+        from hermes_cli.commands_platforms import discord_skill_commands_by_category
 
         reserved = getattr(self, "_skill_group_reserved_names", set())
         categories, uncategorized, hidden = discord_skill_commands_by_category(

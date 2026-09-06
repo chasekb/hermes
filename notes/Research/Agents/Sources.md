@@ -1529,3 +1529,46 @@ Central source registry for the harness and loop research pages.
 - Google ADK commit, add `ignore_args` to tool-trajectory evaluation
   - https://github.com/google/adk-python/commit/e2a213f5e4c56d3aa4b5129d5c9db644b0543ceb
   - Why it matters: trajectory scoring can compare tool names and ordering without argument equality across exact, in-order, and any-order modes, allowing harnesses to separate tool-selection quality from argument-fidelity quality.
+
+## 2026-09-04 review addendum
+- Google ADK commit, initialize Anthropic client off the event loop
+  - https://github.com/google/adk-python/commit/e4210172e995a3fbe62e62734968a667a837013b
+  - Why it matters: uses a shared initialization task and `asyncio.to_thread` so concurrent callers construct one client without blocking the event loop; cancellation is shielded until initialization settles.
+- Google ADK commit, handle failed inference cases in the GEPA pipeline
+  - https://github.com/google/adk-python/commit/7bffb0af29ebfc42b5e5248bdfebff9828f525e8
+  - Why it matters: failed or missing inference results become explicit failed evaluations, and missing sampled examples receive a zero score with empty evidence instead of aborting or silently disappearing from an optimization batch.
+- Google ADK commit, refactor functional telemetry scenarios into multiple files
+  - https://github.com/google/adk-python/commit/30e0a2675689a5ac205becfbc2c7c4953ed87ef0
+  - Why it matters: separates scenario graphs, canned conversations, model/instrumentation setup, MCP, skills, and exporters, making telemetry golden coverage reusable and scenario identity explicit.
+- Google ADK commit, cancel invocation when a sync run generator closes early
+  - https://github.com/google/adk-python/commit/080d5e7829be649c8928f7afcd58befa8303b91b
+  - Why it matters: closes the cancellation gap for synchronous generator consumers, so early consumer termination propagates to the invocation rather than leaving loop work running.
+- Google ADK commit, end inference spans at the finish reason
+  - https://github.com/google/adk-python/commit/6364060916d8e757b370c8ddf18ba390e94f402b
+  - Why it matters: keeps streaming inference spans open through partial chunks and closes them at semantic completion, making telemetry duration correspond to the completed model turn.
+- Google ADK commit, treat error events without function calls as final responses
+  - https://github.com/google/adk-python/commit/75ae2dbf948ac3911f3f4d6026f7c092d9950a9d
+  - Why it matters: makes an error-only provider event terminal instead of allowing the loop to wait for a function call that will never arrive.
+- Google ADK commit, skip summarization for terminal A2A task states
+  - https://github.com/google/adk-python/commit/aef3a9c4d43c1fff961c2dd6dde920851248c69a
+  - Why it matters: prevents post-terminal summarization work from reopening or extending an already completed remote task.
+- Google ADK commit, close task-mode delegation when the remote agent finishes
+  - https://github.com/google/adk-python/commit/4cd8aa4043277b7c40aabad77ebb7c8bd11c6ca0
+  - Why it matters: maps remote completion to local delegation closeout, giving task-mode loops an explicit terminal transition.
+
+## 2026-09-05 review addendum
+- Google ADK commit, propagate context variables from tool preparation to execution
+  - https://github.com/google/adk-python/commit/0b75a66d17a8b8a251c5f2bd903d47a4bdf05dc
+  - Why it matters: captures the context left by before-tool callbacks and starts each execution task from a copied snapshot, preserving callback-set context without leaking changes between parallel calls or to the caller.
+- Google ADK commit, log and select the first model candidate
+  - https://github.com/google/adk-python/commit/25f5214c83f56b2fcffd35757e886026632f3c2b
+  - Why it matters: detects multiple/indexed candidates, logs an explicit error, filters streaming responses to index zero, and preserves the latest usage metadata on the aggregate response instead of silently combining candidates.
+- OpenAI Agents JS commit, drain PTY output after target exit and decode UTF-8 incrementally
+  - https://github.com/openai/openai-agents-js/commit/e6c3663017e3e36af67370a4bc09db674ef0fd9f
+  - Why it matters: the PTY implementation and focused tests establish that queued output is drained after target completion and split UTF-8 sequences round-trip correctly.
+- OpenAI Agents JS commit, reset compaction state when clearing a session
+  - https://github.com/openai/openai-agents-js/commit/8a98743495b460d73b492b066f10954e41b19814
+  - Why it matters: clearing a compaction session now invalidates its prior response ID and storage state, preventing a later previous-response compaction from using stale provider continuation metadata.
+- OpenAI Agents JS commit, run repository skill tests in a dedicated CI lane
+  - https://github.com/openai/openai-agents-js/commit/32612641bbdeda4fc35065546aa3c58bc8d4bd92
+  - Why it matters: adds an offline, environment-isolated runner and CI workflow for repository skill/helper contracts, with explicit suite ordering and failure propagation separate from the SDK test suite.

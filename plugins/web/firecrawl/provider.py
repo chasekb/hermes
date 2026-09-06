@@ -139,8 +139,9 @@ def _get_direct_firecrawl_config() -> Optional[tuple]:
 def _get_firecrawl_gateway_url() -> str:
     """Return the configured Firecrawl gateway URL."""
     import tools.web_tools as _wt
+    from tools.managed_tool_gateway import build_vendor_gateway_url
 
-    return _wt.build_vendor_gateway_url("firecrawl")
+    return build_vendor_gateway_url("firecrawl")
 
 
 def _is_tool_gateway_ready() -> bool:
@@ -153,9 +154,10 @@ def _is_tool_gateway_ready() -> bool:
     :mod:`tools.web_tools` for exactly this reason.
     """
     import tools.web_tools as _wt
+    from tools.managed_tool_gateway import read_nous_access_token, resolve_managed_tool_gateway
 
-    return _wt.resolve_managed_tool_gateway(
-        "firecrawl", token_reader=_wt._read_nous_access_token
+    return resolve_managed_tool_gateway(
+        "firecrawl", token_reader=read_nous_access_token
     ) is not None
 
 
@@ -176,8 +178,9 @@ def check_firecrawl_api_key() -> bool:
 def _firecrawl_backend_help_suffix() -> str:
     """Return optional managed-gateway guidance for Firecrawl help text."""
     import tools.web_tools as _wt
+    from tools.tool_backend_helpers import managed_nous_tools_enabled
 
-    if not _wt.managed_nous_tools_enabled():
+    if not managed_nous_tools_enabled():
         return ""
     return (
         ", or use the Nous Tool Gateway via your subscription "
@@ -188,13 +191,14 @@ def _firecrawl_backend_help_suffix() -> str:
 def _raise_web_backend_configuration_error() -> None:
     """Raise a clear error for unsupported web backend configuration."""
     import tools.web_tools as _wt
+    from tools.tool_backend_helpers import managed_nous_tools_enabled
 
     message = (
         "Web tools are not configured. "
         "Set FIRECRAWL_API_KEY for cloud Firecrawl or set FIRECRAWL_API_URL "
         "for a self-hosted Firecrawl instance."
     )
-    if _wt.managed_nous_tools_enabled():
+    if managed_nous_tools_enabled():
         message += (
             " With your Nous subscription you can also use the Tool Gateway — "
             "run `hermes tools` and select Nous Subscription as the web provider."
@@ -221,13 +225,15 @@ def _get_firecrawl_client() -> Any:
     :func:`_is_tool_gateway_ready`.
     """
     import tools.web_tools as _wt
+    from tools.managed_tool_gateway import read_nous_access_token, resolve_managed_tool_gateway
+    from tools.tool_backend_helpers import prefers_gateway
 
     direct_config = _get_direct_firecrawl_config()
-    if direct_config is not None and not _wt.prefers_gateway("web"):
+    if direct_config is not None and not prefers_gateway("web"):
         kwargs, client_config = direct_config
     else:
-        managed_gateway = _wt.resolve_managed_tool_gateway(
-            "firecrawl", token_reader=_wt._read_nous_access_token
+        managed_gateway = resolve_managed_tool_gateway(
+            "firecrawl", token_reader=read_nous_access_token
         )
         if managed_gateway is None:
             logger.error(
@@ -253,7 +259,7 @@ def _get_firecrawl_client() -> Any:
 
     # Construct via the re-exported Firecrawl proxy on tools.web_tools so
     # unit tests patching ``tools.web_tools.Firecrawl`` see their mock.
-    _wt._firecrawl_client = _wt.Firecrawl(**kwargs)
+    _wt._firecrawl_client = Firecrawl(**kwargs)
     _wt._firecrawl_client_config = client_config
     return _wt._firecrawl_client
 

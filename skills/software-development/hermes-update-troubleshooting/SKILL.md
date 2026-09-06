@@ -56,7 +56,19 @@ If `gh` is not authenticated, stop at the auth boundary and ask the user to auth
 - Use `--no-backup` only when explicitly accepted and a safe recovery path is understood.
 - Treat dependency sync, UI build, skill sync, and gateway restart as separate success signals.
 
-### 4. Verify with the right interpreter
+### 4. Repair and verify gateway service lifecycle
+
+When the update warning or pane shows gateway startup/restart trouble, treat the service manager as a separate boundary from the Python process:
+
+1. Inspect `hermes gateway status`, `launchctl print gui/$(id -u)/ai.hermes.gateway` on macOS, or the corresponding systemd unit, plus the newest `logs/gateway.log` and `logs/gateway.error.log` lines.
+2. Compare the service's complete `ProgramArguments`/`ExecStart` with the current CLI parser. A generated supervisor-only flag that the live entry point rejects causes an immediate crash loop even when foreground `hermes gateway run` works.
+3. Refresh the definition with `hermes gateway install` (use `--force` only when the normal repair path does not rewrite it), then explicitly run `hermes gateway start`.
+4. Verify both the manager state and the child process; a successful start command is insufficient if launchd/systemd reports a nonzero last exit or the logs show an argparse error.
+5. If a platform is being retried without usable credentials, either configure its secret or set that platform's `enabled: false` in `config.yaml` before restarting; do not leave a known-unconfigured adapter in a retry loop.
+
+Do not delete update markers or declare the fleet current until a newly started gateway has stamped current runtime identity and the service manager reports it healthy.
+
+### 5. Verify with the right interpreter
 
 Run `hermes update --check`, `hermes doctor`, and the repository's targeted tests using its managed interpreter or test runner. Do not infer a product regression from `python -m pytest` until confirming that `python` points at the intended environment and pytest is installed there. Distinguish missing test tooling, missing runtime dependencies, and real source/test failures after collection succeeds. Record the exact interpreter path and command when verification is blocked.
 

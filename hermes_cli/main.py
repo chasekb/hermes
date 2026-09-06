@@ -11207,6 +11207,11 @@ def main():
         action="store_true",
         help="Replace any existing gateway instance (useful for systemd)",
     )
+    gateway_run.add_argument(
+        "--external-supervisor",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
     _add_accept_hooks_flag(gateway_run)
     _add_accept_hooks_flag(gateway_parser)
 
