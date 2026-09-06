@@ -35,7 +35,14 @@
 /audio_cache/
 /image_cache/
 /cache/
-/cron/
+/cron/*.db
+/cron/*.db-*
+/cron/.*.lock
+/cron/catch_up_occurrences
+/cron/jobs.json
+/cron/output/
+/cron/ticker_*
+/cron/usage_audit.jsonl
 /kanban/
 /logs/
 /memories/
@@ -57,16 +64,28 @@
 /kanban.db.dispatch.lock
 /skills/.curator_backups/
 /.curator_backups/
+/skills/.curator_ledger.jsonl
 
 # Local locks, restart markers, and generated runtime state.
 /.backup.lock
 /.env.backup-*
+/.mcp-discovery.lock
 /.gateway-planned-stop.json
 /.install_id.lock
 /.worktrees/
 /fleet_restart_pending
 /gateway-starts.log
 /install_id
+/interrupt_debug.log
+/clean_shutdown
+/.clean_shutdown
+/kanban.db
+/kanban.db.init.lock
+/memory_store.db
+/models_dev_cache.etag
+/projects.db
+/shell-hooks-allowlist.json
+/shell-hooks-allowlist.json.lock
 /rollback/
 /runtime/
 /state/
@@ -75,6 +94,9 @@
 /terminal-sessions/
 *.db-shm
 *.db-wal
+/.npm_lock_hash_*
+/verification_evidence.db
+/web-ui-build-stamp.json
 
 # Editor / OS clutter.
 .DS_Store
