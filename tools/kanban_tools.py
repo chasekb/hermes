@@ -34,6 +34,7 @@ import os
 from typing import Any, Optional
 
 from tools.registry import registry, tool_error
+from hermes_cli.kanban_github import GitHubAcceptanceError, validate_published_pr
 
 logger = logging.getLogger(__name__)
 
@@ -464,6 +465,22 @@ def _handle_complete(args: dict, **kw) -> str:
         return tool_error(
             f"metadata must be an object/dict, got {type(metadata).__name__}"
         )
+    if isinstance(metadata, dict) and metadata.get("published_pr"):
+        # Keep the GitHub readback in the worker process, before the DB
+        # transition.  A transient API failure therefore leaves the task
+        # retryable instead of recording an unverified completion.
+        try:
+            metadata = validate_published_pr(
+                metadata,
+                cwd=os.environ.get("HERMES_KANBAN_WORKSPACE") or None,
+            )
+        except GitHubAcceptanceError as exc:
+            logger.warning(
+                "kanban_complete GitHub acceptance failed phase=%s code=%s",
+                exc.phase,
+                exc.code,
+            )
+            return tool_error(str(exc))
     metadata = _stamp_worker_session_metadata(tid, metadata)
     board = args.get("board")
     try:
