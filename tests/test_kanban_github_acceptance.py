@@ -91,3 +91,79 @@ def test_kanban_complete_uses_verified_metadata_before_transition(monkeypatch):
 
     assert json.loads(result)["ok"] is True
     assert captured["metadata"]["github_acceptance"] == {"verified": True}
+
+
+def test_kanban_complete_retries_transient_github_read_before_transition(monkeypatch):
+    import tools.kanban_tools as kanban_tools
+
+    captured = {}
+    responses = [
+        (1, "", "temporary GitHub failure"),
+        *[
+            (0, json.dumps(value), "")
+            for value in (
+                {
+                    "state": "closed",
+                    "merged_at": "2026-09-11T00:00:00Z",
+                    "head": {"sha": HEAD},
+                    "merge_commit_sha": MERGE,
+                },
+                {"check_runs": [{"name": "verification", "conclusion": "success"}]},
+                {"head_sha": HEAD, "status": "completed", "conclusion": "success"},
+                {"jobs": [{"id": 1, "name": "verification", "conclusion": "success"}]},
+            )
+            * 2
+        ],
+    ]
+    calls = []
+
+    def runner(argv, env, cwd):
+        calls.append((tuple(argv), dict(env), cwd))
+        return responses.pop(0)
+
+    real_validator = kanban_tools.validate_published_pr
+
+    def validator(metadata, **kwargs):
+        return real_validator(metadata, runner=runner, **kwargs)
+
+    class FakeRun:
+        id = 7
+
+    class FakeConn:
+        def close(self):
+            pass
+
+    class FakeDb:
+        @staticmethod
+        def complete_task(conn, tid, **kwargs):
+            captured.update(kwargs)
+            return True
+
+        @staticmethod
+        def latest_run(conn, tid):
+            return FakeRun()
+
+    monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
+    monkeypatch.setattr(kanban_tools, "_connect", lambda board=None: (FakeDb, FakeConn()))
+    monkeypatch.setattr(kanban_tools, "validate_published_pr", validator)
+
+    result = kanban_tools._handle_complete(
+        {
+            "task_id": "t_worker",
+            "summary": "verified",
+            "metadata": {
+                "published_pr": PR_URL,
+                "pr_head_sha": HEAD,
+                "merge_sha": MERGE,
+                "required_checks": [{"name": "verification"}],
+                "terminal_run": {"id": 34584147928},
+            },
+        }
+    )
+
+    payload = json.loads(result)
+    assert payload["ok"] is True
+    assert captured["metadata"]["github_acceptance"]["pr_head_sha"] == HEAD
+    assert captured["metadata"]["github_acceptance"]["terminal_run"]["id"] == 34584147928
+    assert len(calls) == 9
+    assert all(call[1] == dict(kanban_tools.os.environ) for call in calls)
