@@ -1,0 +1,113 @@
+name: Control-plane boundary
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate control-plane boundary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate tracked content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import pathlib
+          import re
+          import subprocess
+
+          root = pathlib.Path('.')
+          files = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          files = [pathlib.Path(name) for name in files if name]
+          required = {
+              pathlib.Path('README.md'),
+              pathlib.Path('CONTROL_PLANE_MANIFEST.md'),
+              pathlib.Path('SOUL.md'),
+              pathlib.Path('config.yaml'),
+              pathlib.Path('notes/Projects/hermes/Hermes Agent Decision Plane.md'),
+          }
+          missing = sorted(str(path) for path in required if not path.is_file())
+          if missing:
+              raise SystemExit(f'missing required control-plane files: {missing}')
+
+          forbidden_prefixes = (
+              'agent/', 'agent-hooks/', 'acp_adapter/', 'gateway/', 'hermes_cli/',
+              'plugins/', 'providers/', 'tools/', 'tests/', 'lsp/',
+          )
+          forbidden_files = {
+              'pyproject.toml', 'setup.py', 'package.json', 'package-lock.json',
+              'run_agent.py', 'cli.py', 'hermes_bootstrap.py', 'mcp_serve.py',
+          }
+          violations = [
+              str(path) for path in files
+              if str(path).startswith(forbidden_prefixes) or str(path) in forbidden_files
+          ]
+          if violations:
+              raise SystemExit(f'forbidden source/runtime paths tracked: {violations}')
+
+          generic_home_user = r'(?:user|username|example|your(?:-?name|-?user))'
+          private_path = re.compile(
+              rf'/(?:home|Users)/(?!{generic_home_user}(?:[/`\s]|$))'
+              r'[^/\s]+/(?!\.hermes/hermes-agent(?:[/`]|$))'
+          )
+          allowed_doc_paths = {
+              pathlib.Path('README.md'),
+              pathlib.Path('CONTROL_PLANE_MANIFEST.md'),
+              pathlib.Path('notes/Projects/hermes/Hermes Agent Decision Plane.md'),
+          }
+          private_hits = []
+          for path in files:
+              text = path.read_text(encoding='utf-8', errors='replace')
+              if path not in allowed_doc_paths and private_path.search(text):
+                  private_hits.append(str(path))
+              if path.name == '.env' or path.name.endswith('.env') or path.name.endswith('.env.example'):
+                  raise SystemExit(f'private environment file tracked: {path}')
+          if private_hits:
+              raise SystemExit(f'personal absolute paths tracked outside architecture docs: {private_hits}')
+
+          source_skill_markers = (
+              'hermes-s6-container-supervision',
+              'tools/mixture_of_agents_tool.py',
+              'agent/auxiliary_client.py',
+              'hermes_cli/commands.py',
+          )
+          source_skill_hits = []
+          for path in files:
+              if str(path).startswith('skills/'):
+                  text = path.read_text(encoding='utf-8', errors='replace')
+                  if any(marker in text for marker in source_skill_markers):
+                      source_skill_hits.append(str(path))
+          if source_skill_hits:
+              raise SystemExit(f'source-only skill markers found: {source_skill_hits}')
+
+          for path in files:
+              if path.suffix == '.json':
+                  json.loads(path.read_text(encoding='utf-8'))
+          print(f'validated {len(files)} tracked control-plane files')
+          PY
+      - name: Validate YAML and JSON syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import pathlib
+          import subprocess
+          files = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          for name in files:
+              if name.endswith('.json'):
+                  json.loads(pathlib.Path(name).read_text(encoding='utf-8'))
+          PY
+          while IFS= read -r -d '' file; do
+            ruby -e 'require "yaml"; YAML.load_file(ARGV.fetch(0), aliases: true)' "$file"
+          done < <(git ls-files -z '*.yml' '*.yaml')
+          echo 'YAML and JSON syntax validated'

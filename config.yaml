@@ -493,80 +493,7 @@ approvals:
 command_allowlist:
 - shell command via -c/-lc flag
 quick_commands: {}
-hooks:
-  pre_tool_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  post_tool_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  transform_terminal_output:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  transform_tool_result:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  transform_llm_output:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  pre_llm_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  post_llm_call:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  pre_api_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  post_api_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  on_session_start:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  on_session_end:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  on_session_finalize:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  on_session_reset:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  subagent_stop:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_start:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_retry:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_reference_complete:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_reference_error:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_review:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_synthesis:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  moa_end:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  pre_gateway_dispatch:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  pre_approval_request:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-  post_approval_response:
-  - command: /Users/bernardchase/.hermes/agent-hooks/hook_router.py
-    timeout: 30
-hooks_auto_accept: true
+hooks: {}
 personalities: {}
 security:
   allow_private_urls: false
@@ -574,7 +501,7 @@ security:
   tirith_enabled: true
   tirith_path: tirith
   tirith_timeout: 5
-  tirith_fail_open: true
+  tirith_fail_open: false
   website_blocklist:
     enabled: false
     domains: []
@@ -733,7 +660,7 @@ mcp_servers:
     args:
     - -y
     - '@modelcontextprotocol/server-filesystem'
-    - /Users/bernardchase/.hermes/hermes-agent
+    - ${HERMES_HOME}/hermes-agent
     timeout: 120
   github:
     command: npx
@@ -770,7 +697,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/db/.env"
 
       export DB_HOST=localhost
 
@@ -796,7 +723,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/db/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/db/.env"
 
       export DB_HOST=localhost
 
@@ -822,7 +749,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/trade/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/trade/.env"
 
       export DB_HOST=localhost
 
@@ -848,7 +775,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "/Users/bernardchase/Documents/unordered_map/priority_queue/log(perplexity)/-sum/log/Pr(context_for_token)/chasecapitalmanagement/cohida/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/cohida/.env"
 
       export DB_HOST=localhost
 
@@ -873,7 +800,7 @@ mcp_servers:
     args:
     - -y
     - mcp-sqlite
-    - /Users/bernardchase/.hermes/state.db
+    - ${HERMES_HOME}/state.db
     timeout: 120
   fetch:
     command: npx
