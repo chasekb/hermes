@@ -204,16 +204,9 @@ def test_kanban_complete_exact_mode_uses_real_validator_before_db(monkeypatch):
             return FakeRun()
 
     responses = [(1, "", "transient")] + _exact_responses()
-    runner = lambda *args: responses.pop(0)
+    monkeypatch.setattr(github, "_default_runner", lambda *args: responses.pop(0))
     monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
     monkeypatch.setattr(kanban_tools, "_connect", lambda board=None: (FakeDb, FakeConn()))
-    monkeypatch.setattr(
-        kanban_tools,
-        "validate_published_pr",
-        lambda metadata, **kwargs: github.validate_published_pr(
-            metadata, runner=runner, **kwargs
-        ),
-    )
 
     result = kanban_tools._handle_complete(
         {
@@ -233,15 +226,8 @@ def test_kanban_complete_rejects_exact_evidence_before_db_mutation(monkeypatch):
     import hermes_cli.kanban_github as github
 
     responses = _exact_responses(run_sha="e" * 40)
-    runner = lambda *args: responses.pop(0)
+    monkeypatch.setattr(github, "_default_runner", lambda *args: responses.pop(0))
     monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
-    monkeypatch.setattr(
-        kanban_tools,
-        "validate_published_pr",
-        lambda metadata, **kwargs: github.validate_published_pr(
-            metadata, runner=runner, **kwargs
-        ),
-    )
 
     def unexpected_db_connect(board=None):
         raise AssertionError("DB connection attempted after rejected GitHub evidence")
@@ -257,3 +243,129 @@ def test_kanban_complete_rejects_exact_evidence_before_db_mutation(monkeypatch):
 
     assert json.loads(result)["ok"] is False
     assert "GitHub acceptance evidence unavailable" in result
+
+
+def _run_completion_with_real_validator(monkeypatch, responses, metadata):
+    import tools.kanban_tools as kanban_tools
+    import hermes_cli.kanban_github as github
+
+    calls = []
+
+    class FakeRun:
+        id = 9
+
+    class FakeConn:
+        def close(self):
+            pass
+
+    class FakeDb:
+        class HallucinatedCardsError(ValueError):
+            phantom = []
+
+        @staticmethod
+        def complete_task(conn, tid, **kwargs):
+            calls.append((tid, kwargs))
+            return True
+
+        @staticmethod
+        def latest_run(conn, tid):
+            return FakeRun()
+
+    monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
+    monkeypatch.setattr(github, "_default_runner", lambda *args: responses.pop(0))
+    monkeypatch.setattr(kanban_tools, "_connect", lambda board=None: (FakeDb, FakeConn()))
+    result = kanban_tools._handle_complete(
+        {
+            "task_id": "t_worker",
+            "summary": "boundary evidence",
+            "metadata": metadata,
+        }
+    )
+    return json.loads(result), calls
+
+
+def test_kanban_complete_rejects_failed_job_before_db_transition(monkeypatch):
+    result, calls = _run_completion_with_real_validator(
+        monkeypatch,
+        _exact_responses(jobs=[{"id": 1, "name": "verification", "conclusion": "failure"}]),
+        _exact_metadata(),
+    )
+    assert result["ok"] is False
+    assert calls == []
+
+
+def test_kanban_complete_rejects_pending_run_before_db_transition(monkeypatch):
+    responses = _exact_responses()
+    responses[2] = (
+        0,
+        json.dumps(
+            {
+                "head_sha": HEAD,
+                "event": "workflow_dispatch",
+                "status": "in_progress",
+                "conclusion": None,
+            }
+        ),
+        "",
+    )
+    result, calls = _run_completion_with_real_validator(
+        monkeypatch, responses, _exact_metadata()
+    )
+    assert result["ok"] is False
+    assert calls == []
+
+
+def test_kanban_complete_rejects_inconsistent_second_read_before_db_transition(monkeypatch):
+    responses = _exact_responses()
+    responses[4] = (
+        0,
+        json.dumps(
+            {
+                "state": "closed",
+                "number": 63,
+                "head": {"sha": HEAD},
+                "base": {"repo": {"full_name": "chasekb/trade"}},
+            }
+        ),
+        "",
+    )
+    result, calls = _run_completion_with_real_validator(
+        monkeypatch, responses, _exact_metadata()
+    )
+    assert result["ok"] is False
+    assert calls == []
+
+
+def test_kanban_complete_accepts_unchanged_merged_pr_before_db_transition(monkeypatch):
+    metadata = {
+        "acceptance_mode": "merged_pr",
+        "published_pr": PR_URL,
+        "pr_head_sha": HEAD,
+        "merge_sha": MERGE,
+        "required_checks": [{"name": "verification"}],
+        "terminal_run": {"id": 34584147928},
+    }
+    pr = {
+        "state": "closed",
+        "number": 63,
+        "merged_at": "2026-09-11T00:00:00Z",
+        "head": {"sha": HEAD},
+        "base": {"repo": {"full_name": "chasekb/trade"}},
+        "merge_commit_sha": MERGE,
+    }
+    checks = {"check_runs": [{"name": "verification", "conclusion": "success"}]}
+    run = {
+        "head_sha": HEAD,
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push",
+    }
+    jobs = {"jobs": [{"id": 1, "name": "verification", "conclusion": "success"}]}
+    responses = [
+        (0, json.dumps(value), "")
+        for value in (pr, checks, run, jobs) * 2
+    ]
+    result, calls = _run_completion_with_real_validator(monkeypatch, responses, metadata)
+    assert result["ok"] is True
+    assert len(calls) == 1
+    assert calls[0][1]["metadata"]["github_acceptance"]["merge_sha"] == MERGE
