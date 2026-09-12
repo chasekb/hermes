@@ -174,3 +174,86 @@ def test_exact_sha_rejects_inconsistent_second_read():
         assert "pr_read:not_merged" in str(exc)
     else:
         raise AssertionError("inconsistent second read was accepted")
+
+
+def test_kanban_complete_exact_mode_uses_real_validator_before_db(monkeypatch):
+    import tools.kanban_tools as kanban_tools
+
+    import hermes_cli.kanban_github as github
+
+    captured = {}
+
+    class FakeRun:
+        id = 8
+
+    class FakeConn:
+        def close(self):
+            pass
+
+    class FakeDb:
+        class HallucinatedCardsError(ValueError):
+            phantom = []
+
+        @staticmethod
+        def complete_task(conn, tid, **kwargs):
+            captured.update(kwargs)
+            return True
+
+        @staticmethod
+        def latest_run(conn, tid):
+            return FakeRun()
+
+    responses = [(1, "", "transient")] + _exact_responses()
+    runner = lambda *args: responses.pop(0)
+    monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
+    monkeypatch.setattr(kanban_tools, "_connect", lambda board=None: (FakeDb, FakeConn()))
+    monkeypatch.setattr(
+        kanban_tools,
+        "validate_published_pr",
+        lambda metadata, **kwargs: github.validate_published_pr(
+            metadata, runner=runner, **kwargs
+        ),
+    )
+
+    result = kanban_tools._handle_complete(
+        {
+            "task_id": "t_worker",
+            "summary": "verified exact workflow",
+            "metadata": _exact_metadata(),
+        }
+    )
+
+    assert json.loads(result)["ok"] is True
+    assert captured["metadata"]["github_acceptance"]["pr_state"] == "open"
+
+
+def test_kanban_complete_rejects_exact_evidence_before_db_mutation(monkeypatch):
+    import tools.kanban_tools as kanban_tools
+
+    import hermes_cli.kanban_github as github
+
+    responses = _exact_responses(run_sha="e" * 40)
+    runner = lambda *args: responses.pop(0)
+    monkeypatch.setenv("HERMES_KANBAN_TASK", "t_worker")
+    monkeypatch.setattr(
+        kanban_tools,
+        "validate_published_pr",
+        lambda metadata, **kwargs: github.validate_published_pr(
+            metadata, runner=runner, **kwargs
+        ),
+    )
+
+    def unexpected_db_connect(board=None):
+        raise AssertionError("DB connection attempted after rejected GitHub evidence")
+
+    monkeypatch.setattr(kanban_tools, "_connect", unexpected_db_connect)
+    result = kanban_tools._handle_complete(
+        {
+            "task_id": "t_worker",
+            "summary": "should remain in flight",
+            "metadata": _exact_metadata(),
+        }
+    )
+
+    assert json.loads(result)["ok"] is False
+    assert "GitHub acceptance evidence unavailable" in result
