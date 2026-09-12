@@ -54,7 +54,11 @@ jobs:
           if violations:
               raise SystemExit(f'forbidden source/runtime paths tracked: {violations}')
 
-          private_path = re.compile(r'/(?:home|Users)/[^/\s]+/(?!\.hermes/hermes-agent(?:[/`]|$))')
+          generic_home_user = r'(?:user|username|example|your(?:-?name|-?user))'
+          private_path = re.compile(
+              rf'/(?:home|Users)/(?!{generic_home_user}(?:[/`\s]|$))'
+              r'[^/\s]+/(?!\.hermes/hermes-agent(?:[/`]|$))'
+          )
           allowed_doc_paths = {
               pathlib.Path('README.md'),
               pathlib.Path('CONTROL_PLANE_MANIFEST.md'),
