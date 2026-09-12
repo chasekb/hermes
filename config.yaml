@@ -501,7 +501,7 @@ security:
   tirith_enabled: true
   tirith_path: tirith
   tirith_timeout: 5
-  tirith_fail_open: true
+  tirith_fail_open: false
   website_blocklist:
     enabled: false
     domains: []
@@ -697,7 +697,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "${HERMES_PROJECT_ROOT}/db/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/db/.env"
 
       export DB_HOST=localhost
 
@@ -723,7 +723,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "${HERMES_PROJECT_ROOT}/db/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/db/.env"
 
       export DB_HOST=localhost
 
@@ -749,7 +749,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "${HERMES_PROJECT_ROOT}/trade/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/trade/.env"
 
       export DB_HOST=localhost
 
@@ -775,7 +775,7 @@ mcp_servers:
     - -lc
     - 'set -a
 
-      source "${HERMES_PROJECT_ROOT}/cohida/.env"
+      source "${HERMES_PROJECT_ROOT:?HERMES_PROJECT_ROOT must be set}/cohida/.env"
 
       export DB_HOST=localhost
 
