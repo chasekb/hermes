@@ -22,6 +22,8 @@ _MAX_API_ATTEMPTS = 3
 _RETRY_DELAY_SECONDS = 0.05
 _PR_PATH_RE = re.compile(r"^/([^/]+)/([^/]+)/pull/(\d+)/?$")
 _SHA_RE = re.compile(r"^[0-9a-fA-F]{40}$")
+_MERGED_MODE = "merged_pr"
+_EXACT_WORKFLOW_MODE = "exact_sha_workflow_run"
 
 
 @dataclass(frozen=True)
@@ -112,14 +114,36 @@ def _snapshot(
 ) -> dict[str, Any]:
     prefix = f"repos/{owner}/{repo}"
     pr = _request_json(f"{prefix}/pulls/{number}", env=env, cwd=cwd, runner=runner)
-    if not isinstance(pr, dict) or pr.get("state") != "closed" or not pr.get("merged_at"):
+    if not isinstance(pr, dict):
+        raise GitHubAcceptanceError("pr_read", "invalid_response", "pull request response invalid")
+    mode = expected.get("acceptance_mode")
+    if mode is None:
+        # Legacy metadata remains merged-PR mode, but an incomplete merged
+        # claim cannot silently become exact-SHA mode.
+        mode = _MERGED_MODE if expected.get("merge_sha") else None
+    if mode not in {_MERGED_MODE, _EXACT_WORKFLOW_MODE}:
+        raise GitHubAcceptanceError("input", "acceptance_mode_invalid", "unsupported acceptance mode")
+    if mode == _EXACT_WORKFLOW_MODE:
+        if pr.get("state") not in {"open", "closed"}:
+            raise GitHubAcceptanceError("pr_read", "state_invalid", "pull request state invalid")
+    elif pr.get("state") != "closed" or not pr.get("merged_at"):
         raise GitHubAcceptanceError("pr_read", "not_merged", "pull request is not merged")
+    repository = pr.get("base", {}).get("repo", {}).get("full_name")
+    if not isinstance(repository, str) or repository.lower() != f"{owner}/{repo}".lower():
+        raise GitHubAcceptanceError("pr_read", "repository_mismatch", "pull request repository changed")
+    if pr.get("number") is not None and pr.get("number") != number:
+        raise GitHubAcceptanceError("pr_read", "number_mismatch", "pull request number changed")
     head = _sha(pr.get("head", {}).get("sha"), "pr_head_sha")
-    merge = _sha(pr.get("merge_commit_sha"), "merge_sha")
-    if head != _sha(expected.get("pr_head_sha", expected.get("head_sha")), "pr_head_sha"):
+    declared_sha = expected.get("exact_sha") if mode == _EXACT_WORKFLOW_MODE else expected.get(
+        "pr_head_sha", expected.get("head_sha")
+    )
+    if head != _sha(declared_sha, "exact_sha" if mode == _EXACT_WORKFLOW_MODE else "pr_head_sha"):
         raise GitHubAcceptanceError("pr_read", "head_mismatch", "published PR head changed")
-    if merge != _sha(expected.get("merge_sha"), "merge_sha"):
-        raise GitHubAcceptanceError("pr_read", "merge_mismatch", "published PR merge changed")
+    merge = None
+    if mode == _MERGED_MODE:
+        merge = _sha(pr.get("merge_commit_sha"), "merge_sha")
+        if merge != _sha(expected.get("merge_sha"), "merge_sha"):
+            raise GitHubAcceptanceError("pr_read", "merge_mismatch", "published PR merge changed")
 
     checks = _request_json(
         f"{prefix}/commits/{head}/check-runs?per_page=100",
@@ -153,6 +177,8 @@ def _snapshot(
     )
     if not isinstance(run, dict) or run.get("head_sha") != head:
         raise GitHubAcceptanceError("run_read", "head_mismatch", "terminal run head changed")
+    if mode == _EXACT_WORKFLOW_MODE and run.get("event") != "workflow_dispatch":
+        raise GitHubAcceptanceError("run_read", "event_mismatch", "terminal run is not workflow_dispatch")
     if run.get("status") != "completed" or run.get("conclusion") != "success":
         raise GitHubAcceptanceError("run_read", "run_not_successful", "terminal run is not successful")
     jobs = _request_json(
@@ -167,6 +193,7 @@ def _snapshot(
     ):
         raise GitHubAcceptanceError("run_read", "job_not_successful", "terminal run has incomplete jobs")
     return {
+        "acceptance_mode": mode,
         "published_pr": expected["published_pr"],
         "pr_head_sha": head,
         "merge_sha": merge,
@@ -197,6 +224,13 @@ def validate_published_pr(
         return dict(metadata)
     owner, repo, number = _parse_pr_url(metadata["published_pr"])
     expected = dict(metadata)
+    mode = expected.get("acceptance_mode")
+    if mode not in {None, _MERGED_MODE, _EXACT_WORKFLOW_MODE}:
+        raise GitHubAcceptanceError("input", "acceptance_mode_invalid", "unsupported acceptance mode")
+    if mode is None and not expected.get("merge_sha"):
+        raise GitHubAcceptanceError("input", "acceptance_mode_invalid", "acceptance mode required")
+    if mode == _EXACT_WORKFLOW_MODE:
+        _sha(expected.get("exact_sha"), "exact_sha")
     runtime_env = dict(os.environ if env is None else env)
     read = runner or _default_runner
     first = _snapshot(owner, repo, number, expected=expected, env=runtime_env, cwd=cwd, runner=read)
