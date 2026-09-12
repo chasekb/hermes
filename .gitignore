@@ -79,3 +79,44 @@ Thumbs.db
 /lsp/node_modules/
 /ollama_cloud_models_cache.json
 /provider_models_cache.json
+
+# This repository is not a Hermes source checkout. Keep implementation,
+# package-manager, and source-delivery trees out if copied into the workspace.
+/agent/
+/acp_adapter/
+/gateway/
+/hermes_cli/
+/plugins/
+/providers/
+/tools/
+/lsp/
+/skills/autonomous-ai-agents/hermes-agent/
+/skills/autonomous-ai-agents/kanban-codex-lane/
+/skills/autonomous-ai-agents/mixture-of-agents/
+/skills/devops/containerized-build-verification/
+/skills/devops/kanban-orchestrator/references/update-stash-gap-analysis.md
+/tests/
+/pyproject.toml
+/setup.py
+/package.json
+/package-lock.json
+
+# Additional runtime and local-worktree state.
+/.worktrees/
+/.git-worktrees/
+/.pytest_cache/
+/.mypy_cache/
+/.ruff_cache/
+/.coverage
+coverage.xml
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+*.session
+*.jsonl
+*.pid
+*.sock
+*.tmp
+*.temp

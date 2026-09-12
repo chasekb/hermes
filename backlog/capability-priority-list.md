@@ -9,7 +9,7 @@ This is an implementation-ready ordering of the highest-value capability work su
 ## P0 — Activate and verify the core orchestration path
 
 ### 1) Hook router / hook coverage is verified and should stay single-sourced
-- Status: wired in `config.yaml` to `/Users/bernardchase/.hermes/agent-hooks/hook_router.py` across the major hook surfaces and runtime-verified.
+- Status: wired in `config.yaml` to `$HERMES_HOME/agent-hooks/hook_router.py` across the major hook surfaces and runtime-verified.
 - Category: mostly activation / verification, not new implementation.
 - Why now: this is the control plane for making all other capabilities reliable.
 - Next action:

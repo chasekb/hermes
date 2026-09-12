@@ -13,7 +13,7 @@ metadata:
 This skill describes the recommended repository/profile layout for a single canonical orchestrator plus project-specific clones.
 
 Canonical source repo:
-- /Users/bernardchase/Documents/unordered_map/priority_queue/sum/square/y_bar/map/hermes-orchestrator-layout
+- `$PROJECT_ROOT/hermes-orchestrator-layout`
 
 ## Recommended structure
 
