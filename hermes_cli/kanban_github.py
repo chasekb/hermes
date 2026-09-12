@@ -195,14 +195,18 @@ def _snapshot(
     return {
         "acceptance_mode": mode,
         "published_pr": expected["published_pr"],
+        "pr_state": pr["state"],
+        "pr_repository": repository,
+        "pr_number": number,
         "pr_head_sha": head,
         "merge_sha": merge,
         "required_checks": observed_checks,
         "terminal_run": {
             "id": terminal["id"],
             "head_sha": head,
-            "status": "completed",
-            "conclusion": "success",
+            "event": run["event"],
+            "status": run["status"],
+            "conclusion": run["conclusion"],
             "jobs": [
                 {"id": job.get("id"), "name": job.get("name"), "conclusion": "success"}
                 for job in job_rows
